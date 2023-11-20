@@ -1,30 +1,17 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Clubs from './components/Clubs.vue'
+import EventsList from './components/EventsList.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>My Ruck Club</h1>
+    <p><em>My Ruck Club</em> is the first stop to get more info of your local ruck clubs. We are putting focus first in the DACH region.</p>
+    <p>This website is currently under construction!</p>
+    <p>We suggest to follow <a href="https://muenchen.social/@rucking" target="_blank">https://muenchen.social/@rucking</a> to get the latest development news. Or join the <a href="https://feddit.de/c/rucking" target="_blank">Rucking Community</a> on Lemmy.</p>
+    <p>Or checkout one of these ruck clubs:</p>
+    <Clubs/>
+    <EventsList/>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

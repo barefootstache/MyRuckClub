@@ -1,5 +1,6 @@
 export type Club = {
   default?: Default;
+  hide?: boolean;
   id: string;
   name: string;
   url: string;
@@ -85,6 +86,13 @@ export const Clubs: Club[] = [
   {
     name: 'GORUCK Europe',
     url: 'https://www.instagram.com/goruckeurope/',
-    id: 'goruckeurope'
+    id: 'goruckeurope',
+    hide: true
+  },
+  {
+    name: 'GORUCK',
+    url: 'https://www.goruckevents.com/',
+    id: 'goruck',
+    hide: true
   },
 ]

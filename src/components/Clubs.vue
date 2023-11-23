@@ -6,7 +6,7 @@
   <div>
     <ul>
       <li v-for="club in Clubs">
-        <a :href="club.url" target="_blank">{{ club.name }}</a>
+        <a v-if="!club.hide" :href="club.url" target="_blank">{{ club.name }}</a>
       </li>
     </ul>
   </div>

@@ -36,6 +36,14 @@ export const Clubs: Club[] = [
 
   },
   {
+    default: {
+      name: 'Weekly Ruck Meetup',
+      lat: 48.36845,
+      location: 'Augsburg',
+      long: 10.89624,
+      recurringInterval: 'weekly',
+      time: '18:30'
+    },
     name: 'AUXRucker (Ruck Club Augsburg)',
     url: 'https://www.instagram.com/auxruckers/',
     id: 'auxruckers'
@@ -48,6 +56,14 @@ export const Clubs: Club[] = [
 
   },
   {
+    default: {
+      name: 'Montly Ruck Meetup',
+      lat: 52.3894,
+      location: 'Freizeitheim Lister Turm, Hannover',
+      long: 9.7544,
+      recurringInterval: 'weekly',
+      time: '11:00'
+    },
     name: 'Ruck It! Hannover',
     url: 'https://www.instagram.com/ruckithannover/',
     id: 'ruckithannover'

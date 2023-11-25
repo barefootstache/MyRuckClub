@@ -3,15 +3,30 @@
   import {ClubEvents, ClubEvent} from '../assets/events.db.ts';
   import {Clubs, Club} from '../assets/clubs.db.ts'
 
+  /**
+   * Gets the OSM Location URL.
+   * @param ev - the club event
+   * @returns the URL.
+   */
   function getLocationUrl(ev: ClubEvent): string {
     return `https://www.openstreetmap.org/?mlat=${ev.lat}&mlon=${ev.long}#map=18/${ev.lat}/${ev.long}`
   }
 
+  /**
+   * Gets the registration, if it exists, otherwise empty string.
+   * @param ev - the club event
+   * @returns the URL.
+   */
   function getRegistrationLink(ev: ClubEvent): string {
     const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
     return foundClub ? foundClub.url : '';
   }
 
+  /**
+   * Gets the club name where one should register.
+   * @param ev - the club event
+   * @returns the club's name.
+   */
   function getRegistrationName(ev: ClubEvent): string {
     const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
     return foundClub ? foundClub.name : '';

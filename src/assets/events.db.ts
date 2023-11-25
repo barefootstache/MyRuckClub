@@ -34,13 +34,13 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-11-28', 'auxruckers'),
   createClubEvent('2023-11-30', 'munichruckingcrew'),
   {
-    clubId: 'teutorucker',
+    clubId: 'ruhr_ruckers',
     date: new Date('2023-12-03'),
     lat: 51.9456,
     location: 'TBA',
     long: 8.5828,
     name: 'Monthly Ruck Meetup',
-    time: '11:00'
+    time: '09:00'
   },
   createClubEvent('2023-12-05', 'auxruckers'),
   createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12 Miler', time: '18:00'}),

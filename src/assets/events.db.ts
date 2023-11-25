@@ -21,9 +21,9 @@ export const ClubEvents: ClubEvent[] = [
   {
     clubId: 'ruckithannover',
     date: new Date('2023-11-26'),
-    lat: 52.37600,
-    location: 'TBA',
-    long: 9.74034,
+    lat: 52.3894,
+    location: 'Freizeitheim Lister Turm, Hannover',
+    long: 9.7544,
     name: 'Monthly Ruck Meetup',
     time: '11:00'
   },

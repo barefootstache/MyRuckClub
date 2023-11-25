@@ -4,7 +4,7 @@
   import {Clubs, Club} from '../assets/clubs.db.ts'
 
   function getLocationUrl(ev: ClubEvent): string {
-    return `https://www.openstreetmap.org/#map=18/${ev.lat}/${ev.long}`
+    return `https://www.openstreetmap.org/?mlat=${ev.lat}&mlon=${ev.long}#map=18/${ev.lat}/${ev.long}`
   }
 
   function getRegistrationLink(ev: ClubEvent): string {

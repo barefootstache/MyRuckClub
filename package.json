@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",

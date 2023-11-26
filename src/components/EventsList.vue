@@ -40,7 +40,6 @@
 
 <template>
   <div>
-    <h2>Upcoming Events</h2>
     <ul>
       <li v-for="ev in upcomingClubEvents">
         <span style="font-weight: bold">{{ev.name}}</span><br>

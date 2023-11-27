@@ -20,6 +20,7 @@ import EventsList from '../../components/EventsList.vue'
   </ul>
   <p>Or checkout one of these ruck clubs:</p>
   <Clubs/>
+  <h2>Upcoming Events</h2>
   <EventsList/>
 </template>
 

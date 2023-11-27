@@ -36,9 +36,9 @@ export const ClubEvents: ClubEvent[] = [
   {
     clubId: 'ruhr_ruckers',
     date: new Date('2023-12-03'),
-    lat: 51.9456,
+    lat: 51.48016,
     location: 'TBA',
-    long: 8.5828,
+    long: 7.21651,
     name: 'Monthly Ruck Meetup',
     time: '09:00'
   },
@@ -49,6 +49,12 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'TBA'}),
   createClubEvent('2023-12-19', 'auxruckers'),
   createClubEvent('2023-12-21', 'munichruckingcrew'),
+  createClubEvent('2024-04-20', 'goruck', {name: 'Milton Memorial Tough', location: 'Frankfurt am Main, Germany', lat: 50.11228, long: 8.67662}),
+  createClubEvent('2024-05-27', 'goruck', {name: 'Selection', location: 'Normandy, France', lat: 49.37785, long: -0.89874}),
+  createClubEvent('2024-05-31', 'goruck', {name: 'GORUCK Party', location: 'Normandy, France', lat: 49.37785, long: -0.89874}),
+  createClubEvent('2024-06-01', 'goruck', {name: 'Star Course', location: 'Normandy, France', lat: 49.37785, long: -0.89874}),
+  createClubEvent('2024-06-03', 'goruck', {name: 'Tough Challenge', location: 'Normandy, France', lat: 49.37785, long: -0.89874}),
+  createClubEvent('2024-06-04', 'goruck', {name: 'Basic/Light Challenge + After Party', location: 'Normandy, France', lat: 49.37785, long: -0.89874}),
 ]
 
 /**

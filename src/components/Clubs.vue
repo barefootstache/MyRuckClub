@@ -6,7 +6,7 @@
   <div>
     <ul>
       <li v-for="club in Clubs">
-        <a v-if="!club.hide" :href="club.url" target="_blank">{{ club.name }}</a>
+        <router-link v-if="!club.hide" :to="{ name: 'club', params: {id: club.id}}">{{ club.name }}</router-link>
       </li>
     </ul>
   </div>

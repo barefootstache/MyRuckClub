@@ -6,8 +6,15 @@ import HomePage from './modules/home/HomePage.vue'
 
 const routes = [
   {path: '/', component: HomePage},
-  {path: '/clubs', component: () => import('./modules/clubs/ClubsPage.vue'
-)},
+  {
+    path: '/clubs', 
+    component: () => import('./modules/clubs/ClubsListPage.vue'
+  )},
+  {
+    path: '/club/:id',
+    name: 'club',
+    component: () => import('./modules/clubs/ClubPage.vue')
+  },
   {path: '/events', component: () => import('./modules/events/EventsPage.vue'
 )},
   {path: '/about', component: () => import('./modules/about/AboutPage.vue'

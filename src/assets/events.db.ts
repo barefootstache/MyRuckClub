@@ -36,9 +36,9 @@ export const ClubEvents: ClubEvent[] = [
   {
     clubId: 'ruhr_ruckers',
     date: new Date('2023-12-03'),
-    lat: 51.9456,
+    lat: 51.48016,
     location: 'TBA',
-    long: 8.5828,
+    long: 7.21651,
     name: 'Monthly Ruck Meetup',
     time: '09:00'
   },

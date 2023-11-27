@@ -38,13 +38,13 @@ export const Clubs: Club[] = [
   {
     default: {
       name: 'Weekly Ruck Meetup',
-      lat: 48.36845,
-      location: 'Augsburg',
-      long: 10.89624,
+      lat: 48.3772151,
+      location: 'Fischertor, Augsburg',
+      long: 10.8939913,
       recurringInterval: 'weekly',
       time: '18:30'
     },
-    name: 'AUXRucker (Ruck Club Augsburg)',
+    name: 'AUXRucker',
     url: 'https://www.instagram.com/auxruckers/',
     id: 'auxruckers'
 

@@ -32,10 +32,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/signup',
     name: 'Signup',
     component: () => import('../modules/auth/SignUpPage.vue')
-  },
-  {
-    path: '/catchAll(.*)',
-    name: 'PageNotFound'
   }
 ]
 

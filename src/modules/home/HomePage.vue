@@ -4,10 +4,16 @@ import EventsList from '../../components/EventsList.vue'
 import {Clubs as ClubsList} from '../../assets/clubs.db.ts'
 
 import "leaflet/dist/leaflet.css";
-//import type L from "leaflet";
+import L from "leaflet";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
 const zoom = 6; 
+
+const ruckIcon = L.icon({
+  iconUrl: '/ruck_pin.png',
+  iconSize: [20, 30],
+  iconAnchor: [10, 30]
+})
 </script>
 
 <template>
@@ -24,7 +30,7 @@ const zoom = 6;
       ></l-tile-layer>
 
       <div v-for="club in ClubsList">
-        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates"> </l-marker>
+        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="ruckIcon"> </l-marker>
       </div>
     </l-map>
   </div>

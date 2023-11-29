@@ -1,5 +1,7 @@
 import { Clubs } from "./clubs.db";
 
+export type EventType = 'pt' | 'ruck' | 'default';
+
 export type ClubEvent = {
   clubId: string;
   date: Date;
@@ -8,6 +10,7 @@ export type ClubEvent = {
   long: number;
   name: string;
   time: string;
+  type: EventType;
 }
 
 export const ClubEventInit: ClubEvent = {
@@ -17,21 +20,11 @@ export const ClubEventInit: ClubEvent = {
   location: 'TBA',
   long: 0,
   name: '',
-  time: '00:00'
+  time: '00:00',
+  type: 'default'
 }
 
 export const ClubEvents: ClubEvent[] = [
-  {
-    clubId: 'munichruckingcrew',
-    date: new Date('2023-11-26'),
-    lat: 49.44610,
-    location: 'DB Info am Nürnberg Hbf',
-    long: 11.08192,
-    name: '12-Miler in Nürnberg',
-    time: '11:00'
-  },
-  createClubEvent('2023-11-26', 'ruckithannover'),
-  createClubEvent('2023-11-28', 'auxruckers'),
   createClubEvent('2023-11-30', 'munichruckingcrew'),
   {
     clubId: 'ruhr_ruckers',
@@ -40,13 +33,14 @@ export const ClubEvents: ClubEvent[] = [
     location: 'Priemhauser Weg, Kupferdreh',
     long: 7.08241,
     name: 'Monthly Ruck Meetup',
-    time: '09:00'
+    time: '09:00',
+    type: 'ruck'
   },
   createClubEvent('2023-12-05', 'auxruckers'),
-  createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12 Miler', time: '18:00'}),
+  createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12 Miler', time: '18:00', type: 'ruck'}),
   createClubEvent('2023-12-12', 'auxruckers'),
   createClubEvent('2023-12-14', 'munichruckingcrew'),
-  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'TBA'}),
+  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Münchener Freiheit, München', type: 'ruck', lat: 48.16261, long: 11.58698}),
   createClubEvent('2023-12-19', 'auxruckers'),
   createClubEvent('2023-12-21', 'munichruckingcrew'),
   createClubEvent('2024-04-20', 'goruck', {name: 'Milton Memorial Tough', location: 'Frankfurt am Main, Germany', lat: 50.11228, long: 8.67662}),
@@ -74,6 +68,7 @@ export function createClubEvent(dateString: string, clubId: string, ev?: Partial
     long: ev?.long ? ev.long : club?.default?.long ? club.default.long : ClubEventInit.long,
     name: ev?.name ? ev.name : club?.default?.name ? club.default.name : ClubEventInit.name,
     time: ev?.time ? ev.time : club?.default?.time ? club.default.time : ClubEventInit.time,
+    type: ev?.type ? ev.type : club?.default?.type ? club.default.type : ClubEventInit.type
   }
   return newEvent
 }

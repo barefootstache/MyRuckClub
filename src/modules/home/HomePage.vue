@@ -9,8 +9,8 @@ import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
 const zoom = 6; 
 
-const ruckIcon = L.icon({
-  iconUrl: '/ruck_pin.png',
+const hqIcon = L.icon({
+  iconUrl: '/hq_pin.png',
   iconSize: [20, 30],
   iconAnchor: [10, 30]
 })
@@ -30,7 +30,7 @@ const ruckIcon = L.icon({
       ></l-tile-layer>
 
       <div v-for="club in ClubsList">
-        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="ruckIcon"> </l-marker>
+        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="hqIcon"> </l-marker>
       </div>
     </l-map>
   </div>

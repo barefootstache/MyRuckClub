@@ -1,3 +1,5 @@
+import { EventType } from "./events.db";
+
 export type Club = {
   coordinates: [number, number];
   default?: Default;
@@ -14,6 +16,7 @@ export type Default = {
   name: string;
   recurringInterval: string;
   time: string;
+  type: EventType;
 }
 
 export const Clubs: Club[] = [
@@ -25,7 +28,8 @@ export const Clubs: Club[] = [
       location: 'BMW Welt Nord, München',
       long: 11.5557917,
       recurringInterval: 'weekly',
-      time: '19:00'
+      time: '19:00',
+      type: 'pt'
     },
     id: 'munichruckingcrew',
     name: 'Munich Rucking Crew',
@@ -46,7 +50,8 @@ export const Clubs: Club[] = [
       location: 'Fischertor, Augsburg',
       long: 10.8939913,
       recurringInterval: 'weekly',
-      time: '18:30'
+      time: '18:30',
+      type: 'ruck'
     },
     name: 'AUXRucker',
     url: 'https://www.instagram.com/auxruckers/',
@@ -68,7 +73,8 @@ export const Clubs: Club[] = [
       location: 'Freizeitheim Lister Turm, Hannover',
       long: 9.7544,
       recurringInterval: 'weekly',
-      time: '11:00'
+      time: '11:00',
+      type: 'ruck'
     },
     name: 'Ruck It! Hannover',
     url: 'https://www.instagram.com/ruckithannover/',

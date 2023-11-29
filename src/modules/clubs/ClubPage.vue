@@ -48,19 +48,6 @@
     return `https://www.openstreetmap.org/?mlat=${ev.lat}&mlon=${ev.long}#map=18/${ev.lat}/${ev.long}`
   }
 
-  /**
-   * Gets the default coordinates of the training or the coordinates.
-   * @param club - the club
-   * @returns the coordinates.
-   */
-  function getDefaultOrCoordinates(club: Club): [number, number] {
-    if(club?.default?.lat && club?.default?.long) {
-      return [club?.default?.lat, club?.default?.long];
-    } else {
-      return club.coordinates;
-    }
-  }
-
   /** 
    * Gets the coordinates of an club event.
    * @param ev - the club event.

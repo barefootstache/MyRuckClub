@@ -127,4 +127,10 @@ export const Clubs: Club[] = [
     id: 'goruck',
     hide: true
   },
+  {
+    coordinates:[49.75845, 8.5996],
+    name: 'RK Frankenstein',
+    url: 'http://www.rkfrankenstein.de',
+    id: 'rkfrankenstein'
+  }
 ]

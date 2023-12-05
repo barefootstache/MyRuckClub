@@ -166,7 +166,8 @@
       </l-map>
     </div>
 
-    <p>For more info contact us on <a :href="club.url">Instagram</a>.</p>
+    <p v-if="club.url.includes('instagram')">For more info contact us on <a :href="club.url">Instagram</a>.</p>
+    <p v-if="!club.url.includes('instagram')">For more info contact us at our <a :href="club.url">Homepage</a>.</p>
 
     <h3><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h3>
     

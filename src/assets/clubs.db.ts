@@ -2,7 +2,7 @@ import { EventType } from "./events.db";
 
 export type Coordinates = [number, number];
 
-export type Country = 'Germany' | 'Ireland' | 'Norway' | 'Switzerland';
+export type Country = 'Germany' | 'Ireland' | 'México' | 'Norway' | 'Sweden' | 'Switzerland' | 'USA';
 
 export type Club = {
   coordinates: Coordinates;
@@ -189,5 +189,89 @@ export const Clubs: Club[] = [
     name: 'The Sunrise Ruck Club',
     url: 'https://www.instagram.com/thesunriseruckclub/',
     id: 'thesunriseruckclub'
-  }
+  },
+  {
+    coordinates: [25.6944,-80.1648],
+    country: 'USA',
+    name: 'Couth Florida Ruck Club',
+    url: 'https://www.instagram.com/southfloridaruckclub/',
+    id: 'southfloridaruckclub'
+  },
+  {
+    coordinates: [26.3100,-80.2386],
+    country: 'USA',
+    name: 'Vice City Ruckers',
+    url: 'https://www.instagram.com/vicecityruckers/',
+    id: 'vicecityruckers'
+  },
+  {
+    coordinates: [36.1551,-95.9951],
+    country: 'USA',
+    name: 'Green Country Ruckers',
+    url: 'https://www.instagram.com/green.country.ruckers/',
+    id: 'greencountryruckers'
+  },
+  {
+    coordinates: [34.6092,-98.3977],
+    country: 'USA',
+    name: 'Blockout Rucking Crew',
+    url: 'https://www.instagram.com/blackoutruckingcrew/',
+    id: 'blackoutruckingcrew'
+  },
+  {
+    coordinates: [32.7148,-117.1623],
+    country: 'USA',
+    name: 'Triton Ruck Club ',
+    url: 'https://www.instagram.com/tritonruckclub/',
+    id: 'tritonruckclub'
+  },
+  {
+    coordinates: [35.5846,-80.8102],
+    country: 'USA',
+    name: 'Mooresville Ruck Club',
+    url: 'https://www.instagram.com/ruckmooresville/',
+    id: 'ruckmooresville'
+  },
+  {
+    coordinates: [57.7072,11.9670],
+    country: 'Sweden',
+    name: 'Team Uphill',
+    url: 'https://www.instagram.com/teamuphill/',
+    id: 'teamuphill'
+  },
+  {
+    coordinates: [35.7327,-78.8506],
+    country: 'USA',
+    name: 'Apex Ruck Club',
+    url: 'https://www.instagram.com/apex_ruck_club/',
+    id: 'apex_ruck_club'
+  },
+  {
+    coordinates: [23.7327,-105.6897],
+    country: 'México',
+    name: 'Ruckers CDMX Ruck Club',
+    url: 'https://www.instagram.com/ruckerscdmxclub/',
+    id: 'ruckerscdmxclub'
+  },
+  {
+    coordinates: [46.2769,-119.2718],
+    country: 'USA',
+    name: 'Bedrock Rucking',
+    url: 'https://www.instagram.com/bedrock_rucking/',
+    id: 'bedrock_rucking'
+  },
+  {
+    coordinates: [41.4203,-73.9550],
+    country: 'USA',
+    name: 'Hudson Valley Ruck Club',
+    url: 'https://www.instagram.com/hudson.valley.ruck.club/',
+    id: 'hudsonvalleyruckclub'
+  },
+  {
+    coordinates: [42.3457,-82.9768],
+    country: 'USA',
+    name: 'East Side Ruck Club',
+    url: 'https://www.instagram.com/eastsideruckclub_mi/',
+    id: 'eastsideruckclub_mi'
+  },
 ]

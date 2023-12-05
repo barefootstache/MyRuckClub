@@ -24,7 +24,7 @@
    */
   function getRegistrationLink(ev: ClubEvent): string {
     const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
-    return getMostRecentData<string>('url', foundClub, ev) || foundClub?.url;
+    return getMostRecentData<string>('url', foundClub, ev) || foundClub?.url || '';
   }
 
   /**

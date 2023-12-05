@@ -35,7 +35,7 @@
     if(!ev.default){
       return '#';
     } else {
-      return `https://www.openstreetmap.org/?mlat=${ev.default.lat}&mlon=${ev.default.long}#map=18/${ev.default.lat}/${ev.default.long}`
+      return `https://www.openstreetmap.org/?mlat=${ev.default.coordinates[0]}&mlon=${ev.default.coordinates[1]}#map=18/${ev.default.coordinates[0]}/${ev.default.coordinates[1]}`
     }
   }
 

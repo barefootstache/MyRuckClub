@@ -111,6 +111,7 @@
    */
   function calcZoom(coordinates: [number, number][]): number {
     const initialZoom = 16;
+    const adjustSmallWindow = document.documentElement.clientWidth < 800 ? 1 : 0;
     // Extract latitude and longitude arrays
     const latitudes = coordinates.map(coord => coord[0]);
     const longitudes = coordinates.map(coord => coord[1]);
@@ -124,7 +125,7 @@
     const distance = Math.sqrt(x * x + y * y);
 
     // Return the zoom
-    return initialZoom - (coordinates.length -1) - Math.floor(distance / 50);
+    return initialZoom - (coordinates.length - 1) - Math.floor(distance / 50) - adjustSmallWindow;
   }
 
   /** 
@@ -152,7 +153,7 @@
     <h2>{{club.name}}</h2>
     <p>We typically meet at <a :href="getLocationClubUrl(club)" target="_blank">{{club?.default?.location || 'TBA'}}</a>.</p>
     
-    <div style="height:600px; width:800px">
+    <div class="map-view">
       <l-map ref="map" v-model:zoom="zoom" :center="calcCenterMap(allCoordinates)">
         <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -171,7 +172,7 @@
 
     <h3><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h3>
     
-    <ul>
+    <ul class="events-view">
       <li v-for="ev in upcomingClubEvents">
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
@@ -187,5 +188,21 @@
 li {
   outline: 1px solid;
   margin-bottom: 4px;
+  padding: 0 4px;
+}
+.map-view {
+  height: 600px;
+  width: 800px;
+  margin: auto;
+}
+@media screen and (max-width: 800px) {
+  .map-view {
+    height: 380px;
+    width: calc(100% - 20px);
+  }
+}
+.events-view {
+  margin: auto;
+  padding: 0;
 }
 </style>

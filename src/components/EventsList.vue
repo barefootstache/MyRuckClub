@@ -40,7 +40,7 @@
 
 <template>
   <div>
-    <ul>
+    <ul class="events-view">
       <li v-for="ev in upcomingClubEvents">
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
@@ -56,5 +56,10 @@
 li {
   outline: 1px solid;
   margin-bottom: 4px;
+  padding: 0 4px;
+}
+.events-view {
+  margin: auto;
+  padding: 0;
 }
 </style>

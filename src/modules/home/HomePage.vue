@@ -7,7 +7,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
-const zoom = 6; 
+const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
 const hqIcon = L.icon({
   iconUrl: '/hq_pin.png',
@@ -20,7 +20,7 @@ const hqIcon = L.icon({
   <h1>My Ruck Club</h1>
   <p><em>My Ruck Club</em> is the first stop to get more info of your local ruck clubs.</p>
 
-  <div style="height:600px; width:800px">
+  <div class="map-view">
     <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -53,9 +53,16 @@ const hqIcon = L.icon({
 </template>
 
 <style scoped>
-#map {
-  width: 100%;
-  height: 100vh;
+.map-view {
+  height: 600px;
+  width: 800px;
+  margin: auto;
+}
+@media screen and (max-width: 800px) {
+  .map-view {
+    height: 380px;
+    width: calc(100% - 20px);
+  }
 }
 </style>
 

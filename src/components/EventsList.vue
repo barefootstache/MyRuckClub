@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import {format, isAfter, subDays} from 'date-fns';
-  import {ClubEvents, ClubEvent} from '../assets/events.db.ts';
+  import {ClubEvents, ClubEvent, getMostRecentData} from '../assets/events.db.ts';
   import {Clubs, Club} from '../assets/clubs.db.ts'
 
   /**
@@ -14,7 +14,7 @@
    * @returns the URL.
    */
   function getLocationUrl(ev: ClubEvent): string {
-    return `https://www.openstreetmap.org/?mlat=${ev.lat}&mlon=${ev.long}#map=18/${ev.lat}/${ev.long}`
+    return `https://www.openstreetmap.org/?mlat=${ev.coordinates[0]}&mlon=${ev.coordinates[1]}#map=18/${ev.coordinates[0]}/${ev.coordinates[1]}`
   }
 
   /**
@@ -24,7 +24,7 @@
    */
   function getRegistrationLink(ev: ClubEvent): string {
     const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
-    return foundClub ? foundClub.url : '';
+    return getMostRecentData<string>('url', foundClub, ev) || foundClub?.url;
   }
 
   /**

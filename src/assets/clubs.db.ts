@@ -10,13 +10,13 @@ export type Club = {
 }
 
 export type Default = {
-  lat: number;
+  coordinates: [number, number];
   location: string;
-  long: number;
   name: string;
   recurringInterval: string;
   time: string;
   type: EventType;
+  url?: string;
 }
 
 export const Clubs: Club[] = [
@@ -24,9 +24,8 @@ export const Clubs: Club[] = [
     coordinates: [48.1379,11.5744],
     default: {
       name: 'MRC Weekly Training',
-      lat: 48.1779445,
+      coordinates: [48.1779445, 11.5557917],
       location: 'BMW Welt Nord, München',
-      long: 11.5557917,
       recurringInterval: 'weekly',
       time: '19:00',
       type: 'pt'
@@ -46,9 +45,8 @@ export const Clubs: Club[] = [
     coordinates: [48.3663,10.8943],
     default: {
       name: 'Weekly Ruck Meetup',
-      lat: 48.3772151,
+      coordinates: [48.3772151, 10.8939913],
       location: 'Fischertor, Augsburg',
-      long: 10.8939913,
       recurringInterval: 'weekly',
       time: '18:30',
       type: 'ruck'
@@ -69,9 +67,8 @@ export const Clubs: Club[] = [
     coordinates: [52.3754,9.7377],
     default: {
       name: 'Montly Ruck Meetup',
-      lat: 52.3894,
+      coordinates: [52.3894, 9.7544],
       location: 'Freizeitheim Lister Turm, Hannover',
-      long: 9.7544,
       recurringInterval: 'weekly',
       time: '11:00',
       type: 'ruck'
@@ -123,7 +120,7 @@ export const Clubs: Club[] = [
   {
     coordinates: [0,0],
     name: 'GORUCK',
-    url: 'https://www.goruckevents.com/',
+    url: 'https://www.sandlot.fit/',
     id: 'goruck',
     hide: true
   },

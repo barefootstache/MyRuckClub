@@ -45,7 +45,7 @@
    * @returns the URL.
    */
   function getLocationUrl(ev: ClubEvent): string {
-    return `https://www.openstreetmap.org/?mlat=${ev.lat}&mlon=${ev.long}#map=18/${ev.lat}/${ev.long}`
+    return `https://www.openstreetmap.org/?mlat=${ev.coordinates[0]}&mlon=${ev.coordinates[1]}#map=18/${ev.coordinates[0]}/${ev.coordinates[1]}`
   }
 
   /** 
@@ -54,7 +54,7 @@
    * @returns the coordinates.
    */
   function getCoordinates(ev: ClubEvent): [number, number] {
-    return [ev.lat, ev.long];
+    return ev.coordinates;
   }
 
   /** 
@@ -163,7 +163,7 @@
         ></l-tile-layer>
 
         <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="hqIcon"> </l-marker>
-        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="getCoordinates(ev)" :icon="getIconFromType(ev)"> </l-marker>
+        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getIconFromType(ev)"> </l-marker>
       </l-map>
     </div>
 

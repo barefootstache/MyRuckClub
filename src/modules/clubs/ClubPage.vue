@@ -66,7 +66,7 @@
     if(evs.length <= 1){
       return evs;
     }
-    return unique(evs, e => `${e.lat},${e.long}`);
+    return unique(evs, e => `${e.coordinates}`);
   }
 
 

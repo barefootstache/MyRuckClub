@@ -1,10 +1,10 @@
-import { Club, Clubs, Default } from "./clubs.db";
+import { Club, Clubs, Default, Coordinates } from "./clubs.db";
 
 export type EventType = 'pt' | 'ruck' | 'default';
 
 export type ClubEvent = {
   clubId: string;
-  coordinates: [number, number];
+  coordinates: Coordinates;
   date: Date;
   lat?: number;
   location: string;

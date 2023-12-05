@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useRoute } from 'vue-router';
-  import { Club, Clubs } from '../../assets/clubs.db.ts';
+  import { Club, Clubs, Coordinates } from '../../assets/clubs.db.ts';
   import { ClubEvent, ClubEvents } from '../../assets/events.db';
   import { format, isAfter, subDays } from 'date-fns';
   import { unique } from 'radash'
@@ -53,7 +53,7 @@
    * @param ev - the club event.
    * @returns the coordinates.
    */
-  function getCoordinates(ev: ClubEvent): [number, number] {
+  function getCoordinates(ev: ClubEvent): Coordinates {
     return ev.coordinates;
   }
 
@@ -109,7 +109,7 @@
    * @param coordinates - the coordinates
    * @returns the zoom.
    */
-  function calcZoom(coordinates: [number, number][]): number {
+  function calcZoom(coordinates: Coordinates[]): number {
     const initialZoom = 16;
     const adjustSmallWindow = document.documentElement.clientWidth < 800 ? 1 : 0;
     // Extract latitude and longitude arrays
@@ -133,7 +133,7 @@
    * @param coordinates - the coordinates to center over
    * @returns the centered coordinates.
    */
-  function calcCenterMap(coordinates: [number, number][]): [number, number] {
+  function calcCenterMap(coordinates: Coordinates[]): Coordinates {
     // Extract latitude and longitude arrays
     const latitudes = coordinates.map(coord => coord[0]);
     const longitudes = coordinates.map(coord => coord[1]);

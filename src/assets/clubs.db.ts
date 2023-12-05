@@ -1,7 +1,12 @@
 import { EventType } from "./events.db";
 
+export type Coordinates = [number, number];
+
+export type Country = 'Germany' | 'Ireland';
+
 export type Club = {
-  coordinates: [number, number];
+  coordinates: Coordinates;
+  country: Country;
   default?: Default;
   hide?: boolean;
   id: string;
@@ -10,7 +15,7 @@ export type Club = {
 }
 
 export type Default = {
-  coordinates: [number, number];
+  coordinates: Coordinates;
   location: string;
   name: string;
   recurringInterval: string;
@@ -22,6 +27,7 @@ export type Default = {
 export const Clubs: Club[] = [
   {
     coordinates: [48.1379,11.5744],
+    country: 'Germany',
     default: {
       name: 'MRC Weekly Training',
       coordinates: [48.1779445, 11.5557917],
@@ -36,6 +42,7 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [49.9429,11.5767],
+    country: 'Germany',
     name: 'GORUCK Club Franken',
     url: 'https://www.instagram.com/goruck_club_franken/',
     id: 'goruck_club_franken'
@@ -43,6 +50,7 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [48.3663,10.8943],
+    country: 'Germany',
     default: {
       name: 'Weekly Ruck Meetup',
       coordinates: [48.3772151, 10.8939913],
@@ -58,6 +66,7 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [51.7219,10.7089],
+    country: 'Germany',
     name: 'GORUCK Harzmountains',
     url: 'https://www.instagram.com/goruckharzmountains/',
     id: 'goruckharzmountains'
@@ -65,6 +74,7 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [52.3754,9.7377],
+    country: 'Germany',
     default: {
       name: 'Montly Ruck Meetup',
       coordinates: [52.3894, 9.7544],
@@ -80,12 +90,14 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [51.4820,7.2187],
+    country: 'Germany',
     name: 'Ruhr Ruckers',
     url: 'https://www.instagram.com/ruhr_ruckers/',
     id: 'ruhr_ruckers'
   },
   {
     coordinates: [51.9469,8.5843],
+    country: 'Germany',
     name: 'GORUCK Club Teuto Rucker',
     url: 'https://www.instagram.com/teutorucker/',
     id: 'teutorucker'
@@ -93,6 +105,7 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [48.7788,9.1750],
+    country: 'Germany',
     name: 'grc stuttgart germany',
     url: 'https://www.instagram.com/goruckclub.stuttgart/',
     id: 'goruckclubstuttgart'
@@ -100,18 +113,21 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [50.1140,8.6737],
+    country: 'Germany',
     name: 'Skyline Ruckers Rhein-Main',
     url: 'https://www.instagram.com/skylineruckers/',
     id: 'skylineruckers'
   },
   {
     coordinates: [53.5697,9.9756],
+    country: 'Germany',
     name: 'Hamburg RUCKing',
     url: 'https://www.instagram.com/hhauruck/',
     id: 'hhauruck'
   },
   {
     coordinates: [0,0],
+    country: 'Germany',
     name: 'GORUCK Europe',
     url: 'https://www.instagram.com/goruckeurope/',
     id: 'goruckeurope',
@@ -119,15 +135,24 @@ export const Clubs: Club[] = [
   },
   {
     coordinates: [0,0],
+    country: 'Germany',
     name: 'GORUCK',
     url: 'https://www.sandlot.fit/',
     id: 'goruck',
     hide: true
   },
   {
-    coordinates:[49.75845, 8.5996],
+    coordinates: [49.75845, 8.5996],
+    country: 'Germany',
     name: 'RK Frankenstein',
     url: 'http://www.rkfrankenstein.de',
     id: 'rkfrankenstein'
+  },
+  {
+    coordinates: [53.15688,-6.91058],
+    country: 'Ireland',
+    name: 'Mad Ruckers Kildare',
+    url: 'https://www.instagram.com/mad_ruckers/',
+    id: 'mad_ruckers'
   }
 ]

@@ -2,7 +2,7 @@ import { EventType } from "./events.db";
 
 export type Coordinates = [number, number];
 
-export type Country = 'Germany' | 'Ireland';
+export type Country = 'Germany' | 'Ireland' | 'Norway' | 'Switzerland';
 
 export type Club = {
   coordinates: Coordinates;
@@ -154,5 +154,40 @@ export const Clubs: Club[] = [
     name: 'Mad Ruckers Kildare',
     url: 'https://www.instagram.com/mad_ruckers/',
     id: 'mad_ruckers'
+  },
+  {
+    coordinates: [49.48779,8.46621],
+    country: 'Germany',
+    name: 'GORUCK Kurpfalz',
+    url: 'https://www.instagram.com/goruck_kurpfalz/',
+    id: 'goruck_kurpfalz'
+  },
+  {
+    coordinates: [51.3583,7.4733],
+    country: 'Germany',
+    name: 'Mother Ruckers Hagen NRW',
+    url: 'https://www.instagram.com/motherruckers_hagen_nrw/',
+    id: 'motherruckers_hagen_nrw'
+  },
+  {
+    coordinates: [49.00269,8.40101],
+    country: 'Germany',
+    name: 'Rhine Valley Rucking',
+    url: 'https://www.instagram.com/rhinevalleyrucking/',
+    id: 'rhinevalleyrucking'
+  },
+  {
+    coordinates: [60.14339,11.17446],
+    country: 'Norway',
+    name: 'Norway Ruck',
+    url: 'https://www.instagram.com/norwayruck/',
+    id: 'norwayruck'
+  },
+  {
+    coordinates: [47.37181,8.54221],
+    country: 'Switzerland',
+    name: 'The Sunrise Ruck Club',
+    url: 'https://www.instagram.com/thesunriseruckclub/',
+    id: 'thesunriseruckclub'
   }
 ]

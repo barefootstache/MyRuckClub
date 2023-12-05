@@ -1,20 +1,15 @@
 <script setup lang="ts">
   import {Clubs} from '../assets/clubs.db.ts'
-  import { alphabetical } from 'radash';
+  import { alphabetical, unique } from 'radash';
   const alphabeticalSort = alphabetical(Clubs, c => c.name);
+  const countrySort = alphabetical(unique(Clubs.map(c => c.country)), c => c);
 </script>
 
 <template>
-  <div>
-    <h3>Germany</h3>
+  <div v-for="country in countrySort">
+    <h3>{{country}}</h3>
     <ul>
-      <li v-for="club in alphabeticalSort.filter(c => c.country === 'Germany')">
-        <router-link v-if="!club.hide" :to="{ name: 'Club', params: {id: club.id}}">{{ club.name }}</router-link>
-      </li>
-    </ul>
-    <h3>Ireland</h3>
-    <ul>
-      <li v-for="club in alphabeticalSort.filter(c => c.country === 'Ireland')">
+      <li v-for="club in alphabeticalSort.filter(c => c.country === country)">
         <router-link v-if="!club.hide" :to="{ name: 'Club', params: {id: club.id}}">{{ club.name }}</router-link>
       </li>
     </ul>

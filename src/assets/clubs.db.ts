@@ -2,7 +2,7 @@ import { EventType } from "./events.db";
 
 export type Coordinates = [number, number];
 
-export type Country = 'Germany' | 'Ireland' | 'México' | 'Norway' | 'Sweden' | 'Switzerland' | 'USA';
+export type Country = 'England' | 'Germany' | 'Japan' | 'Ireland' | 'México' | 'Norway' | 'Singapore' | 'Sweden' | 'Switzerland' | 'USA';
 
 export type Club = {
   coordinates: Coordinates;
@@ -274,4 +274,326 @@ export const Clubs: Club[] = [
     url: 'https://www.instagram.com/eastsideruckclub_mi/',
     id: 'eastsideruckclub_mi'
   },
+  {
+    coordinates: [47.658,-117.2626],
+    country: 'USA',
+    name: 'Nomad Ruckers',
+    url: 'https://www.instagram.com/nomadruckers/',
+    id: 'nomadruckers'
+  },
+  {
+    coordinates: [57.7312, 12.0272],
+    country: 'Sweden',
+    name: 'Gothenburg Ruck Buddies',
+    url: 'https://www.instagram.com/gbg_ruck_buddies/',
+    id: 'gbg_ruck_buddies'
+  },
+  {
+    coordinates: [38.5372,-81.9321],
+    country: 'USA',
+    name: 'Montaineer Ruck Club',
+    url: 'https://www.instagram.com/mountaineerruckclub/',
+    id: 'mountaineerruckclub'
+  },
+  {
+    coordinates: [28.2312,-80.7272],
+    country: 'USA',
+    name: 'Iron Fit Rucker',
+    url: 'https://www.instagram.com/ironflamingoruckclub/',
+    id: 'ironflamingoruckclub'
+  },
+  {
+    coordinates: [19.4388,-99.1324],
+    country: 'México',
+    name: 'Ruckers Mexico City',
+    url: 'https://www.instagram.com/ruckersmxcity/',
+    id: 'ruckersmxcity'
+  },
+  {
+    coordinates: [38.2802,-85.749],
+    country: 'USA',
+    name: 'Team RWB Louisville Ruck Club',
+    url: 'https://www.instagram.com/teamrwb_louisville_ruck_club/',
+    id: 'teamrwb_louisville_ruck_club'
+  },
+  {
+    coordinates: [39.2937,-76.6138],
+    country: 'USA',
+    name: 'Clipper City Ruck Club',
+    url: 'https://www.instagram.com/clippercityruckclub/',
+    id: 'clippercityruckclub'
+  },
+  {
+    coordinates: [39.2672,-81.5611],
+    country: 'USA',
+    name: 'Step Up MOV Ruck Club',
+    url: 'https://www.instagram.com/stepupmovruckclub/',
+    id: 'stepupmovruckclub'
+  },
+  {
+    coordinates: [42.601,-76.1795],
+    country: 'USA',
+    name: 'JTM Ruck Club',
+    url: 'https://www.instagram.com/jtmruckclub/',
+    id: 'jtmruckclub'
+  },
+  {
+    coordinates: [57.7818,14.1662],
+    country: 'Sweden',
+    name: 'Small Country Ruck Club',
+    url: 'https://www.instagram.com/smallcountryruckclub/',
+    id: 'smallcountryruckclub'
+  },
+  {
+    coordinates: [38.9712,-95.2398],
+    country: 'USA',
+    name: 'LFK Ruck Club',
+    url: 'https://www.instagram.com/tomishiking/',
+    id: 'tomishiking'
+  },
+  {
+    coordinates: [53.8655,10.6863],
+    country: 'Germany',
+    name: 'Rucking Hell',
+    url: 'https://www.instagram.com/ruckinghellclub/',
+    id: 'ruckinghellclub'
+  },
+  {
+    coordinates: [35.9986,-78.9024],
+    country: 'USA',
+    name: 'Hope Valley Ruck Club',
+    url: 'https://www.instagram.com/hopevalleyruck/',
+    id: 'hopevalleyruck'
+  },
+  {
+    coordinates: [53.9922,-1.5386],
+    country: 'England',
+    name: 'West Co North Yo Ruck Club',
+    url: 'https://www.instagram.com/westconorthyoruckclub/',
+    id: 'westconorthyoruckclub'
+  },
+  {
+    coordinates: [32.7526,-97.3238],
+    country: 'USA',
+    name: 'Panther City Rucking Crew',
+    url: 'https://www.instagram.com/panthercity_rucking_crew/',
+    id: 'panthercity_rucking_crew'
+  },
+  {
+    coordinates: [41.5536,-87.4515],
+    country: 'USA',
+    name: 'The Region Ruck Club',
+    url: 'https://www.instagram.com/theregionruckclub/',
+    id: 'theregionruckclub'
+  },
+  {
+    coordinates: [55.6057,12.9972],
+    country: 'Sweden',
+    name: 'Snapphane Ruckers',
+    url: 'https://www.instagram.com/snapphaneruckers/',
+    id: 'snapphaneruckers'
+  },
+  {
+    coordinates: [34.7365,-86.5881],
+    country: 'USA',
+    name: 'Rocket City Ruck Club',
+    url: 'https://www.instagram.com/rocketcityrucks/',
+    id: 'rocketcityrucks'
+  },
+  {
+    coordinates: [39.1151,-77.5673],
+    country: 'USA',
+    name: 'LoCo Ruckers',
+    url: 'https://www.instagram.com/locoruckers/',
+    id: 'locoruckers'
+  },
+  {
+    coordinates: [34.0549,-118.2362],
+    country: 'USA',
+    name: 'El Ruck Club',
+    url: 'https://www.instagram.com/elruckclub/',
+    id: 'elruckclub'
+  },
+  {
+    coordinates: [44.9769,-93.2691],
+    country: 'USA',
+    name: 'Mill City Rucking Crew',
+    url: 'https://www.instagram.com/mill_city_rucking_crew/',
+    id: 'mill_city_rucking_crew'
+  },
+  {
+    coordinates: [39.6822,-75.7512],
+    country: 'USA',
+    name: 'Go Ruck Yourself Rucking Club',
+    url: 'https://www.instagram.com/goruckyourselfrucking/',
+    id: 'goruckyourselfrucking'
+  },
+  {
+    coordinates: [1.27707,103.84545],
+    country: 'Singapore',
+    name: 'Team Black Mamba SG',
+    url: 'https://www.instagram.com/teamblackmambasg/',
+    id: 'teamblackmambasg'
+  },
+  {
+    coordinates: [60.6532,17.1634],
+    country: 'Sweden',
+    name: 'Team Invictus',
+    url: 'https://www.instagram.com/teaminvictusgavle/',
+    id: 'teaminvictusgavle'
+  },
+  {
+    coordinates: [36.5389,-87.3653],
+    country: 'USA',
+    name: 'Freedom Eagle',
+    url: 'https://www.instagram.com/freedomruckclub/',
+    id: 'freedomruckclub'
+  },
+  {
+    coordinates: [60.4863,15.4238],
+    country: 'Sweden',
+    name: 'Dalecarlia Steel Ruckers',
+    url: 'https://www.instagram.com/dalecarlia_steel_ruckers/',
+    id: 'dalecarlia_steel_ruckers'
+  },
+  {
+    coordinates: [34.0515,-117.7625],
+    country: 'USA',
+    name: 'East Side Rucks',
+    url: 'https://www.instagram.com/eastsiderucks/',
+    id: 'eastsiderucks'
+  },
+  {
+    coordinates: [62.3904,17.3059],
+    country: 'Sweden',
+    name: 'Ruck’n’GO',
+    url: 'https://www.instagram.com/ruckngo/',
+    id: 'ruckngo'
+  },
+  {
+    coordinates: [40.7961,-81.9374],
+    country: 'USA',
+    name: 'Wayne County Ruck Club',
+    url: 'https://www.instagram.com/wayne_co_ruck_club/',
+    id: 'wayne_co_ruck_club'
+  },
+  {
+    coordinates: [39.7608,-84.1968],
+    country: 'USA',
+    name: 'Dayton Area Rucking Crew',
+    url: 'https://www.instagram.com/dayton_area_rucking_crew_/',
+    id: 'dayton_area_rucking_crew_'
+  },
+  {
+    coordinates: [27.7401,-82.7463],
+    country: 'USA',
+    name: 'Skyway Ruck Club',
+    url: 'https://www.instagram.com/skyway_ruck_club_fl/',
+    id: 'skyway_ruck_club_fl'
+  },
+  {
+    coordinates: [31.3281,-89.2883],
+    country: 'USA',
+    name: 'OneDrive Ruck Club',
+    url: 'https://www.instagram.com/overdrive_ruck_club/',
+    id: 'overdrive_ruck_club'
+  },
+  {
+    coordinates: [33.8296,-117.9121],
+    country: 'USA',
+    name: 'F3 Anaheim',
+    url: 'https://www.instagram.com/f3anaheim/',
+    id: 'f3anaheim'
+  },
+  {
+    coordinates: [34.3658,-89.5195],
+    country: 'USA',
+    name: 'Gravel Capital Ruckers',
+    url: 'https://www.instagram.com/gravel_capital_ruckers/',
+    id: 'gravel_capital_ruckers'
+  },
+  {
+    coordinates: [59.3123,14.1099],
+    country: 'Sweden',
+    name: 'Rucking Kristenhamn',
+    url: 'https://www.instagram.com/rucking_kristinehamn/',
+    id: 'rucking_kristinehamn'
+  },
+  {
+    coordinates: [35.729,139.757],
+    country: 'Japan',
+    name: 'Tokyo Hiyaku Ruckers',
+    url: 'https://www.instagram.com/tokyohikyakuruckers/',
+    id: 'tokyohikyakuruckers'
+  },
+  {
+    coordinates: [33.8402,-84.3799],
+    country: 'USA',
+    name: 'Buckhead Ruck Club',
+    url: 'https://www.instagram.com/buckheadruckclub/',
+    id: 'buckheadruckclub'
+  },
+  {
+    coordinates: [47.9129,-122.0979],
+    country: 'USA',
+    name: 'NW Tough',
+    url: 'https://www.instagram.com/nw_tough/',
+    id: 'nw_tough'
+  },
+  {
+    coordinates: [27.9479,-82.4572],
+    country: 'USA',
+    name: 'Tampa Bay Area Babes Trail Ruckers',
+    url: 'https://www.instagram.com/bayareababestrailruckers/',
+    id: 'bayareababestrailruckers'
+  },
+  {
+    coordinates: [45.6798,-111.0471],
+    country: 'USA',
+    name: 'Montana Mighty Rucks',
+    url: 'https://www.instagram.com/montana_mighty_rucks/',
+    id: 'montana_mighty_rucks'
+  },
+  {
+    coordinates: [28.5438,-81.384],
+    country: 'USA',
+    name: 'Orlando Ruck Club',
+    url: 'https://www.instagram.com/orlando.ruck.club/',
+    id: 'orlandoruckclub'
+  },
+  {
+    coordinates: [33.191,-117.2495],
+    country: 'USA',
+    name: 'Alleyway Ruckers Club',
+    url: 'https://www.instagram.com/alleywayruckers/',
+    id: 'alleywayruckers'
+  },
+  {
+    coordinates: [36.0972,-79.2682],
+    country: 'USA',
+    name: 'F3 Meyham',
+    url: 'https://www.instagram.com/f3meyham/',
+    id: 'f3meyham'
+  },
+  {
+    coordinates: [34.0251,-84.3606],
+    country: 'USA',
+    name: 'Terminus Ruck Club',
+    url: 'https://www.instagram.com/terminus_ruck_club/',
+    id: 'terminus_ruck_club'
+  },
+  {
+    coordinates: [40.4279,-79.7034],
+    country: 'USA',
+    name: 'The Ruck-ulators',
+    url: 'https://www.instagram.com/ruckulators/',
+    id: 'ruckulators'
+  },
+  {
+    coordinates: [28.5658,-81.5864],
+    country: 'USA',
+    name: 'West Orange Ruckers',
+    url: 'https://www.instagram.com/westorangeruckers/',
+    id: 'westorangeruckers'
+  }
 ]

@@ -29,7 +29,7 @@ export const ClubEventInit: ClubEvent = {
 export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-05', 'auxruckers'),
   createClubEvent('2023-12-06', 'auxruckers', {name: 'Nikolaus Ruck mit anschliessendem Glühwein'}),
-  createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12 Miler', time: '18:00', type: 'ruck'}),
+  createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12km Snow Shoe Ruck', location: 'P+R Studentenstadt', time: '18:00', type: 'ruck', coordinates: [48.18386,11.60746]}),
   createClubEvent('2023-12-12', 'auxruckers', {name: 'Nightmare WOD Teil 1', type: 'pt'}),
   createClubEvent('2023-12-14', 'munichruckingcrew'),
   createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Münchener Freiheit, München', type: 'ruck', coordinates: [48.16261, 11.58698]}),

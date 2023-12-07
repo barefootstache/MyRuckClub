@@ -10,6 +10,14 @@ Run with
 bun run dev
 ```
 
+## Development
+
+We use an unconventional method for developing purposes.
+
+Our main branch is called `devel` and this is the endpoint where all pull requests should be made.
+
+After successful build `bun run build`, an admin will create a pull request to the `master` branch which is also the production branch. This branch is used for the vercel endpoint.
+
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).

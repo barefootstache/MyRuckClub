@@ -22,4 +22,7 @@ ul {
   padding: 0;
   margin: auto;
 }
+h3 {
+  border-bottom: 1px white solid;
+}
 </style>

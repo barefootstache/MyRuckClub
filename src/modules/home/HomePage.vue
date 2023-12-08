@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Clubs from '../../components/Clubs.vue'
-import EventsList from '../../components/EventsList.vue'
 import {Clubs as ClubsList} from '../../assets/clubs.db.ts'
 
 import "leaflet/dist/leaflet.css";

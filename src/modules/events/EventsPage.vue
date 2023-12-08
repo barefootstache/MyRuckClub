@@ -1,63 +1,16 @@
 <script setup lang="ts">
-  import EventsList from '../../components/EventsList.vue'
-  import { ClubEvent, ClubEvents } from '../../assets/events.db';
+  import EventsList from '@/components/EventsList.vue'
   import { isAfter, subDays } from 'date-fns';
-  import { unique } from 'radash'
   import "leaflet/dist/leaflet.css";
-  import L from "leaflet";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { EventsDB } from '@/db/index.db';
+  import { LocationService } from '@/services/location.service';
+  import { getPin } from '@/business-logic/osm.utils';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
-  const ruckIcon = L.icon({
-    iconUrl: '/ruck_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  const ptIcon = L.icon({
-    iconUrl: '/pt_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  const hqIcon = L.icon({
-    iconUrl: '/hq_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  const upcomingClubEvents = ClubEvents.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
-  const uniqueEventsLocations = getUniqueEventsLocations(upcomingClubEvents);
-
-  /** 
-   * Gets the unique events based off their lat/long data.
-   * @param evs - the club events
-   * @returns the unique club events.
-   */
-  function getUniqueEventsLocations(evs: ClubEvent[]): ClubEvent[] {
-    if(evs.length <= 1){
-      return evs;
-    }
-    return unique(evs, e => `${e.coordinates}`);
-  }
-
-  /** 
-   * Gets the icon relative to the event type.
-   * @param ev - the club event
-   * @returns the icon.
-   */
-  function getIconFromType(ev: ClubEvent): L.Icon {
-    switch (ev.type) {
-      case 'pt':
-        return ptIcon;
-      case 'ruck':
-        return ruckIcon;
-      case 'default':
-        return hqIcon;
-    }
-  }
-
+  const upcomingClubEvents = EventsDB.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
+  const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
 </script>
 
 <template>
@@ -73,7 +26,7 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getIconFromType(ev)"> </l-marker>
+        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
       </l-map>
     </div>
     <EventsList></EventsList>

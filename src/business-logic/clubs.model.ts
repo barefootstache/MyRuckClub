@@ -1,3 +1,4 @@
+import { AssociationType } from "./associations.model";
 import { EventType } from "./events.model";
 
 export type Coordinates = [number, number];
@@ -5,6 +6,7 @@ export type Coordinates = [number, number];
 export type Country = 'England' | 'Germany' | 'Japan' | 'Ireland' | 'México' | 'Norway' | 'Singapore' | 'Sweden' | 'Switzerland' | 'USA';
 
 export type Club = {
+  associations: AssociationType[];
   coordinates: Coordinates;
   country: Country;
   default?: Default;

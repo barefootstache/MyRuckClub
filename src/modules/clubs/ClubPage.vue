@@ -9,6 +9,7 @@
   import { getPin } from '../../business-logic/osm.utils';
   import { LocationService } from '../../services/location.service';
   import { ClubEvent } from '../../business-logic/events.model';
+  import { getAssociationByType } from '../../business-logic/associations.utils'
 
   /**
    * Reference for `this.$route`.
@@ -27,11 +28,13 @@
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
   const allCoordinates = uniqueEventsLocations.map((ev:ClubEvent) => LocationService.getCoordinates(ev)).concat([club.coordinates]);
   const zoom = LocationService.calcZoom(allCoordinates);
+
+  const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
 </script>
 
 <template>
   <div>
-    <h2>{{club.name}}</h2>
+    <h1>{{club.name}}</h1>
     <p>We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location || 'TBA'}}</a>.</p>
     
     <div class="map-view">
@@ -51,7 +54,15 @@
     <p v-if="club.url.includes('instagram')">For more info contact us on <a :href="club.url">Instagram</a>.</p>
     <p v-if="!club.url.includes('instagram')">For more info contact us at our <a :href="club.url">Homepage</a>.</p>
 
-    <h3><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h3>
+    <div class="hline"></div>
+
+    <div v-if="associations.length > 0">
+      <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">{{ ass.name }}</v-chip>
+    </div>
+    
+    <div class="hline"></div>
+
+    <h2><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h2>
     
     <ul class="events-view">
       <li v-for="ev in upcomingClubEvents">
@@ -86,5 +97,15 @@ li {
   margin: auto;
   padding: 0;
   list-style: none;
+}
+.v-chip {
+  margin-left: 5px;
+}
+.hline {
+  margin: 5px 0;
+  border-bottom: 1px white solid;
+}
+.v-chip.text-black {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 </style>

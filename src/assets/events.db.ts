@@ -32,7 +32,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-07', 'munichruckingcrew', {name: 'MRC 12km Snow Shoe Ruck', location: 'P+R Studentenstadt', time: '18:00', type: 'ruck', coordinates: [48.18386,11.60746]}),
   createClubEvent('2023-12-12', 'auxruckers', {name: 'Nightmare WOD Teil 1', type: 'pt'}),
   createClubEvent('2023-12-14', 'munichruckingcrew'),
-  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Münchener Freiheit, München', type: 'ruck', coordinates: [48.16261, 11.58698]}),
+  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Wittelsbacherplatz, München', type: 'ruck', coordinates: [48.14325,11.57607]}),
   createClubEvent('2023-12-16', 'rkfrankenstein', {name: 'Wintermarsch', time: '16:00', location: 'Parkplatz Nonnenbrunnen', type: 'ruck', coordinates: [49.75085, 8.64528]}),
   createClubEvent('2023-12-19', 'auxruckers', {name: 'Nightmare WOD Teil 2', type: 'pt'}),
   createClubEvent('2023-12-21', 'munichruckingcrew'),

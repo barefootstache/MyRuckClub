@@ -23,18 +23,44 @@ navigation a {
   padding: 5px;
 }
 .router-link-active {
-  border: 2px wheat solid;
-  background-color: rgba(255, 255, 255, 0.15);
+  border: 2px #d3c68b solid;
+  background-color: rgba(255, 255, 255, 0.10);
+  color: #d3c68b;
 }
 
 @media screen and (max-width: 800px) {
   navigation {
-    position: absolute;
-    top: 6px;
+    position: fixed;
+    background-color: #242424;
+    top: 0;
     left: 0;
+    width: 100%;
+    border-bottom: 1px #d3c68b solid;
+    display: flex;
+    z-index: 1001;
+  }
+  navigation a {
+    margin: 0;
+    width: 25%;
   }
   #app > div {
     margin-top: 50px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  navigation {
+    border-bottom-color: #020281;
+    background-color: #ffffff;
+  }
+  navigation a {
+    color: #020281;
+    border: 1px #020281 solid;
+  }
+  .router-link-active {
+    border: 2px #43437c solid;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #43437c;
   }
 }
 </style>

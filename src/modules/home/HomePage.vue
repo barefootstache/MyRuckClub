@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import {ClubsDB} from '../../db/index.db'
+  import {ClubsDB} from '@/db/index.db'
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-  import { getPin } from '../../business-logic/osm.utils';
+  import { getPin } from '@/business-logic/osm.utils';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 </script>

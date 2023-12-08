@@ -1,5 +1,5 @@
-import { ClubEvent } from "../business-logic/events.model";
-import { createClubEvent } from "../business-logic/events.utils";
+import { ClubEvent } from "@/business-logic/events.model";
+import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-05', 'auxruckers'),

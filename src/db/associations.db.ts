@@ -1,4 +1,4 @@
-import { Association } from "../business-logic/associations.model";
+import { Association } from "@/business-logic/associations.model";
 
 export const Associations: Association[] = [
   {

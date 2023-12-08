@@ -1,4 +1,4 @@
-import { Club } from "../business-logic/clubs.model";
+import { Club } from "@/business-logic/clubs.model";
 
 export const Clubs: Club[] = [
   {

@@ -1,4 +1,4 @@
-import { AssociationsDB } from "../db/index.db";
+import { AssociationsDB } from "@/db/index.db";
 import { Association, AssociationType } from "./associations.model";
 
 /**

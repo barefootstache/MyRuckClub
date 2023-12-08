@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import EventsList from '../../components/EventsList.vue'
+  import EventsList from '@/components/EventsList.vue'
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-  import { EventsDB } from '../../db/index.db';
-  import { LocationService } from '../../services/location.service';
-  import { getPin } from '../../business-logic/osm.utils';
+  import { EventsDB } from '@/db/index.db';
+  import { LocationService } from '@/services/location.service';
+  import { getPin } from '@/business-logic/osm.utils';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 

@@ -3,13 +3,13 @@
   import { format, isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-  import { ClubsDB } from '../../db/index.db';
-  import { Club } from '../../business-logic/clubs.model';
-  import { EventsDB } from '../../db/index.db';
-  import { getPin } from '../../business-logic/osm.utils';
-  import { LocationService } from '../../services/location.service';
-  import { ClubEvent } from '../../business-logic/events.model';
-  import { getAssociationByType } from '../../business-logic/associations.utils'
+  import { ClubsDB } from '@/db/index.db';
+  import { Club } from '@/business-logic/clubs.model';
+  import { EventsDB } from '@/db/index.db';
+  import { getPin } from '@/business-logic/osm.utils';
+  import { LocationService } from '@/services/location.service';
+  import { ClubEvent } from '@/business-logic/events.model';
+  import { getAssociationByType } from '@/business-logic/associations.utils'
 
   /**
    * Reference for `this.$route`.

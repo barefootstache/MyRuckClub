@@ -1,6 +1,6 @@
 import { unique } from "radash";
-import { Club, Coordinates } from "../business-logic/clubs.model";
-import { ClubEvent } from "../business-logic/events.model";
+import { Club, Coordinates } from "@/business-logic/clubs.model";
+import { ClubEvent } from "@/business-logic/events.model";
 
 export class LocationService {
   /**

@@ -1,4 +1,4 @@
-import { Clubs } from "../db/clubs.db";
+import { Clubs } from "@/db/clubs.db";
 import { Club, Default } from "./clubs.model";
 import { ClubEvent, ClubEventInit, EventType } from "./events.model";
 

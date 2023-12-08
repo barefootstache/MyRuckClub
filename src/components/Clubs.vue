@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ClubsDB } from '../db/index.db'
+  import { ClubsDB } from '@/db/index.db'
   import { alphabetical, unique } from 'radash';
   const alphabeticalSort = alphabetical(ClubsDB, c => c.name);
   const countrySort = alphabetical(unique(ClubsDB.map(c => c.country)), c => c);
@@ -24,5 +24,11 @@ ul {
 }
 h3 {
   border-bottom: 1px white solid;
+}
+
+@media (prefers-color-scheme: light) {
+  h3 {
+    border-bottom-color: #213547;
+  }
 }
 </style>

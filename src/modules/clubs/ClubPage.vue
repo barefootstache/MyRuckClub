@@ -3,12 +3,12 @@
   import { format, isAfter, subDays } from 'date-fns';
   import { unique } from 'radash'
   import "leaflet/dist/leaflet.css";
-  import L from "leaflet";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
   import { Clubs } from '../../db/clubs.db';
   import { Club, Coordinates } from '../../business-logic/clubs.model';
   import { EventsDB } from '../../db/index.db';
   import { ClubEvent } from '../../business-logic/events.model';
+  import { getPin } from '../../business-logic/osm.utils';
 
   /**
    * Reference for `this.$route`.
@@ -71,41 +71,6 @@
     return unique(evs, e => `${e.coordinates}`);
   }
 
-
-  const ruckIcon = L.icon({
-    iconUrl: '/ruck_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  const hqIcon = L.icon({
-    iconUrl: '/hq_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  const ptIcon = L.icon({
-    iconUrl: '/pt_pin.png',
-    iconSize: [40, 60],
-    iconAnchor: [20, 60]
-  })
-
-  /** 
-   * Gets the icon relative to the event type.
-   * @param ev - the club event
-   * @returns the icon.
-   */
-  function getIconFromType(ev: ClubEvent): L.Icon {
-    switch (ev.type) {
-      case 'pt':
-        return ptIcon;
-      case 'ruck':
-        return ruckIcon;
-      case 'default':
-        return hqIcon;
-    }
-  }
-
   /** 
    * Calculates the zoom relative to all provided coordinates.
    * @param coordinates - the coordinates
@@ -164,8 +129,8 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="hqIcon"> </l-marker>
-        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getIconFromType(ev)"> </l-marker>
+        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
       </l-map>
     </div>
 

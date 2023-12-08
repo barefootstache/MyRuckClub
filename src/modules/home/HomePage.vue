@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import {ClubsDB} from '../../db/index.db'
+  import {ClubsDB} from '../../db/index.db'
+  import "leaflet/dist/leaflet.css";
+  import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { getPin } from '../../business-logic/osm.utils';
 
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-
-const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
-
-const hqIcon = L.icon({
-  iconUrl: '/hq_pin.png',
-  iconSize: [20, 30],
-  iconAnchor: [10, 30]
-})
+  const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 </script>
 
 <template>
@@ -31,7 +24,7 @@ const hqIcon = L.icon({
         ></l-tile-layer>
 
         <div v-for="club in ClubsDB">
-          <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="hqIcon"> </l-marker>
+          <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>
         </div>
       </l-map>
     </div>

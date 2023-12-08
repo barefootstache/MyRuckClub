@@ -1,12 +1,14 @@
 <script setup lang="ts">
   import {format, isAfter, subDays} from 'date-fns';
-  import {ClubEvents, ClubEvent, getMostRecentData} from '../assets/events.db.ts';
-  import {Clubs, Club} from '../assets/clubs.db.ts'
+  import { ClubsDB, EventsDB } from '../db/index.db'
+  import { ClubEvent } from '../business-logic/events.model';
+  import { Club } from '../business-logic/clubs.model';
+  import { getMostRecentData } from '../business-logic/events.utils';
 
   /**
    * Filters events that are happening today and later.
    */
-  const upcomingClubEvents = ClubEvents.filter((ev) => isAfter(ev.date, subDays(new Date(), 1)));
+  const upcomingClubEvents = EventsDB.filter((ev) => isAfter(ev.date, subDays(new Date(), 1)));
 
   /**
    * Gets the OSM Location URL.
@@ -23,7 +25,7 @@
    * @returns the URL.
    */
   function getRegistrationLink(ev: ClubEvent): string {
-    const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
+    const foundClub = ClubsDB.find((item:Club) => item.id === ev.clubId);
     return getMostRecentData<string>('url', foundClub, ev) || foundClub?.url || '';
   }
 
@@ -33,7 +35,7 @@
    * @returns the club's name.
    */
   function getRegistrationName(ev: ClubEvent): string {
-    const foundClub = Clubs.find((item:Club) => item.id === ev.clubId);
+    const foundClub = ClubsDB.find((item:Club) => item.id === ev.clubId);
     return foundClub ? foundClub.name : '';
   }
 </script>

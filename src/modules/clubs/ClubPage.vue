@@ -1,12 +1,14 @@
 <script setup lang="ts">
   import { useRoute } from 'vue-router';
-  import { Club, Clubs, Coordinates } from '../../assets/clubs.db.ts';
-  import { ClubEvent, ClubEvents } from '../../assets/events.db';
   import { format, isAfter, subDays } from 'date-fns';
   import { unique } from 'radash'
   import "leaflet/dist/leaflet.css";
   import L from "leaflet";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { Clubs } from '../../db/clubs.db';
+  import { Club, Coordinates } from '../../business-logic/clubs.model';
+  import { EventsDB } from '../../db/index.db';
+  import { ClubEvent } from '../../business-logic/events.model';
 
   /**
    * Reference for `this.$route`.
@@ -21,7 +23,7 @@
   /**
    * Filters events that are happening today and later.
    */
-  const upcomingClubEvents = ClubEvents.filter((item) => item.clubId === club.id).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
+  const upcomingClubEvents = EventsDB.filter((item) => item.clubId === club.id).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
   const uniqueEventsLocations = getUniqueEventsLocations(upcomingClubEvents);
   const allCoordinates = uniqueEventsLocations.map(ev => getCoordinates(ev)).concat([club.coordinates]);
   const zoom = calcZoom(allCoordinates);

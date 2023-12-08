@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import EventsList from '../../components/EventsList.vue'
-  import { ClubEvent, ClubEvents } from '../../assets/events.db';
   import { isAfter, subDays } from 'date-fns';
   import { unique } from 'radash'
   import "leaflet/dist/leaflet.css";
   import L from "leaflet";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { EventsDB } from '../../db/index.db';
+  import { ClubEvent } from '../../business-logic/events.model';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
@@ -27,7 +28,7 @@
     iconAnchor: [20, 60]
   })
 
-  const upcomingClubEvents = ClubEvents.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
+  const upcomingClubEvents = EventsDB.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
   const uniqueEventsLocations = getUniqueEventsLocations(upcomingClubEvents);
 
   /** 

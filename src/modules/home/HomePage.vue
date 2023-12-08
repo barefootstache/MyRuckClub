@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Clubs as ClubsList} from '../../assets/clubs.db.ts'
+import {ClubsDB} from '../../db/index.db'
 
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -30,7 +30,7 @@ const hqIcon = L.icon({
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <div v-for="club in ClubsList">
+        <div v-for="club in ClubsDB">
           <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="hqIcon"> </l-marker>
         </div>
       </l-map>

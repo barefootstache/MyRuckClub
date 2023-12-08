@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import {Clubs} from '../assets/clubs.db.ts'
+  import { ClubsDB } from '../db/index.db'
   import { alphabetical, unique } from 'radash';
-  const alphabeticalSort = alphabetical(Clubs, c => c.name);
-  const countrySort = alphabetical(unique(Clubs.map(c => c.country)), c => c);
+  const alphabeticalSort = alphabetical(ClubsDB, c => c.name);
+  const countrySort = alphabetical(unique(ClubsDB.map(c => c.country)), c => c);
 </script>
 
 <template>

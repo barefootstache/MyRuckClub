@@ -1,30 +1,5 @@
-import { Club, Clubs, Default, Coordinates } from "./clubs.db";
-
-export type EventType = 'pt' | 'ruck' | 'default';
-
-export type ClubEvent = {
-  clubId: string;
-  coordinates: Coordinates;
-  date: Date;
-  lat?: number;
-  location: string;
-  long?: number;
-  name: string;
-  time: string;
-  type: EventType;
-  url: string;
-}
-
-export const ClubEventInit: ClubEvent = {
-  clubId: '',
-  coordinates: [0,0],
-  date: new Date(),
-  location: 'TBA',
-  name: '',
-  time: '00:00',
-  type: 'default',
-  url: ''
-}
+import { ClubEvent } from "@/business-logic/events.model";
+import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-05', 'auxruckers'),
@@ -52,41 +27,3 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-06-04', 'goruck', {name: 'Normandy Light Challenge', location: 'Pointe du Hoc, Normandy, France', coordinates: [49.39717,-0.98930], time: '19:00', type: 'pt', url: 'https://fistbumps.sandlot.fit/fistbump/44f81481-62cf-4628-b23a-7868e2e6ccbc'}),
 ]
 
-/**
- * Creates a club event.
- * @param dateString - the date as a string
- * @param clubId - the club id
- * @param ev - custom club event properties
- * @returns the new club event.
- */
-export function createClubEvent(dateString: string, clubId: string, ev?: Partial<ClubEvent>): ClubEvent {
-  const club = Clubs.find(item => item.id === clubId);
-  const newEvent = {
-    clubId,
-    coordinates: getMostRecentData<[number, number]>('coordinates', club, ev),
-    date: new Date(dateString),
-    location: getMostRecentData<string>('location', club, ev),
-    name: getMostRecentData<string>('name', club, ev),
-    time: getMostRecentData<string>('time', club, ev),
-    type: getMostRecentData<EventType>('type', club, ev),
-    url: getMostRecentData<string>('url', club, ev)
-  }
-  return newEvent
-}
-
-/**
- * Gets the most recent value of the referenced `key`.
- * @param key - the key 
- * @param club - the club
- * @param ev - the event
- * @returns the value of `key`.
- */
-export function getMostRecentData<T>(key: keyof ClubEvent, club?: Club, ev?: Partial<ClubEvent>): T {
-  if(ev && ev.hasOwnProperty(key)){
-    return ev[key] as T;
-  } else if(club && club.default && club.default.hasOwnProperty(key)) {
-    return club.default[key as keyof Default] as T;
-  } else {
-    return ClubEventInit[key] as T;
-  }
-}

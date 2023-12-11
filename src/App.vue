@@ -14,37 +14,35 @@
 </template>
 
 <style scoped>
+navigation {
+  position: fixed;
+  background-color: #242424;
+  top: 0;
+  width: 800px;
+  border-bottom: 1px #d3c68b solid;
+  display: flex;
+  z-index: 1001;
+}
 navigation a {
-  margin: 0 5px;
   color: wheat;
   font-weight: bold;
   font-size: 16pt;
   border: 1px wheat solid;
   padding: 5px;
+  width: 25%;
 }
 .router-link-active {
   border: 2px #d3c68b solid;
   background-color: rgba(255, 255, 255, 0.10);
   color: #d3c68b;
 }
+#app > div {
+  margin-top: 50px;
+}
 
 @media screen and (max-width: 800px) {
   navigation {
-    position: fixed;
-    background-color: #242424;
-    top: 0;
-    left: 0;
     width: 100%;
-    border-bottom: 1px #d3c68b solid;
-    display: flex;
-    z-index: 1001;
-  }
-  navigation a {
-    margin: 0;
-    width: 25%;
-  }
-  #app > div {
-    margin-top: 50px;
   }
 }
 

@@ -25,3 +25,9 @@
     <li><a href="https://www.martinmuc.de/spenden/" target="_blank">Mastodon</a></li>
   </ul>
 </template>
+
+<style scoped>
+h1 {
+  margin-bottom: 20px;
+}
+</style>

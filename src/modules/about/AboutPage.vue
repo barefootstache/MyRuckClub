@@ -30,4 +30,9 @@
 h1 {
   margin-bottom: 20px;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: auto;
+}
 </style>

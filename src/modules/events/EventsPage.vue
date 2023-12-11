@@ -40,6 +40,11 @@
   margin: auto;
   margin-bottom: 8px;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: auto;
+}
 @media screen and (max-width: 800px) {
   .map-view {
     height: 380px;

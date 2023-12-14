@@ -8,6 +8,7 @@
   import { EventsDB } from '@/db/index.db';
   import { getPin } from '@/business-logic/osm.utils';
   import { LocationService } from '@/services/location.service';
+  import { UtilsService } from '@/services/utils.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
 
@@ -51,8 +52,7 @@
       </l-map>
     </div>
 
-    <p v-if="club.url.includes('instagram')">For more info contact us on <a :href="club.url">Instagram</a>.</p>
-    <p v-if="!club.url.includes('instagram')">For more info contact us at our <a :href="club.url">Homepage</a>.</p>
+    <p>For more info contact us on <a :href="club.contact[club.contact.preferred]">{{ UtilsService.capitalize(club.contact.preferred) }}</a>.</p>
 
     <div class="hline"></div>
 
@@ -69,7 +69,7 @@
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
         <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
-        <span v-if="ev.clubId">Registration at <a :href="club.url" target="_blank">{{club.name}}</a></span>
+        <span v-if="ev.clubId">Registration at <a :href="club.contact[club.contact.preferred]" target="_blank">{{club.name}}</a></span>
         <span></span>
       </li>
     </ul>

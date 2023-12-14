@@ -15,16 +15,19 @@ export const Clubs: Club[] = [
     },
     id: 'munichruckingcrew',
     name: 'Munich Rucking Crew',
-    url: 'https://www.instagram.com/munichruckingcrew/',
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/munichruckingcrew/',
+      sandlot: 'https://fistbumps.sandlot.fit/group/3834e838-51d4-4584-86a6-a46ae9b9784a'
+    },
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit'],
     coordinates: [49.9429,11.5767],
     country: 'Germany',
     name: 'GORUCK Club Franken',
-    url: 'https://www.instagram.com/goruck_club_franken/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruck_club_franken/'},
     id: 'goruck_club_franken'
-
   },
   {
     associations: ['goruck', 'goruckeurope', 'sandlotfit'],
@@ -39,18 +42,20 @@ export const Clubs: Club[] = [
       type: 'ruck'
     },
     name: 'AUXRucker',
-    url: 'https://www.instagram.com/auxruckers/',
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/auxruckers/',
+      sandlot: 'https://fistbumps.sandlot.fit/group/c9b12a87-2b84-4bd0-b909-ec9b05897fdb'  
+    },
     id: 'auxruckers'
-
   },
   {
     associations: ['goruck', 'goruckeurope'],
     coordinates: [51.7219,10.7089],
     country: 'Germany',
     name: 'GORUCK Harzmountains',
-    url: 'https://www.instagram.com/goruckharzmountains/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckharzmountains/'},
     id: 'goruckharzmountains'
-
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -65,16 +70,15 @@ export const Clubs: Club[] = [
       type: 'ruck'
     },
     name: 'Ruck It! Hannover',
-    url: 'https://www.instagram.com/ruckithannover/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckithannover/'},
     id: 'ruckithannover'
-
   },
   {
     associations: ['myruckclub'],
     coordinates: [51.4820,7.2187],
     country: 'Germany',
     name: 'Ruhr Ruckers',
-    url: 'https://www.instagram.com/ruhr_ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruhr_ruckers/'},
     id: 'ruhr_ruckers'
   },
   {
@@ -82,25 +86,23 @@ export const Clubs: Club[] = [
     coordinates: [51.9469,8.5843],
     country: 'Germany',
     name: 'GORUCK Club Teuto Rucker',
-    url: 'https://www.instagram.com/teutorucker/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teutorucker/'},
     id: 'teutorucker'
-
   },
   {
     associations: ['goruck', 'goruckeurope'],
     coordinates: [48.7788,9.1750],
     country: 'Germany',
     name: 'grc stuttgart germany',
-    url: 'https://www.instagram.com/goruckclub.stuttgart/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckclub.stuttgart/'},
     id: 'goruckclubstuttgart'
-
   },
   {
     associations: ['goruck', 'goruckeurope'],
     coordinates: [50.1140,8.6737],
     country: 'Germany',
     name: 'Skyline Ruckers Rhein-Main',
-    url: 'https://www.instagram.com/skylineruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/skylineruckers/'},
     id: 'skylineruckers'
   },
   {
@@ -108,7 +110,7 @@ export const Clubs: Club[] = [
     coordinates: [53.5697,9.9756],
     country: 'Germany',
     name: 'Hamburg RUCKing',
-    url: 'https://www.instagram.com/hhauruck/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/hhauruck/'},
     id: 'hhauruck'
   },
   {
@@ -116,7 +118,7 @@ export const Clubs: Club[] = [
     coordinates: [0,0],
     country: 'Germany',
     name: 'GORUCK Europe',
-    url: 'https://www.instagram.com/goruckeurope/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckeurope/'},
     id: 'goruckeurope',
     hide: true
   },
@@ -125,7 +127,7 @@ export const Clubs: Club[] = [
     coordinates: [0,0],
     country: 'Germany',
     name: 'GORUCK',
-    url: 'https://www.sandlot.fit/',
+    contact: { preferred: 'sandlot', sandlot: 'https://www.sandlot.fit/'},
     id: 'goruck',
     hide: true
   },
@@ -134,7 +136,7 @@ export const Clubs: Club[] = [
     coordinates: [49.75845, 8.5996],
     country: 'Germany',
     name: 'RK Frankenstein',
-    url: 'http://www.rkfrankenstein.de',
+    contact: { preferred: 'homepage', homepage: 'http://www.rkfrankenstein.de'},
     id: 'rkfrankenstein'
   },
   {
@@ -142,7 +144,7 @@ export const Clubs: Club[] = [
     coordinates: [53.15688,-6.91058],
     country: 'Ireland',
     name: 'Mad Ruckers Kildare',
-    url: 'https://www.instagram.com/mad_ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/mad_ruckers/'},
     id: 'mad_ruckers'
   },
   {
@@ -150,7 +152,7 @@ export const Clubs: Club[] = [
     coordinates: [49.48779,8.46621],
     country: 'Germany',
     name: 'GORUCK Kurpfalz',
-    url: 'https://www.instagram.com/goruck_kurpfalz/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruck_kurpfalz/'},
     id: 'goruck_kurpfalz'
   },
   {
@@ -158,7 +160,7 @@ export const Clubs: Club[] = [
     coordinates: [51.3583,7.4733],
     country: 'Germany',
     name: 'Mother Ruckers Hagen NRW',
-    url: 'https://www.instagram.com/motherruckers_hagen_nrw/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/motherruckers_hagen_nrw/'},
     id: 'motherruckers_hagen_nrw'
   },
   {
@@ -166,7 +168,7 @@ export const Clubs: Club[] = [
     coordinates: [49.00269,8.40101],
     country: 'Germany',
     name: 'Rhine Valley Rucking',
-    url: 'https://www.instagram.com/rhinevalleyrucking/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/rhinevalleyrucking/'},
     id: 'rhinevalleyrucking'
   },
   {
@@ -174,7 +176,7 @@ export const Clubs: Club[] = [
     coordinates: [60.14339,11.17446],
     country: 'Norway',
     name: 'Norway Ruck',
-    url: 'https://www.instagram.com/norwayruck/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/norwayruck/'},
     id: 'norwayruck'
   },
   {
@@ -182,7 +184,7 @@ export const Clubs: Club[] = [
     coordinates: [47.37181,8.54221],
     country: 'Switzerland',
     name: 'The Sunrise Ruck Club',
-    url: 'https://www.instagram.com/thesunriseruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/thesunriseruckclub/'},
     id: 'thesunriseruckclub'
   },
   {
@@ -190,7 +192,7 @@ export const Clubs: Club[] = [
     coordinates: [25.6944,-80.1648],
     country: 'USA',
     name: 'Couth Florida Ruck Club',
-    url: 'https://www.instagram.com/southfloridaruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/southfloridaruckclub/'},
     id: 'southfloridaruckclub'
   },
   {
@@ -198,7 +200,7 @@ export const Clubs: Club[] = [
     coordinates: [26.3100,-80.2386],
     country: 'USA',
     name: 'Vice City Ruckers',
-    url: 'https://www.instagram.com/vicecityruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/vicecityruckers/'},
     id: 'vicecityruckers'
   },
   {
@@ -206,7 +208,7 @@ export const Clubs: Club[] = [
     coordinates: [36.1551,-95.9951],
     country: 'USA',
     name: 'Green Country Ruckers',
-    url: 'https://www.instagram.com/green.country.ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/green.country.ruckers/'},
     id: 'greencountryruckers'
   },
   {
@@ -214,7 +216,7 @@ export const Clubs: Club[] = [
     coordinates: [34.6092,-98.3977],
     country: 'USA',
     name: 'Blockout Rucking Crew',
-    url: 'https://www.instagram.com/blackoutruckingcrew/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/blackoutruckingcrew/'},
     id: 'blackoutruckingcrew'
   },
   {
@@ -222,7 +224,7 @@ export const Clubs: Club[] = [
     coordinates: [32.7148,-117.1623],
     country: 'USA',
     name: 'Triton Ruck Club ',
-    url: 'https://www.instagram.com/tritonruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/tritonruckclub/'},
     id: 'tritonruckclub'
   },
   {
@@ -230,7 +232,7 @@ export const Clubs: Club[] = [
     coordinates: [35.5846,-80.8102],
     country: 'USA',
     name: 'Mooresville Ruck Club',
-    url: 'https://www.instagram.com/ruckmooresville/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckmooresville/'},
     id: 'ruckmooresville'
   },
   {
@@ -238,7 +240,7 @@ export const Clubs: Club[] = [
     coordinates: [57.7072,11.9670],
     country: 'Sweden',
     name: 'Team Uphill',
-    url: 'https://www.instagram.com/teamuphill/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teamuphill/'},
     id: 'teamuphill'
   },
   {
@@ -246,7 +248,7 @@ export const Clubs: Club[] = [
     coordinates: [35.7327,-78.8506],
     country: 'USA',
     name: 'Apex Ruck Club',
-    url: 'https://www.instagram.com/apex_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/apex_ruck_club/'},
     id: 'apex_ruck_club'
   },
   {
@@ -254,7 +256,7 @@ export const Clubs: Club[] = [
     coordinates: [23.7327,-105.6897],
     country: 'México',
     name: 'Ruckers CDMX Ruck Club',
-    url: 'https://www.instagram.com/ruckerscdmxclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckerscdmxclub/'},
     id: 'ruckerscdmxclub'
   },
   {
@@ -262,7 +264,7 @@ export const Clubs: Club[] = [
     coordinates: [46.2769,-119.2718],
     country: 'USA',
     name: 'Bedrock Rucking',
-    url: 'https://www.instagram.com/bedrock_rucking/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/bedrock_rucking/'},
     id: 'bedrock_rucking'
   },
   {
@@ -270,7 +272,7 @@ export const Clubs: Club[] = [
     coordinates: [41.4203,-73.9550],
     country: 'USA',
     name: 'Hudson Valley Ruck Club',
-    url: 'https://www.instagram.com/hudson.valley.ruck.club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/hudson.valley.ruck.club/'},
     id: 'hudsonvalleyruckclub'
   },
   {
@@ -278,7 +280,7 @@ export const Clubs: Club[] = [
     coordinates: [42.3457,-82.9768],
     country: 'USA',
     name: 'East Side Ruck Club',
-    url: 'https://www.instagram.com/eastsideruckclub_mi/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/eastsideruckclub_mi/'},
     id: 'eastsideruckclub_mi'
   },
   {
@@ -286,7 +288,7 @@ export const Clubs: Club[] = [
     coordinates: [47.658,-117.2626],
     country: 'USA',
     name: 'Nomad Ruckers',
-    url: 'https://www.instagram.com/nomadruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/nomadruckers/'},
     id: 'nomadruckers'
   },
   {
@@ -294,7 +296,7 @@ export const Clubs: Club[] = [
     coordinates: [57.7312, 12.0272],
     country: 'Sweden',
     name: 'Gothenburg Ruck Buddies',
-    url: 'https://www.instagram.com/gbg_ruck_buddies/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/gbg_ruck_buddies/'},
     id: 'gbg_ruck_buddies'
   },
   {
@@ -302,7 +304,7 @@ export const Clubs: Club[] = [
     coordinates: [38.5372,-81.9321],
     country: 'USA',
     name: 'Montaineer Ruck Club',
-    url: 'https://www.instagram.com/mountaineerruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/mountaineerruckclub/'},
     id: 'mountaineerruckclub'
   },
   {
@@ -310,7 +312,7 @@ export const Clubs: Club[] = [
     coordinates: [28.2312,-80.7272],
     country: 'USA',
     name: 'Iron Fit Rucker',
-    url: 'https://www.instagram.com/ironflamingoruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ironflamingoruckclub/'},
     id: 'ironflamingoruckclub'
   },
   {
@@ -318,7 +320,7 @@ export const Clubs: Club[] = [
     coordinates: [19.4388,-99.1324],
     country: 'México',
     name: 'Ruckers Mexico City',
-    url: 'https://www.instagram.com/ruckersmxcity/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckersmxcity/'},
     id: 'ruckersmxcity'
   },
   {
@@ -326,7 +328,7 @@ export const Clubs: Club[] = [
     coordinates: [38.2802,-85.749],
     country: 'USA',
     name: 'Team RWB Louisville Ruck Club',
-    url: 'https://www.instagram.com/teamrwb_louisville_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teamrwb_louisville_ruck_club/'},
     id: 'teamrwb_louisville_ruck_club'
   },
   {
@@ -334,7 +336,7 @@ export const Clubs: Club[] = [
     coordinates: [39.2937,-76.6138],
     country: 'USA',
     name: 'Clipper City Ruck Club',
-    url: 'https://www.instagram.com/clippercityruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/clippercityruckclub/'},
     id: 'clippercityruckclub'
   },
   {
@@ -342,7 +344,7 @@ export const Clubs: Club[] = [
     coordinates: [39.2672,-81.5611],
     country: 'USA',
     name: 'Step Up MOV Ruck Club',
-    url: 'https://www.instagram.com/stepupmovruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/stepupmovruckclub/'},
     id: 'stepupmovruckclub'
   },
   {
@@ -350,7 +352,7 @@ export const Clubs: Club[] = [
     coordinates: [42.601,-76.1795],
     country: 'USA',
     name: 'JTM Ruck Club',
-    url: 'https://www.instagram.com/jtmruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/jtmruckclub/'},
     id: 'jtmruckclub'
   },
   {
@@ -358,7 +360,7 @@ export const Clubs: Club[] = [
     coordinates: [57.7818,14.1662],
     country: 'Sweden',
     name: 'Small Country Ruck Club',
-    url: 'https://www.instagram.com/smallcountryruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/smallcountryruckclub/'},
     id: 'smallcountryruckclub'
   },
   {
@@ -366,7 +368,7 @@ export const Clubs: Club[] = [
     coordinates: [38.9712,-95.2398],
     country: 'USA',
     name: 'LFK Ruck Club',
-    url: 'https://www.instagram.com/tomishiking/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/tomishiking/'},
     id: 'tomishiking'
   },
   {
@@ -374,7 +376,7 @@ export const Clubs: Club[] = [
     coordinates: [53.8655,10.6863],
     country: 'Germany',
     name: 'Rucking Hell',
-    url: 'https://www.instagram.com/ruckinghellclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckinghellclub/'},
     id: 'ruckinghellclub'
   },
   {
@@ -382,7 +384,7 @@ export const Clubs: Club[] = [
     coordinates: [35.9986,-78.9024],
     country: 'USA',
     name: 'Hope Valley Ruck Club',
-    url: 'https://www.instagram.com/hopevalleyruck/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/hopevalleyruck/'},
     id: 'hopevalleyruck'
   },
   {
@@ -390,7 +392,7 @@ export const Clubs: Club[] = [
     coordinates: [53.9922,-1.5386],
     country: 'England',
     name: 'West Co North Yo Ruck Club',
-    url: 'https://www.instagram.com/westconorthyoruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/westconorthyoruckclub/'},
     id: 'westconorthyoruckclub'
   },
   {
@@ -398,7 +400,7 @@ export const Clubs: Club[] = [
     coordinates: [32.7526,-97.3238],
     country: 'USA',
     name: 'Panther City Rucking Crew',
-    url: 'https://www.instagram.com/panthercity_rucking_crew/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/panthercity_rucking_crew/'},
     id: 'panthercity_rucking_crew'
   },
   {
@@ -406,7 +408,7 @@ export const Clubs: Club[] = [
     coordinates: [41.5536,-87.4515],
     country: 'USA',
     name: 'The Region Ruck Club',
-    url: 'https://www.instagram.com/theregionruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/theregionruckclub/'},
     id: 'theregionruckclub'
   },
   {
@@ -414,7 +416,7 @@ export const Clubs: Club[] = [
     coordinates: [55.6057,12.9972],
     country: 'Sweden',
     name: 'Snapphane Ruckers',
-    url: 'https://www.instagram.com/snapphaneruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/snapphaneruckers/'},
     id: 'snapphaneruckers'
   },
   {
@@ -422,7 +424,7 @@ export const Clubs: Club[] = [
     coordinates: [34.7365,-86.5881],
     country: 'USA',
     name: 'Rocket City Ruck Club',
-    url: 'https://www.instagram.com/rocketcityrucks/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/rocketcityrucks/'},
     id: 'rocketcityrucks'
   },
   {
@@ -430,7 +432,7 @@ export const Clubs: Club[] = [
     coordinates: [39.1151,-77.5673],
     country: 'USA',
     name: 'LoCo Ruckers',
-    url: 'https://www.instagram.com/locoruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/locoruckers/'},
     id: 'locoruckers'
   },
   {
@@ -438,7 +440,7 @@ export const Clubs: Club[] = [
     coordinates: [34.0549,-118.2362],
     country: 'USA',
     name: 'El Ruck Club',
-    url: 'https://www.instagram.com/elruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/elruckclub/'},
     id: 'elruckclub'
   },
   {
@@ -446,7 +448,7 @@ export const Clubs: Club[] = [
     coordinates: [44.9769,-93.2691],
     country: 'USA',
     name: 'Mill City Rucking Crew',
-    url: 'https://www.instagram.com/mill_city_rucking_crew/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/mill_city_rucking_crew/'},
     id: 'mill_city_rucking_crew'
   },
   {
@@ -454,7 +456,7 @@ export const Clubs: Club[] = [
     coordinates: [39.6822,-75.7512],
     country: 'USA',
     name: 'Go Ruck Yourself Rucking Club',
-    url: 'https://www.instagram.com/goruckyourselfrucking/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckyourselfrucking/'},
     id: 'goruckyourselfrucking'
   },
   {
@@ -462,7 +464,7 @@ export const Clubs: Club[] = [
     coordinates: [1.27707,103.84545],
     country: 'Singapore',
     name: 'Team Black Mamba SG',
-    url: 'https://www.instagram.com/teamblackmambasg/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teamblackmambasg/'},
     id: 'teamblackmambasg'
   },
   {
@@ -470,7 +472,7 @@ export const Clubs: Club[] = [
     coordinates: [60.6532,17.1634],
     country: 'Sweden',
     name: 'Team Invictus',
-    url: 'https://www.instagram.com/teaminvictusgavle/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teaminvictusgavle/'},
     id: 'teaminvictusgavle'
   },
   {
@@ -478,7 +480,7 @@ export const Clubs: Club[] = [
     coordinates: [36.5389,-87.3653],
     country: 'USA',
     name: 'Freedom Eagle',
-    url: 'https://www.instagram.com/freedomruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/freedomruckclub/'},
     id: 'freedomruckclub'
   },
   {
@@ -486,7 +488,7 @@ export const Clubs: Club[] = [
     coordinates: [60.4863,15.4238],
     country: 'Sweden',
     name: 'Dalecarlia Steel Ruckers',
-    url: 'https://www.instagram.com/dalecarlia_steel_ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/dalecarlia_steel_ruckers/'},
     id: 'dalecarlia_steel_ruckers'
   },
   {
@@ -494,7 +496,7 @@ export const Clubs: Club[] = [
     coordinates: [34.0515,-117.7625],
     country: 'USA',
     name: 'East Side Rucks',
-    url: 'https://www.instagram.com/eastsiderucks/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/eastsiderucks/'},
     id: 'eastsiderucks'
   },
   {
@@ -502,7 +504,7 @@ export const Clubs: Club[] = [
     coordinates: [62.3904,17.3059],
     country: 'Sweden',
     name: 'Ruck’n’GO',
-    url: 'https://www.instagram.com/ruckngo/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckngo/'},
     id: 'ruckngo'
   },
   {
@@ -510,7 +512,7 @@ export const Clubs: Club[] = [
     coordinates: [40.7961,-81.9374],
     country: 'USA',
     name: 'Wayne County Ruck Club',
-    url: 'https://www.instagram.com/wayne_co_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/wayne_co_ruck_club/'},
     id: 'wayne_co_ruck_club'
   },
   {
@@ -518,7 +520,7 @@ export const Clubs: Club[] = [
     coordinates: [39.7608,-84.1968],
     country: 'USA',
     name: 'Dayton Area Rucking Crew',
-    url: 'https://www.instagram.com/dayton_area_rucking_crew_/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/dayton_area_rucking_crew_/'},
     id: 'dayton_area_rucking_crew_'
   },
   {
@@ -526,7 +528,7 @@ export const Clubs: Club[] = [
     coordinates: [27.7401,-82.7463],
     country: 'USA',
     name: 'Skyway Ruck Club',
-    url: 'https://www.instagram.com/skyway_ruck_club_fl/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/skyway_ruck_club_fl/'},
     id: 'skyway_ruck_club_fl'
   },
   {
@@ -534,7 +536,7 @@ export const Clubs: Club[] = [
     coordinates: [31.3281,-89.2883],
     country: 'USA',
     name: 'OneDrive Ruck Club',
-    url: 'https://www.instagram.com/overdrive_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/overdrive_ruck_club/'},
     id: 'overdrive_ruck_club'
   },
   {
@@ -542,7 +544,7 @@ export const Clubs: Club[] = [
     coordinates: [33.8296,-117.9121],
     country: 'USA',
     name: 'F3 Anaheim',
-    url: 'https://www.instagram.com/f3anaheim/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/f3anaheim/'},
     id: 'f3anaheim'
   },
   {
@@ -550,7 +552,7 @@ export const Clubs: Club[] = [
     coordinates: [34.3658,-89.5195],
     country: 'USA',
     name: 'Gravel Capital Ruckers',
-    url: 'https://www.instagram.com/gravel_capital_ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/gravel_capital_ruckers/'},
     id: 'gravel_capital_ruckers'
   },
   {
@@ -558,7 +560,7 @@ export const Clubs: Club[] = [
     coordinates: [59.3123,14.1099],
     country: 'Sweden',
     name: 'Rucking Kristenhamn',
-    url: 'https://www.instagram.com/rucking_kristinehamn/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/rucking_kristinehamn/'},
     id: 'rucking_kristinehamn'
   },
   {
@@ -566,7 +568,7 @@ export const Clubs: Club[] = [
     coordinates: [35.729,139.757],
     country: 'Japan',
     name: 'Tokyo Hiyaku Ruckers',
-    url: 'https://www.instagram.com/tokyohikyakuruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/tokyohikyakuruckers/'},
     id: 'tokyohikyakuruckers'
   },
   {
@@ -574,7 +576,7 @@ export const Clubs: Club[] = [
     coordinates: [33.8402,-84.3799],
     country: 'USA',
     name: 'Buckhead Ruck Club',
-    url: 'https://www.instagram.com/buckheadruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/buckheadruckclub/'},
     id: 'buckheadruckclub'
   },
   {
@@ -582,7 +584,7 @@ export const Clubs: Club[] = [
     coordinates: [47.9129,-122.0979],
     country: 'USA',
     name: 'NW Tough',
-    url: 'https://www.instagram.com/nw_tough/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/nw_tough/'},
     id: 'nw_tough'
   },
   {
@@ -590,7 +592,7 @@ export const Clubs: Club[] = [
     coordinates: [27.9479,-82.4572],
     country: 'USA',
     name: 'Tampa Bay Area Babes Trail Ruckers',
-    url: 'https://www.instagram.com/bayareababestrailruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/bayareababestrailruckers/'},
     id: 'bayareababestrailruckers'
   },
   {
@@ -598,7 +600,7 @@ export const Clubs: Club[] = [
     coordinates: [45.6798,-111.0471],
     country: 'USA',
     name: 'Montana Mighty Rucks',
-    url: 'https://www.instagram.com/montana_mighty_rucks/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/montana_mighty_rucks/'},
     id: 'montana_mighty_rucks'
   },
   {
@@ -606,7 +608,7 @@ export const Clubs: Club[] = [
     coordinates: [28.5438,-81.384],
     country: 'USA',
     name: 'Orlando Ruck Club',
-    url: 'https://www.instagram.com/orlando.ruck.club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/orlando.ruck.club/'},
     id: 'orlandoruckclub'
   },
   {
@@ -614,7 +616,7 @@ export const Clubs: Club[] = [
     coordinates: [33.191,-117.2495],
     country: 'USA',
     name: 'Alleyway Ruckers Club',
-    url: 'https://www.instagram.com/alleywayruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/alleywayruckers/'},
     id: 'alleywayruckers'
   },
   {
@@ -622,7 +624,7 @@ export const Clubs: Club[] = [
     coordinates: [36.0972,-79.2682],
     country: 'USA',
     name: 'F3 Meyham',
-    url: 'https://www.instagram.com/f3meyham/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/f3meyham/'},
     id: 'f3meyham'
   },
   {
@@ -630,7 +632,7 @@ export const Clubs: Club[] = [
     coordinates: [34.0251,-84.3606],
     country: 'USA',
     name: 'Terminus Ruck Club',
-    url: 'https://www.instagram.com/terminus_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/terminus_ruck_club/'},
     id: 'terminus_ruck_club'
   },
   {
@@ -638,7 +640,7 @@ export const Clubs: Club[] = [
     coordinates: [40.4279,-79.7034],
     country: 'USA',
     name: 'The Ruck-ulators',
-    url: 'https://www.instagram.com/ruckulators/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckulators/'},
     id: 'ruckulators'
   },
   {
@@ -646,7 +648,7 @@ export const Clubs: Club[] = [
     coordinates: [28.5658,-81.5864],
     country: 'USA',
     name: 'West Orange Ruckers',
-    url: 'https://www.instagram.com/westorangeruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/westorangeruckers/'},
     id: 'westorangeruckers'
   },
   {
@@ -655,14 +657,14 @@ export const Clubs: Club[] = [
     country: 'USA',
     id: 'chicagoruckclub',
     name: 'Chicago Ruck Club',
-    url: 'https://instagram.com/chicagoruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/chicagoruckclub/'},
   },
   {
     associations: ['goruck'],
     coordinates: [30.332,-81.6631],
     country: 'USA',
     name: 'GORUCK Club HQ',
-    url: 'https://instagram.com/goruck_club_hq/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/goruck_club_hq/'},
     id: 'goruck_club_hq',
   },
   {
@@ -670,7 +672,7 @@ export const Clubs: Club[] = [
     coordinates: [44.3125,-96.771],
     country: 'USA',
     name: 'ROAM Ruck Club',
-    url: 'https://instagram.com/roam_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/roam_ruck_club/'},
     id: 'roam_ruck_club',
   },
   {
@@ -678,7 +680,7 @@ export const Clubs: Club[] = [
     coordinates: [47.2436,-122.4354],
     country: 'USA',
     name: 'Grit City Ruckers',
-    url: 'https://instagram.com/gritcityruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/gritcityruckers/'},
     id: 'gritcityruckers',
   },
   {
@@ -686,7 +688,7 @@ export const Clubs: Club[] = [
     coordinates: [34.226,-77.9459],
     country: 'USA',
     name: 'Port City Ruck Club',
-    url: 'https://instagram.com/port_city_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/port_city_ruck_club/'},
     id: 'port_city_ruck_club',
   },
   {
@@ -694,7 +696,7 @@ export const Clubs: Club[] = [
     coordinates: [22.2775,114.1644],
     country: 'Hong Kong',
     name: 'GORUCK Hong Kong',
-    url: 'https://instagram.com/goruckhk/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/goruckhk/'},
     id: 'goruckhk',
   },
   {
@@ -702,7 +704,7 @@ export const Clubs: Club[] = [
     coordinates: [4.609,114.434],
     country: 'Brunei',
     name: 'Brunei Ruck Squad',
-    url: 'https://instagram.com/bruneirucksquad/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/bruneirucksquad/'},
     id: 'bruneirucksquad',
   },
   {
@@ -710,7 +712,7 @@ export const Clubs: Club[] = [
     coordinates: [60.1709,24.9362],
     country: 'Finland',
     name: 'Helsinki Ruck Club',
-    url: 'https://instagram.com/helsinkiruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/helsinkiruckclub/'},
     id: 'helsinkiruckclub',
   },
   {
@@ -718,7 +720,7 @@ export const Clubs: Club[] = [
     coordinates: [27.4096,-82.5135],
     country: 'USA',
     name: 'Tampa Bay Ruck Club',
-    url: 'https://instagram.com/tampabayruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/tampabayruckclub/'},
     id: 'tampabayruckclub',
   },
   {
@@ -726,7 +728,7 @@ export const Clubs: Club[] = [
     coordinates: [55.955,-3.1929],
     country: 'Scotland',
     name: 'Edinburgh Ruck Club',
-    url: 'https://instagram.com/edinburghruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/edinburghruckclub/'},
     id: 'edinburghruckclub',
   },
   {
@@ -734,7 +736,7 @@ export const Clubs: Club[] = [
     coordinates: [44.94,-123.0355],
     country: 'USA',
     name: 'Cherry City Ruckers',
-    url: 'https://instagram.com/cherry_city_ruckers/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/cherry_city_ruckers/'},
     id: 'cherry_city_ruckers',
   },
   {
@@ -742,7 +744,7 @@ export const Clubs: Club[] = [
     coordinates: [35.5856,-80.8117],
     country: 'USA',
     name: 'Osprey Ruck Club',
-    url: 'https://instagram.com/osprey_ruck_club/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/osprey_ruck_club/'},
     id: 'osprey_ruck_club',
   },
   {
@@ -750,7 +752,7 @@ export const Clubs: Club[] = [
     coordinates: [42.1451,-88.0661],
     country: 'USA',
     name: 'Mother Ruckers',
-    url: 'https://instagram.com/motherruckers_community/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/motherruckers_community/'},
     id: 'motherruckers_community',
   },
   {
@@ -758,7 +760,7 @@ export const Clubs: Club[] = [
     coordinates: [32.7988,-79.9468],
     country: 'USA',
     name: 'Chucktown Ruck Club',
-    url: 'https://instagram.com/chucktownruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/chucktownruckclub/'},
     id: 'chucktownruckclub',
   },
   {
@@ -766,7 +768,7 @@ export const Clubs: Club[] = [
     coordinates: [41.4135,-95.8575],
     country: 'USA',
     name: 'West Omaha Ruck Club',
-    url: 'https://instagram.com/omaharuckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/omaharuckclub/'},
     id: 'omaharuckclub',
   },
   {
@@ -774,7 +776,7 @@ export const Clubs: Club[] = [
     coordinates: [26.7054,-80.0378],
     country: 'USA',
     name: 'Palm Beach Rucking Crew',
-    url: 'https://instagram.com/palmbeachruckingcrew/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/palmbeachruckingcrew/'},
     id: 'palmbeachruckingcrew',
   },
   {
@@ -782,7 +784,7 @@ export const Clubs: Club[] = [
     coordinates: [34.6977,-79.8843],
     country: 'USA',
     name: 'VerRückt Club',
-    url: 'https://instagram.com/verrucktclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/verrucktclub/'},
     id: 'verrucktclub',
   },
   {
@@ -790,7 +792,7 @@ export const Clubs: Club[] = [
     coordinates: [33.5219,-86.8133],
     country: 'USA',
     name: 'LP Ruck',
-    url: 'https://instagram.com/lp_ruck/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/lp_ruck/'},
     id: 'lp_ruck',
   },
   {
@@ -798,7 +800,7 @@ export const Clubs: Club[] = [
     coordinates: [43.6597,-70.2589],
     country: 'USA',
     name: 'Dirigo Ruck Club',
-    url: 'https://instagram.com/dirigoruckclub/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/dirigoruckclub/'},
     id: 'dirigoruckclub',
   },
   {
@@ -806,7 +808,7 @@ export const Clubs: Club[] = [
     coordinates: [25.2112,55.2846],
     country: 'United Arab Emirates',
     name: 'Xtreme Endurance',
-    url: 'https://instagram.com/xtreme_endurance/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/xtreme_endurance/'},
     id: 'xtreme_endurance',
   },
   {
@@ -814,7 +816,7 @@ export const Clubs: Club[] = [
     coordinates: [8.5742,-83.56],
     country: 'Costa Rica',
     name: 'Rainforest Ruck Club',
-    url: 'https://instagram.com/rainforest_ruckclubcr/',
+    contact: { preferred: 'instagram', instagram: 'https://instagram.com/rainforest_ruckclubcr/'},
     id: 'rainforest_ruckclubcr',
   }
 ]

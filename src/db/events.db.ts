@@ -3,10 +3,9 @@ import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-12', 'auxruckers', {name: 'Nightmare WOD Teil 1', type: 'pt', coordinates: [48.35644,10.88079], location: 'Erhard-Wunderlich-Sporthalle, Göggingen'}),
-  createClubEvent('2023-12-14', 'munichruckingcrew'),
-  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Wittelsbacherplatz, München', type: 'ruck', coordinates: [48.14325,11.57607]}),
+  createClubEvent('2023-12-16', 'munichruckingcrew', {name: 'Christmas Market Ruck', time: '16:00', location: 'Odeonsplatz, München', type: 'ruck', coordinates: [48.1425,11.5777]}),
   createClubEvent('2023-12-16', 'rkfrankenstein', {name: 'Wintermarsch', time: '16:00', location: 'Parkplatz Nonnenbrunnen', type: 'ruck', coordinates: [49.75085, 8.64528]}),
-  createClubEvent('2023-12-19', 'auxruckers', {name: 'Nightmare WOD Teil 2', type: 'pt'}),
+  createClubEvent('2023-12-19', 'auxruckers', {name: 'Nightmare WOD Teil 2', type: 'pt', coordinates: [48.35644,10.88079], location: 'Erhard-Wunderlich-Sporthalle, Göggingen'}),
   createClubEvent('2023-12-21', 'munichruckingcrew'),
   createClubEvent('2023-12-26', 'auxruckers', {name: 'letzte Rucktreff des Jahres'}),
   createClubEvent('2023-12-27', 'auxruckers', {name: 'December Tribe Challenge', type: 'pt'}),

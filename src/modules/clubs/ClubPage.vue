@@ -57,7 +57,10 @@
     <div class="hline"></div>
 
     <div v-if="associations.length > 0">
-      <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">{{ ass.name }}</v-chip>
+      We associate with <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">
+        <a v-if="club.contact[ass.type]" :href="club.contact[ass.type]" target="_blank" :style="{color: ass.color}">{{ ass.name }}</a>
+        <span v-if="!club.contact[ass.type]">{{ ass.name }}</span>
+      </v-chip>
     </div>
     
     <div class="hline"></div>

@@ -2,7 +2,7 @@ import { Club } from "@/business-logic/clubs.model";
 
 export const Clubs: Club[] = [
   {
-    associations: ['goruck', 'goruckeurope', 'sandlotfit'],
+    associations: ['goruck', 'goruckeurope', 'sandlot'],
     coordinates: [48.1379,11.5744],
     country: 'Germany',
     default: {
@@ -30,7 +30,7 @@ export const Clubs: Club[] = [
     id: 'goruck_club_franken'
   },
   {
-    associations: ['goruck', 'goruckeurope', 'sandlotfit'],
+    associations: ['goruck', 'goruckeurope', 'sandlot'],
     coordinates: [48.3663,10.8943],
     country: 'Germany',
     default: {
@@ -123,7 +123,7 @@ export const Clubs: Club[] = [
     hide: true
   },
   {
-    associations: ['goruck', 'sandlotfit'],
+    associations: ['goruck', 'sandlot'],
     coordinates: [0,0],
     country: 'Germany',
     name: 'GORUCK',

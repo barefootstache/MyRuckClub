@@ -18,7 +18,8 @@ export const Clubs: Club[] = [
     contact: { 
       preferred: 'instagram', 
       instagram: 'https://www.instagram.com/munichruckingcrew/',
-      sandlot: 'https://fistbumps.sandlot.fit/group/3834e838-51d4-4584-86a6-a46ae9b9784a'
+      linktree: 'https://linktr.ee/munichruckingcrew',
+      sandlot: 'https://fistbumps.sandlot.fit/group/3834e838-51d4-4584-86a6-a46ae9b9784a',
     },
   },
   {

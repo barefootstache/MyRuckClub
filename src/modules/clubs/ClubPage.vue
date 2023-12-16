@@ -31,6 +31,7 @@
   const zoom = LocationService.calcZoom(allCoordinates);
 
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
+  const contacts = Object.keys(club.contact).filter(key => key !== 'preferred').map(key => [key, club.contact[key]]);
 </script>
 
 <template>
@@ -52,7 +53,7 @@
       </l-map>
     </div>
 
-    <p>For more info contact us on <a :href="club.contact[club.contact.preferred]">{{ UtilsService.capitalize(club.contact.preferred) }}</a>.</p>
+    <p>For more info contact us on <a :href="club.contact[club.contact.preferred]" target="_blank">{{ UtilsService.capitalize(club.contact.preferred) }}</a>.</p>
 
     <div class="hline"></div>
 
@@ -76,6 +77,17 @@
         <span></span>
       </li>
     </ul>
+    
+    <div class="hline"></div>
+
+    <div>
+      You can also find us on <v-chip variant="outlined" color="black" v-for="[social, url] in contacts">
+        <a :href="url" target="_blank" style="color: black">{{ UtilsService.capitalize(social) }}</a>
+      </v-chip>
+    </div>
+    
+    <div class="hline"></div>
+
   </div>
 </template>
 

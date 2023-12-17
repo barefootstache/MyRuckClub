@@ -1,4 +1,5 @@
 import { AssociationType } from "./associations.model";
+import { Contact } from "./contact.model";
 import { EventType } from "./events.model";
 
 export type Coordinates = [number, number];
@@ -23,13 +24,13 @@ export type Country =
 
 export type Club = {
   associations: AssociationType[];
+  contact: Contact;
   coordinates: Coordinates;
   country: Country;
   default?: Default;
   hide?: boolean;
   id: string;
   name: string;
-  url: string;
 }
 
 export type Default = {

@@ -1,4 +1,4 @@
-export type AssociationType = 'myruckclub' | 'goruck' |'goruckeurope' | 'milruck' | 'f3' | 'spartan' | 'crossfit' | 'sandlotfit';
+export type AssociationType = 'myruckclub' | 'goruck' |'goruckeurope' | 'milruck' | 'f3' | 'spartan' | 'crossfit' | 'sandlot';
 
 export type Association = {
   name: string;

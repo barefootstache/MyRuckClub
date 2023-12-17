@@ -3,6 +3,8 @@
   import { ClubsDB, EventsDB } from '@/db/index.db'
   import { ClubEvent } from '@/business-logic/events.model';
   import { Club } from '@/business-logic/clubs.model';
+  import { Contact } from '@/business-logic/contact.model';
+  import { getContactUrl } from '@/business-logic/clubs.utils';
   import { getMostRecentData } from '@/business-logic/events.utils';
   import { LocationService } from '@/services/location.service';
 
@@ -18,7 +20,7 @@
    */
   function getRegistrationLink(ev: ClubEvent): string {
     const foundClub = ClubsDB.find((item:Club) => item.id === ev.clubId);
-    return getMostRecentData<string>('url', foundClub, ev) || foundClub?.url || '';
+    return getMostRecentData<string>('url', foundClub, ev) || getContactUrl(foundClub?.contact as Contact) || '';
   }
 
   /**

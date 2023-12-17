@@ -28,7 +28,7 @@ export const Associations: Association[] = [
   {
     name: 'Sandlot',
     url: 'https://www.sandlot.fit/',
-    type: 'sandlotfit',
+    type: 'sandlot',
     color: 'green'
   },
   {

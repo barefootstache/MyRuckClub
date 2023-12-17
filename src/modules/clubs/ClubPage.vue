@@ -10,6 +10,8 @@
   import { LocationService } from '@/services/location.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
+  import { getContactUrl } from '@/business-logic/clubs.utils';
+  import Contact from './components/Contact.vue'
 
   /**
    * Reference for `this.$route`.
@@ -35,7 +37,7 @@
 <template>
   <div>
     <h1>{{club.name}}</h1>
-    <p>We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location || 'TBA'}}</a>.</p>
+    <p v-if="club?.default?.location">We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location}}</a>.</p>
     
     <div class="map-view">
       <l-map ref="map" v-model:zoom="zoom" :center="LocationService.calcCenterMap(allCoordinates)">
@@ -51,13 +53,17 @@
       </l-map>
     </div>
 
-    <p v-if="club.url.includes('instagram')">For more info contact us on <a :href="club.url">Instagram</a>.</p>
-    <p v-if="!club.url.includes('instagram')">For more info contact us at our <a :href="club.url">Homepage</a>.</p>
+    <div class="hline"></div>
+
+    <Contact :club="club"></Contact>
 
     <div class="hline"></div>
 
     <div v-if="associations.length > 0">
-      <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">{{ ass.name }}</v-chip>
+      We associate with 
+      <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">
+        <span>{{ ass.name }}</span>
+      </v-chip>
     </div>
     
     <div class="hline"></div>
@@ -69,10 +75,11 @@
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
         <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
-        <span v-if="ev.clubId">Registration at <a :href="club.url" target="_blank">{{club.name}}</a></span>
+        <span v-if="ev.clubId">Registration at <a :href="getContactUrl(club.contact)" target="_blank">{{club.name}}</a></span>
         <span></span>
       </li>
     </ul>
+    
   </div>
 </template>
 

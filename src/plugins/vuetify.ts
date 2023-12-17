@@ -7,8 +7,12 @@ import * as directives from 'vuetify/directives';
 // Translations provided by Vuetify
 import { en } from 'vuetify/locale';
 
+// Icons
+import { aliases, mdi } from 'vuetify/iconsets/mdi';
+
 // Styles
 import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
 
 /**
  * Vuetify Components
@@ -16,6 +20,13 @@ import 'vuetify/styles';
  * @see {@link https://vuetifyjs.com/en/features/treeshaking/}
  */
 let vuetifyConfig: VuetifyOptions = {
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    }
+  },
   // Internationalization (i18n)
   // https://vuetifyjs.com/en/features/internationalization/#internationalization-i18n
   locale: {

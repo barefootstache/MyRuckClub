@@ -10,6 +10,7 @@
   import { LocationService } from '@/services/location.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
+  import { getContactUrl } from '@/business-logic/clubs.utils';
   import Contact from './components/Contact.vue'
 
   /**
@@ -74,7 +75,7 @@
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
         <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
-        <span v-if="ev.clubId">Registration at <a :href="club.contact[club.contact.preferred]" target="_blank">{{club.name}}</a></span>
+        <span v-if="ev.clubId">Registration at <a :href="getContactUrl(club.contact)" target="_blank">{{club.name}}</a></span>
         <span></span>
       </li>
     </ul>

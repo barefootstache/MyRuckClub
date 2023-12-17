@@ -23,16 +23,6 @@ let vuetifyConfig: VuetifyOptions = {
   icons: {
     defaultSet: 'mdi',
     aliases,
-    // : {
-    //   ...aliases,
-    //   instagram: mdiInstagram,
-    //   linktree: mdiPalmTree,
-    //   sandlot: mdiBeach,
-    //   facebook: mdiFacebook,
-    //   email: mdiEmail,
-    //   homepage: mdiWeb,
-    //   fediverse: mdiMastodon,
-    // },
     sets: {
       mdi,
     }

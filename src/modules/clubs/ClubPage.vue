@@ -5,6 +5,7 @@
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
   import { ClubsDB } from '@/db/index.db';
   import { Club } from '@/business-logic/clubs.model';
+  import {getIcon} from '@/business-logic/contact.utils'
   import { EventsDB } from '@/db/index.db';
   import { getPin } from '@/business-logic/osm.utils';
   import { LocationService } from '@/services/location.service';
@@ -37,7 +38,7 @@
 <template>
   <div>
     <h1>{{club.name}}</h1>
-    <p>We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location || 'TBA'}}</a>.</p>
+    <p v-if="club?.default?.location">We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location}}</a>.</p>
     
     <div class="map-view">
       <l-map ref="map" v-model:zoom="zoom" :center="LocationService.calcCenterMap(allCoordinates)">
@@ -82,7 +83,7 @@
 
     <div>
       You can also find us on <v-chip variant="outlined" color="black" v-for="[social, url] in contacts">
-        <a :href="url" target="_blank" style="color: black">{{ UtilsService.capitalize(social) }}</a>
+        <a :href="url" target="_blank" style="color: black"><v-icon start :icon="getIcon(social)" color="red"></v-icon>{{ UtilsService.capitalize(social) }}</a>
       </v-chip>
     </div>
     

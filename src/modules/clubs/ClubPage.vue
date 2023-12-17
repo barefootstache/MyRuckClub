@@ -5,13 +5,13 @@
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
   import { ClubsDB } from '@/db/index.db';
   import { Club } from '@/business-logic/clubs.model';
-  import {getIcon} from '@/business-logic/contact.utils'
   import { EventsDB } from '@/db/index.db';
   import { getPin } from '@/business-logic/osm.utils';
   import { LocationService } from '@/services/location.service';
   import { UtilsService } from '@/services/utils.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
+  import Contact from './components/Contact.vue'
 
   /**
    * Reference for `this.$route`.
@@ -32,7 +32,6 @@
   const zoom = LocationService.calcZoom(allCoordinates);
 
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
-  const contacts = Object.keys(club.contact).filter(key => key !== 'preferred').map(key => [key, club.contact[key]]);
 </script>
 
 <template>
@@ -54,14 +53,16 @@
       </l-map>
     </div>
 
-    <p>For more info contact us on <a :href="club.contact[club.contact.preferred]" target="_blank">{{ UtilsService.capitalize(club.contact.preferred) }}</a>.</p>
+    <div class="hline"></div>
+
+    <Contact :club="club"></Contact>
 
     <div class="hline"></div>
 
     <div v-if="associations.length > 0">
-      We associate with <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">
-        <a v-if="club.contact[ass.type]" :href="club.contact[ass.type]" target="_blank" :style="{color: ass.color}">{{ ass.name }}</a>
-        <span v-if="!club.contact[ass.type]">{{ ass.name }}</span>
+      We associate with 
+      <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">
+        <span>{{ ass.name }}</span>
       </v-chip>
     </div>
     
@@ -79,16 +80,6 @@
       </li>
     </ul>
     
-    <div class="hline"></div>
-
-    <div>
-      You can also find us on <v-chip variant="outlined" color="black" v-for="[social, url] in contacts">
-        <a :href="url" target="_blank" style="color: black"><v-icon start :icon="getIcon(social)" color="red"></v-icon>{{ UtilsService.capitalize(social) }}</a>
-      </v-chip>
-    </div>
-    
-    <div class="hline"></div>
-
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { Club } from '@/business-logic/clubs.model'
+  import { Contact } from '@/business-logic/contact.model'
   import { UtilsService } from '@/services/utils.service';
   import { getIcon } from '@/business-logic/contact.utils'
 
@@ -15,7 +16,7 @@
 
   const contacts = Object.keys(props.club.contact)
     .filter(key => key !== 'preferred' && key !== props.club.contact.preferred)
-    .map(key => [key, props.club.contact[key]]);
+    .map(key => [key, props.club.contact[key as keyof Contact]]);
 </script>
 
 <template>
@@ -34,7 +35,7 @@
 
     <div class="more-contact" v-if="contacts.length > 0">
       Or you can also find us on <v-chip variant="outlined" color="black" v-for="[social, url] in contacts">
-        <a :href="url" target="_blank" style="color: black"><v-icon start :icon="getIcon(social)" color="red"></v-icon>{{ UtilsService.capitalize(social) }}</a>
+        <a v-if="social" :href="url" target="_blank" style="color: black"><v-icon start :icon="getIcon(social as keyof Contact)" color="red"></v-icon>{{ UtilsService.capitalize(social) }}</a>
       </v-chip>
     </div>
   </div>

@@ -8,7 +8,6 @@
   import { EventsDB } from '@/db/index.db';
   import { getPin } from '@/business-logic/osm.utils';
   import { LocationService } from '@/services/location.service';
-  import { UtilsService } from '@/services/utils.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
   import Contact from './components/Contact.vue'

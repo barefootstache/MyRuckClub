@@ -60,7 +60,7 @@
     <div class="hline"></div>
 
     <div v-if="associations.length > 0">
-      We associate with 
+      <p>We associate with</p>
       <v-chip variant="outlined" :color="ass.color" v-for="ass in associations">
         <span>{{ ass.name }}</span>
       </v-chip>

@@ -16,7 +16,9 @@ We use an unconventional method for developing purposes.
 
 Our main branch is called `devel` and this is the endpoint where all pull requests should be made.
 
-After successful build `bun run build`, an admin will create a pull request to the `master` branch which is also the production branch. This branch is used for the vercel endpoint.
+After successful build `bun run build`, an admin will create a pull request to the `master` branch which is also the production branch. This branch is used for the [Vercel](https://vercel.com/barefootstaches-projects/myruckclub) endpoint.
+
+Additionally one should `bun run preview` to make sure that the build creates the correct view.
 
 ## Recommended IDE Setup
 

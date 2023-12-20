@@ -3,7 +3,7 @@ import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
   createClubEvent('2023-12-19', 'auxruckers', {name: 'Nightmare WOD Teil 2', type: 'pt', coordinates: [48.35644,10.88079], location: 'Erhard-Wunderlich-Sporthalle, Göggingen'}),
-  createClubEvent('2023-12-20', 'munichruckingcrew'),
+  createClubEvent('2023-12-21', 'munichruckingcrew'),
   createClubEvent('2023-12-26', 'auxruckers', {name: 'letzte Rucktreff des Jahres'}),
   createClubEvent('2023-12-27', 'auxruckers', {name: 'December Tribe Challenge', type: 'pt'}),
   createClubEvent('2024-04-20', 'goruck', {name: 'Milton Memorial Tough', location: 'Frankfurt am Main, Germany', coordinates: [50.11228, 8.67662]}),

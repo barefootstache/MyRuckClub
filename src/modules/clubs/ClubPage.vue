@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { ref } from 'vue'
   import { useRoute } from 'vue-router';
   import { format, isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
@@ -32,6 +33,18 @@
   const zoom = LocationService.calcZoom(allCoordinates);
 
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
+
+  const visible = ref(false);
+
+  /*set show(value:boolean) {
+    visible = value;
+  }
+  get show() {
+    return visible;
+  }*/
+  function showDialog(value:boolean):void {
+    visible.value = value;
+  }
 </script>
 
 <template>
@@ -48,10 +61,33 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+        <l-marker @click="showDialog(true)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+
+        <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
+          <v-card color="indigo" width="400" variant="flat">
+            <template #title>
+              This is a title
+            </template>
+
+            <template #subtitle>
+              This is a subtitle
+            </template>
+
+            <template #text>
+              This is content
+            </template>
+
+            <template #actions>
+              <v-btn>More Info</v-btn>
+              <v-btn>Ruck Up</v-btn>
+              <v-btn @click="showDialog(false)">Close</v-btn>
+            </template>
+          </v-card>
+        </v-dialog>
         <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
       </l-map>
     </div>
+
 
     <div class="hline"></div>
 
@@ -114,5 +150,10 @@ li {
 }
 .v-chip.text-black {
   background-color: rgba(255, 255, 255, 0.8);
+}
+>>> .marker-dialog {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 25px);
 }
 </style>

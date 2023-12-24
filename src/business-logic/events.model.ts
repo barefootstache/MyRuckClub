@@ -6,9 +6,7 @@ export type ClubEvent = {
   clubId: string;
   coordinates: Coordinates;
   date: Date;
-  lat?: number;
   location: string;
-  long?: number;
   name: string;
   time: string;
   type: EventType;

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { ref } from 'vue'
   import EventsList from '@/components/EventsList.vue'
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
@@ -6,11 +7,27 @@
   import { EventsDB } from '@/db/index.db';
   import { LocationService } from '@/services/location.service';
   import { getPin } from '@/business-logic/osm.utils';
+  import MarkerDialog from '@/components/MarkerDialog.vue';
+  import { Club } from '@/business-logic/clubs.model';
+  import { ClubEvent } from '@/business-logic/events.model';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
   const upcomingClubEvents = EventsDB.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
+
+  const visible = ref(false);
+  const markerDialog = ref();
+
+  /**
+   * Shows the marker dialog.
+   * @param value - the visibility of the dialog
+   * @param body - the details of the dialog body
+   */
+  function showDialog(value: boolean, body: Club|ClubEvent):void {
+    visible.value = value;
+    markerDialog.value = body;
+  }
 </script>
 
 <template>
@@ -26,7 +43,11 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+        <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+
+        <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
+          <MarkerDialog :details="markerDialog"></MarkerDialog>
+        </v-dialog>
       </l-map>
     </div>
     <EventsList></EventsList>
@@ -50,5 +71,15 @@ ul {
     height: 380px;
     width: calc(100% - 20px);
   }
+  :deep() .marker-dialog {
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+  }
+}
+:deep() .marker-dialog {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 25px);
 }
 </style>

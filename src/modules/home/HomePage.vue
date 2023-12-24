@@ -1,10 +1,27 @@
 <script setup lang="ts">
+  import { ref } from 'vue'
   import {ClubsDB} from '@/db/index.db'
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
   import { getPin } from '@/business-logic/osm.utils';
+  import MarkerDialog from '@/components/MarkerDialog.vue';
+  import { Club } from '@/business-logic/clubs.model';
+  import { ClubEvent } from '@/business-logic/events.model';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
+
+  const visible = ref(false);
+  const markerDialog = ref();
+
+  /**
+   * Shows the marker dialog.
+   * @param value - the visibility of the dialog
+   * @param body - the details of the dialog body
+   */
+  function showDialog(value: boolean, body: Club|ClubEvent):void {
+    visible.value = value;
+    markerDialog.value = body;
+  }
 </script>
 
 <template>
@@ -24,8 +41,12 @@
         ></l-tile-layer>
 
         <div v-for="club in ClubsDB">
-          <l-marker v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>
+          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>
         </div>
+
+        <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
+          <MarkerDialog :details="markerDialog"></MarkerDialog>
+        </v-dialog>
       </l-map>
     </div>
   </div>
@@ -49,6 +70,16 @@
     height: calc(100% - 32px);
     width: 100%;
   }
+  :deep() .marker-dialog {
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+  }
+}
+:deep() .marker-dialog {
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 25px);
 }
 </style>
 

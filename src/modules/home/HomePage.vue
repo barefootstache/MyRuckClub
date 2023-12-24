@@ -11,7 +11,7 @@
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
   const visible = ref(false);
-  const markerDialog = ref(null);
+  const markerDialog = ref();
 
   /**
    * Shows the marker dialog.

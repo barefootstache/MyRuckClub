@@ -7,6 +7,7 @@
   import { format } from 'date-fns';
   import { getMostRecentData } from '@/business-logic/events.utils';
   import { ClubsDB } from '@/db/index.db'
+  import { Contact } from '@/business-logic/contact.model';
 
   const props = defineProps<{
     details: Club|ClubEvent
@@ -14,14 +15,14 @@
 
   const card = ref({
     title: props.details.name ?? '',
-    subtitle: props.details?.country ?? props.details?.type.toString().toUpperCase() ?? '',
+    subtitle: (props.details as Club)?.country ?? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
     text: '',
-    registrationLink: props.details?.contact ? getContactUrl(props.details?.contact) : getRegistrationLink(props.details) ?? '',
-    isEvent: !!props.details?.type,
-    date: props.details?.date ?? '',
-    time: props.details?.time ?? '',
-    location: props.details?.location ?? '',
-    locationLink: props.details?.coordinates ? LocationService.getLocationUrl(props.details) : props.details?.date
+    registrationLink: (props.details as Club)?.contact ? getContactUrl((props.details as Club)?.contact) : getRegistrationLink(props.details as ClubEvent) ?? '',
+    isEvent: !!(props.details as ClubEvent)?.type,
+    date: (props.details as ClubEvent)?.date ?? '',
+    time: (props.details as ClubEvent)?.time ?? '',
+    location: (props.details as ClubEvent)?.location ?? '',
+    locationLink: (props.details as ClubEvent)?.coordinates ? LocationService.getLocationUrl(props.details as ClubEvent) : '#'
   });
 
   /**

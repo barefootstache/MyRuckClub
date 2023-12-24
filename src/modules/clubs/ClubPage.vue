@@ -36,7 +36,7 @@
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
 
   const visible = ref(false);
-  const markerDialog = ref(null);
+  const markerDialog = ref();
 
   /**
    * Shows the marker dialog.

@@ -36,14 +36,40 @@
 
   const visible = ref(false);
 
-  /*set show(value:boolean) {
-    visible = value;
-  }
-  get show() {
-    return visible;
-  }*/
-  function showDialog(value:boolean):void {
+  const card = ref({
+    title: '',
+    subtitle: '',
+    text: '',
+    registrationLink: '',
+    isEvent: false,
+    date: '',
+    time: '',
+    location: '',
+    locationLink: ''
+  });
+
+  function showDialog(value: boolean):void {
     visible.value = value;
+  }
+
+  function showDialogClub(value:boolean, club: Club):void {
+    visible.value = value;
+    card.value.isEvent = false;
+    card.value.title = club.name;
+    card.value.subtitle = club.country;
+    card.value.registrationLink = getContactUrl(club.contact);
+  }
+
+  function showDialogEvent(value:boolean, event: ClubEvent):void {
+    visible.value = value;
+    card.value.isEvent = true;
+    card.value.title = event.name;
+    card.value.subtitle = event.type.toString();
+    card.value.registrationLink = getContactUrl(club.contact);
+    card.value.date = event.date;
+    card.value.time = event.time;
+    card.value.location = event.location;
+    card.value.locationLink = LocationService.getLocationUrl(event);
   }
 </script>
 
@@ -61,30 +87,46 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker @click="showDialog(true)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+        <l-marker @click="showDialogClub(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+
+        <l-marker @click="showDialogEvent(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
           <v-card color="indigo" width="400" variant="flat">
             <template #title>
-              This is a title
+              {{ card.title }}
             </template>
 
             <template #subtitle>
-              This is a subtitle
+              {{ card.subtitle }}
             </template>
 
             <template #text>
-              This is content
+              <div v-if="!card.isEvent">{{ card.text }}</div>
+               
+              <v-containter v-if="card.isEvent">
+                <v-row>
+                  <v-col class="v-col-4">Time</v-col>
+                  <v-col>{{ card.time }}</v-col>
+                </v-row>
+                <v-row>
+                  <v-col class="v-col-4">Date</v-col>
+                  <v-col>{{ format(card.date, 'EEEE dd.MM.yyyy') }}</v-col>
+                </v-row>
+                <v-row>
+                  <v-col class="v-col-4">Location</v-col>
+                  <v-col><a :href="card.locationLink" target="_blank">{{ card.location }}</a></v-col>
+                </v-row>
+              </v-containter>
             </template>
 
-            <template #actions>
-              <v-btn>More Info</v-btn>
-              <v-btn>Ruck Up</v-btn>
+            <template #actions class="justify-space-between">
+              <v-btn :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
+              <v-spacer></v-spacer>
               <v-btn @click="showDialog(false)">Close</v-btn>
             </template>
           </v-card>
         </v-dialog>
-        <l-marker v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
       </l-map>
     </div>
 
@@ -151,7 +193,7 @@ li {
 .v-chip.text-black {
   background-color: rgba(255, 255, 255, 0.8);
 }
->>> .marker-dialog {
+:deep() .marker-dialog {
   position: absolute;
   top: 20px;
   left: calc(50% - 25px);

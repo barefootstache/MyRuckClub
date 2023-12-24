@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { Club } from '@/business-logic/clubs.model'
+  import { getContactUrl } from '@/business-logic/clubs.utils'
   import { Contact } from '@/business-logic/contact.model'
   import { UtilsService } from '@/services/utils.service';
   import { getIcon } from '@/business-logic/contact.utils'
@@ -9,7 +10,7 @@
   }>();
 
   const preferred = {
-    url: props.club.contact[props.club.contact.preferred],
+    url: getContactUrl(props.club.contact),
     name: UtilsService.capitalize(props.club.contact.preferred),
     icon: getIcon(props.club.contact.preferred)
   };

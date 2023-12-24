@@ -9,6 +9,7 @@
   import { getMostRecentData } from '@/business-logic/events.utils';
   import { ClubsDB } from '@/db/index.db'
   import { Contact } from '@/business-logic/contact.model';
+  import { getIcon } from '@/business-logic/contact.utils'
 
   const props = defineProps<{
     details: Club|ClubEvent
@@ -18,6 +19,8 @@
     title: props.details.name ?? '',
     subtitle: (props.details as Club)?.country ?? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
     text: '',
+    contact: (props.details as Club)?.contact ?? '',
+    contactPreferred: (props.details as Club)?.contact?.preferred ?? 'o',
     registrationLink: (props.details as Club)?.contact ? getContactUrl((props.details as Club)?.contact) : getRegistrationLink(props.details as ClubEvent) ?? '',
     isEvent: !!(props.details as ClubEvent)?.type,
     date: (props.details as ClubEvent)?.date ?? '',
@@ -25,6 +28,14 @@
     location: (props.details as ClubEvent)?.location ?? '',
     locationLink: (props.details as ClubEvent)?.coordinates ? LocationService.getLocationUrl(props.details as ClubEvent) : '#'
   });
+
+  const preferred = [card.value.contactPreferred, getContactUrl(card.value.contact)];
+
+  const contactsOther = Object.keys(card.value.contact)
+    .filter(key => key !== 'preferred' && key !== card.value.contactPreferred)
+    .map(key => [key, card.value.contact[key as keyof Contact]]);
+
+  const contacts = [preferred].concat(contactsOther);
 
   /**
    * Gets the registration, if it exists, otherwise empty string.
@@ -48,7 +59,12 @@
     </template>
 
     <template #text>
-      <div v-if="!card.isEvent">{{ card.text }}</div>
+      <v-container v-if="!card.isEvent">
+        <v-row v-if="card.text">
+          <v-col class="v-col-1"><v-icon icon="mdi-text-account"></v-icon></v-col>
+          <v-col>{{ card.text }}</v-col>
+        </v-row>
+      </v-container>
        
       <v-container v-if="card.isEvent">
         <v-row>
@@ -67,6 +83,13 @@
     </template>
 
     <template #actions class="justify-space-between">
+      <div v-if="!card.isEvent">
+        <v-chip variant="outlined" v-for="[social, url] in contacts" style="margin-left: 5px">
+          <a v-if="social" :href="url" target="_blank">
+            <v-icon :icon="getIcon(social as keyof Contact)" color="white"></v-icon>
+          </a>
+        </v-chip>
+      </div>
       <v-spacer></v-spacer>
       <v-btn :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
     </template>
@@ -74,4 +97,7 @@
 </template>
 
 <style scoped>
+.v-chip.v-chip--size-default {
+  padding: 0 5px;
+}
 </style>

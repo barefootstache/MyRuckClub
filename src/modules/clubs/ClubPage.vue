@@ -122,7 +122,7 @@ li {
   :deep() .marker-dialog {
     top: 0 !important;
     left: 0 !important;
-    margin: 0 !important;
+    margin: 0 10px !important;
   }
 }
 .events-view {

@@ -4,6 +4,7 @@
   import { ClubEvent } from '@/business-logic/events.model';
   import { getContactUrl } from '@/business-logic/clubs.utils';
   import { LocationService } from '@/services/location.service';
+  import { UtilsService } from '@/services/utils.service';
   import { format } from 'date-fns';
   import { getMostRecentData } from '@/business-logic/events.utils';
   import { ClubsDB } from '@/db/index.db'
@@ -51,15 +52,15 @@
        
       <v-container v-if="card.isEvent">
         <v-row>
-          <v-col class="v-col-4">Time</v-col>
+          <v-col class="v-col-1"><v-icon :icon="UtilsService.getClockTimeIcon(card.time)"></v-icon></v-col>
           <v-col>{{ card.time }}</v-col>
         </v-row>
         <v-row>
-          <v-col class="v-col-4">Date</v-col>
+          <v-col class="v-col-1"><v-icon icon="mdi-calendar"></v-icon></v-col>
           <v-col>{{ format(card.date, 'EEEE dd.MM.yyyy') }}</v-col>
         </v-row>
         <v-row>
-          <v-col class="v-col-4">Location</v-col>
+          <v-col class="v-col-1"><v-icon icon="mdi-map-marker"></v-icon></v-col>
           <v-col><a :href="card.locationLink" target="_blank">{{ card.location }}</a></v-col>
         </v-row>
       </v-container>

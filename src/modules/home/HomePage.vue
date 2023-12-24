@@ -73,7 +73,7 @@
   :deep() .marker-dialog {
     top: 0 !important;
     left: 0 !important;
-    margin: 0 10px !important;
+    margin: 0 calc((100% - 400px)/2) !important;
   }
 }
 :deep() .marker-dialog {

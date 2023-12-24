@@ -70,6 +70,11 @@
     height: calc(100% - 32px);
     width: 100%;
   }
+  :deep() .marker-dialog {
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+  }
 }
 :deep() .marker-dialog {
   position: absolute;

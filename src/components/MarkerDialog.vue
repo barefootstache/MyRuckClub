@@ -12,13 +12,15 @@
   import { getIcon } from '@/business-logic/contact.utils'
 
   const props = defineProps<{
-    details: Club|ClubEvent
+    details: Club|ClubEvent,
+    redirect: boolean
   }>();
 
   const card = ref({
     title: props.details.name ?? '',
     subtitle: (props.details as Club)?.country ?? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
     text: '',
+    id: (props.details as Club)?.id ?? (props.details as ClubEvent)?.clubId ?? '#',
     contact: (props.details as Club)?.contact ?? '',
     contactPreferred: (props.details as Club)?.contact?.preferred ?? 'o',
     registrationLink: (props.details as Club)?.contact ? getContactUrl((props.details as Club)?.contact) : getRegistrationLink(props.details as ClubEvent) ?? '',
@@ -91,7 +93,8 @@
         </v-chip>
       </div>
       <v-spacer></v-spacer>
-      <v-btn :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
+      <v-btn v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
+      <v-btn v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
     </template>
   </v-card>
 </template>

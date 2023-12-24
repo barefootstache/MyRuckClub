@@ -14,7 +14,7 @@
 
   const card = ref({
     title: props.details.name ?? '',
-    subtitle: props.details?.country ?? props.details?.type.toString() ?? '',
+    subtitle: props.details?.country ?? props.details?.type.toString().toUpperCase() ?? '',
     text: '',
     registrationLink: props.details?.contact ? getContactUrl(props.details?.contact) : getRegistrationLink(props.details) ?? '',
     isEvent: !!props.details?.type,

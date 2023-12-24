@@ -38,18 +38,14 @@
   const visible = ref(false);
   const markerDialog = ref(null);
 
-  function showDialog(value: boolean):void {
+  /**
+   * Shows the marker dialog.
+   * @param value - the visibility of the dialog
+   * @param body - the details of the dialog body
+   */
+  function showDialog(value: boolean, body: Club|ClubEvent):void {
     visible.value = value;
-  }
-
-  function showDialogClub(value:boolean, club: Club):void {
-    visible.value = value;
-    markerDialog.value = club;
-  }
-
-  function showDialogEvent(value:boolean, event: ClubEvent):void {
-    visible.value = value;
-    markerDialog.value = event;
+    markerDialog.value = body;
   }
 </script>
 
@@ -67,16 +63,15 @@
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
 
-        <l-marker @click="showDialogClub(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+        <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
 
-        <l-marker @click="showDialogEvent(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+        <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
           <MarkerDialog :details="markerDialog"></MarkerDialog>
         </v-dialog>
       </l-map>
     </div>
-
 
     <div class="hline"></div>
 

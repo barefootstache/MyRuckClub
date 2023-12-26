@@ -9,11 +9,11 @@
   import { getMostRecentData } from '@/business-logic/events.utils';
   import { ClubsDB } from '@/db/index.db'
   import { Contact } from '@/business-logic/contact.model';
-  import { getIcon } from '@/business-logic/contact.utils'
+  import { getIcon, convertContactToArray } from '@/business-logic/contact.utils'
 
   const props = defineProps<{
     details: Club|ClubEvent,
-    redirect: boolean
+    redirect?: boolean
   }>();
 
   const card = ref({
@@ -31,14 +31,6 @@
     locationLink: (props.details as ClubEvent)?.coordinates ? LocationService.getLocationUrl(props.details as ClubEvent) : '#'
   });
 
-  const preferred = [card.value.contactPreferred, getContactUrl(card.value.contact)];
-
-  const contactsOther = Object.keys(card.value.contact)
-    .filter(key => key !== 'preferred' && key !== card.value.contactPreferred)
-    .map(key => [key, card.value.contact[key as keyof Contact]]);
-
-  const contacts = [preferred].concat(contactsOther);
-
   /**
    * Gets the registration, if it exists, otherwise empty string.
    * @param ev - the club event
@@ -48,6 +40,8 @@
     const foundClub = ClubsDB.find((item:Club) => item.id === ev.clubId);
     return getMostRecentData<string>('url', foundClub, ev) || getContactUrl(foundClub?.contact as Contact) || '';
   }
+
+  const resultArray = convertContactToArray(card.value.contact);
 </script>
 
 <template>
@@ -86,9 +80,9 @@
 
     <template #actions class="justify-space-between">
       <div v-if="!card.isEvent">
-        <v-chip variant="outlined" v-for="[social, url] in contacts" style="margin-left: 5px">
-          <a v-if="social" :href="url" target="_blank">
-            <v-icon :icon="getIcon(social as keyof Contact)" color="white"></v-icon>
+        <v-chip variant="outlined" v-for="item in resultArray" style="margin-left: 5px">
+          <a v-if="item.key" :href="item.url" target="_blank">
+            <v-icon :icon="getIcon(item.key as keyof Contact)" color="white"></v-icon>
           </a>
         </v-chip>
       </div>

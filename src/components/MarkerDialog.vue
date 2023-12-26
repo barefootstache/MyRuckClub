@@ -45,7 +45,7 @@
 </script>
 
 <template>
-  <v-card color="indigo" width="400" variant="flat">
+  <v-card color="primary" width="400" variant="flat">
     <template #title>
       {{ card.title }}
     </template>
@@ -87,8 +87,8 @@
         </v-chip>
       </div>
       <v-spacer></v-spacer>
-      <v-btn v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
-      <v-btn v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
+      <v-btn class="bg-secondary" v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
+      <v-btn class="bg-secondary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
     </template>
   </v-card>
 </template>

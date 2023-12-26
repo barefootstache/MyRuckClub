@@ -1,6 +1,6 @@
 import { Contact, ContactIcon } from "./contact.model";
 
-type ContactArrayItem = { key: string, url: string };
+type ContactArrayItem = { name: string, url: string };
 
 /**
  * Gets the dedicated icon for the contact.
@@ -25,13 +25,13 @@ export function convertContactToArray(contact: Contact): ContactArrayItem[] {
 
   // Move the preferred value to the head of the array
   if (contact.preferred && contact[contact.preferred]) {
-    result.push({ key: contact.preferred, url: contact[contact.preferred] ?? '#' });
+    result.push({ name: contact.preferred, url: contact[contact.preferred] ?? '#' });
   }
 
   // Add other values to the array
   for (const key of Object.keys(contact)) {
     if (key !== 'preferred' && key !== contact.preferred && contact[key as keyof Contact]) {
-      result.push({ key, url: contact[key as keyof Contact] as string });
+      result.push({ name: key, url: contact[key as keyof Contact] as string });
     }
   }
 

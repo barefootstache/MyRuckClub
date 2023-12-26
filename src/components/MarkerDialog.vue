@@ -81,8 +81,8 @@
     <template #actions class="justify-space-between">
       <div v-if="!card.isEvent">
         <v-chip variant="outlined" v-for="item in resultArray" style="margin-left: 5px">
-          <a v-if="item.key" :href="item.url" target="_blank">
-            <v-icon :icon="getIcon(item.key as keyof Contact)" color="white"></v-icon>
+          <a v-if="item.name" :href="item.url" target="_blank">
+            <v-icon :icon="getIcon(item.name as keyof Contact)" color="white"></v-icon>
           </a>
         </v-chip>
       </div>

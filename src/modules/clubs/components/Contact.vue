@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Club } from '@/business-logic/clubs.model'
-  import { getContactUrl } from '@/business-logic/clubs.utils'
   import { Contact } from '@/business-logic/contact.model'
   import { UtilsService } from '@/services/utils.service';
   import { getIcon, convertContactToArray } from '@/business-logic/contact.utils'

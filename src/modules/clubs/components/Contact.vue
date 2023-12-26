@@ -2,21 +2,15 @@
   import { Club } from '@/business-logic/clubs.model'
   import { Contact } from '@/business-logic/contact.model'
   import { UtilsService } from '@/services/utils.service';
-  import { getIcon } from '@/business-logic/contact.utils'
+  import { getIcon, convertContactToArray } from '@/business-logic/contact.utils'
 
   const props = defineProps<{
     club: Club
   }>();
 
-  const preferred = {
-    url: props.club.contact[props.club.contact.preferred],
-    name: UtilsService.capitalize(props.club.contact.preferred),
-    icon: getIcon(props.club.contact.preferred)
-  };
-
-  const contacts = Object.keys(props.club.contact)
-    .filter(key => key !== 'preferred' && key !== props.club.contact.preferred)
-    .map(key => [key, props.club.contact[key as keyof Contact]]);
+  let contacts = convertContactToArray(props.club.contact);
+  const preferred = contacts[0];
+  contacts = contacts.length > 1 ? contacts.slice(1) : [];
 </script>
 
 <template>
@@ -25,18 +19,18 @@
       <span>For more info contact us on our</span>
       <v-chip variant="elevated" color="primary">
         <a :href="preferred.url" target="_blank">
-          <v-icon start :icon="preferred.icon" color="white"></v-icon>
-          <span>{{ preferred.name }}</span>
+          <v-icon start :icon="getIcon(preferred.name as keyof Contact)" color="white"></v-icon>
+          <span>{{ UtilsService.capitalize(preferred.name) }}</span>
         </a>
       </v-chip>
     </div>
 
     <div class="more-contact" v-if="contacts.length > 0">
       <span>Or you can also find us on</span>
-      <v-chip variant="outlined" color="black" v-for="[social, url] in contacts">
-        <a v-if="social" :href="url" target="_blank" style="color: black">
-          <v-icon start :icon="getIcon(social as keyof Contact)" color="red"></v-icon>
-          <span>{{ UtilsService.capitalize(social) }}</span>
+      <v-chip variant="outlined" color="black" v-for="item in contacts">
+        <a v-if="item.name" :href="item.url" target="_blank" style="color: black">
+          <v-icon start :icon="getIcon(item.name as keyof Contact)" color="red"></v-icon>
+          <span>{{ UtilsService.capitalize(item.name) }}</span>
         </a>
       </v-chip>
     </div>

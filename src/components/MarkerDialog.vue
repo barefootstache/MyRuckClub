@@ -73,7 +73,7 @@
         </v-row>
         <v-row>
           <v-col class="v-col-1"><v-icon icon="mdi-map-marker"></v-icon></v-col>
-          <v-col><a :href="card.locationLink" target="_blank">{{ card.location }}</a></v-col>
+          <v-col><a :href="card.locationLink" class="text-secondary" target="_blank" style="font-weight: 600;">{{ card.location }}</a></v-col>
         </v-row>
       </v-container>
     </template>

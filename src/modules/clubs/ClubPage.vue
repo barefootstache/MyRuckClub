@@ -135,7 +135,7 @@ li {
 }
 .hline {
   margin: 5px 0;
-  border-bottom: 1px white solid;
+  border-bottom: 1px rgba(var(--v-theme-surface), 0.87) solid;
 }
 .v-chip.text-black {
   background-color: rgba(255, 255, 255, 0.8);

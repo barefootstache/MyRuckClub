@@ -105,7 +105,7 @@
 
 <style scoped>
 li {
-  outline: 1px solid;
+  outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
   margin-bottom: 4px;
   padding: 0 4px;
 }

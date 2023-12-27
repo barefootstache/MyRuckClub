@@ -23,12 +23,6 @@ ul {
   margin: auto;
 }
 h3 {
-  border-bottom: 1px white solid;
-}
-
-@media (prefers-color-scheme: light) {
-  h3 {
-    border-bottom-color: #213547;
-  }
+  border-bottom: 1px rgba(var(--v-theme-surface), 0.87) solid;
 }
 </style>

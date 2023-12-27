@@ -45,7 +45,7 @@
 </script>
 
 <template>
-  <v-card color="indigo" width="400" variant="flat">
+  <v-card color="primary" width="400" variant="flat">
     <template #title>
       {{ card.title }}
     </template>
@@ -73,7 +73,7 @@
         </v-row>
         <v-row>
           <v-col class="v-col-1"><v-icon icon="mdi-map-marker"></v-icon></v-col>
-          <v-col><a :href="card.locationLink" target="_blank">{{ card.location }}</a></v-col>
+          <v-col><a :href="card.locationLink" class="text-secondary" target="_blank" style="font-weight: 600;">{{ card.location }}</a></v-col>
         </v-row>
       </v-container>
     </template>
@@ -87,8 +87,8 @@
         </v-chip>
       </div>
       <v-spacer></v-spacer>
-      <v-btn v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
-      <v-btn v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
+      <v-btn class="bg-secondary" v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
+      <v-btn class="bg-secondary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
     </template>
   </v-card>
 </template>

@@ -2,8 +2,14 @@ import { ClubEvent } from "@/business-logic/events.model";
 import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2023-12-26', 'auxruckers', {name: 'letzter Rucktreff des Jahres'}),
-  createClubEvent('2023-12-27', 'auxruckers', {name: 'December Tribe Challenge', type: 'pt'}),
+  createClubEvent('2024-01-04', 'munichruckingcrew'),
+  createClubEvent('2024-01-07', 'ruhr_ruckers', {time: '09:00', name: 'Monthly Rucking Meet Up', type: 'ruck'}),
+  createClubEvent('2024-01-09', 'auxruckers'),
+  createClubEvent('2024-01-11', 'munichruckingcrew'),
+  createClubEvent('2024-01-16', 'auxruckers'),
+  createClubEvent('2024-01-18', 'munichruckingcrew'),
+  createClubEvent('2024-01-23', 'auxruckers'),
+  createClubEvent('2024-01-25', 'munichruckingcrew'),
   createClubEvent('2024-01-30', 'auxruckers', {name: 'Polar Plunge Challenge', type: 'pt'}),
   createClubEvent('2024-04-20', 'goruck', {name: 'Milton Memorial Tough', location: 'Frankfurt am Main, Germany', coordinates: [50.11228, 8.67662]}),
   createClubEvent('2024-05-27', 'goruck', {name: 'Selection', location: 'Monument Signal de la Libération, Les Moulins, France', coordinates: [49.37069,-0.87970], time: '19:00', type: 'ruck', url: 'https://fistbumps.sandlot.fit/fistbump/8e28c5f1-8774-411b-9fd3-4d75be723d83'}),

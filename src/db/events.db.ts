@@ -10,7 +10,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-01-18', 'munichruckingcrew'),
   createClubEvent('2024-01-23', 'auxruckers'),
   createClubEvent('2024-01-25', 'munichruckingcrew'),
-  createClubEvent('2024-01-30', 'auxruckers', {name: 'Polar Plunge Challenge', type: 'pt'}),
+  createClubEvent('2024-01-30', 'auxruckers', {name: 'Polar Plunge Challenge', type: 'ruck'}),
   createClubEvent('2024-04-20', 'goruck', {name: 'Milton Memorial Tough', location: 'Frankfurt am Main, Germany', coordinates: [50.11228, 8.67662]}),
   createClubEvent('2024-05-27', 'goruck', {name: 'Selection', location: 'Monument Signal de la Libération, Les Moulins, France', coordinates: [49.37069,-0.87970], time: '19:00', type: 'ruck', url: 'https://fistbumps.sandlot.fit/fistbump/8e28c5f1-8774-411b-9fd3-4d75be723d83'}),
   createClubEvent('2024-05-29', 'goruck', {name: 'Selection Workout/Watch Party', location: 'Villa le Manoir, Grandcamp-Maisy, France', coordinates: [49.38864,-1.03731], time: '16:00', type: 'pt', url: 'https://fistbumps.sandlot.fit/fistbump/d190fbda-6230-44ff-a9ff-a7755904f847'}),

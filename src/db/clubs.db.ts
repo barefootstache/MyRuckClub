@@ -66,8 +66,8 @@ export const Clubs: Club[] = [
       name: 'Montly Ruck Meetup',
       coordinates: [52.3894, 9.7544],
       location: 'Freizeitheim Lister Turm, Hannover',
-      recurringInterval: 'weekly',
-      time: '11:00',
+      recurringInterval: 'monthly',
+      time: '10:00',
       type: 'ruck'
     },
     name: 'Ruck It! Hannover',

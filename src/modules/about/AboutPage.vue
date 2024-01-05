@@ -17,7 +17,7 @@
     </li>
   </ul>
   <h2>Development</h2>
-  <p>My Ruck Club is being developed on <a href="https://codeberg.org/barefootstache/MyRuckClub">Codeberg</a> under a <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3+</a> license.</p>
+  <p>My Ruck Club is being developed on <a href="https://codeberg.org/barefootstache/MyRuckClub" target="_blank">Codeberg</a> under a <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GPLv3+</a> license.</p>
   <h2>Donations</h2>
   <p>We currently do not need monetary donations and consider to donate to the services we use:</p>
   <ul>
@@ -34,5 +34,8 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: auto;
+}
+h2, ul {
+  margin-top: 10px;
 }
 </style>

@@ -1,5 +1,5 @@
 import { Clubs } from "@/db/clubs.db";
-import { Club, Default } from "./clubs.model";
+import { Club, Coordinates, Default } from "./clubs.model";
 import { ClubEvent, ClubEventInit, EventType } from "./events.model";
 
 /**
@@ -13,7 +13,7 @@ export function createClubEvent(dateString: string, clubId: string, ev?: Partial
   const club = Clubs.find(item => item.id === clubId);
   const newEvent = {
     clubId,
-    coordinates: getMostRecentData<[number, number]>('coordinates', club, ev),
+    coordinates: getMostRecentData<Coordinates>('coordinates', club, ev),
     date: new Date(dateString),
     location: getMostRecentData<string>('location', club, ev),
     name: getMostRecentData<string>('name', club, ev),
@@ -36,6 +36,10 @@ export function getMostRecentData<T>(key: keyof ClubEvent, club?: Club, ev?: Par
     return ev[key] as T;
   } else if(club && club.default && club.default.hasOwnProperty(key)) {
     return club.default[key as keyof Default] as T;
+  } else if (key === 'coordinates' && club) {
+    // the init coordinates is [0,0] making it be in Africa
+    // thus use the club's coordinates
+    return club.coordinates as T;
   } else {
     return ClubEventInit[key] as T;
   }

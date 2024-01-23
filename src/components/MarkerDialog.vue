@@ -13,7 +13,8 @@
 
   const props = defineProps<{
     details: Club|ClubEvent,
-    redirect?: boolean
+    redirect?: boolean,
+    buttonLabel?: string
   }>();
 
   const card = ref({
@@ -30,6 +31,8 @@
     location: (props.details as ClubEvent)?.location ?? '',
     locationLink: (props.details as ClubEvent)?.coordinates ? LocationService.getLocationUrl(props.details as ClubEvent) : '#'
   });
+
+  const buttonLabel = ref(props?.buttonLabel ?? 'Ruck Up');
 
   /**
    * Gets the registration, if it exists, otherwise empty string.
@@ -87,8 +90,8 @@
         </v-chip>
       </div>
       <v-spacer></v-spacer>
-      <v-btn class="bg-secondary" v-if="props.redirect" :to="'/club/'+card.id">Ruck Up</v-btn>
-      <v-btn class="bg-secondary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">Ruck Up</v-btn>
+      <v-btn class="bg-secondary" v-if="props.redirect" :to="'/club/'+card.id">{{ buttonLabel }}</v-btn>
+      <v-btn class="bg-secondary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">{{ buttonLabel }}</v-btn>
     </template>
   </v-card>
 </template>

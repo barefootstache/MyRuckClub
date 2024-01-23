@@ -31,7 +31,7 @@
   const upcomingClubEvents = EventsDB.filter((item) => item.clubId === club.id).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
   const allCoordinates = uniqueEventsLocations.map((ev:ClubEvent) => LocationService.getCoordinates(ev)).concat([club.coordinates]);
-  const zoom = LocationService.calcZoom(allCoordinates) - 1;
+  let zoom = LocationService.calcZoom(allCoordinates) - 1;
 
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
 

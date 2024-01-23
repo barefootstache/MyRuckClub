@@ -45,7 +45,7 @@
         </div>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
-          <MarkerDialog :details="markerDialog" :redirect="true"></MarkerDialog>
+          <MarkerDialog :details="markerDialog" :redirect="true" button-label="Ruck More"></MarkerDialog>
         </v-dialog>
       </l-map>
     </div>

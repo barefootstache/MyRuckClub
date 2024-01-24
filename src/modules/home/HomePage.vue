@@ -75,6 +75,15 @@
     left: 0 !important;
     margin: 0 calc((100% - 400px)/2) !important;
   }
+  :deep() .marker-dialog .v-row {
+    margin-top: 0;
+  }
+  :deep() .marker-dialog .v-card-text {
+    padding-top: 0 !important;
+  }
+  :deep() .marker-dialog .v-container {
+    padding: 0;
+  }
 }
 :deep() .marker-dialog {
   position: absolute;

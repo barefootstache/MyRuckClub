@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import { Club } from '@/business-logic/clubs.model'
   import { ClubEvent } from '@/business-logic/events.model';
-  import { getContactUrl } from '@/business-logic/clubs.utils';
+  import { getContactUrl, getClubById } from '@/business-logic/clubs.utils';
   import { LocationService } from '@/services/location.service';
   import { UtilsService } from '@/services/utils.service';
   import { format } from 'date-fns';
@@ -19,8 +19,9 @@
 
   const card = ref({
     title: props.details.name ?? '',
-    subtitle: (props.details as Club)?.country ?? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
+    subtitle: (props.details as Club)?.country ?? getClubById((props.details as ClubEvent)?.clubId).name ?? '',
     text: '',
+    activity: (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
     id: (props.details as Club)?.id ?? (props.details as ClubEvent)?.clubId ?? '#',
     contact: (props.details as Club)?.contact ?? '',
     contactPreferred: (props.details as Club)?.contact?.preferred ?? 'o',
@@ -77,6 +78,10 @@
         <v-row>
           <v-col class="v-col-1"><v-icon icon="mdi-map-marker"></v-icon></v-col>
           <v-col><a :href="card.locationLink" class="text-secondary" target="_blank" style="font-weight: 600;">{{ card.location }}</a></v-col>
+        </v-row>
+        <v-row>
+          <v-col class="v-col-1"><v-icon icon="mdi-bag-checked"></v-icon></v-col>
+          <v-col>{{ card.activity }}</v-col>
         </v-row>
       </v-container>
     </template>

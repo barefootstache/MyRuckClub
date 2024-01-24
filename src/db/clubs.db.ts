@@ -78,6 +78,14 @@ export const Clubs: Club[] = [
     associations: ['myruckclub'],
     coordinates: [51.4820,7.2187],
     country: 'Germany',
+    default: {
+      name: 'Montly Ruck Meetup',
+      coordinates: [51.4820,7.2187],
+      location: 'Bochum',
+      recurringInterval: 'monthly',
+      time: '09:00',
+      type: 'ruck'
+    },
     name: 'Ruhr Ruckers',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruhr_ruckers/'},
     id: 'ruhr_ruckers'

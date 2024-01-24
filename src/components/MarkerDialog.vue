@@ -100,4 +100,9 @@
 .v-chip.v-chip--size-default {
   padding: 0 5px;
 }
+@media screen and (max-width: 400px) {
+  .v-dialog > .v-overlay__content > .v-card {
+    width: 100% !important;
+  }
+}
 </style>

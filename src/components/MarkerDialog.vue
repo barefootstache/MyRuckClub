@@ -21,7 +21,7 @@
     title: props.details.name ?? '',
     subtitle: (props.details as Club)?.country ?? getClubById((props.details as ClubEvent)?.clubId).name ?? '',
     text: '',
-    activity: (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '',
+    activity: !!(props.details as ClubEvent)?.type ? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '' : '',
     id: (props.details as Club)?.id ?? (props.details as ClubEvent)?.clubId ?? '#',
     contact: (props.details as Club)?.contact ?? '',
     contactPreferred: (props.details as Club)?.contact?.preferred ?? 'o',

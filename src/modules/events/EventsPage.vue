@@ -99,5 +99,8 @@ ul {
     width: calc(100% - 4px) !important;
     max-width: calc(100% - 4px) !important;
   }
+  .map-view {
+    width: 100%;
+  }
 }
 </style>

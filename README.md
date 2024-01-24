@@ -40,3 +40,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - https://github.com/logue/vite-vuetify-ts-starter/tree/master
 - https://pinia.vuejs.org/
 - https://vuetifyjs.com/en/components/all/#selection
+- https://vite-pwa-org.netlify.app/

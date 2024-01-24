@@ -1,3 +1,5 @@
+import { ClubsDB } from "@/db/index.db";
+import { Club } from "./clubs.model";
 import { Contact } from "./contact.model";
 
 /**
@@ -7,4 +9,13 @@ import { Contact } from "./contact.model";
  */
 export function getContactUrl(contact: Contact):string {
   return contact[contact.preferred] as string;
+}
+
+/**
+ * Gets the club by the id.
+ * @param id - the club's id
+ * @returns the club
+ */
+export function getClubById(id: string):Club {
+  return ClubsDB.find(club => club.id === id) as Club;
 }

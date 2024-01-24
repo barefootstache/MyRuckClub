@@ -75,11 +75,29 @@
     left: 0 !important;
     margin: 0 calc((100% - 400px)/2) !important;
   }
+  :deep() .marker-dialog .v-row {
+    margin-top: 0;
+  }
+  :deep() .marker-dialog .v-card-text {
+    padding-top: 0 !important;
+  }
+  :deep() .marker-dialog .v-container {
+    padding: 0;
+  }
 }
 :deep() .marker-dialog {
   position: absolute;
   top: 20px;
   left: calc(50% - 25px);
+}
+@media screen and (max-width: 400px) {
+  :deep() .marker-dialog {
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 2px !important;
+    width: calc(100% - 4px) !important;
+    max-width: calc(100% - 4px) !important;
+  }
 }
 </style>
 

@@ -12,10 +12,10 @@ function toggleTheme () {
 
 <template>
   <navigation>
-    <router-link to="/">Home</router-link>
-    <router-link to="/clubs">Clubs</router-link>
-    <router-link to="/events">Events</router-link>
-    <router-link to="/about">About</router-link>
+    <router-link to="/"><v-icon icon="mdi-home"></v-icon><span>Home</span></router-link>
+    <router-link to="/clubs"><v-icon icon="mdi-account-group"></v-icon><span>Clubs</span></router-link>
+    <router-link to="/events"><v-icon icon="mdi-calendar-multiselect"></v-icon><span>Events</span></router-link>
+    <router-link to="/about"><v-icon icon="mdi-information"></v-icon><span>About</span></router-link>
     <v-btn @click="toggleTheme" icon="mdi-theme-light-dark" color="primary"></v-btn>
     <!-- <router-link to="/login">Log In</router-link> -->
     <!-- <router-link to="/signup">Sign Up</router-link> -->
@@ -57,6 +57,11 @@ navigation a:hover {
 @media screen and (max-width: 800px) {
   navigation {
     width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  navigation span {
+    display: none;
   }
 }
 </style>

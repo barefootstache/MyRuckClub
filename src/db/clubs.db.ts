@@ -80,8 +80,8 @@ export const Clubs: Club[] = [
     country: 'Germany',
     default: {
       name: 'Montly Ruck Meetup',
-      coordinates: [51.4820,7.2187],
-      location: 'Bochum',
+      coordinates: [51.43960,7.19500],
+      location: 'Parkplatz Nord, Weitmarer Holz, Weitmar',
       recurringInterval: 'monthly',
       time: '09:00',
       type: 'ruck'

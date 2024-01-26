@@ -3,7 +3,7 @@
   import EventsList from '@/components/EventsList.vue'
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
   import { EventsDB } from '@/db/index.db';
   import { LocationService } from '@/services/location.service';
   import { getPin } from '@/business-logic/osm.utils';
@@ -42,6 +42,7 @@
           name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
+        <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
 

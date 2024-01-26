@@ -3,7 +3,7 @@
   import { useRoute } from 'vue-router';
   import { format, isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
   import { ClubsDB } from '@/db/index.db';
   import { Club } from '@/business-logic/clubs.model';
   import { EventsDB } from '@/db/index.db';
@@ -31,7 +31,7 @@
   const upcomingClubEvents = EventsDB.filter((item) => item.clubId === club.id).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
   const allCoordinates = uniqueEventsLocations.map((ev:ClubEvent) => LocationService.getCoordinates(ev)).concat([club.coordinates]);
-  let zoom = LocationService.calcZoom(allCoordinates) - 1;
+  const boundingBox = LocationService.getBoundingBox(allCoordinates);
 
   const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
 
@@ -55,13 +55,14 @@
     <p v-if="club?.default?.location">We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location}}</a>.</p>
     
     <div class="map-view">
-      <l-map ref="map" v-model:zoom="zoom" :center="LocationService.calcCenterMap(allCoordinates)">
+      <l-map ref="map" v-model:zoom="boundingBox.zoom" :center="[0,0]" :bounds="boundingBox.box" :max-bounds="boundingBox.box">
         <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           layer-type="base"
           name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
+        <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
 

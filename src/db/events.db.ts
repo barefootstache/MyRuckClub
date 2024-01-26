@@ -12,7 +12,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-01-25', 'munichruckingcrew'),
   createClubEvent('2024-01-30', 'auxruckers', {name: 'Polar Plunge Challenge', type: 'ruck'}),
   createClubEvent('2024-02-01', 'munichruckingcrew', {time: '18:00', type: 'ruck'}),
-  createClubEvent('2024-02-04', 'ruhr_ruckers'),
+  createClubEvent('2024-02-04', 'ruhr_ruckers', {time: '09:00', name: 'Monthly Rucking Meet Up', type: 'ruck', coordinates: [51.43960,7.19500], location: 'Parkplatz Nord, Weitmarer Holz, Weitmar'}),
   createClubEvent('2024-02-06', 'auxruckers'),
   createClubEvent('2024-02-08', 'munichruckingcrew'),
   createClubEvent('2024-02-13', 'auxruckers'),

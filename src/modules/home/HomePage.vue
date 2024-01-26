@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import {ClubsDB} from '@/db/index.db'
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
   import { getPin } from '@/business-logic/osm.utils';
   import MarkerDialog from '@/components/MarkerDialog.vue';
   import { Club } from '@/business-logic/clubs.model';
@@ -39,6 +39,7 @@
           name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
+        <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <div v-for="club in ClubsDB">
           <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>

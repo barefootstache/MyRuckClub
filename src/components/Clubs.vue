@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div v-for="country in countrySort">
+  <div v-for="country in countrySort" id="country">
     <h3>{{country}}</h3>
     <ul>
       <li v-for="club in alphabeticalSort.filter(c => c.country === country)">
@@ -24,5 +24,7 @@ ul {
 }
 h3 {
   border-bottom: 1px rgba(var(--v-theme-surface), 0.87) solid;
+  border-top: 1px rgba(var(--v-theme-surface), 0.1) solid;
+  margin-top: 16px;
 }
 </style>

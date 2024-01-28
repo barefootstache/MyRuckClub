@@ -827,5 +827,233 @@ export const Clubs: Club[] = [
     name: 'Rainforest Ruck Club',
     contact: { preferred: 'instagram', instagram: 'https://instagram.com/rainforest_ruckclubcr/'},
     id: 'rainforest_ruckclubcr',
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [59.437,18.0553],
+    country: "Sweden",
+    name: "TAC-Up Ruck",
+    id: "tacupruck",
+    contact: {preferred: 'instagram', instagram: "https://instagram.com/tacupruck/", homepage: "https://tacupgear.com/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [29.8951,-81.3153],
+    country: "USA",
+    name: "Ancient City Ruckers",
+    id: "ancientcityruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/ancientcityruckers/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [39.9,-79.7192],
+    country: "USA",
+    name: "Uniontown Ruck Club",
+    id: "uniontown_ruck_club",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/uniontown_ruck_club/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [44.127,-71.532],
+    country: "USA",
+    name: "White Mountain Ruck Club",
+    id: "white_mountain_ruck_club",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/white_mountain_ruck_club/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [19.2936,-99.659],
+    country: "México",
+    name: "Ruckers Toluca",
+    id: "ruckerstoluca",
+    contact: { preferred: 'instagram', facebook: "https://www.facebook.com/RuckersTolucaMX/", instagram: "https://instagram.com/ruckerstoluca/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [41.0825,-85.1399],
+    country: "USA",
+    name: "Old Fort Ruckers",
+    id: "old.fort.ruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/old.fort.ruckers/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [40.4997,-74.4392],
+    country: "USA",
+    name: "Inglorious Ruckers",
+    id: "inglorious_ruckers",
+    contact: {
+      preferred: 'homepage',
+      instagram: "https://instagram.com/inglorious_ruckers/",
+      homepage: 'https://ingloriousruckers.com/',
+      email: 'Info.Inglorious.Rucker@gmail.com',
+      facebook: 'https://www.facebook.com/groups/2507082779386126'
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [33.9753,-117.5644],
+    country: "USA",
+    name: "Ruckervale Club",
+    id: "ruckervaleclub",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/ruckervaleclub/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [45.5222,-122.6706],
+    country: "USA",
+    name: "Portlandia Ruck Club",
+    id: "portlandiaruckclub",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/portlandiaruckclub/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [40.4417,-79.9997],
+    country: "USA",
+    name: "Steel City Ruck Club",
+    id: "steelcityruckclub",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/steelcityruckclub/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [37.0059,-121.5668],
+    country: "USA",
+    name: "Garlic City Ruckers",
+    id: "garlic_city_ruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/garlic_city_ruckers/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [48.5251,-121.8714],
+    country: "USA",
+    name: "Skagit Ruck Club",
+    id: "skagitruckclub",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/skagitruckclub/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [34.2647,-85.1716],
+    country: "USA",
+    name: "Rome Ruckers",
+    id: "rome_ruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/rome_ruckers/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [30.114,-81.4221],
+    country: "USA",
+    name: "NOC Rucks",
+    id: "nocrucks",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/nocrucks/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [41.7766,-88.1393],
+    country: "USA",
+    name: "630 Ruckers",
+    id: "630ruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/630ruckers/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [33.3709,-84.7679],
+    country: "USA",
+    name: "TD Ruck Coweda",
+    id: "tdruck_coweta",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/tdruck_coweta/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [31.4733,-100.4385],
+    country: "USA",
+    name: "Chaulk Ruckers",
+    id: "chaulkruckers",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/chaulkruckers/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [37.6625,-121.9759],
+    country: "USA",
+    name: "Triton Ruck Club - Nor Cal",
+    id: "tritonnorcal",
+    contact: {
+      preferred: 'instagram',
+      instagram: "https://instagram.com/tritonnorcal/",
+      facebook: "www.facebook.com%2Fgroups%2F499670368786357%2F%3Fref%3Dshare_group_link&e=AT0VcDSAZ6cEk4qjmF7vNgWP45cv1k5wlJvMlT5z3hcf3UJOThcvZpIezwCr4Xsg1g7x5FV5tGqz2F9A15LBaI2JcFhhnpFYgzboJfP0i5MPXz-L"
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [39.9657,-75.1741],
+    country: "USA",
+    name: "Delaware Valley Rucking Crew",
+    id: "dvruckingcrew",
+    contact: {
+      preferred: 'instagram',
+      instagram: "https://instagram.com/dvruckingcrew/",
+      homepage: "https://discord.gg%2FQHMRXGGVkr&e=AT0KWwn9RQ3fDGHo6nXQK4xJsQD2k1y8T6HPaQliHP-QAPH9lR63VcgnDvFolI9qeYOfiXmCz_nVcg8l5IB3Lz_gGwTflmPwHQOkBxn9W9lyEmya"
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [36.1568,-115.1419],
+    country: "USA",
+    name: "Vegas Strong Ruckers",
+    id: "vegasstrongruckers",
+    contact: { preferred: 'instagram', facebook: "www.facebook.com%2Fgroups%2Fvegasstrongruckers&e=AT3wHS8OC-5wh8SE62DWBV4sfYK3EHRtlyJ5C8oPXL-YMMipegQA92Cm0WADegDI4Z_8ewBRskIC4_0wo_4jz5rn1ZTqrlHNy8x_aTOlSYEB_t66", instagram: "https://instagram.com/vegasstrongruckers/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [33.4144,-84.474],
+    country: "USA",
+    name: "RUCK 770",
+    id: "ruck770ptc",
+    contact: { preferred: 'instagram', instagram: "https://instagram.com/ruck770ptc/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [40.2065,-75.3637],
+    country: "USA",
+    name: "MontCoRuckClub",
+    id: "montcoruckclub",
+    contact: { preferred: 'instagram', facebook: "www.facebook.com%2Fgroups%2F285564969015897%2F%3Fref%3Dshare&e=AT3Fhe7FJpXlVpSmzQ-P6qW74St9yWSqulFUXhjT0xK6vZQzPbDpVG9XZ3mM7shJg5CjiThRLJhDWYBIJkOTjAIXb5O_tIh8fo_7gneF5lzTsGzM", instagram: "https://instagram.com/montcoruckclub/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [41.30851,-81.43934],
+    country: "USA",
+    name: "Cleveland Area Rucking Crew",
+    id: "omcleveland_area_rucking_crew/",
+    contact: {
+      preferred: 'instagram', 
+      facebook: 'https://www.clhttps://www.facebook.com/ClevelandAreaRuckingCrew/evelandarearuckingcrew.com/',
+      email: 'info@clevelandarearuckingcrew.com',
+      instagram: "https://www.instagram.com/cleveland_area_rucking_crew/"
+    }
+      // https://www.youtube.com/channel/UCDy6y7w4-hNfv3ard3EfRng, https://twitter.com/C_A_R_C_, ]
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [44.2329,-76.4820,],
+    country: "Canada",
+    name: "The Rucking Nuts",
+    id: "omruckingnuts/",
+    contact: {preferred: 'instagram', instagram: "https://www.instagram.com/ruckingnuts/", linktree: "https://linktr.ee/RuckingNuts" }
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [35.6499,-78.4599,],
+    country: "USA",
+    name: "Clayton Ruck Club",
+    id: "omclaytonruckclub/",
+    contact: { preferred: 'instagram', instagram: "https://www.instagram.com/claytonruckclub/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [40.7514, -73.9854],
+    country: "USA",
+    name: "BAAR Ruck Club",
+    id: "ombaar_ruck_club/",
+    contact: { preferred: 'instagram', instagram: "https://www.instagram.com/baar_ruck_club/"}
   }
 ]

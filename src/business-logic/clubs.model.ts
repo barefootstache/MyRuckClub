@@ -6,6 +6,7 @@ export type Coordinates = [number, number];
 
 export type Country = 
   | 'Brunei'
+  | 'Canada'
   | 'Costa Rica'
   | 'England' 
   | 'Finland' 

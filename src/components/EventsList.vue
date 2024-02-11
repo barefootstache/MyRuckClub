@@ -36,13 +36,15 @@
 
 <template>
   <div>
+    <div style="margin: 5px 0;">
+      <span style="font-size: 1.3rem;">All times are local times.</span>
+    </div>
     <ul class="events-view">
       <li v-for="ev in upcomingClubEvents">
         <span style="font-weight: bold">{{ev.name}}</span><br>
         <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
         <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
         <span v-if="ev.clubId">Registration at <a :href="getRegistrationLink(ev)" target="_blank">{{getRegistrationName(ev)}}</a></span>
-        <span></span>
       </li>
     </ul>
   </div>

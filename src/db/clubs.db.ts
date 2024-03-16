@@ -99,6 +99,14 @@ export const Clubs: Club[] = [
     id: 'teutorucker'
   },
   {
+    associations: ['crossfit'],
+    coordinates: [50.07885,8.62868],
+    country: 'Germany',
+    name: 'Herzschlag Ruckerz',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/herz.schlagruckerz/'},
+    id: 'herzschlagruckerz'
+  },
+  {
     associations: ['goruck', 'goruckeurope'],
     coordinates: [48.7788,9.1750],
     country: 'Germany',

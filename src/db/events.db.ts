@@ -26,7 +26,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-05-09', 'munichruckingcrew'),
   createClubEvent('2024-05-14', 'auxruckers'),
   createClubEvent('2024-05-16', 'munichruckingcrew'),
-  createClubEvent('2024-05-18', 'teutorucker', {name: 'Operation Chastise - Tough', time: '07:00', type: 'ruck'}),
+  createClubEvent('2024-05-18', 'teutorucker', {name: 'Operation Chastise - Tough', time: '07:00', type: 'ruck', location: 'Mohne Dam, Möhnestraße 10, 59519 Möhnesee, Germany', coordinates: [51.49149,8.06128], url: 'https://fistbumps.sandlot.fit/fistbump/83d8ac4a-7b1a-4386-8cb5-eb2389b88c01'}),
   createClubEvent('2024-05-21', 'auxruckers'),
   createClubEvent('2024-05-23', 'munichruckingcrew'),
   createClubEvent('2024-05-27', 'goruck', {name: 'Selection', location: '35 Rue Gambetta, 14450 Grandcamp-Maisy, France', coordinates: [49.38882,-1.03480], time: '19:00', type: 'ruck', url: 'https://fistbumps.sandlot.fit/fistbump/8e28c5f1-8774-411b-9fd3-4d75be723d83'}),

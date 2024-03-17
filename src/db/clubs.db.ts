@@ -95,11 +95,15 @@ export const Clubs: Club[] = [
     hasLogo: true
   },
   {
-    associations: ['goruck', 'goruckeurope', 'crossfit'],
+    associations: ['goruck', 'goruckeurope', 'crossfit', 'sandlot'],
     coordinates: [51.9469,8.5843],
     country: 'Germany',
     name: 'GORUCK Club Teuto Rucker',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teutorucker/'},
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/teutorucker/',
+      sandlot: 'https://fistbumps.sandlot.fit/group/16581f37-21be-4521-a1f5-886176fd6ec0'
+    },
     id: 'teutorucker',
     hasLogo: true
   },

@@ -21,6 +21,7 @@ export const Clubs: Club[] = [
       linktree: 'https://linktr.ee/munichruckingcrew',
       sandlot: 'https://fistbumps.sandlot.fit/group/3834e838-51d4-4584-86a6-a46ae9b9784a',
     },
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit'],
@@ -48,7 +49,8 @@ export const Clubs: Club[] = [
       instagram: 'https://www.instagram.com/auxruckers/',
       sandlot: 'https://fistbumps.sandlot.fit/group/c9b12a87-2b84-4bd0-b909-ec9b05897fdb'  
     },
-    id: 'auxruckers'
+    id: 'auxruckers',
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -72,7 +74,8 @@ export const Clubs: Club[] = [
     },
     name: 'Ruck It! Hannover',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckithannover/'},
-    id: 'ruckithannover'
+    id: 'ruckithannover',
+    hasLogo: true
   },
   {
     associations: ['myruckclub'],
@@ -88,7 +91,8 @@ export const Clubs: Club[] = [
     },
     name: 'Ruhr Ruckers',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruhr_ruckers/'},
-    id: 'ruhr_ruckers'
+    id: 'ruhr_ruckers',
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit'],
@@ -96,7 +100,8 @@ export const Clubs: Club[] = [
     country: 'Germany',
     name: 'GORUCK Club Teuto Rucker',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/teutorucker/'},
-    id: 'teutorucker'
+    id: 'teutorucker',
+    hasLogo: true
   },
   {
     associations: ['crossfit'],
@@ -146,7 +151,8 @@ export const Clubs: Club[] = [
     name: 'GORUCK',
     contact: { preferred: 'sandlot', sandlot: 'https://www.sandlot.fit/'},
     id: 'goruck',
-    hide: true
+    hide: true,
+    hasLogo: true
   },
   {
     associations: ['myruckclub'],

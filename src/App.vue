@@ -50,9 +50,6 @@ navigation a:hover {
   background-color: rgb(var(--v-theme-primary));
   color: rgb(var(--v-color-white));
 }
-#app > div {
-  margin-top: 50px;
-}
 
 @media screen and (max-width: 800px) {
   navigation {

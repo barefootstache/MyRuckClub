@@ -63,6 +63,7 @@ button:focus-visible {
   margin: 0 auto;
   text-align: center;
   width: 800px;
+  padding-top: 50px;
 }
 
 @media screen and (max-width: 800px) {

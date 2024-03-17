@@ -52,7 +52,7 @@
     <span style="font-size: 1.3rem;">All times are local times.</span>
   </div>
 
-  <v-list lines="five">
+  <v-list :lines="false">
     <v-list-item v-for="ev in upcomingClubEvents">
       <template v-slot:prepend>
         <v-avatar :image="getProfileLogoLink(ev)" size="90">

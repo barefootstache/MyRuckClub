@@ -211,6 +211,7 @@
 
     & :deep() .v-card-title {
       font-size: 2.25rem;
+      white-space: break-spaces;
     }
 
   }

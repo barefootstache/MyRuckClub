@@ -69,6 +69,7 @@ button:focus-visible {
 @media screen and (max-width: 800px) {
   #app {
     padding: 0;
+    padding-top: 50px;
     width: 100%;
     max-width: 100%;
   }

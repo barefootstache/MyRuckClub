@@ -2,7 +2,6 @@
   import {format, isAfter, subDays} from 'date-fns';
   import { EventsDB } from '@/db/index.db'
   import { ClubEvent } from '@/business-logic/events.model';
-  import { Club } from '@/business-logic/clubs.model';
   import { Contact } from '@/business-logic/contact.model';
   import { getContactUrl, getClubById } from '@/business-logic/clubs.utils';
   import { getMostRecentData } from '@/business-logic/events.utils';

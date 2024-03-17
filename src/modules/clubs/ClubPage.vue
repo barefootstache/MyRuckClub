@@ -62,16 +62,12 @@
 </script>
 
 <template>
-  <v-card :title="club.name">
+  <v-card class="header" :title="club.name">
     <template v-slot:prepend>
       <v-avatar :image="getProfileLogoLink()" size="80">
       </v-avatar>
     </template>
     <v-card-text v-if="club?.default?.location">We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location}}</a>.</v-card-text>
-
-    <!-- <v-avatar :image="getProfileLogoLink()" size="80"></v-avatar> -->
-    <!-- <h1></h1> -->
-    <!-- <p v-if="club?.default?.location">We typically meet at <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{club?.default?.location}}</a>.</p> -->
   </v-card>
   
   <div class="map-view">
@@ -111,16 +107,6 @@
 
   <h2><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h2>
   
-  <!-- <ul class="events-view"> -->
-  <!--   <li v-for="ev in upcomingClubEvents"> -->
-  <!--     <span style="font-weight: bold">{{ev.name}}</span><br> -->
-  <!--     <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br> -->
-  <!--     <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br> -->
-  <!--     <span v-if="ev.clubId">Registration at <a :href="getContactUrl(club.contact)" target="_blank">{{club.name}}</a></span> -->
-  <!--     <span></span> -->
-  <!--   </li> -->
-  <!-- </ul> -->
-
   <v-list lines="three">
     <v-list-item v-for="ev in upcomingClubEvents">
       <template v-slot:title>
@@ -217,12 +203,15 @@
     overflow: unset;
   }
 
-  .v-card {
-    background: rgba(var(--v-theme-background));
-    color: rgba(var(--v-theme-surface));
-  }
+  .header {
+    &.v-card {
+      background: rgba(var(--v-theme-background));
+      color: rgba(var(--v-theme-surface));
+    }
 
-  :deep() .v-card-title {
-    font-size: 2.25rem;
+    & :deep() .v-card-title {
+      font-size: 2.25rem;
+    }
+
   }
 </style>

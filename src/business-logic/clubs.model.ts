@@ -29,6 +29,7 @@ export type Club = {
   coordinates: Coordinates;
   country: Country;
   default?: Default;
+  hasLogo?: boolean;
   hide?: boolean;
   id: string;
   name: string;

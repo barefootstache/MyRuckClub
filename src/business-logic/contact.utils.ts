@@ -14,6 +14,17 @@ export function getIcon(key: keyof Contact):string {
   return 'mdi-error';
 }
 
+/**
+ * Gets the link for the contact.
+ * @param contact - the contact
+ * @returns the link.
+ */
+export function getLink(contact: ContactArrayItem):string {
+  if(contact.name === 'email') {
+    return `mailto:${contact.url}`;
+  }
+  return contact.url;
+}
 
 /**
  * Converts the contact to an array.

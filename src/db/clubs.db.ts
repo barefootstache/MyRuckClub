@@ -28,8 +28,22 @@ export const Clubs: Club[] = [
     coordinates: [49.9429,11.5767],
     country: 'Germany',
     name: 'GORUCK Club Franken',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruck_club_franken/'},
-    id: 'goruck_club_franken'
+    default: {
+      name: 'GORUCK CrossFit Class',
+      coordinates: [49.95500,11.59427],
+      location: 'CrossFit Bayreuth',
+      recurringInterval: 'weekly',
+      time: '18:45',
+      type: 'pt'
+    },
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/goruck_club_franken/',
+      homepage: 'https://www.crossfit-bayreuth.de/',
+      email: 'info@crossfit-bayreuth.de'
+    },
+    id: 'goruck_club_franken',
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope', 'sandlot'],

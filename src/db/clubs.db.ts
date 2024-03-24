@@ -137,7 +137,7 @@ export const Clubs: Club[] = [
       coordinates: [50.07885,8.62868],
       location: 'CrossFit Herzschlag',
       recurringInterval: 'weekly',
-      time: '09:00',
+      time: '11:00',
       type: 'ruck'
     },
     id: 'herzschlagruckerz',

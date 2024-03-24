@@ -21,7 +21,8 @@ export type Country =
   | 'Sweden' 
   | 'Switzerland' 
   | 'United Arab Emirates'
-  | 'USA';
+  | 'USA'
+  | 'Vietnam';
 
 export type Club = {
   associations: AssociationType[];

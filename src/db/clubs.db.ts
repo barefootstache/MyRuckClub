@@ -1046,7 +1046,11 @@ export const Clubs: Club[] = [
     country: "USA",
     name: "Vegas Strong Ruckers",
     id: "vegasstrongruckers",
-    contact: { preferred: 'instagram', facebook: "www.facebook.com%2Fgroups%2Fvegasstrongruckers&e=AT3wHS8OC-5wh8SE62DWBV4sfYK3EHRtlyJ5C8oPXL-YMMipegQA92Cm0WADegDI4Z_8ewBRskIC4_0wo_4jz5rn1ZTqrlHNy8x_aTOlSYEB_t66", instagram: "https://instagram.com/vegasstrongruckers/"}
+    contact: { 
+      preferred: 'instagram', 
+      facebook: "www.facebook.com%2Fgroups%2Fvegasstrongruckers&e=AT3wHS8OC-5wh8SE62DWBV4sfYK3EHRtlyJ5C8oPXL-YMMipegQA92Cm0WADegDI4Z_8ewBRskIC4_0wo_4jz5rn1ZTqrlHNy8x_aTOlSYEB_t66", 
+      instagram: "https://instagram.com/vegasstrongruckers/"
+    }
   },
   {
     associations: ['goruck'],
@@ -1062,14 +1066,18 @@ export const Clubs: Club[] = [
     country: "USA",
     name: "MontCoRuckClub",
     id: "montcoruckclub",
-    contact: { preferred: 'instagram', facebook: "www.facebook.com%2Fgroups%2F285564969015897%2F%3Fref%3Dshare&e=AT3Fhe7FJpXlVpSmzQ-P6qW74St9yWSqulFUXhjT0xK6vZQzPbDpVG9XZ3mM7shJg5CjiThRLJhDWYBIJkOTjAIXb5O_tIh8fo_7gneF5lzTsGzM", instagram: "https://instagram.com/montcoruckclub/"}
+    contact: { 
+      preferred: 'instagram', 
+      facebook: "www.facebook.com%2Fgroups%2F285564969015897%2F%3Fref%3Dshare&e=AT3Fhe7FJpXlVpSmzQ-P6qW74St9yWSqulFUXhjT0xK6vZQzPbDpVG9XZ3mM7shJg5CjiThRLJhDWYBIJkOTjAIXb5O_tIh8fo_7gneF5lzTsGzM", 
+      instagram: "https://instagram.com/montcoruckclub/"
+    }
   },
   {
     associations: ['myruckclub'],
     coordinates: [41.30851,-81.43934],
     country: "USA",
     name: "Cleveland Area Rucking Crew",
-    id: "omcleveland_area_rucking_crew/",
+    id: "cleveland_area_rucking_crew",
     contact: {
       preferred: 'instagram', 
       facebook: 'https://www.clhttps://www.facebook.com/ClevelandAreaRuckingCrew/evelandarearuckingcrew.com/',
@@ -1080,26 +1088,75 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck'],
-    coordinates: [44.2329,-76.4820,],
+    coordinates: [44.2329,-76.4820],
     country: "Canada",
     name: "The Rucking Nuts",
-    id: "omruckingnuts/",
+    id: "ruckingnuts",
     contact: {preferred: 'instagram', instagram: "https://www.instagram.com/ruckingnuts/", linktree: "https://linktr.ee/RuckingNuts" }
   },
   {
     associations: ['goruck'],
-    coordinates: [35.6499,-78.4599,],
+    coordinates: [35.6499,-78.4599],
     country: "USA",
     name: "Clayton Ruck Club",
-    id: "omclaytonruckclub/",
+    id: "claytonruckclub",
     contact: { preferred: 'instagram', instagram: "https://www.instagram.com/claytonruckclub/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [45.1977,-93.3852],
+    country: "USA",
+    name: "Ruckin Rascals",
+    id: "ruckinrascals",
+    contact: { preferred: 'instagram', instagram: "https://www.instagram.com/ruckinrascals/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [35.1895,-114.0508],
+    country: "USA",
+    name: "goRUKINGman",
+    id: "goruckingman",
+    contact: { preferred: 'instagram', instagram: "https://www.instagram.com/goruckingman/"}
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [40.7400,-84.1031],
+    country: "USA",
+    name: "Polar Bear Ruck Club",
+    id: "polarbearruckclub",
+    contact: { 
+      preferred: 'facebook', 
+      instagram: "https://www.instagram.com/polarbearruckclub/",
+      facebook: 'https://www.facebook.com/polarbearruckclub',
+      email: 'polarbearruckclub@gmail.com'
+    }
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [35.2260,-80.8429],
+    country: "USA",
+    name: "Charlotte Ruck Club",
+    id: "charlotteruckclub",
+    contact: { 
+      preferred: 'facebook', 
+      instagram: "https://www.instagram.com/charlotte.ruck.club/",
+      facebook: 'https://www.facebook.com/groups/CharlotteRuckClub/'
+    }
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [10.7672,106.6924],
+    country: "Vietnam",
+    name: "Saigon Rucking Group",
+    id: "saigonruck",
+    contact: { preferred: 'instagram', instagram: "https://www.instagram.com/saigonruck/"}
   },
   {
     associations: ['myruckclub'],
     coordinates: [40.7514, -73.9854],
     country: "USA",
     name: "BAAR Ruck Club",
-    id: "ombaar_ruck_club/",
+    id: "baar_ruck_club",
     contact: { preferred: 'instagram', instagram: "https://www.instagram.com/baar_ruck_club/"}
   }
 ]

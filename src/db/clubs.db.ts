@@ -126,8 +126,22 @@ export const Clubs: Club[] = [
     coordinates: [50.07885,8.62868],
     country: 'Germany',
     name: 'Herzschlag Ruckerz',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/herz.schlagruckerz/'},
-    id: 'herzschlagruckerz'
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/herz.schlagruckerz/',
+      homepage: 'https://www.crossfitherzschlag.de/',
+      email: 'hello@cfherzschlag.de'
+    },
+    default: {
+      name: 'Weekly Ruck Meet Up',
+      coordinates: [50.07885,8.62868],
+      location: 'CrossFit Herzschlag',
+      recurringInterval: 'weekly',
+      time: '09:00',
+      type: 'ruck'
+    },
+    id: 'herzschlagruckerz',
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope'],

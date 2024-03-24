@@ -69,7 +69,7 @@ export const Associations: Association[] = [
     color: 'red'
   },
   {
-    name: 'Crossfit',
+    name: 'CrossFit',
     contact: { 
       preferred: 'homepage', 
       homepage: 'https://www.crossfit.com/',

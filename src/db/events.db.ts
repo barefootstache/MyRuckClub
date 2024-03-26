@@ -5,7 +5,6 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-03-23', 'goruck_club_franken', {name: 'GORUCK Tribe March', time: '13:00'}),
   createClubEvent('2024-03-26', 'auxruckers'),
   createClubEvent('2024-03-27', 'goruck_club_franken'),
-  createClubEvent('2024-03-28', 'munichruckingcrew'),
   createClubEvent('2024-03-29', 'ruckithannover', {time: '10:00', location: 'Bahnhof Egestorf', coordinates: [52.27886,9.51376], type: 'ruck'}),
   createClubEvent('2024-03-29', 'munichruckingcrew', {time: '10:00', location: 'Allianzarena / UBahn Fröttmaning, München', coordinates: [48.21184,11.62048], type: 'pt', name: 'Good Friday Battle Hero WOD'}),
   createClubEvent('2024-03-29', 'herzschlagruckerz', {name: 'Karfreitag Ruck'}),

@@ -113,6 +113,14 @@ export const Clubs: Club[] = [
     coordinates: [51.9469,8.5843],
     country: 'Germany',
     name: 'GORUCK Club Teuto Rucker',
+    default: {
+      name: 'Weekly Ruck Training',
+      coordinates: [51.96054, 8.58873],
+      location: 'Uhlenflucht 8, 33689 Bielefeld, Germany',
+      recurringInterval: 'weekly',
+      time: '17:30',
+      type: 'ruck'
+    },
     contact: { 
       preferred: 'instagram', 
       instagram: 'https://www.instagram.com/teutorucker/',

@@ -164,7 +164,11 @@ export const Clubs: Club[] = [
     coordinates: [50.1140,8.6737],
     country: 'Germany',
     name: 'Skyline Ruckers Rhein-Main',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/skylineruckers/'},
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/skylineruckers/',
+      facebook: 'https://www.facebook.com/Skylineruckers'
+    },
     id: 'skylineruckers'
   },
   {

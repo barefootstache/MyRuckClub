@@ -169,7 +169,8 @@ export const Clubs: Club[] = [
       instagram: 'https://www.instagram.com/skylineruckers/',
       facebook: 'https://www.facebook.com/Skylineruckers'
     },
-    id: 'skylineruckers'
+    id: 'skylineruckers',
+    hasLogo: true
   },
   {
     associations: ['myruckclub'],

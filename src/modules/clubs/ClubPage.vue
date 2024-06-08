@@ -105,7 +105,7 @@
   
   <div class="hline"></div>
 
-  <EventsList :events="upcomingClubEvents" lines="three"></EventsList>
+  <EventsList :events="upcomingClubEvents" lines="three" :show-upcoming-header="true"></EventsList>
 </template>
 
 <style scoped>

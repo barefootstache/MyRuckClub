@@ -1,25 +1,11 @@
 <script setup lang="ts">
   import { ClubsDB } from '@/db/index.db'
   import { alphabetical, unique } from 'radash';
-
-  const props = defineProps<{
-    search: string
-  }>();
-
-  const filterBySearch = props.search && props.search.length > 2 
-    ? ClubsDB.filter(c => c.country.includes(props.search) || c.name.includes(props.search)) 
-    : ClubsDB;
-  const alphabeticalSort = alphabetical(filterBySearch, (c) => {
-    console.log({filterBySearch});
-    return c.name
-  });
-  const countrySort = alphabetical(unique(filterBySearch.map(c => c.country)), c => c);
-
-  console.log({filterBySearch});
+  const alphabeticalSort = alphabetical(ClubsDB, c => c.name);
+  const countrySort = alphabetical(unique(ClubsDB.map(c => c.country)), c => c);
 </script>
 
 <template>
-  Search: {{props.search||''}}
   <div v-for="country in countrySort" id="country">
     <h3>{{country}}</h3>
     <ul>

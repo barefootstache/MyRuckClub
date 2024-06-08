@@ -27,7 +27,7 @@ export const Clubs: Club[] = [
     associations: ['goruck', 'goruckeurope', 'crossfit'],
     coordinates: [49.9429,11.5767],
     country: 'Germany',
-    name: 'GORUCK Club Franken',
+    name: 'GRC Franken',
     default: {
       name: 'GORUCK CrossFit Class',
       coordinates: [49.95500,11.59427],
@@ -92,15 +92,15 @@ export const Clubs: Club[] = [
     hasLogo: true
   },
   {
-    associations: ['myruckclub'],
+    associations: ['goruck', 'goruckeurope'],
     coordinates: [51.4820,7.2187],
     country: 'Germany',
     default: {
-      name: 'Montly Ruck Meetup',
-      coordinates: [51.43960,7.19500],
-      location: 'Parkplatz Nord, Weitmarer Holz, Weitmar',
-      recurringInterval: 'monthly',
-      time: '09:00',
+      name: 'Weekly Ruck Meetup',
+      coordinates: [51.43932,7.19510],
+      location: 'Parkplatz, Blankensteiner Straße 47, Bochum',
+      recurringInterval: 'weekly',
+      time: '18:00',
       type: 'ruck'
     },
     name: 'Ruhr Ruckers',
@@ -112,7 +112,15 @@ export const Clubs: Club[] = [
     associations: ['goruck', 'goruckeurope', 'crossfit', 'sandlot'],
     coordinates: [51.9469,8.5843],
     country: 'Germany',
-    name: 'GORUCK Club Teuto Rucker',
+    name: 'Teuto Rucker',
+    default: {
+      name: 'Weekly Ruck Training',
+      coordinates: [51.96054, 8.58873],
+      location: 'Uhlenflucht 8, 33689 Bielefeld, Germany',
+      recurringInterval: 'weekly',
+      time: '17:30',
+      type: 'ruck'
+    },
     contact: { 
       preferred: 'instagram', 
       instagram: 'https://www.instagram.com/teutorucker/',
@@ -156,8 +164,13 @@ export const Clubs: Club[] = [
     coordinates: [50.1140,8.6737],
     country: 'Germany',
     name: 'Skyline Ruckers Rhein-Main',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/skylineruckers/'},
-    id: 'skylineruckers'
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/skylineruckers/',
+      facebook: 'https://www.facebook.com/Skylineruckers'
+    },
+    id: 'skylineruckers',
+    hasLogo: true
   },
   {
     associations: ['myruckclub'],
@@ -181,7 +194,19 @@ export const Clubs: Club[] = [
     coordinates: [0,0],
     country: 'Germany',
     name: 'GORUCK',
-    contact: { preferred: 'sandlot', sandlot: 'https://www.sandlot.fit/'},
+    contact: { 
+      preferred: 'homepage', 
+      homepage: 'https://registration.goruck.com/',
+      sandlot: 'https://www.sandlot.fit/'
+    },
+    default: {
+      name: 'GORUCK Event',
+      coordinates: [0,0],
+      time: '12:00',
+      type: 'ruck',
+      location: 'GORUCK HQ',
+      recurringInterval: 'monthly'
+    },
     id: 'goruck',
     hide: true,
     hasLogo: true

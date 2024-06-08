@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import { useRoute } from 'vue-router';
-  import { format, isAfter, subDays } from 'date-fns';
+  import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
   import { ClubsDB } from '@/db/index.db';
@@ -11,9 +11,9 @@
   import { LocationService } from '@/services/location.service';
   import { ClubEvent } from '@/business-logic/events.model';
   import { getAssociationByType } from '@/business-logic/associations.utils'
-  import { getContactUrl } from '@/business-logic/clubs.utils';
   import Contact from './components/Contact.vue';
   import MarkerDialog from '@/components/MarkerDialog.vue';
+  import EventsList from '@/components/EventsList.vue'
 
   /**
    * Reference for `this.$route`.
@@ -105,20 +105,7 @@
   
   <div class="hline"></div>
 
-  <h2><span v-if="upcomingClubEvents.length === 0">No </span>Upcoming Events</h2>
-  
-  <v-list lines="three">
-    <v-list-item v-for="ev in upcomingClubEvents">
-      <template v-slot:title>
-        <span style="font-weight: bold">{{ev.name}}</span><br>
-      </template>
-      <template v-slot:subtitle>
-        <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
-        <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
-        <span v-if="ev.clubId">Registration at <a :href="getContactUrl(club.contact)" target="_blank">{{club.name}}</a></span>
-      </template>
-    </v-list-item>
-  </v-list>
+  <EventsList :events="upcomingClubEvents" lines="three" :show-upcoming-header="true"></EventsList>
 </template>
 
 <style scoped>
@@ -184,17 +171,6 @@
     .map-view {
       width: 100%;
     }
-  }
-
-  .v-list-item {
-    outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
-    margin-bottom: 4px;
-    padding: 0 4px;
-  }
-
-  .v-list-item-subtitle span {
-    line-height: 1.5;
-    font-size: 1rem;
   }
 
   .v-list {

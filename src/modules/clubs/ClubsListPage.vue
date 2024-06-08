@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Clubs from '@/components/Clubs.vue'
+  import Clubs from '@/components/Clubs.vue'
 </script>
 
 <template>

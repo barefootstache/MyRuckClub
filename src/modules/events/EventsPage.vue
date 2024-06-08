@@ -51,7 +51,12 @@
         </v-dialog>
       </l-map>
     </div>
-    <EventsList></EventsList>
+
+    <EventsList
+      :events="upcomingClubEvents"
+      :show-local-times="true"
+      :use-logo="true"
+    ></EventsList>
   </div>
 </template>
 

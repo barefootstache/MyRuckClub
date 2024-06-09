@@ -192,7 +192,7 @@ export const Clubs: Club[] = [
   {
     associations: ['goruck', 'sandlot'],
     coordinates: [0,0],
-    country: 'Germany',
+    country: 'USA',
     name: 'GORUCK',
     contact: { 
       preferred: 'homepage', 
@@ -208,6 +208,53 @@ export const Clubs: Club[] = [
       recurringInterval: 'monthly'
     },
     id: 'goruck',
+    hide: true,
+    hasLogo: true
+  },
+  {
+    associations: ['none'],
+    coordinates: [0,0],
+    country: 'Germany',
+    name: 'Blackout the Limit',
+    contact: { 
+      preferred: 'homepage', 
+      homepage: 'https://www.blackoutthelimit.de/',
+      instagram: 'https://www.instagram.com/blackout_the_limit/',
+      email: 'info@blackoutthelimit.de'
+    },
+    default: {
+      name: 'Operation Workhorse',
+      coordinates: [49.87696,10.87784],
+      time: '09:00',
+      location: 'TBA',
+      recurringInterval: 'once',
+      type: 'pt'
+    },
+    id: 'blackout_the_limit',
+    hide: true,
+    hasLogo: true
+  },
+  {
+    associations: ['none'],
+    coordinates: [0,0],
+    country: 'Germany',
+    name: 'No Limits',
+    contact: { 
+      preferred: 'homepage', 
+      homepage: 'https://deinehundertprozent.de/',
+      instagram: 'https://www.instagram.com/nolimits_deutschland/',
+      email: 'beratung@deinehundertprozent.de',
+      linktree: 'https://linktr.ee/nolimitsevent'
+    },
+    default: {
+      name: 'No Limits',
+      coordinates: [53.78266,10.08229],
+      time: '09:00',
+      location: 'TBA',
+      recurringInterval: 'once',
+      type: 'ruck'
+    },
+    id: 'nolimits_deutschland',
     hide: true,
     hasLogo: true
   },

@@ -106,7 +106,7 @@
 
       if (isThisWeek(date, { weekStartsOn: 1 })) {
         dateMap['thisWeek'].events.push(ev);
-      } else if (isBefore(date, nextSunday(nextSunday(today))) && !isSunday(today) || isSunday(today) && nextSunday(today)) {
+      } else if (isBefore(date, nextSunday(nextSunday(today))) && !isThisWeek(date, { weekStartsOn: 1 })) {
         dateMap['nextWeek'].events.push(ev);
       } else if (isThisYear(date)) {
         const monthNumber = getMonth(date)
@@ -166,6 +166,12 @@
     margin: 5px 0;
     span {
       font-size: 1.3rem;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    h2 {
+      padding: 0 32px;
     }
   }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import EventItem from '@/components/EventItem.vue'
   import { ClubEvent } from "@/business-logic/events.model";
-  import { format, isThisYear, isThisWeek, isAfter, endOfYear, isBefore, nextSunday, isSunday, getMonth, addYears, addDays } from 'date-fns';
+  import { format, isThisYear, isThisWeek, isAfter, endOfYear, isBefore, nextSunday, getMonth, addYears, addDays } from 'date-fns';
 
   type DateMapItem = {
     header: string;

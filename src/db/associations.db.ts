@@ -90,4 +90,13 @@ export const Associations: Association[] = [
     type: 'f3',
     color: 'white'
   },
+  {
+    name: 'None',
+    contact: {
+      preferred: 'homepage',
+      homepage: 'https://codeberg.org/barefootstache/MyRuckClub/issues'
+    },
+    type: 'none',
+    color: 'grey'
+  }
 ]

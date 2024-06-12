@@ -33,6 +33,8 @@ export type Club = {
   hasLogo?: boolean;
   hide?: boolean;
   id: string;
+  lastCheckedInstagramDate?: string;
+  lastInstagramPostDate?: string;
   name: string;
 }
 

@@ -248,9 +248,9 @@ export const Clubs: Club[] = [
     },
     default: {
       name: 'No Limits',
-      coordinates: [53.78266,10.08229],
-      time: '09:00',
-      location: 'TBA',
+      coordinates: [53.84063,10.02961],
+      time: '11:00',
+      location: 'Kattendorf, Germany',
       recurringInterval: 'once',
       type: 'ruck'
     },

@@ -1233,6 +1233,37 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck'],
+    coordinates: [35.1390,-89.8324],
+    country: 'USA',
+    name: 'Ruck Memphis',
+    id: 'ruckmemphis',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckmemphis/'},
+    socialMediaContent: {
+      updatedAt: '2024-06-13',
+      source: 'instagram',
+      lastPost: '2024-06-13'
+    }
+  },
+  {
+    associations: ['goruck', 'sandlot'],
+    coordinates: [47.4861,-122.3070],
+    country: 'USA',
+    name: 'Seattle Ruck Club',
+    id: 'seattleruckclub',
+    contact: { 
+      preferred: 'facebook', 
+      facebook: 'https://www.facebook.com/SeattleRuckClub/',
+      instagram: 'https://www.instagram.com/seattleruckclub/',
+      sandlot: 'https://fistbumps.sandlot.fit/group/6ec999f0-3439-4d86-83ae-b00c679a6abc'
+    },
+    socialMediaContent: {
+      updatedAt: '2024-06-13',
+      source: 'facebook',
+      lastPost: '2024-06-08'
+    }
+  },
+  {
+    associations: ['goruck'],
     coordinates: [35.3176,-80.6561],
     country: 'USA',
     name: 'Cabarus Ruck Club',

@@ -1232,6 +1232,23 @@ export const Clubs: Club[] = [
     contact: { preferred: 'instagram', instagram: "https://www.instagram.com/saigonruck/"}
   },
   {
+    associations: ['goruck'],
+    coordinates: [35.3176,-80.6561],
+    country: 'USA',
+    name: 'Cabarus Ruck Club',
+    id: 'cabarrusruckclub',
+    contact: { 
+      preferred: 'facebook', 
+      facebook: 'https://www.facebook.com/groups/cabarrusruckclub/',
+      instagram: 'https://www.instagram.com/cabarrusruckclub/'
+    },
+    socialMediaContent: {
+      source: 'facebook',
+      lastPost: '2024-05-28',
+      updatedAt: '2024-06-13'
+    }
+  },
+  {
     associations: ['myruckclub'],
     coordinates: [29.7081,-98.1213],
     country: 'USA',

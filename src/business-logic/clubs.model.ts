@@ -33,9 +33,8 @@ export type Club = {
   hasLogo?: boolean;
   hide?: boolean;
   id: string;
-  lastCheckedInstagramDate?: string;
-  lastInstagramPostDate?: string;
   name: string;
+  socialMediaContent?: SocialMediaContent
 }
 
 export type Default = {
@@ -46,5 +45,11 @@ export type Default = {
   time: string;
   type: EventType;
   url?: string;
+}
+
+export type SocialMediaContent = {
+  updatedAt: string;
+  source: keyof Contact;
+  lastPost: string;
 }
 

@@ -308,6 +308,14 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['myruckclub'],
+    coordinates: [56.0281,14.1534],
+    country: 'Sweden',
+    name: 'Ruck Club C4',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/rcc4_se/'},
+    id: 'rcc4_se'
+  },
+  {
+    associations: ['myruckclub'],
     coordinates: [47.37181,8.54221],
     country: 'Switzerland',
     name: 'The Sunrise Ruck Club',
@@ -1222,6 +1230,19 @@ export const Clubs: Club[] = [
     name: "Saigon Rucking Group",
     id: "saigonruck",
     contact: { preferred: 'instagram', instagram: "https://www.instagram.com/saigonruck/"}
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [29.7081,-98.1213],
+    country: 'USA',
+    name: 'New Braunfels Ruck Club',
+    id: 'nbruckclub',
+    contact: { 
+      preferred: 'instagram', 
+      facebook: 'https://www.facebook.com/groups/nbruckclub/?ref=share_group_link&mibextid=K35XfP&rdid=UyrDpRivDFZ8VeLg&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FioqZemA4tL1z991c%2F%3Fmibextid%3DK35XfP',
+      linktree: 'https://linktr.ee/nbruckclub',
+      instagram: 'https://www.instagram.com/nbruckclub/'
+    }
   },
   {
     associations: ['myruckclub'],

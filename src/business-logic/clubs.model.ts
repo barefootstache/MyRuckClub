@@ -11,6 +11,7 @@ export type Country =
   | 'Costa Rica'
   | 'England' 
   | 'Finland' 
+  | 'France' 
   | 'Germany' 
   | 'Japan' 
   | 'Hong Kong'

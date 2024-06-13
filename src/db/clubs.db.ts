@@ -177,9 +177,18 @@ export const Clubs: Club[] = [
     associations: ['goruck', 'goruckeurope'],
     coordinates: [48.7788,9.1750],
     country: 'Germany',
-    name: 'grc stuttgart germany',
+    name: 'GRC Stuttgart Germany',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckclub.stuttgart/'},
     id: 'goruckclubstuttgart'
+  },
+  {
+    associations: ['goruck', 'goruckeurope'],
+    coordinates: [49.14193,5.44197],
+    country: 'France',
+    name: 'Let\'s Ruck Goruck Club',
+    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/let.s.ruck/'},
+    id: 'letsruck',
+    hasLogo: true
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -1288,7 +1297,7 @@ export const Clubs: Club[] = [
     associations: ['goruck'],
     coordinates: [35.3176,-80.6561],
     country: 'USA',
-    name: 'Cabarus Ruck Club',
+    name: 'Cabarrus Ruck Club',
     id: 'cabarrusruckclub',
     contact: { 
       preferred: 'facebook', 

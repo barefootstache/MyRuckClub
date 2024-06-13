@@ -76,6 +76,28 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck', 'goruckeurope'],
+    coordinates: [47.87806,14.82313],
+    country: 'Austria',
+    name: 'Ybbs Valley Ruckers',
+    contact: { 
+      preferred: 'facebook', 
+      instagram: 'https://www.instagram.com/ybbsvalleyruckers/',
+      facebook: 'https://www.facebook.com/profile.php?id=61560575766740',
+      email: 'ji716@gmx.at'
+    },
+    default: {
+      name: 'Weekly Ruck Meetup',
+      coordinates: [47.88285,14.82184],
+      location: 'Opponitz Busbahnhof, Opponitz, Austria',
+      recurringInterval: 'weekly',
+      time: '09:30',
+      type: 'ruck'
+    },
+    id: 'ybbsvalleyruckers',
+    hasLogo: true
+  },
+  {
+    associations: ['goruck', 'goruckeurope'],
     coordinates: [52.3754,9.7377],
     country: 'Germany',
     default: {

@@ -14,6 +14,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-06-15', 'herzschlagruckerz'),
   createClubEvent('2024-06-15', 'skylineruckers', {name: 'Skyline Ruckers Club Cloverleaf Bronze', time: '13:00', type: 'ruck', url: 'https://docs.google.com/forms/d/e/1FAIpQLSeBNRidYZp0FgxAXZ7rT10jwjVbkIaq0n0kwry9YeQtDrALRA/viewform', location: 'Grüneburgpark, Frankfurt, Germany', coordinates: [50.12369,8.65895]}),
   createClubEvent('2024-06-16', 'goruck', {name: 'Ingress Operation Clear Field', location: 'Babits Mihály Statue, Budapest, Hungary', coordinates: [47.50020,19.02773], time: '10:00', type: 'ruck', url: 'https://fistbumps.sandlot.fit/fistbump/b6a409c2-c767-427d-a72c-88b9137cea8f'}),
+  createClubEvent('2024-06-16', 'ybbsvalleyruckers'),
   createClubEvent('2024-06-18', 'auxruckers'),
   createClubEvent('2024-06-19', 'goruck_club_franken'),
   createClubEvent('2024-06-20', 'teutorucker'),

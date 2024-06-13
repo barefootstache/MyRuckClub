@@ -5,6 +5,7 @@ import { EventType } from "./events.model";
 export type Coordinates = [number, number];
 
 export type Country = 
+  | 'Austria'
   | 'Brunei'
   | 'Canada'
   | 'Costa Rica'

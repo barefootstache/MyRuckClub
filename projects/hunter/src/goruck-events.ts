@@ -67,7 +67,6 @@ function createEventsDbArray(events: ClubEvent[]):string {
 
 extractEventInfo2(DOMAIN)
   .then(events => {
-    console.log(events)
     console.log(createEventsDbArray(events))
   })
   .catch(error => console.error('Error fetching or parsing HTML:', error));

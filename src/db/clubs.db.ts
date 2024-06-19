@@ -192,7 +192,7 @@ export const Clubs: Club[] = [
   {
     associations: ['goruck', 'sandlot'],
     coordinates: [0,0],
-    country: 'Germany',
+    country: 'USA',
     name: 'GORUCK',
     contact: { 
       preferred: 'homepage', 

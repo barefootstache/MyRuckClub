@@ -6,32 +6,32 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/clubs', 
     name: 'ClubsList',
-    component: () => import('../modules/clubs/ClubsListPage.vue'
+    component: () => import('@/modules/clubs/ClubsListPage.vue'
   )},
   {
     path: '/club/:id',
     name: 'Club',
-    component: () => import('../modules/clubs/ClubPage.vue')
+    component: () => import('@/modules/clubs/ClubPage.vue')
   },
   {
     path: '/events',
     name: 'EventsList',
-    component: () => import('../modules/events/EventsPage.vue')
+    component: () => import('@/modules/events/EventsPage.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('../modules/about/AboutPage.vue')
+    component: () => import('@/modules/about/AboutPage.vue')
   },
   {
     path: '/login', 
     name: 'Login',
-    component: () => import('../modules/auth/LogInPage.vue')
+    component: () => import('@/modules/auth/LogInPage.vue')
   },
   {
     path: '/signup',
     name: 'Signup',
-    component: () => import('../modules/auth/SignUpPage.vue')
+    component: () => import('@/modules/auth/SignUpPage.vue')
   }
 ]
 

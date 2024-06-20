@@ -1,10 +1,8 @@
 <script setup lang="ts">
   import {format} from 'date-fns';
-  import { Contact } from '@/business-logic/contact.model';
-  import { ClubEvent } from '@/business-logic/events.model';
-  import { getContactUrl, getClubById } from '@/business-logic/clubs.utils';
-  import { LocationService } from '@/services/location.service';
-  import { getMostRecentData } from '@/business-logic/events.utils';
+  import { Contact, ClubEvent } from '@/business-logic';
+  import { LocationService } from '@/services';
+  import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
 
   withDefaults(defineProps<{
     event: ClubEvent,
@@ -19,8 +17,8 @@
    * @returns the URL.
    */
   function getRegistrationLink(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
-    return getMostRecentData<string>('url', foundClub, ev) || getContactUrl(foundClub?.contact as Contact) || '';
+    const foundClub = ClubUtils.getClubById(ev.clubId);
+    return EventUtils.getMostRecentData<string>('url', foundClub, ev) || ClubUtils.getContactUrl(foundClub?.contact as Contact) || '';
   }
   
   /**
@@ -29,7 +27,7 @@
    * @returns the club's name.
    */
   function getRegistrationName(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
+    const foundClub = ClubUtils.getClubById(ev.clubId);
     return foundClub ? foundClub.name : '';
   }
 
@@ -39,7 +37,7 @@
    * @returns the URL.
    */
   function getProfileLogoLink(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
+    const foundClub = ClubUtils.getClubById(ev.clubId);
     if(foundClub.hasLogo) {
       return `clubs/${ev.clubId}-logo.jpg`;
     } else {

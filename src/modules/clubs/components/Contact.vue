@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  import { Club } from '@/business-logic/clubs.model'
-  import { Contact } from '@/business-logic/contact.model'
-  import { UtilsService } from '@/services/utils.service';
+  import { Club, Contact } from '@/business-logic'
+  import { UtilsService } from '@/services';
   import { getIcon, getLink, convertContactToArray } from '@/business-logic/contact.utils'
 
   const props = defineProps<{

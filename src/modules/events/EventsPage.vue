@@ -5,11 +5,10 @@
   import "leaflet/dist/leaflet.css";
   import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
   import { EventsDB } from '@/db/index.db';
-  import { LocationService } from '@/services/location.service';
-  import { getPin } from '@/business-logic/osm.utils';
+  import { LocationService } from '@/services';
+  import { OsmUtils } from '@/business-logic/index.utils';
   import MarkerDialog from '@/components/MarkerDialog.vue';
-  import { Club } from '@/business-logic/clubs.model';
-  import { ClubEvent } from '@/business-logic/events.model';
+  import { Club, ClubEvent } from '@/business-logic';
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
@@ -45,7 +44,11 @@
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates">
-            <l-icon :icon-url="getPin(ev.type).options.iconUrl" :icon-size="getPin(ev.type).options.iconSize" :icon-anchor="getPin(ev.type).options.iconAnchor"></l-icon>
+            <l-icon 
+              :icon-url="OsmUtils.getPin(ev.type).options.iconUrl" 
+              :icon-size="OsmUtils.getPin(ev.type).options.iconSize" 
+              :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"
+          ></l-icon>
         </l-marker>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">

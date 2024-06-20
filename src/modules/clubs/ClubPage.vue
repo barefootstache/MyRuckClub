@@ -3,10 +3,9 @@
   import { useRoute } from 'vue-router';
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
-  import { ClubsDB } from '@/db/index.db';
+  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
+  import { ClubsDB, EventsDB } from '@/db/index.db';
   import { Club } from '@/business-logic/clubs.model';
-  import { EventsDB } from '@/db/index.db';
   import { getPin } from '@/business-logic/osm.utils';
   import { LocationService } from '@/services/location.service';
   import { ClubEvent } from '@/business-logic/events.model';
@@ -80,9 +79,13 @@
       ></l-tile-layer>
       <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
-      <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+      <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates"> 
+        <l-icon :icon-url="getPin('default').options.iconUrl" :icon-size="getPin('default').options.iconSize" :icon-anchor="getPin('default').options.iconAnchor"></l-icon>
+      </l-marker>
 
-      <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+      <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates">
+        <l-icon :icon-url="getPin(ev.type).options.iconUrl" :icon-size="getPin(ev.type).options.iconSize" :icon-anchor="getPin(ev.type).options.iconAnchor"></l-icon>
+      </l-marker>
 
       <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
         <MarkerDialog :details="markerDialog"></MarkerDialog>

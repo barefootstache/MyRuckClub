@@ -3,7 +3,7 @@
   import EventsList from '@/components/EventsList.vue'
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
   import { EventsDB } from '@/db/index.db';
   import { LocationService } from '@/services/location.service';
   import { getPin } from '@/business-logic/osm.utils';
@@ -44,7 +44,9 @@
         ></l-tile-layer>
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
-        <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+        <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates">
+            <l-icon :icon-url="getPin(ev.type).options.iconUrl" :icon-size="getPin(ev.type).options.iconSize" :icon-anchor="getPin(ev.type).options.iconAnchor"></l-icon>
+        </l-marker>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
           <MarkerDialog :details="markerDialog"></MarkerDialog>

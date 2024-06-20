@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import {ClubsDB} from '@/db/index.db'
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
+  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
   import { getPin } from '@/business-logic/osm.utils';
   import MarkerDialog from '@/components/MarkerDialog.vue';
   import { Club } from '@/business-logic/clubs.model';
@@ -42,7 +42,9 @@
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <div v-for="club in ClubsDB">
-          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>
+          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates">
+            <l-icon :icon-url="getPin('default', 2).options.iconUrl" :icon-size="getPin('default', 2).options.iconSize" :icon-anchor="getPin('default', 2).options.iconAnchor"></l-icon>
+          </l-marker>
         </div>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">

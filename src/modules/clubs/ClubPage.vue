@@ -3,14 +3,11 @@
   import { useRoute } from 'vue-router';
   import { isAfter, subDays } from 'date-fns';
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
-  import { ClubsDB } from '@/db/index.db';
-  import { Club } from '@/business-logic/clubs.model';
-  import { EventsDB } from '@/db/index.db';
-  import { getPin } from '@/business-logic/osm.utils';
-  import { LocationService } from '@/services/location.service';
-  import { ClubEvent } from '@/business-logic/events.model';
-  import { getAssociationByType } from '@/business-logic/associations.utils'
+  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
+  import { ClubsDB, EventsDB } from '@/db/index.db';
+  import { OsmUtils, AssociationUtils } from '@/business-logic/index.utils';
+  import { LocationService } from '@/services';
+  import { Club, ClubEvent } from '@/business-logic';
   import Contact from './components/Contact.vue';
   import MarkerDialog from '@/components/MarkerDialog.vue';
   import EventsList from '@/components/EventsList.vue'
@@ -33,7 +30,7 @@
   const allCoordinates = uniqueEventsLocations.map((ev:ClubEvent) => LocationService.getCoordinates(ev)).concat([club.coordinates]);
   const boundingBox = LocationService.getBoundingBox(allCoordinates);
 
-  const associations = (club?.associations || []).map(ass => getAssociationByType(ass));
+  const associations = (club?.associations || []).map(ass => AssociationUtils.getAssociationByType(ass));
 
   const visible = ref(false);
   const markerDialog = ref();
@@ -80,9 +77,21 @@
       ></l-tile-layer>
       <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
-      <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default')"> </l-marker>
+      <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates"> 
+        <l-icon 
+          :icon-url="OsmUtils.getPin('default').options.iconUrl" 
+          :icon-size="OsmUtils.getPin('default').options.iconSize" 
+          :icon-anchor="OsmUtils.getPin('default').options.iconAnchor"
+        ></l-icon>
+      </l-marker>
 
-      <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates" :icon="getPin(ev.type)"> </l-marker>
+      <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates">
+        <l-icon 
+          :icon-url="OsmUtils.getPin(ev.type).options.iconUrl" 
+          :icon-size="OsmUtils.getPin(ev.type).options.iconSize" 
+          :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"
+        ></l-icon>
+      </l-marker>
 
       <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
         <MarkerDialog :details="markerDialog"></MarkerDialog>

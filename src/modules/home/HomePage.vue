@@ -2,11 +2,10 @@
   import { ref } from 'vue'
   import {ClubsDB} from '@/db/index.db'
   import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale } from "@vue-leaflet/vue-leaflet";
-  import { getPin } from '@/business-logic/osm.utils';
+  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
   import MarkerDialog from '@/components/MarkerDialog.vue';
-  import { Club } from '@/business-logic/clubs.model';
-  import { ClubEvent } from '@/business-logic/events.model';
+  import {Club, ClubEvent} from "@/business-logic";
+  import {OsmUtils} from "@/business-logic/index.utils";
 
   const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
 
@@ -42,7 +41,13 @@
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
         <div v-for="club in ClubsDB">
-          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates" :icon="getPin('default', 2)"> </l-marker>
+          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates">
+            <l-icon 
+              :icon-url="OsmUtils.getPin('default', 2).options.iconUrl" 
+              :icon-size="OsmUtils.getPin('default', 2).options.iconSize" 
+              :icon-anchor="OsmUtils.getPin('default', 2).options.iconAnchor"
+            ></l-icon>
+          </l-marker>
         </div>
 
         <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">

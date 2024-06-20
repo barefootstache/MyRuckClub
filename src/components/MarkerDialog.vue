@@ -1,15 +1,10 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { Club } from '@/business-logic/clubs.model'
-  import { ClubEvent } from '@/business-logic/events.model';
-  import { getContactUrl, getClubById } from '@/business-logic/clubs.utils';
-  import { LocationService } from '@/services/location.service';
-  import { UtilsService } from '@/services/utils.service';
   import { format } from 'date-fns';
-  import { getMostRecentData } from '@/business-logic/events.utils';
+  import { Club, ClubEvent, Contact } from '@/business-logic'
+  import { LocationService, UtilsService } from '@/services'
+  import { EventUtils, ContactUtils, ClubUtils } from '@/business-logic/index.utils';
   import { ClubsDB } from '@/db/index.db'
-  import { Contact } from '@/business-logic/contact.model';
-  import { getIcon, convertContactToArray } from '@/business-logic/contact.utils'
 
   const props = defineProps<{
     details: Club|ClubEvent,
@@ -19,13 +14,13 @@
 
   const card = ref({
     title: props.details.name ?? '',
-    subtitle: (props.details as Club)?.country ?? getClubById((props.details as ClubEvent)?.clubId).name ?? '',
+    subtitle: (props.details as Club)?.country ?? ClubUtils.getClubById((props.details as ClubEvent)?.clubId).name ?? '',
     text: '',
     activity: !!(props.details as ClubEvent)?.type ? (props.details as ClubEvent)?.type.toString().toUpperCase() ?? '' : '',
     id: (props.details as Club)?.id ?? (props.details as ClubEvent)?.clubId ?? '#',
     contact: (props.details as Club)?.contact ?? '',
     contactPreferred: (props.details as Club)?.contact?.preferred ?? 'o',
-    registrationLink: (props.details as Club)?.contact ? getContactUrl((props.details as Club)?.contact) : getRegistrationLink(props.details as ClubEvent) ?? '',
+    registrationLink: (props.details as Club)?.contact ? ClubUtils.getContactUrl((props.details as Club)?.contact) : getRegistrationLink(props.details as ClubEvent) ?? '',
     isEvent: !!(props.details as ClubEvent)?.type,
     date: (props.details as ClubEvent)?.date ?? '',
     time: (props.details as ClubEvent)?.time ?? '',
@@ -42,10 +37,10 @@
    */
   function getRegistrationLink(ev: ClubEvent): string {
     const foundClub = ClubsDB.find((item:Club) => item.id === ev.clubId);
-    return getMostRecentData<string>('url', foundClub, ev) || getContactUrl(foundClub?.contact as Contact) || '';
+    return EventUtils.getMostRecentData<string>('url', foundClub, ev) || ClubUtils.getContactUrl(foundClub?.contact as Contact) || '';
   }
 
-  const resultArray = convertContactToArray(card.value.contact);
+  const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 </script>
 
 <template>
@@ -90,7 +85,7 @@
       <div v-if="!card.isEvent">
         <v-chip variant="outlined" v-for="item in resultArray" style="margin-left: 5px">
           <a v-if="item.name" :href="item.url" target="_blank">
-            <v-icon :icon="getIcon(item.name as keyof Contact)" color="white"></v-icon>
+            <v-icon :icon="ContactUtils.getIcon(item.name as keyof Contact)" color="white"></v-icon>
           </a>
         </v-chip>
       </div>

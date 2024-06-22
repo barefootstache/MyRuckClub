@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import EventItem from '@/components/EventItem.vue'
+  import EventItem from '@/components/EventItem.vue';
+  import DownloadCalendarButton from '@/components/DownloadCalendarButton.vue';
   import { ClubEvent } from "@/business-logic";
   import { format, isThisYear, isThisWeek, isAfter, endOfYear, isBefore, nextSunday, getMonth, addYears, addDays } from 'date-fns';
 
@@ -17,6 +18,7 @@
 
   const props = withDefaults(defineProps<{
     events: ClubEvent[],
+    filename?: string,
     lines?: false | 'one' | 'two' | 'three',
     showLocalTimes?: boolean,
     showUpcomingHeader?: boolean,
@@ -127,6 +129,7 @@
   <div class="local-times-header" v-if="showLocalTimes">
     <span>All times are local times.</span>
   </div>
+  <DownloadCalendarButton :events="events" :filename="filename"></DownloadCalendarButton>
 
   <h2 class="upcoming-header" v-if="showUpcomingHeader"><span v-if="events.length === 0">No </span>Upcoming Events</h2>
 
@@ -153,6 +156,12 @@
     margin: 32px 0;
     border: 1px rgba(var(--v-theme-surface), 0.1) solid;
     font-weight: 500;
+  }
+
+  .mrc-download-calendar-button {
+    border: 1px rgba(var(--v-theme-surface), 0.1) solid;
+    font-weight: 500;
+    padding: 4px;
   }
 
   .upcoming-header {

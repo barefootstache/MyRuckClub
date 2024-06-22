@@ -1,6 +1,4 @@
-import { AssociationType } from "./associations.model";
-import { Contact } from "./contact.model";
-import { EventType } from "./events.model";
+import { AssociationType, Contact, EventType, Timezone } from "@/business-logic";
 
 export type Coordinates = [number, number];
 
@@ -36,7 +34,8 @@ export type Club = {
   hide?: boolean;
   id: string;
   name: string;
-  socialMediaContent?: SocialMediaContent
+  socialMediaContent?: SocialMediaContent;
+  timezone?: Timezone;
 }
 
 export type Default = {

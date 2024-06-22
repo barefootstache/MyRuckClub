@@ -21,7 +21,12 @@ export const Clubs: Club[] = [
       linktree: 'https://linktr.ee/munichruckingcrew',
       sandlot: 'https://fistbumps.sandlot.fit/group/3834e838-51d4-4584-86a6-a46ae9b9784a',
     },
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit'],
@@ -43,7 +48,12 @@ export const Clubs: Club[] = [
       email: 'info@crossfit-bayreuth.de'
     },
     id: 'goruck_club_franken',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope', 'sandlot'],
@@ -64,7 +74,12 @@ export const Clubs: Club[] = [
       sandlot: 'https://fistbumps.sandlot.fit/group/c9b12a87-2b84-4bd0-b909-ec9b05897fdb'  
     },
     id: 'auxruckers',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -72,7 +87,12 @@ export const Clubs: Club[] = [
     country: 'Germany',
     name: 'GORUCK Harzmountains',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/goruckharzmountains/'},
-    id: 'goruckharzmountains'
+    id: 'goruckharzmountains',
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -94,7 +114,12 @@ export const Clubs: Club[] = [
       type: 'ruck'
     },
     id: 'ybbsvalleyruckers',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -111,7 +136,12 @@ export const Clubs: Club[] = [
     name: 'Ruck It! Hannover',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruckithannover/'},
     id: 'ruckithannover',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -128,7 +158,12 @@ export const Clubs: Club[] = [
     name: 'Ruhr Ruckers',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/ruhr_ruckers/'},
     id: 'ruhr_ruckers',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit', 'sandlot'],
@@ -149,7 +184,12 @@ export const Clubs: Club[] = [
       sandlot: 'https://fistbumps.sandlot.fit/group/16581f37-21be-4521-a1f5-886176fd6ec0'
     },
     id: 'teutorucker',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['crossfit'],
@@ -171,7 +211,12 @@ export const Clubs: Club[] = [
       type: 'ruck'
     },
     id: 'herzschlagruckerz',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -188,7 +233,12 @@ export const Clubs: Club[] = [
     name: 'Let\'s Ruck Goruck Club',
     contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/let.s.ruck/'},
     id: 'letsruck',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['goruck', 'goruckeurope'],
@@ -201,7 +251,12 @@ export const Clubs: Club[] = [
       facebook: 'https://www.facebook.com/Skylineruckers'
     },
     id: 'skylineruckers',
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['myruckclub'],
@@ -263,7 +318,12 @@ export const Clubs: Club[] = [
     },
     id: 'blackout_the_limit',
     hide: true,
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['none'],
@@ -287,7 +347,12 @@ export const Clubs: Club[] = [
     },
     id: 'nolimits_deutschland',
     hide: true,
-    hasLogo: true
+    hasLogo: true,
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
   },
   {
     associations: ['myruckclub'],

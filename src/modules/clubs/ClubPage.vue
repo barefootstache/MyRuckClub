@@ -34,6 +34,7 @@
 
   const visible = ref(false);
   const markerDialog = ref();
+  const filename = ref(`${club.name.replace(' ', '_')}_events_calendar.ics`);
 
   /**
    * Shows the marker dialog.
@@ -114,7 +115,7 @@
   
   <div class="hline"></div>
 
-  <EventsList :events="upcomingClubEvents" lines="three" :show-upcoming-header="true"></EventsList>
+  <EventsList :events="upcomingClubEvents" lines="three" :show-upcoming-header="true" :filename="filename"></EventsList>
 </template>
 
 <style scoped>

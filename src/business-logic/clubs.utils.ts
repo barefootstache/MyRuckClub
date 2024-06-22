@@ -1,6 +1,5 @@
 import { ClubsDB } from "@/db/index.db";
-import { Club } from "./clubs.model";
-import { Contact } from "./contact.model";
+import { Club, Contact } from "@/business-logic";
 
 /**
  * Gets the preferred contact URL.

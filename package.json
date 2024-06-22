@@ -12,6 +12,7 @@
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "cheerio": "^1.0.0-rc.12",
     "date-fns": "^2.30.0",
+    "ics": "^3.7.6",
     "leaflet": "^1.9.4",
     "radash": "^11.0.0",
     "vite-plugin-pwa": "0.20.0",

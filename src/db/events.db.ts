@@ -2,15 +2,6 @@ import { ClubEvent } from "@/business-logic/events.model";
 import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-06-22', 'herzschlagruckerz', {name: 'Goruck Herzschlag Summer times blues powered by Patrick', time: '09:00'}),
-  createClubEvent('2024-06-23', 'ybbsvalleyruckers', {coordinates:[48.03699,14.77789], location: 'Kematen/Ybbs, Bushaltestelle 2. Straße'}),
-  createClubEvent('2024-06-25', 'auxruckers'),
-  createClubEvent('2024-06-26', 'goruck_club_franken', {time: '19:00', coordinates: [49.93874,11.58282], location: 'Hofgarten Park, im Osten, Bayreuth'}),
-  createClubEvent('2024-06-27', 'teutorucker'),
-  createClubEvent('2024-06-27', 'ruhr_ruckers'),
-  createClubEvent('2024-06-27', 'munichruckingcrew'),
-  createClubEvent('2024-06-29', 'herzschlagruckerz'),
-  createClubEvent('2024-06-30', 'ybbsvalleyruckers', { coordinates: [47.94236,14.82413], location: 'Parkplatz Ybbstalradweg Gstadt'}),
   createClubEvent('2024-07-02', 'auxruckers'),
   createClubEvent('2024-07-03', 'goruck_club_franken'),
   createClubEvent('2024-07-04', 'teutorucker'),
@@ -19,7 +10,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-07-06', 'herzschlagruckerz'),
   createClubEvent('2024-07-06', 'teutorucker', {name: 'Basic Functional Fitness Test', time: '10:00', duration: { hours: 2 }}),
   createClubEvent('2024-07-06', 'teutorucker', {name: '12 Miler', time: '12:00', duration: { hours: 4 }}),
-  createClubEvent('2024-07-07', 'ybbsvalleyruckers'),
+  createClubEvent('2024-07-05', 'ybbsvalleyruckers', {time: '17:30'}),
   createClubEvent('2024-07-07', 'munichruckingcrew', {name: 'Matthias Memorial Workout', time: '14:00', location: 'Freiwillige Feuerwehr Baierbrunn, Baierbrunn, Germany', url: 'https://forms.gle/pJT6rM5AUMyYG1Bx6', coordinates: [48.01851,11.48569]}),
   createClubEvent('2024-07-09', 'auxruckers'),
   createClubEvent('2024-07-10', 'goruck_club_franken'),

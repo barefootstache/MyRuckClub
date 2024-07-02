@@ -44,6 +44,10 @@
         </v-avatar>
       </router-link>
     </template>
+    <template v-slot:prepend v-else-if="event.type !== 'default'">
+      <v-avatar :image="EventUtils.getIcon(event.type)" size="80">
+      </v-avatar>
+    </template>
     <template v-slot:title>
       <span style="font-weight: bold">{{event.name}}</span><br>
     </template>

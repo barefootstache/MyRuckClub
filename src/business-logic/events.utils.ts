@@ -79,3 +79,18 @@ export function getMostRecentData<T>(key: keyof ClubEvent, club?: Club, ev?: Par
   }
 }
 
+/**
+ * Gets the event type icon.
+ * @param name - the name of the icon
+ * @returns the type icon
+ */
+export function getIcon(name: EventType): string {
+  switch (name) {
+    case 'ruck':
+      return '/ruck_icon.png';
+    case 'pt':
+      return '/pt_icon.png';
+    case "default":
+      return ''
+  }
+}

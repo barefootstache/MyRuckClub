@@ -22,16 +22,6 @@
   }
   
   /**
-   * Gets the club name where one should register.
-   * @param ev - the club event
-   * @returns the club's name.
-   */
-  function getRegistrationName(ev: ClubEvent): string {
-    const foundClub = ClubUtils.getClubById(ev.clubId);
-    return foundClub ? foundClub.name : '';
-  }
-
-  /**
    * Gets the profile logo link of the club, if it has one, otherwise uses the default.
    * @param ev - the club event
    * @returns the URL.
@@ -49,8 +39,10 @@
 <template>
   <v-list-item>
     <template v-slot:prepend v-if="useLogo">
-      <v-avatar :image="getProfileLogoLink(event)" size="90">
-      </v-avatar>
+      <router-link :to="{ name: 'Club', params: {id: event.clubId}}">
+        <v-avatar :image="getProfileLogoLink(event)" size="90">
+        </v-avatar>
+      </router-link>
     </template>
     <template v-slot:title>
       <span style="font-weight: bold">{{event.name}}</span><br>
@@ -58,7 +50,7 @@
     <template v-slot:subtitle>
       <span>{{format(event.date, 'EEEE dd.MM.yyyy')}}</span><br>
       <span>{{event.time}} - <a :href="LocationService.getLocationUrl(event)" target="_blank">{{event.location}}</a></span><br>
-      <span v-if="event.clubId">Registration at <a :href="getRegistrationLink(event)" target="_blank">{{getRegistrationName(event)}}</a></span>
+      <span v-if="event.clubId">Registration at <a :href="getRegistrationLink(event)" target="_blank">{{ClubUtils.getClubById(event.clubId).name}}</a></span>
     </template>
   </v-list-item>
 </template>

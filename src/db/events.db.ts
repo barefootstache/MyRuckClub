@@ -19,7 +19,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-07-11', 'ruhr_ruckers'),
   createClubEvent('2024-07-11', 'munichruckingcrew'),
   createClubEvent('2024-07-13', 'herzschlagruckerz', {time: '16:00'}),
-  createClubEvent('2024-07-14', 'ybbsvalleyruckers'),
+  createClubEvent('2024-07-14', 'ybbsvalleyruckers', {location: 'Parkplatz Ybbstalradweg Gstadt', coordinates: [47.94235,14.82407]}),
   createClubEvent('2024-07-16', 'auxruckers'),
   createClubEvent('2024-07-17', 'goruck_club_franken'),
   createClubEvent('2024-07-18', 'teutorucker'),

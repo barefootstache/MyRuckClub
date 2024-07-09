@@ -219,6 +219,22 @@ export const Clubs: Club[] = [
     }
   },
   {
+    associations: ['myruckclub'],
+    coordinates: [51.75708, 14.3255],
+    country: 'Germany',
+    name: 'Rucking Culture',
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/ruckingculture/',
+    },
+    id: 'ruckingculture',
+    timezone: {
+      utc: 'UTC+1',
+      standard: 1,
+      summer: 2
+    }
+  },
+  {
     associations: ['goruck', 'goruckeurope'],
     coordinates: [48.7788,9.1750],
     country: 'Germany',
@@ -451,12 +467,23 @@ export const Clubs: Club[] = [
     id: 'blackoutruckingcrew'
   },
   {
-    associations: ['myruckclub'],
+    associations: ['goruck'],
     coordinates: [32.7148,-117.1623],
     country: 'USA',
-    name: 'Triton Ruck Club ',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/tritonruckclub/'},
-    id: 'tritonruckclub'
+    name: 'Triton Ruck Club',
+    contact: { 
+      preferred: 'instagram', 
+      instagram: 'https://www.instagram.com/tritonruckclub/',
+      homepage: 'campsite.bio/tritonruckclub',
+      facebook: 'https://www.facebook.com/tritonruckclub',
+      email: 'tritonruckclub@gmail.com'
+    },
+    id: 'tritonruckclub',
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-07-08',
+      updatedAt: '2024-07-10'
+    }
   },
   {
     associations: ['myruckclub'],
@@ -1394,6 +1421,109 @@ export const Clubs: Club[] = [
     country: 'USA',
     name: 'BAAR Ruck Club',
     id: 'baar_ruck_club',
-    contact: { preferred: 'instagram', instagram: 'https://www.instagram.com/baar_ruck_club/'}
-  }
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/baar_ruck_club/'
+    }
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [36.5443, -114.4439],
+    country: 'USA',
+    name: '4L Ruck Club',
+    id: '4lruckclub',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/4lruckclub'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-06-20',
+      updatedAt: '2024-07-10'
+    }
+  },
+  {
+    associations: ['goruck', 'goruckeurope'],
+    coordinates: [50.08733, 14.42101],
+    country: 'Czechia',
+    name: 'Goruck Czech Republic',
+    id: 'goruckczechrepublic',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/goruckczechrepublic',
+      facebook: 'https://www.facebook.com/groups/goruckczechrepublic'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-06-17',
+      updatedAt: '2024-07-10'
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [26.7157, -80.053],
+    country: 'USA',
+    name: 'Battle Irons Ruck Club',
+    id: 'battleironsruckclub',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/battleironsruckclub/',
+      linktree: 'https://linktr.ee/BattleIrons',
+      facebook: 'https://www.facebook.com/BattleIrons',
+      email: 'battleironsruckclub@gmail.com'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2023-09-14',
+      updatedAt: '2024-07-10'
+    }
+  },
+  {
+    associations: ['goruck'],
+    coordinates: [32.78245, -117.25397],
+    country: 'USA',
+    name: 'Triton Ruck Club - Prevail',
+    id: 'tritonprevail',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/tritonprevail/'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-05-29',
+      updatedAt: '2024-07-10'
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [39.535, -76.3488],
+    country: 'USA',
+    name: 'Harford Ruck Club',
+    id: 'harford_ruck_club',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/harford_ruck_club/'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-03-23',
+      updatedAt: '2024-07-10'
+    }
+  },
+  {
+    associations: ['myruckclub'],
+    coordinates: [35.5009, -80.6262],
+    country: 'USA',
+    name: 'Ugly Ducking Ruck Club',
+    id: 'ugly_duckling_ruck_club_',
+    contact: { 
+      preferred: 'instagram',
+      instagram: 'https://www.instagram.com/ugly_duckling_ruck_club_/'
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-06-09',
+      updatedAt: '2024-07-10'
+    }
+  },
 ]

@@ -7,6 +7,7 @@ export type Country =
   | 'Brunei'
   | 'Canada'
   | 'Costa Rica'
+  | 'Czechia'
   | 'England' 
   | 'Finland' 
   | 'France' 

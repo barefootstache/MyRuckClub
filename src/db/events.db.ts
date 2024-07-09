@@ -2,18 +2,6 @@ import { ClubEvent } from "@/business-logic/events.model";
 import { createClubEvent } from "@/business-logic/events.utils";
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-07-02', 'auxruckers'),
-  createClubEvent('2024-07-03', 'goruck_club_franken'),
-  createClubEvent('2024-07-04', 'teutorucker'),
-  createClubEvent('2024-07-04', 'ruhr_ruckers'),
-  createClubEvent('2024-07-04', 'munichruckingcrew', {time: '18:00', name: 'Hot Sauce Ruck', coordinates: [48.13070,11.54600], location: 'Bavaria, München', type: 'ruck', duration: { hours: 4 }}),
-  createClubEvent('2024-07-05', 'ybbsvalleyruckers', {time: '17:30'}),
-  createClubEvent('2024-07-06', 'teutorucker', {name: 'Basic Functional Fitness Test', time: '10:00', duration: { hours: 2 }}),
-  createClubEvent('2024-07-06', 'teutorucker', {name: '12 Miler', time: '12:00', duration: { hours: 4 }}),
-  createClubEvent('2024-07-07', 'ruhr_ruckers', {name: 'Monthly Ruck', time: '09:00'}),
-  createClubEvent('2024-07-07', 'herzschlagruckerz', {time: '09:30', name: 'Feldberg Ruck'}),
-  createClubEvent('2024-07-07', 'munichruckingcrew', {name: 'Matthias Memorial Workout', time: '14:00', location: 'Freiwillige Feuerwehr Baierbrunn, Baierbrunn, Germany', url: 'https://forms.gle/pJT6rM5AUMyYG1Bx6', coordinates: [48.01851,11.48569]}),
-  createClubEvent('2024-07-09', 'auxruckers'),
   createClubEvent('2024-07-10', 'goruck_club_franken'),
   createClubEvent('2024-07-11', 'teutorucker'),
   createClubEvent('2024-07-11', 'ruhr_ruckers'),
@@ -40,6 +28,8 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-01', 'ruhr_ruckers'),
   createClubEvent('2024-08-01', 'munichruckingcrew', {time: '18:00', name: '12 Miler Ruck', duration: { hours: 4 }}),
   createClubEvent('2024-08-03', 'herzschlagruckerz'),
+  createClubEvent('2024-08-03', 'goruck_club_franken', {name: 'Summer Fun in Franken'}),
+  createClubEvent('2024-08-04', 'goruck_club_franken', {name: 'Summer Fun in Franken'}),
   createClubEvent('2024-08-16', 'goruck', {name: 'Ingress Stealth Ops', time:'17:00', location:'Rotterdam, Netherlands', coordinates: [51.92216,4.46664], url:'https://registration.goruck.com/event/ingress-stealth---rotterdam-netherlands---08162024', duration: { hours: 7 }}),
   createClubEvent('2024-08-17', 'goruck', {name: 'Ingress Urban Ops', time:'10:00', location:'Rotterdam, Netherlands', coordinates: [51.92216,4.46664], url:'https://registration.goruck.com/event/ingress-urban---rotterdam-netherlands---08172024'}),
   createClubEvent('2024-08-18', 'goruck', {name: 'Ingress Operation Clear Field', time:'10:00', location:'Rotterdam, Netherlands', coordinates: [51.92216,4.46664], url:'https://registration.goruck.com/event/ingress-operation-clear-field---rotterdam-netherlands---08182024', duration: { hours: 4 }}),

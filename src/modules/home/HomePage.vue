@@ -1,33 +1,42 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import {ClubsDB} from '@/db/index.db'
-  import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
-  import MarkerDialog from '@/components/MarkerDialog.vue';
-  import {Club, ClubEvent} from "@/business-logic";
-  import {OsmUtils} from "@/business-logic/index.utils";
+import { ref } from 'vue';
+import { ClubsDB } from '@/db/index.db';
+import 'leaflet/dist/leaflet.css';
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LControlScale,
+  LIcon,
+} from '@vue-leaflet/vue-leaflet';
+import MarkerDialog from '@/components/MarkerDialog.vue';
+import { Club, ClubEvent } from '@/business-logic';
+import { OsmUtils } from '@/business-logic/index.utils';
 
-  const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
+const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
-  const visible = ref(false);
-  const markerDialog = ref();
+const visible = ref(false);
+const markerDialog = ref();
 
-  /**
-   * Shows the marker dialog.
-   * @param value - the visibility of the dialog
-   * @param body - the details of the dialog body
-   */
-  function showDialog(value: boolean, body: Club|ClubEvent):void {
-    visible.value = value;
-    markerDialog.value = body;
-  }
+/**
+ * Shows the marker dialog.
+ * @param value - the visibility of the dialog
+ * @param body - the details of the dialog body
+ */
+function showDialog(value: boolean, body: Club | ClubEvent): void {
+  visible.value = value;
+  markerDialog.value = body;
+}
 </script>
 
 <template>
   <div class="mobile-container">
     <div class="mobile-hide">
       <h1>My Ruck Club</h1>
-      <p><em>My Ruck Club</em> is the first stop to get more info of your local ruck clubs.</p>
+      <p>
+        <em>My Ruck Club</em> is the first stop to get more info of your local
+        ruck clubs.
+      </p>
     </div>
 
     <div class="map-view">
@@ -38,20 +47,36 @@
           name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
-        <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
+        <l-control-scale
+          position="bottomleft"
+          :imperial="true"
+          :metric="true"
+        ></l-control-scale>
 
         <div v-for="club in ClubsDB">
-          <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates">
-            <l-icon 
-              :icon-url="OsmUtils.getPin('default', 2).options.iconUrl" 
-              :icon-size="OsmUtils.getPin('default', 2).options.iconSize" 
+          <l-marker
+            @click="showDialog(true, club)"
+            v-if="!club?.hide"
+            :lat-lng="club.coordinates"
+          >
+            <l-icon
+              :icon-url="OsmUtils.getPin('default', 2).options.iconUrl"
+              :icon-size="OsmUtils.getPin('default', 2).options.iconSize"
               :icon-anchor="OsmUtils.getPin('default', 2).options.iconAnchor"
             ></l-icon>
           </l-marker>
         </div>
 
-        <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
-          <MarkerDialog :details="markerDialog" :redirect="true" button-label="Ruck More"></MarkerDialog>
+        <v-dialog
+          v-model="visible"
+          :scrim="false"
+          content-class="marker-dialog"
+        >
+          <MarkerDialog
+            :details="markerDialog"
+            :redirect="true"
+            button-label="Ruck More"
+          ></MarkerDialog>
         </v-dialog>
       </l-map>
     </div>
@@ -79,7 +104,7 @@
   :deep() .marker-dialog {
     top: 0 !important;
     left: 0 !important;
-    margin: 0 calc((100% - 400px)/2) !important;
+    margin: 0 calc((100% - 400px) / 2) !important;
   }
   :deep() .marker-dialog .v-row {
     margin-top: 0;
@@ -109,4 +134,3 @@
   }
 }
 </style>
-

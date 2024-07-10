@@ -1,38 +1,47 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import EventsList from '@/components/EventsList.vue'
-  import { isAfter, subDays } from 'date-fns';
-  import "leaflet/dist/leaflet.css";
-  import { LMap, LTileLayer, LMarker, LControlScale, LIcon } from "@vue-leaflet/vue-leaflet";
-  import { EventsDB } from '@/db/index.db';
-  import { LocationService } from '@/services';
-  import { OsmUtils } from '@/business-logic/index.utils';
-  import MarkerDialog from '@/components/MarkerDialog.vue';
-  import { Club, ClubEvent } from '@/business-logic';
+import { ref } from 'vue';
+import EventsList from '@/components/EventsList.vue';
+import { isAfter, subDays } from 'date-fns';
+import 'leaflet/dist/leaflet.css';
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LControlScale,
+  LIcon,
+} from '@vue-leaflet/vue-leaflet';
+import { EventsDB } from '@/db/index.db';
+import { LocationService } from '@/services';
+import { OsmUtils } from '@/business-logic/index.utils';
+import MarkerDialog from '@/components/MarkerDialog.vue';
+import { Club, ClubEvent } from '@/business-logic';
 
-  const zoom = document.documentElement.clientWidth < 800 ? 5 : 6; 
+const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
-  const upcomingClubEvents = EventsDB.filter((item) => isAfter(item.date, subDays(new Date(), 1)));
-  const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
+const upcomingClubEvents = EventsDB.filter((item) =>
+  isAfter(item.date, subDays(new Date(), 1))
+);
+const uniqueEventsLocations =
+  LocationService.getUniqueEventsLocations(upcomingClubEvents);
 
-  const visible = ref(false);
-  const markerDialog = ref();
+const visible = ref(false);
+const markerDialog = ref();
 
-  /**
-   * Shows the marker dialog.
-   * @param value - the visibility of the dialog
-   * @param body - the details of the dialog body
-   */
-  function showDialog(value: boolean, body: Club|ClubEvent):void {
-    visible.value = value;
-    markerDialog.value = body;
-  }
+/**
+ * Shows the marker dialog.
+ * @param value - the visibility of the dialog
+ * @param body - the details of the dialog body
+ */
+function showDialog(value: boolean, body: Club | ClubEvent): void {
+  visible.value = value;
+  markerDialog.value = body;
+}
 </script>
 
 <template>
   <div>
     <h2>Upcoming Events</h2>
-    
+
     <div class="map-view">
       <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
         <l-tile-layer
@@ -41,17 +50,29 @@
           name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
         ></l-tile-layer>
-        <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
+        <l-control-scale
+          position="bottomleft"
+          :imperial="true"
+          :metric="true"
+        ></l-control-scale>
 
-        <l-marker @click="showDialog(true, ev)" v-for="ev in uniqueEventsLocations" :lat-lng="ev.coordinates">
-            <l-icon 
-              :icon-url="OsmUtils.getPin(ev.type).options.iconUrl" 
-              :icon-size="OsmUtils.getPin(ev.type).options.iconSize" 
-              :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"
+        <l-marker
+          @click="showDialog(true, ev)"
+          v-for="ev in uniqueEventsLocations"
+          :lat-lng="ev.coordinates"
+        >
+          <l-icon
+            :icon-url="OsmUtils.getPin(ev.type).options.iconUrl"
+            :icon-size="OsmUtils.getPin(ev.type).options.iconSize"
+            :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"
           ></l-icon>
         </l-marker>
 
-        <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
+        <v-dialog
+          v-model="visible"
+          :scrim="false"
+          content-class="marker-dialog"
+        >
           <MarkerDialog :details="markerDialog"></MarkerDialog>
         </v-dialog>
       </l-map>
@@ -85,7 +106,7 @@ ul {
   :deep() .marker-dialog {
     top: 0 !important;
     left: 0 !important;
-    margin: 0 calc((100% - 400px)/2) !important;
+    margin: 0 calc((100% - 400px) / 2) !important;
   }
   :deep() .marker-dialog .v-row {
     margin-top: 0;

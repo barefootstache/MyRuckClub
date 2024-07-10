@@ -1,15 +1,19 @@
 <script setup lang="ts">
-  import { Club, Contact } from '@/business-logic'
-  import { UtilsService } from '@/services';
-  import { getIcon, getLink, convertContactToArray } from '@/business-logic/contact.utils'
+import { Club, Contact } from '@/business-logic';
+import { UtilsService } from '@/services';
+import {
+  getIcon,
+  getLink,
+  convertContactToArray,
+} from '@/business-logic/contacts.utils';
 
-  const props = defineProps<{
-    club: Club
-  }>();
+const props = defineProps<{
+  club: Club;
+}>();
 
-  let contacts = convertContactToArray(props.club.contact);
-  const preferred = contacts[0];
-  contacts = contacts.length > 1 ? contacts.slice(1) : [];
+let contacts = convertContactToArray(props.club.contact);
+const preferred = contacts[0];
+contacts = contacts.length > 1 ? contacts.slice(1) : [];
 </script>
 
 <template>
@@ -18,7 +22,11 @@
       <span>For more info contact us on our</span>
       <v-chip variant="elevated" color="primary">
         <a :href="getLink(preferred)" target="_blank">
-          <v-icon start :icon="getIcon(preferred.name as keyof Contact)" color="white"></v-icon>
+          <v-icon
+            start
+            :icon="getIcon(preferred.name as keyof Contact)"
+            color="white"
+          ></v-icon>
           <span>{{ UtilsService.capitalize(preferred.name) }}</span>
         </a>
       </v-chip>
@@ -27,8 +35,17 @@
     <div class="more-contact" v-if="contacts.length > 0">
       <span>Or you can also find us on</span>
       <v-chip variant="outlined" color="black" v-for="item in contacts">
-        <a v-if="item.name" :href="getLink(item)" target="_blank" style="color: black">
-          <v-icon start :icon="getIcon(item.name as keyof Contact)" color="red"></v-icon>
+        <a
+          v-if="item.name"
+          :href="getLink(item)"
+          target="_blank"
+          style="color: black"
+        >
+          <v-icon
+            start
+            :icon="getIcon(item.name as keyof Contact)"
+            color="red"
+          ></v-icon>
           <span>{{ UtilsService.capitalize(item.name) }}</span>
         </a>
       </v-chip>

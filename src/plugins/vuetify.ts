@@ -1,7 +1,11 @@
 /**
  * Vuetify3 Plugin
  */
-import { createVuetify, type VuetifyOptions, type ThemeDefinition } from 'vuetify';
+import {
+  createVuetify,
+  type VuetifyOptions,
+  type ThemeDefinition,
+} from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 // Translations provided by Vuetify
@@ -98,8 +102,8 @@ const palette = {
     800: '#2b211d',
     900: '#282320',
     901: '#282320de',
-  }
-}
+  },
+};
 
 const DirtDarkTheme: ThemeDefinition = {
   dark: true,
@@ -118,9 +122,9 @@ const DirtDarkTheme: ThemeDefinition = {
     warning: palette.warning[400],
   },
   variables: {
-    'color-white': palette.grayscale[100]
-  }
-}
+    'color-white': palette.grayscale[100],
+  },
+};
 
 const DirtLightTheme: ThemeDefinition = {
   dark: false,
@@ -139,9 +143,9 @@ const DirtLightTheme: ThemeDefinition = {
     warning: palette.warning[700],
   },
   variables: {
-    'color-white': palette.grayscale[100]
-  }
-}
+    'color-white': palette.grayscale[100],
+  },
+};
 
 /**
  * Vuetify Components
@@ -154,7 +158,7 @@ let vuetifyConfig: VuetifyOptions = {
     aliases,
     sets: {
       mdi,
-    }
+    },
   },
   // Internationalization (i18n)
   // https://vuetifyjs.com/en/features/internationalization/#internationalization-i18n
@@ -169,8 +173,8 @@ let vuetifyConfig: VuetifyOptions = {
     defaultTheme: 'DirtDarkTheme',
     themes: {
       DirtDarkTheme,
-      DirtLightTheme
-    }
+      DirtLightTheme,
+    },
   },
 };
 
@@ -186,4 +190,3 @@ export default createVuetify(vuetifyConfig);
 
 // Export for test.
 export { components, directives };
-

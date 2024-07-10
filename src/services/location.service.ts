@@ -1,6 +1,6 @@
-import { unique } from "radash";
-import { Club, Coordinates } from "@/business-logic/clubs.model";
-import { ClubEvent } from "@/business-logic/events.model";
+import { unique } from 'radash';
+import { Club, Coordinates } from '@/business-logic/clubs.model';
+import { ClubEvent } from '@/business-logic/events.model';
 
 /*
 const ZOOM_MAP:{zoom:number, distanceInKm:number} = [
@@ -33,10 +33,10 @@ export class LocationService {
    * @returns the URL.
    */
   static getLocationClubUrl(ev: Club): string {
-    if(!ev.default){
+    if (!ev.default) {
       return '#';
     } else {
-      return `https://www.openstreetmap.org/?mlat=${ev.default.coordinates[0]}&mlon=${ev.default.coordinates[1]}#map=18/${ev.default.coordinates[0]}/${ev.default.coordinates[1]}`
+      return `https://www.openstreetmap.org/?mlat=${ev.default.coordinates[0]}&mlon=${ev.default.coordinates[1]}#map=18/${ev.default.coordinates[0]}/${ev.default.coordinates[1]}`;
     }
   }
 
@@ -46,10 +46,10 @@ export class LocationService {
    * @returns the URL.
    */
   static getLocationUrl(ev: ClubEvent): string {
-    return `https://www.openstreetmap.org/?mlat=${ev.coordinates[0]}&mlon=${ev.coordinates[1]}#map=18/${ev.coordinates[0]}/${ev.coordinates[1]}`
+    return `https://www.openstreetmap.org/?mlat=${ev.coordinates[0]}&mlon=${ev.coordinates[1]}#map=18/${ev.coordinates[0]}/${ev.coordinates[1]}`;
   }
 
-  /** 
+  /**
    * Gets the coordinates of an club event.
    * @param ev - the club event.
    * @returns the coordinates.
@@ -58,31 +58,31 @@ export class LocationService {
     return ev.coordinates;
   }
 
-  /** 
+  /**
    * Gets the unique events based off their lat/long data.
    * @param evs - the club events
    * @returns the unique club events.
    */
   static getUniqueEventsLocations(evs: ClubEvent[]): ClubEvent[] {
-    if(evs.length <= 1){
+    if (evs.length <= 1) {
       return evs;
     }
-    return unique(evs, e => `${e.coordinates[0]}${e.coordinates[1]}`);
+    return unique(evs, (e) => `${e.coordinates[0]}${e.coordinates[1]}`);
   }
 
-  /** 
+  /**
    * Calculates the zoom relative to distance in km.
    * @param distanceInKm - the distance in km
    * @returns the zoom.
    */
-  static calcZoom(distanceInKm:number): number {
-    if(distanceInKm <= 3) {
+  static calcZoom(distanceInKm: number): number {
+    if (distanceInKm <= 3) {
       return 14;
-    } else if(distanceInKm <= 5) {
+    } else if (distanceInKm <= 5) {
       return 13;
-    } 
+    }
     // TODO fill in the other zoom levels later
-    else if(distanceInKm <= 500) {
+    else if (distanceInKm <= 500) {
       return 7;
     }
     return 8;
@@ -93,11 +93,11 @@ export class LocationService {
    * @param latitude - the latitude
    * @param distance - the distance (default: 1) in km
    * @returns the degree
-   */ 
-  static calcDistanceLatitude(latitude:number, distance = 1): number {
+   */
+  static calcDistanceLatitude(latitude: number, distance = 1): number {
     const degEquatorKm = 111;
     if (latitude % 90 === 0) return 0;
-    return distance / (degEquatorKm * Math.cos(latitude))
+    return distance / (degEquatorKm * Math.cos(latitude));
   }
 
   /**
@@ -106,10 +106,10 @@ export class LocationService {
    * @param distance - the distance (default: 1) in km
    * @returns the degree
    */
-  static calcDistanceLongitude(longitude:number, distance = 1): number {
+  static calcDistanceLongitude(longitude: number, distance = 1): number {
     const radiusEarth = 6371;
     if (longitude % 90 === 0) return 0;
-    return distance / (radiusEarth * Math.cos(longitude))
+    return distance / (radiusEarth * Math.cos(longitude));
   }
 
   /**
@@ -118,12 +118,27 @@ export class LocationService {
    * @param distance - the distance (default: 1) in km
    * @returns the bounding box
    */
-  static getBoundingBoxDistanceFromCenter(coordinates: Coordinates, distance = 1):Array<Coordinates> {
-    const latDistance = LocationService.calcDistanceLatitude(coordinates[0], distance);
-    const longDistance = LocationService.calcDistanceLongitude(coordinates[1], distance);
+  static getBoundingBoxDistanceFromCenter(
+    coordinates: Coordinates,
+    distance = 1
+  ): Array<Coordinates> {
+    const latDistance = LocationService.calcDistanceLatitude(
+      coordinates[0],
+      distance
+    );
+    const longDistance = LocationService.calcDistanceLongitude(
+      coordinates[1],
+      distance
+    );
     // Creates the corners
-    const southWest:Coordinates = [coordinates[0] - latDistance, coordinates[1] - longDistance];
-    const northEast:Coordinates = [coordinates[0] + latDistance, coordinates[1] + longDistance];
+    const southWest: Coordinates = [
+      coordinates[0] - latDistance,
+      coordinates[1] - longDistance,
+    ];
+    const northEast: Coordinates = [
+      coordinates[0] + latDistance,
+      coordinates[1] + longDistance,
+    ];
     return [southWest, northEast];
   }
 
@@ -131,15 +146,21 @@ export class LocationService {
    * Gets the bounding box.
    * @param coordinates - the coordinates to include in the bounding box
    * @param distance - the distance (default: 1) in km
-   * @returns the bounding box 
+   * @returns the bounding box
    */
-  static getBoundingBox(coordinates: Coordinates[], distance = 1):{box: Array<Coordinates>, distanceInKm: number, zoom: number} {
-    if(coordinates.length === 1) {
-      coordinates = LocationService.getBoundingBoxDistanceFromCenter(coordinates[0], distance);
-    } 
+  static getBoundingBox(
+    coordinates: Coordinates[],
+    distance = 1
+  ): { box: Array<Coordinates>; distanceInKm: number; zoom: number } {
+    if (coordinates.length === 1) {
+      coordinates = LocationService.getBoundingBoxDistanceFromCenter(
+        coordinates[0],
+        distance
+      );
+    }
     // Extract latitude and longitude arrays
-    const latitudes = coordinates.map(coord => coord[0]);
-    const longitudes = coordinates.map(coord => coord[1]);
+    const latitudes = coordinates.map((coord) => coord[0]);
+    const longitudes = coordinates.map((coord) => coord[1]);
     // Maxima
     const maxLatitude = Math.max(...latitudes);
     const maxLongitude = Math.max(...longitudes);
@@ -147,10 +168,17 @@ export class LocationService {
     const minLatitude = Math.min(...latitudes);
     const minLongitude = Math.min(...longitudes);
     // Creates the corners
-    const southWest:Coordinates = [minLatitude, minLongitude];
-    const northEast:Coordinates = [maxLatitude, maxLongitude];
-    const distanceInKm = LocationService.calcDistanceBetweenTwoCoords(southWest, northEast);
-    return {box:[southWest, northEast], distanceInKm, zoom: LocationService.calcZoom(distanceInKm)}
+    const southWest: Coordinates = [minLatitude, minLongitude];
+    const northEast: Coordinates = [maxLatitude, maxLongitude];
+    const distanceInKm = LocationService.calcDistanceBetweenTwoCoords(
+      southWest,
+      northEast
+    );
+    return {
+      box: [southWest, northEast],
+      distanceInKm,
+      zoom: LocationService.calcZoom(distanceInKm),
+    };
   }
 
   /**
@@ -159,7 +187,10 @@ export class LocationService {
    * @param coord2 - second coordinates
    * @returns the distance
    */
-  static calcDistanceBetweenTwoCoords(coord1: Coordinates, coord2: Coordinates):number {
+  static calcDistanceBetweenTwoCoords(
+    coord1: Coordinates,
+    coord2: Coordinates
+  ): number {
     const R = 6371; // Earth radius in kilometers
 
     // Convert latitude and longitude from degrees to radians
@@ -173,7 +204,9 @@ export class LocationService {
     const dlon = lon2 - lon1;
 
     // Haversine formula
-    const a = Math.sin(dlat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
+    const a =
+      Math.sin(dlat / 2) ** 2 +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c;
 
@@ -182,11 +215,10 @@ export class LocationService {
 
   /**
    * Converts degrees into radians.
-   * @param degrees - the degrees 
+   * @param degrees - the degrees
    * @returns the radians
    */
-  private static toRadians(degrees: number):number {
-    return degrees * (Math.PI/180);
+  private static toRadians(degrees: number): number {
+    return degrees * (Math.PI / 180);
   }
 }
-

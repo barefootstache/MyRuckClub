@@ -19,13 +19,16 @@ async function extractEventInfo2(url: string): Promise<ClubEvent[]> {
 
     const name = hyphenText[0].trim();
     const defaultDate = '01/01/2000';
-    const dateText = hyphenText.length == 3 ? hyphenText.pop()?.trim() || defaultDate : defaultDate;
+    const dateText =
+      hyphenText.length == 3
+        ? hyphenText.pop()?.trim() || defaultDate
+        : defaultDate;
 
     const type = name.includes('bff') ? 'pt' : 'ruck';
 
     let date = new Date();
     try {
-      date = parse(dateText, "MM/dd/yyyy", new Date());
+      date = parse(dateText, 'MM/dd/yyyy', new Date());
     } catch (error) {
       console.error(`Error parsing date: ${error.message}`);
     }
@@ -34,15 +37,20 @@ async function extractEventInfo2(url: string): Promise<ClubEvent[]> {
     const pipeText = dateAndTimeText.split('|');
 
     const time12hr = pipeText[0].trim() || '12:00am';
-      
+
     let time24hr = '';
     try {
-      time24hr = format(parse(time12hr, "hh:mma", new Date()), "HH:mm");
+      time24hr = format(parse(time12hr, 'hh:mma', new Date()), 'HH:mm');
     } catch (error) {
       console.error(`Error parsing time: ${error.message}`);
     }
 
-    const location = pipeText.length > 1 ? pipeText[1].trim() : hyphenText.length > 1 ? hyphenText[1].trim() : '';
+    const location =
+      pipeText.length > 1
+        ? pipeText[1].trim()
+        : hyphenText.length > 1
+          ? hyphenText[1].trim()
+          : '';
 
     events.push({
       url: `${DOMAIN}${eventUrl}`,
@@ -51,23 +59,25 @@ async function extractEventInfo2(url: string): Promise<ClubEvent[]> {
       time: time24hr,
       location,
       type,
-      coordinates: [0,0],
-      clubId: 'goruck'
+      coordinates: [0, 0],
+      clubId: 'goruck',
     });
   });
 
   return events;
 }
 
-function createEventsDbArray(events: ClubEvent[]):string {
+function createEventsDbArray(events: ClubEvent[]): string {
   return events
-    .map(el => `createClubEvent('${format(el.date, "yyyy-MM-dd")}', '${el.clubId}', {name: '${el.name}', time: '${el.time}', location: '${el.location}', url: '${el.url}', coordinates: ${el.coordinates}, type: '${el.type}'})`)
-    .reduce((a,b) => `${a},\n${b}`);
+    .map(
+      (el) =>
+        `createClubEvent('${format(el.date, 'yyyy-MM-dd')}', '${el.clubId}', {name: '${el.name}', time: '${el.time}', location: '${el.location}', url: '${el.url}', coordinates: ${el.coordinates}, type: '${el.type}'})`
+    )
+    .reduce((a, b) => `${a},\n${b}`);
 }
 
 extractEventInfo2(DOMAIN)
-  .then(events => {
-    console.log(createEventsDbArray(events))
+  .then((events) => {
+    console.log(createEventsDbArray(events));
   })
-  .catch(error => console.error('Error fetching or parsing HTML:', error));
-
+  .catch((error) => console.error('Error fetching or parsing HTML:', error));

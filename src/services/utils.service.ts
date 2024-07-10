@@ -4,7 +4,7 @@ export class UtilsService {
    * @param word - the text to capitalize
    * @returns capitalized text.
    */
-  static capitalize(word:string):string {
+  static capitalize(word: string): string {
     return `${word[0].toUpperCase()}${word.slice(1)}`;
   }
 
@@ -14,13 +14,13 @@ export class UtilsService {
    * @param useOutline - to use an outline
    * @returns the mdi version of the clock time icon or the default clock
    */
-  static getClockTimeIcon(time:string, useOutline = true):string {
+  static getClockTimeIcon(time: string, useOutline = true): string {
     const outline = useOutline ? '-outline' : '';
-    let text = ''
+    let text = '';
 
     const times = time.split(':');
-    if(times.length !== 2) {
-      return `mdi-clock${outline}`
+    if (times.length !== 2) {
+      return `mdi-clock${outline}`;
     }
     const hour = Number(times[0]) % 12;
     switch (hour) {

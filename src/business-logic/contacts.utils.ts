@@ -1,14 +1,14 @@
-import { Contact, ContactIcon } from "./contact.model";
+import { Contact, ContactIcon } from './contacts.model';
 
-type ContactArrayItem = { name: string, url: string };
+type ContactArrayItem = { name: string; url: string };
 
 /**
  * Gets the dedicated icon for the contact.
  * @param key - the contact key
  * @returns the icon name.
  */
-export function getIcon(key: keyof Contact):string {
-  if(Object(ContactIcon).hasOwnProperty(key)){
+export function getIcon(key: keyof Contact): string {
+  if (Object.prototype.hasOwnProperty.call(ContactIcon, key)) {
     return ContactIcon[key] as string;
   }
   return 'mdi-error';
@@ -19,8 +19,8 @@ export function getIcon(key: keyof Contact):string {
  * @param contact - the contact
  * @returns the link.
  */
-export function getLink(contact: ContactArrayItem):string {
-  if(contact.name === 'email') {
+export function getLink(contact: ContactArrayItem): string {
+  if (contact.name === 'email') {
     return `mailto:${contact.url}`;
   }
   return contact.url;
@@ -36,12 +36,19 @@ export function convertContactToArray(contact: Contact): ContactArrayItem[] {
 
   // Move the preferred value to the head of the array
   if (contact.preferred && contact[contact.preferred]) {
-    result.push({ name: contact.preferred, url: contact[contact.preferred] ?? '#' });
+    result.push({
+      name: contact.preferred,
+      url: contact[contact.preferred] ?? '#',
+    });
   }
 
   // Add other values to the array
   for (const key of Object.keys(contact)) {
-    if (key !== 'preferred' && key !== contact.preferred && contact[key as keyof Contact]) {
+    if (
+      key !== 'preferred' &&
+      key !== contact.preferred &&
+      contact[key as keyof Contact]
+    ) {
       result.push({ name: key, url: contact[key as keyof Contact] as string });
     }
   }

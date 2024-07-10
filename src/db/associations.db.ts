@@ -1,102 +1,102 @@
-import { Association } from "@/business-logic/associations.model";
+import { Association } from '@/business-logic/associations.model';
 
 export const Associations: Association[] = [
   {
     name: 'My Ruck Club',
-    contact: { 
-      preferred: 'fediverse', 
-      homepage: 'https://www.myruck.club/', 
+    contact: {
+      preferred: 'fediverse',
+      homepage: 'https://www.myruck.club/',
       instagram: 'https://www.instagram.com/myruckclub/',
-      fediverse: 'https://muenchen.social/@rucking'
+      fediverse: 'https://muenchen.social/@rucking',
     },
     type: 'myruckclub',
-    color: 'cyan'
+    color: 'cyan',
   },
   {
     name: 'GORUCK',
-    contact: { 
-      preferred: 'linktree', 
+    contact: {
+      preferred: 'linktree',
       homepage: 'https://www.goruck.com/',
       instagram: 'https://www.instagram.com/goruck/',
       facebook: 'https://www.facebook.com/GORUCK/',
-      linktree: 'https://linktr.ee/goruck'
+      linktree: 'https://linktr.ee/goruck',
     },
     type: 'goruck',
-    color: 'black'
+    color: 'black',
   },
   {
     name: 'GORUCK Europe',
-    contact: { 
-      preferred: 'linktree', 
+    contact: {
+      preferred: 'linktree',
       linktree: 'https://linktr.ee/goruckeurope',
       instagram: 'http://instagram.com/goruckeurope',
-      facebook: 'http://facebook.com/goruckeurope'
+      facebook: 'http://facebook.com/goruckeurope',
     },
     type: 'goruckeurope',
-    color: 'blue'
+    color: 'blue',
   },
   {
     name: 'MILRUCK',
-    contact: { 
-      preferred: 'homepage', 
+    contact: {
+      preferred: 'homepage',
       homepage: 'https://milruck.se/',
       instagram: 'https://instagram.com/milruck',
-      facebook: 'https://www.facebook.com/milruck'
+      facebook: 'https://www.facebook.com/milruck',
     },
     type: 'milruck',
-    color: 'yellow'
+    color: 'yellow',
   },
   {
     name: 'Sandlot',
-    contact: { 
-      preferred: 'sandlot', 
+    contact: {
+      preferred: 'sandlot',
       sandlot: 'https://www.sandlot.fit/',
       instagram: 'https://www.instagram.com/sandlotfit/',
-      facebook: 'https://www.facebook.com/sandlot.fit.9'
+      facebook: 'https://www.facebook.com/sandlot.fit.9',
     },
     type: 'sandlot',
-    color: 'green'
+    color: 'green',
   },
   {
     name: 'Spartan',
-    contact: { 
-      preferred: 'homepage', 
+    contact: {
+      preferred: 'homepage',
       homepage: 'https://www.spartan.com/',
       instagram: 'https://www.instagram.com/spartanrace/',
-      facebook: 'https://www.facebook.com/spartan'
+      facebook: 'https://www.facebook.com/spartan',
     },
     type: 'spartan',
-    color: 'red'
+    color: 'red',
   },
   {
     name: 'CrossFit',
-    contact: { 
-      preferred: 'homepage', 
+    contact: {
+      preferred: 'homepage',
       homepage: 'https://www.crossfit.com/',
       facebook: 'https://www.facebook.com/crossfit',
-      instagram: 'https://www.instagram.com/crossfit/'
+      instagram: 'https://www.instagram.com/crossfit/',
     },
     type: 'crossfit',
-    color: 'grey'
+    color: 'grey',
   },
   {
     name: 'F3 Nation',
-    contact: { 
-      preferred: 'homepage', 
+    contact: {
+      preferred: 'homepage',
       homepage: 'https://f3nation.com/',
       facebook: 'https://www.facebook.com/fitnessfellowshipfaith/',
-      instagram: 'https://www.instagram.com/f3nation_official/'
+      instagram: 'https://www.instagram.com/f3nation_official/',
     },
     type: 'f3',
-    color: 'white'
+    color: 'white',
   },
   {
     name: 'None',
     contact: {
       preferred: 'homepage',
-      homepage: 'https://codeberg.org/barefootstache/MyRuckClub/issues'
+      homepage: 'https://codeberg.org/barefootstache/MyRuckClub/issues',
     },
     type: 'none',
-    color: 'grey'
-  }
-]
+    color: 'grey',
+  },
+];

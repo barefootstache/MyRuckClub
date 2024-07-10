@@ -1,58 +1,44 @@
 <script setup lang="ts">
-import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { pwaInfo } from 'virtual:pwa-info'
+import { useRegisterSW } from 'virtual:pwa-register/vue';
+import { pwaInfo } from 'virtual:pwa-info';
 
-console.log(pwaInfo)
+console.log(pwaInfo);
 
 // replaced dyanmicaly
-const reloadSW: any = '__RELOAD_SW__'
+const reloadSW: unknown = '__RELOAD_SW__';
 
-const {
-  offlineReady,
-  needRefresh,
-  updateServiceWorker,
-} = useRegisterSW({
+const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW({
   immediate: true,
   onRegisteredSW(swUrl, r) {
-    console.log(`Service Worker at: ${swUrl}`)
+    console.log(`Service Worker at: ${swUrl}`);
     if (reloadSW === 'true') {
-      r && setInterval(async () => {
-        console.log('Checking for sw update')
-        await r.update()
-      }, 20000 /* 20s for testing purposes */)
-    }
-    else {
-      console.log(`SW Registered: ${r}`)
+      r &&
+        setInterval(async () => {
+          console.log('Checking for sw update');
+          await r.update();
+        }, 20000 /* 20s for testing purposes */);
+    } else {
+      console.log(`SW Registered: ${r}`);
     }
   },
-})
+});
 
-async function close() {
-  offlineReady.value = false
-  needRefresh.value = false
+async function closeBtn() {
+  offlineReady.value = false;
+  needRefresh.value = false;
 }
 </script>
 
 <template>
-  <div
-    v-if="offlineReady || needRefresh"
-    class="pwa-toast"
-    role="alert"
-  >
+  <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
     <div class="message">
-      <span v-if="offlineReady">
-        App ready to work offline
-      </span>
+      <span v-if="offlineReady"> App ready to work offline </span>
       <span v-else>
         New content available, click on reload button to update.
       </span>
     </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()">
-      Reload
-    </button>
-    <button @click="close">
-      Close
-    </button>
+    <button v-if="needRefresh" @click="updateServiceWorker()">Reload</button>
+    <button @click="closeBtn">Close</button>
   </div>
 </template>
 
@@ -68,7 +54,7 @@ async function close() {
   z-index: 1;
   text-align: left;
   width: calc(100% - 16px);
-  background-color: rgb(var(--v-theme-primary)); 
+  background-color: rgb(var(--v-theme-primary));
   color: rgb(var(--v-color-white));
 }
 .pwa-toast .message {
@@ -80,8 +66,7 @@ async function close() {
   margin-right: 5px;
   border-radius: 2px;
   padding: 3px 10px;
-  background-color: rgb(var(--v-theme-secondary)); 
+  background-color: rgb(var(--v-theme-secondary));
   color: rgb(var(--v-color-white));
 }
 </style>
-

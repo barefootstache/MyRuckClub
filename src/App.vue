@@ -65,6 +65,9 @@ navigation a:hover {
   background-color: rgb(var(--v-theme-primary));
   color: rgb(var(--v-color-white));
 }
+navigation span {
+  padding-left: 2px;
+}
 
 @media screen and (max-width: 800px) {
   navigation {

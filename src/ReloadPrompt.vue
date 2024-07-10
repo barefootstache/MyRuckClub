@@ -44,29 +44,29 @@ async function closeBtn() {
 
 <style>
 .pwa-toast {
-  position: fixed;
-  right: 0;
+  background-color: rgb(var(--v-theme-primary));
+  border-radius: 4px;
+  border: 1px solid rgb(var(--v-theme-accent));
   bottom: 0;
+  color: rgb(var(--v-color-white));
   margin: 8px;
   padding: 12px;
-  border: 1px solid rgb(var(--v-theme-accent));
-  border-radius: 4px;
-  z-index: 1;
+  position: fixed;
+  right: 0;
   text-align: left;
   width: calc(100% - 16px);
-  background-color: rgb(var(--v-theme-primary));
-  color: rgb(var(--v-color-white));
+  z-index: 400;
 }
 .pwa-toast .message {
   margin-bottom: 8px;
 }
 .pwa-toast button {
-  border: 1px solid rgb(var(--v-theme-accent));
-  outline: none;
-  margin-right: 5px;
-  border-radius: 2px;
-  padding: 3px 10px;
   background-color: rgb(var(--v-theme-secondary));
+  border-radius: 2px;
+  border: 1px solid rgb(var(--v-theme-accent));
   color: rgb(var(--v-color-white));
+  margin-right: 5px;
+  outline: none;
+  padding: 3px 10px;
 }
 </style>

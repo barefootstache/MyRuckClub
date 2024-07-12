@@ -1,6 +1,6 @@
 import {createClient} from '@libsql/client/web';
 
 export const turso = createClient({
-  url: process.env.TURSO_DATABASE_URL ?? '',
-  authToken: process.env.TURSO_AUTH_TOKEN
+  url: import.meta.env.VITE_TURSO_DATABASE_URL,
+  authToken: import.meta.env.VITE_TURSO_AUTH_TOKEN
 });

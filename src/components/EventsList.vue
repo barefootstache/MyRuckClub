@@ -14,6 +14,7 @@ import {
   addYears,
   addDays,
 } from 'date-fns';
+import { computed } from 'vue';
 
 type DateMapItem = {
   header: string;
@@ -118,6 +119,8 @@ function sortEvents(events: ClubEvent[]): DateMap {
     },
   };
 
+  if(!events) return dateMap;
+
   events.map((ev) => {
     const date = ev.date;
 
@@ -139,13 +142,15 @@ function sortEvents(events: ClubEvent[]): DateMap {
   return dateMap;
 }
 
-const dateMap = sortEvents(props.events);
-const sortedEventsByDate = [
-  dateMap.thisWeek,
-  dateMap.nextWeek,
-  ...dateMap.months.filter((month) => month.events.length),
-  dateMap.nextYear,
-];
+const dateMap = computed(() => sortEvents(props.events));
+const sortedEventsByDate = computed(() => {
+  return [
+    dateMap.value.thisWeek,
+    dateMap.value.nextWeek,
+    ...dateMap.value.months.filter((month) => month.events.length),
+    dateMap.value.nextYear,
+  ]
+});
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify';
-import ReloadPrompt from './ReloadPrompt.vue';
+// import ReloadPrompt from './ReloadPrompt.vue';
 
 const theme = useTheme();
 //toggleTheme()
@@ -36,7 +36,7 @@ function toggleTheme() {
     <!-- <router-link to="/signup">Sign Up</router-link> -->
   </navigation>
   <router-view></router-view>
-  <ReloadPrompt />
+  <!-- <ReloadPrompt /> -->
 </template>
 
 <style scoped>

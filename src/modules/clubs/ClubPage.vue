@@ -34,11 +34,14 @@ const club = ClubsDB.find((item) => item.id === route.params.id) as Club;
 const upcomingClubEvents = EventsDB.filter(
   (item) => item.clubId === club.id
 ).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
+
 const uniqueEventsLocations =
   LocationService.getUniqueEventsLocations(upcomingClubEvents);
+
 const allCoordinates = uniqueEventsLocations
   .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
   .concat([club.coordinates]);
+
 const boundingBox = LocationService.getBoundingBox(allCoordinates);
 
 const associations = (club?.associations || []).map((ass) =>
@@ -77,7 +80,7 @@ function getProfileLogoLink(): string {
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="club?.default?.location"
+    <v-card-text v-if="club?.default?.location && !club?.hide"
       >We typically meet at
       <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{
         club?.default?.location
@@ -86,7 +89,7 @@ function getProfileLogoLink(): string {
     >
   </v-card>
 
-  <div class="map-view">
+  <div class="map-view" v-if="!club?.hide">
     <l-map
       ref="map"
       v-model:zoom="boundingBox.zoom"

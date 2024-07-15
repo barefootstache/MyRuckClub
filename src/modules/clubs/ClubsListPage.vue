@@ -58,7 +58,7 @@ const headers = [
       </template>
 
       <template #item="{ item }">
-        <tr v-if="!item.hide">
+        <tr>
           <td></td>
           <td>
             <router-link :to="{ name: 'Club', params: { id: item.id } }">{{

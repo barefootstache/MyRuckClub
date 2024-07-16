@@ -18,14 +18,22 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-07-18', 'ruhr_ruckers'),
   createClubEvent('2024-07-18', 'munichruckingcrew'),
   createClubEvent('2024-07-20', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-21', 'ybbsvalleyruckers', {location: 'Parkplatz Naturbad Kematen', coordinates: [48.03604,14.78047]}),
+  createClubEvent('2024-07-21', 'ybbsvalleyruckers', {
+    location: 'Parkplatz Naturbad Kematen',
+    coordinates: [48.03604, 14.78047],
+  }),
   createClubEvent('2024-07-23', 'auxruckers'),
   createClubEvent('2024-07-23', 'theshed_healthclub'),
   createClubEvent('2024-07-24', 'goruck_club_franken'),
   createClubEvent('2024-07-25', 'teutorucker'),
   createClubEvent('2024-07-25', 'ruhr_ruckers'),
   createClubEvent('2024-07-25', 'munichruckingcrew'),
-  createClubEvent('2024-07-26', 'goruck', {name: 'Scavenger Hunt x', location: 'Riginal CrossFit, Nürnberg', coordinates: [49.44846,11.01471], url: 'https://docs.google.com/forms/d/e/1FAIpQLSeLJ1mCbAqnCg51hBFDQE4Md4ZZUOBB1GZuLGaf8W0x5IRWfw/viewform'}),
+  createClubEvent('2024-07-26', 'goruck', {
+    name: 'Scavenger Hunt x',
+    location: 'Riginal CrossFit, Nürnberg',
+    coordinates: [49.44846, 11.01471],
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLSeLJ1mCbAqnCg51hBFDQE4Md4ZZUOBB1GZuLGaf8W0x5IRWfw/viewform',
+  }),
   createClubEvent('2024-07-27', 'herzschlagruckerz', { time: '16:00' }),
   createClubEvent('2024-07-28', 'ybbsvalleyruckers'),
   createClubEvent('2024-07-30', 'auxruckers'),
@@ -40,22 +48,28 @@ export const ClubEvents: ClubEvent[] = [
   }),
   createClubEvent('2024-08-03', 'herzschlagruckerz'),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Team Challenge Extraction', time: '10:00'
+    name: 'Team Challenge Extraction',
+    time: '10:00',
   }),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'GORUCK Boule and Cornhole', time: '14:00'
+    name: 'GORUCK Boule and Cornhole',
+    time: '14:00',
   }),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Beer Mile: Take a Drink', time: '16:30'
+    name: 'Beer Mile: Take a Drink',
+    time: '16:30',
   }),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Community Meeting: Bayreuth City', time: '20:30'
+    name: 'Community Meeting: Bayreuth City',
+    time: '20:30',
   }),
   createClubEvent('2024-08-04', 'goruck_club_franken', {
-    name: 'Rain Ruck', time: '10:00'
+    name: 'Rain Ruck',
+    time: '10:00',
   }),
   createClubEvent('2024-08-04', 'goruck_club_franken', {
-    name: 'Barbecue and Beer', time: '13:30'
+    name: 'Barbecue and Beer',
+    time: '13:30',
   }),
   createClubEvent('2024-08-06', 'theshed_healthclub'),
   createClubEvent('2024-08-13', 'theshed_healthclub'),

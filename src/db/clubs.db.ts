@@ -327,7 +327,7 @@ export const Clubs: Club[] = [
     },
     default: {
       name: 'GORUCK Event',
-      coordinates: [30.28898,-81.39852],
+      coordinates: [30.28898, -81.39852],
       time: '12:00',
       type: 'ruck',
       location: 'GORUCK HQ',
@@ -1141,7 +1141,7 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck'],
-    coordinates: [30.28898,-81.39852],
+    coordinates: [30.28898, -81.39852],
     country: 'USA',
     name: 'GORUCK Club HQ',
     contact: {
@@ -1888,7 +1888,7 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck', 'goruckeurope', 'crossfit'],
-    coordinates: [57.36639,-2.20079],
+    coordinates: [57.36639, -2.20079],
     country: 'Scotland',
     name: 'The Shed Health Club',
     id: 'theshed_healthclub',
@@ -1897,20 +1897,20 @@ export const Clubs: Club[] = [
       homepage: 'https://www.theshedhealthclub.co.uk',
       instagram: 'https://www.instagram.com/theshed_healthclub/',
       email: 'info@theshedhealthclub.co.uk',
-      facebook: 'https://www.facebook.com/theshedhealthclub/'
+      facebook: 'https://www.facebook.com/theshedhealthclub/',
     },
     socialMediaContent: {
       source: 'instagram',
       lastPost: '2024-07-15',
-      updatedAt: '2024-07-16'
+      updatedAt: '2024-07-16',
     },
     default: {
       name: 'GORUCK class',
       time: '19:00',
-      coordinates: [57.36639,-2.20079],
+      coordinates: [57.36639, -2.20079],
       type: 'ruck',
       location: 'The Shed Health Club Gym',
-      recurringInterval: 'weekly'
-    }
-  }
+      recurringInterval: 'weekly',
+    },
+  },
 ];

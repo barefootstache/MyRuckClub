@@ -2,26 +2,6 @@ import { ClubEvent } from '@/business-logic/events.model';
 import { createClubEvent } from '@/business-logic/events.utils';
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-07-10', 'goruck_club_franken'),
-  createClubEvent('2024-07-11', 'teutorucker'),
-  createClubEvent('2024-07-11', 'ruhr_ruckers'),
-  createClubEvent('2024-07-11', 'munichruckingcrew'),
-  createClubEvent('2024-07-13', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-14', 'ybbsvalleyruckers', {
-    location: 'Parkplatz Ybbstalradweg Gstadt',
-    coordinates: [47.94235, 14.82407],
-  }),
-  createClubEvent('2024-07-16', 'auxruckers'),
-  createClubEvent('2024-07-16', 'theshed_healthclub'),
-  createClubEvent('2024-07-17', 'goruck_club_franken'),
-  createClubEvent('2024-07-18', 'teutorucker'),
-  createClubEvent('2024-07-18', 'ruhr_ruckers'),
-  createClubEvent('2024-07-18', 'munichruckingcrew'),
-  createClubEvent('2024-07-20', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-21', 'ybbsvalleyruckers', {
-    location: 'Parkplatz Naturbad Kematen',
-    coordinates: [48.03604, 14.78047],
-  }),
   createClubEvent('2024-07-23', 'auxruckers'),
   createClubEvent('2024-07-23', 'theshed_healthclub'),
   createClubEvent('2024-07-24', 'goruck_club_franken'),
@@ -29,13 +9,28 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-07-25', 'ruhr_ruckers'),
   createClubEvent('2024-07-25', 'munichruckingcrew'),
   createClubEvent('2024-07-26', 'goruck', {
-    name: 'Scavenger Hunt x',
+    name: 'Scavenger Hunt',
+    time: '17:30',
     location: 'Riginal CrossFit, Nürnberg',
     coordinates: [49.44846, 11.01471],
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSeLJ1mCbAqnCg51hBFDQE4Md4ZZUOBB1GZuLGaf8W0x5IRWfw/viewform',
   }),
+  createClubEvent('2024-07-27', 'goruck', {
+    name: 'Sandbag and Ruck Training Course',
+    time: '10:30',
+    type: 'pt',
+    location: 'Riginal CrossFit, Nürnberg',
+    coordinates: [49.44846, 11.01471],
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLSd_MxcfDl0r2-5eSvv6KrVNh2BOgTqUtrpztUQZrWou_z3QDA/viewform',
+  }),
+  createClubEvent('2024-07-27', 'goruck', {
+    name: 'Team Building Challenge',
+    time: '16:30',
+    location: 'Riginal CrossFit, Nürnberg',
+    coordinates: [49.44846, 11.01471],
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLSfeHObIwAestEIBFE9eLHh4FdKB1oQVYXDtRv5YIC3d8r-Cmg/viewform',
+  }),
   createClubEvent('2024-07-27', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-28', 'ybbsvalleyruckers'),
   createClubEvent('2024-07-30', 'auxruckers'),
   createClubEvent('2024-07-30', 'theshed_healthclub'),
   createClubEvent('2024-07-31', 'goruck_club_franken'),
@@ -58,6 +53,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-03', 'goruck_club_franken', {
     name: 'Beer Mile: Take a Drink',
     time: '16:30',
+    type: 'ruck'
   }),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
     name: 'Community Meeting: Bayreuth City',
@@ -66,12 +62,14 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-04', 'goruck_club_franken', {
     name: 'Rain Ruck',
     time: '10:00',
+    type: 'ruck'
   }),
   createClubEvent('2024-08-04', 'goruck_club_franken', {
     name: 'Barbecue and Beer',
     time: '13:30',
   }),
   createClubEvent('2024-08-06', 'theshed_healthclub'),
+  createClubEvent('2024-08-11', 'ybbsvalleyruckers', {location:'Parkplatz Ybbstalradweg Opponitz/Gstadt', coordinates: [47.87246, 14.80351]}),
   createClubEvent('2024-08-13', 'theshed_healthclub'),
   createClubEvent('2024-08-16', 'goruck', {
     name: 'Ingress Stealth Ops',

@@ -1912,6 +1912,6 @@ export const Clubs: Club[] = [
       location: 'The Shed Health Club Gym',
       recurringInterval: 'weekly',
     },
-    hasLogo: true
+    hasLogo: true,
   },
 ];

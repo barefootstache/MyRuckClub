@@ -53,7 +53,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-03', 'goruck_club_franken', {
     name: 'Beer Mile: Take a Drink',
     time: '16:30',
-    type: 'ruck'
+    type: 'ruck',
   }),
   createClubEvent('2024-08-03', 'goruck_club_franken', {
     name: 'Community Meeting: Bayreuth City',
@@ -62,14 +62,17 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-04', 'goruck_club_franken', {
     name: 'Rain Ruck',
     time: '10:00',
-    type: 'ruck'
+    type: 'ruck',
   }),
   createClubEvent('2024-08-04', 'goruck_club_franken', {
     name: 'Barbecue and Beer',
     time: '13:30',
   }),
   createClubEvent('2024-08-06', 'theshed_healthclub'),
-  createClubEvent('2024-08-11', 'ybbsvalleyruckers', {location:'Parkplatz Ybbstalradweg Opponitz/Gstadt', coordinates: [47.87246, 14.80351]}),
+  createClubEvent('2024-08-11', 'ybbsvalleyruckers', {
+    location: 'Parkplatz Ybbstalradweg Opponitz/Gstadt',
+    coordinates: [47.87246, 14.80351],
+  }),
   createClubEvent('2024-08-13', 'theshed_healthclub'),
   createClubEvent('2024-08-16', 'goruck', {
     name: 'Ingress Stealth Ops',

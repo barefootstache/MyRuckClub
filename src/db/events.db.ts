@@ -59,7 +59,8 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-16', 'goruck', {
     name: 'Ingress Stealth Ops',
     time: '17:00',
-    location: 'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
     coordinates: [51.91415, 4.47109],
     url: 'https://registration.goruck.com/event/ingress-stealth-ops-rotterdam-netherlands',
     duration: { hours: 7 },
@@ -67,16 +68,18 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-17', 'goruck', {
     name: 'Ingress Urban Ops',
     time: '10:00',
-    location: 'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
     coordinates: [51.91415, 4.47109],
     url: 'https://registration.goruck.com/event/ingress-urban-ops-rotterdam-netherlands',
-    duration: { hours: 3 }
+    duration: { hours: 3 },
   }),
   createClubEvent('2024-08-17', 'herzschlagruckerz'),
   createClubEvent('2024-08-18', 'goruck', {
     name: 'Ingress Operation Clear Field',
     time: '10:00',
-    location: 'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
     coordinates: [51.91415, 4.47109],
     url: 'https://registration.goruck.com/event/ingress-operation-clear-field-rotterdam-netherlands',
     duration: { hours: 4 },
@@ -117,7 +120,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-09-21', 'munichruckingcrew', {
     name: 'Cloverleaf',
     time: '10:00',
-    duration:{ hours: 5 }
+    duration: { hours: 5 },
   }),
   createClubEvent('2024-11-01', 'goruck', {
     name: 'Ingress Stealth Ops',
@@ -133,7 +136,7 @@ export const ClubEvents: ClubEvent[] = [
     location: 'Valencia, Spain',
     coordinates: [39.4704, -0.3767],
     url: 'https://registration.goruck.com/event/ingress-urban-ops-valencia-spain',
-    duration: { hours: 3 }
+    duration: { hours: 3 },
   }),
   createClubEvent('2024-11-03', 'goruck', {
     name: 'Ingress Operation Clear Field',

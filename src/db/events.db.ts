@@ -2,45 +2,6 @@ import { ClubEvent } from '@/business-logic/events.model';
 import { createClubEvent } from '@/business-logic/events.utils';
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-07-30', 'auxruckers'),
-  createClubEvent('2024-07-30', 'theshed_healthclub'),
-  createClubEvent('2024-07-31', 'goruck_club_franken'),
-  createClubEvent('2024-08-01', 'teutorucker'),
-  createClubEvent('2024-08-01', 'ruhr_ruckers'),
-  createClubEvent('2024-08-01', 'munichruckingcrew', {
-    time: '17:30',
-    name: '12 Miler Ruck',
-    location: 'Bavaria Statue, München',
-    coordinates: [48.13069, 11.54602],
-    duration: { hours: 4 },
-  }),
-  createClubEvent('2024-08-03', 'herzschlagruckerz'),
-  createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Team Challenge Extraction',
-    time: '10:00',
-  }),
-  createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'GORUCK Boule and Cornhole',
-    time: '14:00',
-  }),
-  createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Beer Mile: Take a Drink',
-    time: '16:30',
-    type: 'ruck',
-  }),
-  createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Community Meeting: Bayreuth City',
-    time: '20:30',
-  }),
-  createClubEvent('2024-08-04', 'goruck_club_franken', {
-    name: 'Rain Ruck',
-    time: '10:00',
-    type: 'ruck',
-  }),
-  createClubEvent('2024-08-04', 'goruck_club_franken', {
-    name: 'Barbecue and Beer',
-    time: '13:30',
-  }),
   createClubEvent('2024-08-06', 'auxruckers'),
   createClubEvent('2024-08-06', 'theshed_healthclub'),
   createClubEvent('2024-08-07', 'goruck_club_franken'),
@@ -145,6 +106,15 @@ export const ClubEvents: ClubEvent[] = [
     coordinates: [39.4704, -0.3767],
     url: 'https://registration.goruck.com/event/ingress-operation-clear-field---valencia-spain',
     duration: { hours: 4 },
+  }),
+  createClubEvent('2024-11-09', 'teutorucker', {
+    name: 'Chad 1000x'
+  }),
+  createClubEvent('2025-05-16', 'teutorucker', {
+    name: 'Operation Chastise',
+    time: '20:00',
+    coordinates: [51.49148, 8.06131],
+    location: 'Mahnmal der Möhnekatastrophe von Mai 1943'
   }),
   createClubEvent('2025-05-30', 'goruck', {
     name: '100km Ruck Normandy',

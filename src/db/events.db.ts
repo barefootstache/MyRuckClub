@@ -84,6 +84,7 @@ export const ClubEvents: ClubEvent[] = [
     coordinates: [48.35904, 10.88793],
     url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718'
   }),
+  createClubEvent('2024-08-20', 'theshed_healthclub'),
   createClubEvent('2024-08-21', 'goruck', {
     name: 'Cadre Dan Light - Bayreuth',
     time: '17:00',
@@ -93,6 +94,9 @@ export const ClubEvents: ClubEvent[] = [
     time: '17:00',
     type: 'ruck'
   }),
+  createClubEvent('2024-08-22', 'teutorucker'),
+  createClubEvent('2024-08-22', 'ruhr_ruckers'),
+  createClubEvent('2024-08-24', 'herzschlagruckerz'),
   createClubEvent('2024-08-24', 'goruck', {
     name: 'Cadre Dan Scavenger - Grafenwöhr',
     location: 'Dießfurter Str 18, Grafenwöhr',
@@ -107,10 +111,6 @@ export const ClubEvents: ClubEvent[] = [
     coordinates: [49.71757, 11.91566],
     url: 'https://fistbumps.sandlot.fit/fistbump/ec8a8bba-dd28-49a9-84f7-9dc184398026'
   }),
-  createClubEvent('2024-08-20', 'theshed_healthclub'),
-  createClubEvent('2024-08-22', 'teutorucker'),
-  createClubEvent('2024-08-22', 'ruhr_ruckers'),
-  createClubEvent('2024-08-24', 'herzschlagruckerz'),
   createClubEvent('2024-08-27', 'auxruckers'),
   createClubEvent('2024-08-27', 'theshed_healthclub'),
   createClubEvent('2024-08-28', 'goruck_club_franken'),

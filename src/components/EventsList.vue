@@ -119,7 +119,7 @@ function sortEvents(events: ClubEvent[]): DateMap {
     },
   };
 
-  if(!events) return dateMap;
+  if (!events) return dateMap;
 
   events.map((ev) => {
     const date = ev.date;
@@ -149,7 +149,7 @@ const sortedEventsByDate = computed(() => {
     dateMap.value.nextWeek,
     ...dateMap.value.months.filter((month) => month.events.length),
     dateMap.value.nextYear,
-  ]
+  ];
 });
 </script>
 

@@ -70,22 +70,33 @@ export class TursoService {
   }
 
   private static parseAsClub(row: Row): Club {
-    return {
+    const body: Club = {
       coordinates: JSON.parse(row['coordinates'] as string) as Coordinates,
       id: row['id'] as string,
       name: row['name'] as string,
       hide: Boolean(row['hide'] as number),
       contact: JSON.parse(row['contact'] as string) as Contact,
       country: row['country'] as Country,
-      default: JSON.parse(row['default'] as string) as Default,
       hasLogo: Boolean(row['hasLogo'] as number),
-      timezone: JSON.parse(row['timezone'] as string) as Timezone,
       associations: JSON.parse(
         row['associations'] as string
       ) as AssociationType[],
-      socialMediaContent: JSON.parse(
-        row['socialMediaContent'] as string
-      ) as SocialMediaContent,
     };
+
+    if (row['default'] !== 'undefined') {
+      body.default = JSON.parse(row['default'] as string) as Default;
+    }
+
+    if (row['socialMediaContent']) {
+      body.socialMediaContent = JSON.parse(
+        row['socialMediaContent'] as string
+      ) as SocialMediaContent;
+    }
+
+    if (row['timezone']) {
+      body.timezone = JSON.parse(row['timezone'] as string) as Timezone;
+    }
+
+    return body;
   }
 }

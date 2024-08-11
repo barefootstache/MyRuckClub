@@ -13,7 +13,7 @@ import { LocationService, TursoService } from '@/services';
 import { OsmUtils } from '@/business-logic/index.utils';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent } from '@/business-logic';
-import { computedAsync} from '@vueuse/core';
+import { computedAsync } from '@vueuse/core';
 
 const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
@@ -26,7 +26,8 @@ const futureEvents = computedAsync<ClubEvent[]>(
 );
 
 const uniqueEventsLocations = computedAsync<ClubEvent[]>(
-   async () => LocationService.getUniqueEventsLocations(futureEvents.value), [],
+  async () => LocationService.getUniqueEventsLocations(futureEvents.value),
+  []
 );
 
 /**
@@ -38,7 +39,6 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
-
 </script>
 
 <template>

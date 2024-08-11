@@ -61,7 +61,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 
         <l-marker
           @click="showDialog(true, ev)"
-          v-for="ev in uniqueEventsLocations as ClubEvent[]"
+          v-for="ev in uniqueEventsLocations"
           :lat-lng="ev.coordinates"
         >
           <l-icon

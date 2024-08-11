@@ -1,4 +1,3 @@
-import { Clubs } from '@/db/clubs.db';
 import {
   Club,
   Coordinates,
@@ -10,6 +9,7 @@ import {
 import { getDate, getMonth, getTime, getYear } from 'date-fns';
 import { EventAttributes } from 'ics';
 import { getContactUrl } from './clubs.utils';
+import { TursoService } from '@/services';
 
 /**
  * Creates a club event.
@@ -18,12 +18,12 @@ import { getContactUrl } from './clubs.utils';
  * @param ev - custom club event properties
  * @returns the new club event.
  */
-export function createClubEvent(
+export async function createClubEvent(
   dateString: string,
   clubId: string,
   ev?: Partial<ClubEvent>
-): ClubEvent {
-  const club = Clubs.find((item) => item.id === clubId);
+): Promise<ClubEvent> {
+  const club = await TursoService.getClubById(clubId);
   const newEvent = {
     clubId,
     coordinates: getMostRecentData<Coordinates>('coordinates', club, ev),

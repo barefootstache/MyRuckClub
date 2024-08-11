@@ -73,7 +73,7 @@ function getProfileLogoLink(): string {
       <span v-if="event.clubId"
         >Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          club.name
+          club.name || ''
         }}</a></span
       >
     </template>

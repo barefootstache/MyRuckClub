@@ -17,7 +17,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-14', 'goruck_club_franken'),
   createClubEvent('2024-08-15', 'ybbsvalleyruckers', {
     location: 'Parkplatz Naturbad Kematen',
-    coordinates: [48.03461, 14.77950],
+    coordinates: [48.03461, 14.7795],
   }),
   createClubEvent('2024-08-15', 'teutorucker'),
   createClubEvent('2024-08-15', 'ruhr_ruckers'),
@@ -54,35 +54,35 @@ export const ClubEvents: ClubEvent[] = [
     time: '17:00',
     location: 'Hafenpark, Frankfurt',
     coordinates: [50.10845, 8.70614],
-    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60',
   }),
   createClubEvent('2024-08-19', 'herzschlagruckerz', {
     name: 'Cadre Dan Light - Frankfurt',
     time: '17:00',
     location: 'Hafenpark, Frankfurt',
     coordinates: [50.10845, 8.70614],
-    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60',
   }),
   createClubEvent('2024-08-19', 'skylineruckers', {
     name: 'Cadre Dan Light - Frankfurt',
     time: '17:00',
     location: 'Hafenpark, Frankfurt',
     coordinates: [50.10845, 8.70614],
-    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60',
   }),
   createClubEvent('2024-08-20', 'auxruckers', {
     name: 'Cadre Dan Light - Augsburg',
     time: '17:30',
     location: 'Gögginger Str 10, Augsburg',
     coordinates: [48.35904, 10.88793],
-    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718'
+    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718',
   }),
   createClubEvent('2024-08-20', 'goruck', {
     name: 'Cadre Dan Light - Augsburg',
     time: '17:30',
     location: 'Gögginger Str 10, Augsburg',
     coordinates: [48.35904, 10.88793],
-    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718'
+    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718',
   }),
   createClubEvent('2024-08-20', 'theshed_healthclub'),
   createClubEvent('2024-08-21', 'goruck', {
@@ -92,7 +92,7 @@ export const ClubEvents: ClubEvent[] = [
   createClubEvent('2024-08-21', 'goruck_club_franken', {
     name: 'Cadre Dan Light - Bayreuth',
     time: '17:00',
-    type: 'ruck'
+    type: 'ruck',
   }),
   createClubEvent('2024-08-22', 'teutorucker'),
   createClubEvent('2024-08-22', 'ruhr_ruckers'),
@@ -102,14 +102,14 @@ export const ClubEvents: ClubEvent[] = [
     location: 'Dießfurter Str 18, Grafenwöhr',
     time: '12:00',
     coordinates: [49.71757, 11.91566],
-    url: 'https://fistbumps.sandlot.fit/fistbump/b402bf3f-d82d-4e3b-9db4-851361a54728'
+    url: 'https://fistbumps.sandlot.fit/fistbump/b402bf3f-d82d-4e3b-9db4-851361a54728',
   }),
   createClubEvent('2024-08-24', 'goruck', {
     name: 'Cadre Dan Light - Grafenwöhr',
     location: 'Dießfurter Str 18, Grafenwöhr',
     time: '19:00',
     coordinates: [49.71757, 11.91566],
-    url: 'https://fistbumps.sandlot.fit/fistbump/ec8a8bba-dd28-49a9-84f7-9dc184398026'
+    url: 'https://fistbumps.sandlot.fit/fistbump/ec8a8bba-dd28-49a9-84f7-9dc184398026',
   }),
   createClubEvent('2024-08-27', 'auxruckers'),
   createClubEvent('2024-08-27', 'theshed_healthclub'),
@@ -168,13 +168,13 @@ export const ClubEvents: ClubEvent[] = [
     duration: { hours: 4 },
   }),
   createClubEvent('2024-11-09', 'teutorucker', {
-    name: 'Chad 1000x'
+    name: 'Chad 1000x',
   }),
   createClubEvent('2025-05-16', 'teutorucker', {
     name: 'Operation Chastise',
     time: '20:00',
     coordinates: [51.49148, 8.06131],
-    location: 'Mahnmal der Möhnekatastrophe von Mai 1943'
+    location: 'Mahnmal der Möhnekatastrophe von Mai 1943',
   }),
   createClubEvent('2025-05-30', 'goruck', {
     name: '100km Ruck Normandy',

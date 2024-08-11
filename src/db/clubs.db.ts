@@ -62,8 +62,8 @@ export const Clubs: Club[] = [
     country: 'Germany',
     default: {
       name: 'Weekly Ruck Meetup',
-      coordinates: [48.3772151, 10.8939913],
-      location: 'Fischertor, Augsburg',
+      coordinates: [48.38108, 10.89389],
+      location: 'Sebastianstraße 29c, Augsburg',
       recurringInterval: 'weekly',
       time: '18:30',
       type: 'ruck',
@@ -261,7 +261,7 @@ export const Clubs: Club[] = [
     associations: ['goruck', 'goruckeurope'],
     coordinates: [49.14193, 5.44197],
     country: 'France',
-    name: "Let's Ruck Goruck Club",
+    name: "Let's Ruck GORUCK Club",
     contact: {
       preferred: 'instagram',
       instagram: 'https://www.instagram.com/let.s.ruck/',
@@ -327,7 +327,7 @@ export const Clubs: Club[] = [
     },
     default: {
       name: 'GORUCK Event',
-      coordinates: [0, 0],
+      coordinates: [30.28898, -81.39852],
       time: '12:00',
       type: 'ruck',
       location: 'GORUCK HQ',
@@ -1141,7 +1141,7 @@ export const Clubs: Club[] = [
   },
   {
     associations: ['goruck'],
-    coordinates: [30.332, -81.6631],
+    coordinates: [30.28898, -81.39852],
     country: 'USA',
     name: 'GORUCK Club HQ',
     contact: {
@@ -1806,7 +1806,7 @@ export const Clubs: Club[] = [
     associations: ['goruck', 'goruckeurope'],
     coordinates: [50.08733, 14.42101],
     country: 'Czechia',
-    name: 'Goruck Czech Republic',
+    name: 'GORUCK Czech Republic',
     id: 'goruckczechrepublic',
     contact: {
       preferred: 'instagram',
@@ -1885,5 +1885,33 @@ export const Clubs: Club[] = [
       lastPost: '2024-06-09',
       updatedAt: '2024-07-10',
     },
+  },
+  {
+    associations: ['goruck', 'goruckeurope', 'crossfit'],
+    coordinates: [57.36639, -2.20079],
+    country: 'Scotland',
+    name: 'The Shed Health Club',
+    id: 'theshed_healthclub',
+    contact: {
+      preferred: 'homepage',
+      homepage: 'https://www.theshedhealthclub.co.uk',
+      instagram: 'https://www.instagram.com/theshed_healthclub/',
+      email: 'info@theshedhealthclub.co.uk',
+      facebook: 'https://www.facebook.com/theshedhealthclub/',
+    },
+    socialMediaContent: {
+      source: 'instagram',
+      lastPost: '2024-07-15',
+      updatedAt: '2024-07-16',
+    },
+    default: {
+      name: 'GORUCK class',
+      time: '19:00',
+      coordinates: [57.36639, -2.20079],
+      type: 'ruck',
+      location: 'The Shed Health Club Gym',
+      recurringInterval: 'weekly',
+    },
+    hasLogo: true,
   },
 ];

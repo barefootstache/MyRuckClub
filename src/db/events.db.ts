@@ -2,75 +2,179 @@ import { ClubEvent } from '@/business-logic/events.model';
 import { createClubEvent } from '@/business-logic/events.utils';
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-07-10', 'goruck_club_franken'),
-  createClubEvent('2024-07-11', 'teutorucker'),
-  createClubEvent('2024-07-11', 'ruhr_ruckers'),
-  createClubEvent('2024-07-11', 'munichruckingcrew'),
-  createClubEvent('2024-07-13', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-14', 'ybbsvalleyruckers', {
-    location: 'Parkplatz Ybbstalradweg Gstadt',
-    coordinates: [47.94235, 14.82407],
+  createClubEvent('2024-08-06', 'auxruckers'),
+  createClubEvent('2024-08-06', 'theshed_healthclub'),
+  createClubEvent('2024-08-07', 'goruck_club_franken'),
+  createClubEvent('2024-08-08', 'teutorucker'),
+  createClubEvent('2024-08-08', 'ruhr_ruckers'),
+  createClubEvent('2024-08-10', 'herzschlagruckerz'),
+  createClubEvent('2024-08-11', 'ybbsvalleyruckers', {
+    location: 'Parkplatz Ybbstalradweg Opponitz/Gstadt',
+    coordinates: [47.87246, 14.80351],
   }),
-  createClubEvent('2024-07-16', 'auxruckers'),
-  createClubEvent('2024-07-17', 'goruck_club_franken'),
-  createClubEvent('2024-07-18', 'teutorucker'),
-  createClubEvent('2024-07-18', 'ruhr_ruckers'),
-  createClubEvent('2024-07-18', 'munichruckingcrew'),
-  createClubEvent('2024-07-20', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-21', 'ybbsvalleyruckers'),
-  createClubEvent('2024-07-23', 'auxruckers'),
-  createClubEvent('2024-07-24', 'goruck_club_franken'),
-  createClubEvent('2024-07-25', 'teutorucker'),
-  createClubEvent('2024-07-25', 'ruhr_ruckers'),
-  createClubEvent('2024-07-25', 'munichruckingcrew'),
-  createClubEvent('2024-07-27', 'herzschlagruckerz', { time: '16:00' }),
-  createClubEvent('2024-07-28', 'ybbsvalleyruckers'),
-  createClubEvent('2024-07-30', 'auxruckers'),
-  createClubEvent('2024-07-31', 'goruck_club_franken'),
-  createClubEvent('2024-08-01', 'teutorucker'),
-  createClubEvent('2024-08-01', 'ruhr_ruckers'),
-  createClubEvent('2024-08-01', 'munichruckingcrew', {
-    time: '18:00',
-    name: '12 Miler Ruck',
-    duration: { hours: 4 },
+  createClubEvent('2024-08-13', 'auxruckers'),
+  createClubEvent('2024-08-13', 'theshed_healthclub'),
+  createClubEvent('2024-08-14', 'goruck_club_franken'),
+  createClubEvent('2024-08-15', 'ybbsvalleyruckers', {
+    location: 'Parkplatz Naturbad Kematen',
+    coordinates: [48.03461, 14.77950],
   }),
-  createClubEvent('2024-08-03', 'herzschlagruckerz'),
-  createClubEvent('2024-08-03', 'goruck_club_franken', {
-    name: 'Summer Fun in Franken',
-  }),
-  createClubEvent('2024-08-04', 'goruck_club_franken', {
-    name: 'Summer Fun in Franken',
-  }),
+  createClubEvent('2024-08-15', 'teutorucker'),
+  createClubEvent('2024-08-15', 'ruhr_ruckers'),
   createClubEvent('2024-08-16', 'goruck', {
     name: 'Ingress Stealth Ops',
     time: '17:00',
-    location: 'Rotterdam, Netherlands',
-    coordinates: [51.92216, 4.46664],
-    url: 'https://registration.goruck.com/event/ingress-stealth---rotterdam-netherlands---08162024',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    coordinates: [51.91415, 4.47109],
+    url: 'https://registration.goruck.com/event/ingress-stealth-ops-rotterdam-netherlands',
     duration: { hours: 7 },
   }),
   createClubEvent('2024-08-17', 'goruck', {
     name: 'Ingress Urban Ops',
     time: '10:00',
-    location: 'Rotterdam, Netherlands',
-    coordinates: [51.92216, 4.46664],
-    url: 'https://registration.goruck.com/event/ingress-urban---rotterdam-netherlands---08172024',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    coordinates: [51.91415, 4.47109],
+    url: 'https://registration.goruck.com/event/ingress-urban-ops-rotterdam-netherlands',
+    duration: { hours: 3 },
   }),
+  createClubEvent('2024-08-17', 'herzschlagruckerz'),
   createClubEvent('2024-08-18', 'goruck', {
     name: 'Ingress Operation Clear Field',
     time: '10:00',
-    location: 'Rotterdam, Netherlands',
-    coordinates: [51.92216, 4.46664],
-    url: 'https://registration.goruck.com/event/ingress-operation-clear-field---rotterdam-netherlands---08182024',
+    location:
+      'Depot Boijmans Van Beuningen, Museumpark 24, 3015 CX Rotterdam, Netherlands',
+    coordinates: [51.91415, 4.47109],
+    url: 'https://registration.goruck.com/event/ingress-operation-clear-field-rotterdam-netherlands',
     duration: { hours: 4 },
   }),
+  createClubEvent('2024-08-19', 'goruck', {
+    name: 'Cadre Dan Light - Frankfurt',
+    time: '17:00',
+    location: 'Hafenpark, Frankfurt',
+    coordinates: [50.10845, 8.70614],
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+  }),
+  createClubEvent('2024-08-19', 'herzschlagruckerz', {
+    name: 'Cadre Dan Light - Frankfurt',
+    time: '17:00',
+    location: 'Hafenpark, Frankfurt',
+    coordinates: [50.10845, 8.70614],
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+  }),
+  createClubEvent('2024-08-19', 'skylineruckers', {
+    name: 'Cadre Dan Light - Frankfurt',
+    time: '17:00',
+    location: 'Hafenpark, Frankfurt',
+    coordinates: [50.10845, 8.70614],
+    url: 'https://fistbumps.sandlot.fit/fistbump/ccb06018-679f-41ff-b834-701b8174bb60'
+  }),
+  createClubEvent('2024-08-20', 'auxruckers', {
+    name: 'Cadre Dan Light - Augsburg',
+    time: '17:30',
+    location: 'Gögginger Str 10, Augsburg',
+    coordinates: [48.35904, 10.88793],
+    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718'
+  }),
+  createClubEvent('2024-08-20', 'goruck', {
+    name: 'Cadre Dan Light - Augsburg',
+    time: '17:30',
+    location: 'Gögginger Str 10, Augsburg',
+    coordinates: [48.35904, 10.88793],
+    url: 'https://fistbumps.sandlot.fit/fistbump/be4f2883-ab2d-4bed-9079-3a2820d30718'
+  }),
+  createClubEvent('2024-08-20', 'theshed_healthclub'),
+  createClubEvent('2024-08-21', 'goruck', {
+    name: 'Cadre Dan Light - Bayreuth',
+    time: '17:00',
+  }),
+  createClubEvent('2024-08-21', 'goruck_club_franken', {
+    name: 'Cadre Dan Light - Bayreuth',
+    time: '17:00',
+    type: 'ruck'
+  }),
+  createClubEvent('2024-08-22', 'teutorucker'),
+  createClubEvent('2024-08-22', 'ruhr_ruckers'),
+  createClubEvent('2024-08-24', 'herzschlagruckerz'),
+  createClubEvent('2024-08-24', 'goruck', {
+    name: 'Cadre Dan Scavenger - Grafenwöhr',
+    location: 'Dießfurter Str 18, Grafenwöhr',
+    time: '12:00',
+    coordinates: [49.71757, 11.91566],
+    url: 'https://fistbumps.sandlot.fit/fistbump/b402bf3f-d82d-4e3b-9db4-851361a54728'
+  }),
+  createClubEvent('2024-08-24', 'goruck', {
+    name: 'Cadre Dan Light - Grafenwöhr',
+    location: 'Dießfurter Str 18, Grafenwöhr',
+    time: '19:00',
+    coordinates: [49.71757, 11.91566],
+    url: 'https://fistbumps.sandlot.fit/fistbump/ec8a8bba-dd28-49a9-84f7-9dc184398026'
+  }),
+  createClubEvent('2024-08-27', 'auxruckers'),
+  createClubEvent('2024-08-27', 'theshed_healthclub'),
+  createClubEvent('2024-08-28', 'goruck_club_franken'),
+  createClubEvent('2024-08-29', 'teutorucker'),
+  createClubEvent('2024-08-29', 'ruhr_ruckers'),
+  createClubEvent('2024-08-31', 'herzschlagruckerz'),
+  createClubEvent('2024-09-03', 'auxruckers'),
+  createClubEvent('2024-09-03', 'theshed_healthclub'),
+  createClubEvent('2024-09-04', 'goruck_club_franken'),
+  createClubEvent('2024-09-05', 'teutorucker'),
+  createClubEvent('2024-09-05', 'ruhr_ruckers'),
+  createClubEvent('2024-09-07', 'herzschlagruckerz'),
   createClubEvent('2024-09-07', 'nolimits_deutschland', {
     duration: { hours: 24 },
   }),
+  createClubEvent('2024-09-10', 'auxruckers'),
+  createClubEvent('2024-09-10', 'theshed_healthclub'),
+  createClubEvent('2024-09-11', 'goruck_club_franken'),
+  createClubEvent('2024-09-12', 'teutorucker'),
+  createClubEvent('2024-09-12', 'ruhr_ruckers'),
+  createClubEvent('2024-09-14', 'herzschlagruckerz'),
   createClubEvent('2024-09-14', 'blackout_the_limit', {
     location:
       'Riginal CrossFit Nürnberg, Lenkersheimer Straße 10A, 90431 Nuremberg, Germany',
+    url: 'https://www.blackoutthelimit.de/products/event-operation-workhorse-volume-3?variant=49175098654988',
     coordinates: [49.44856, 11.01473],
+  }),
+  createClubEvent('2024-09-21', 'munichruckingcrew', {
+    name: 'Cloverleaf',
+    time: '10:00',
+    duration: { hours: 5 },
+  }),
+  createClubEvent('2024-11-01', 'goruck', {
+    name: 'Ingress Stealth Ops',
+    time: '17:00',
+    location: 'Valencia, Spain',
+    coordinates: [39.4704, -0.3767],
+    url: 'https://registration.goruck.com/event/ingress-stealth-ops---valencia-spain',
+    duration: { hours: 7 },
+  }),
+  createClubEvent('2024-11-02', 'goruck', {
+    name: 'Ingress Urban Ops',
+    time: '10:00',
+    location: 'Valencia, Spain',
+    coordinates: [39.4704, -0.3767],
+    url: 'https://registration.goruck.com/event/ingress-urban-ops-valencia-spain',
+    duration: { hours: 3 },
+  }),
+  createClubEvent('2024-11-03', 'goruck', {
+    name: 'Ingress Operation Clear Field',
+    time: '10:00',
+    location: 'Valencia, Spain',
+    coordinates: [39.4704, -0.3767],
+    url: 'https://registration.goruck.com/event/ingress-operation-clear-field---valencia-spain',
+    duration: { hours: 4 },
+  }),
+  createClubEvent('2024-11-09', 'teutorucker', {
+    name: 'Chad 1000x'
+  }),
+  createClubEvent('2025-05-16', 'teutorucker', {
+    name: 'Operation Chastise',
+    time: '20:00',
+    coordinates: [51.49148, 8.06131],
+    location: 'Mahnmal der Möhnekatastrophe von Mai 1943'
   }),
   createClubEvent('2025-05-30', 'goruck', {
     name: '100km Ruck Normandy',

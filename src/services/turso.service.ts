@@ -35,7 +35,7 @@ export class TursoService {
   static async getEventsByClubId(clubId: string): Promise<ClubEvent[]> {
     const result = (
       await turso.execute({
-        sql: 'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP AND clubId = (:clubId)',
+        sql: 'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP AND clubId = (:clubId) ORDER BY startsAt',
         args: { clubId },
       })
     ).rows.map((row) => TursoService.parseAsClubEvent(row));
@@ -46,7 +46,7 @@ export class TursoService {
   static async getFutureEvents(): Promise<ClubEvent[]> {
     const result = (
       await turso.execute(
-        'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP'
+        'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP ORDER BY startsAt'
       )
     ).rows.map((row) => TursoService.parseAsClubEvent(row));
     return result;

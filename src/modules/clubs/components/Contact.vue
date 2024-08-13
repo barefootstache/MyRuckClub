@@ -11,7 +11,7 @@ const props = defineProps<{
   club: Club;
 }>();
 
-let contacts = convertContactToArray(props.club?.contact);
+let contacts = convertContactToArray(props.club.contact);
 const preferred = contacts[0];
 contacts = contacts.length > 1 ? contacts.slice(1) : [];
 </script>

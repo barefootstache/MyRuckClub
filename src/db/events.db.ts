@@ -2,18 +2,6 @@ import { ClubEvent } from '@/business-logic/events.model';
 import { createClubEvent } from '@/business-logic/events.utils';
 
 export const ClubEvents: ClubEvent[] = [
-  createClubEvent('2024-08-06', 'auxruckers'),
-  createClubEvent('2024-08-06', 'theshed_healthclub'),
-  createClubEvent('2024-08-07', 'goruck_club_franken'),
-  createClubEvent('2024-08-08', 'teutorucker'),
-  createClubEvent('2024-08-08', 'ruhr_ruckers'),
-  createClubEvent('2024-08-10', 'herzschlagruckerz'),
-  createClubEvent('2024-08-11', 'ybbsvalleyruckers', {
-    location: 'Parkplatz Ybbstalradweg Opponitz/Gstadt',
-    coordinates: [47.87246, 14.80351],
-  }),
-  createClubEvent('2024-08-13', 'auxruckers'),
-  createClubEvent('2024-08-13', 'theshed_healthclub'),
   createClubEvent('2024-08-14', 'goruck_club_franken'),
   createClubEvent('2024-08-15', 'ybbsvalleyruckers', {
     location: 'Parkplatz Naturbad Kematen',
@@ -40,6 +28,10 @@ export const ClubEvents: ClubEvent[] = [
     duration: { hours: 3 },
   }),
   createClubEvent('2024-08-17', 'herzschlagruckerz'),
+  createClubEvent('2024-08-18', 'ybbsvalleyruckers', {
+    location: 'Parkplatz Ybbstalradweg Opponitz',
+    coordinates: [47.87246, 14.80351],
+  }),
   createClubEvent('2024-08-18', 'goruck', {
     name: 'Ingress Operation Clear Field',
     time: '10:00',

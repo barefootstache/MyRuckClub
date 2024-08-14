@@ -50,7 +50,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vuetify({ autoImport: true }), VitePWA(pwaOptions)],
+  plugins: [vue(), vuetify({ autoImport: true })],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

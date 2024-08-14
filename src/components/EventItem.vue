@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
-import { Contact, ClubEvent } from '@/business-logic';
-import { LocationService } from '@/services';
+import { Contact, ClubEvent, Club, PLACEHOLDER_CLUB } from '@/business-logic';
+import { LocationService, TursoService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
+import { computedAsync } from '@vueuse/core';
+import { computed } from 'vue';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     event: ClubEvent;
     useLogo?: boolean;
@@ -14,16 +16,20 @@ withDefaults(
   }
 );
 
+const club = computedAsync<Club>(async () => {
+  const response = await TursoService.getClubById(props.event.clubId);
+  return response;
+}, PLACEHOLDER_CLUB);
+
 /**
  * Gets the registration, if it exists, otherwise empty string.
  * @param ev - the club event
  * @returns the URL.
  */
 function getRegistrationLink(ev: ClubEvent): string {
-  const foundClub = ClubUtils.getClubById(ev.clubId);
   return (
-    EventUtils.getMostRecentData<string>('url', foundClub, ev) ||
-    ClubUtils.getContactUrl(foundClub?.contact as Contact) ||
+    EventUtils.getMostRecentData<string>('url', club.value, ev) ||
+    ClubUtils.getContactUrl(club.value?.contact as Contact) ||
     ''
   );
 }
@@ -33,21 +39,22 @@ function getRegistrationLink(ev: ClubEvent): string {
  * @param ev - the club event
  * @returns the URL.
  */
-function getProfileLogoLink(ev: ClubEvent): string {
-  const foundClub = ClubUtils.getClubById(ev.clubId);
-  if (foundClub.hasLogo) {
-    return `clubs/${ev.clubId}-logo.jpg`;
+function getProfileLogoLink(): string {
+  if (club.value.hasLogo) {
+    return `clubs/${club.value.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
 }
+
+const $ = computed(() => club.value);
 </script>
 
 <template>
   <v-list-item>
     <template #prepend v-if="useLogo">
       <router-link :to="{ name: 'Club', params: { id: event.clubId } }">
-        <v-avatar :image="getProfileLogoLink(event)" size="90"> </v-avatar>
+        <v-avatar :image="getProfileLogoLink()" size="90"> </v-avatar>
       </router-link>
     </template>
     <template #prepend v-else-if="event.type !== 'default'">
@@ -69,7 +76,7 @@ function getProfileLogoLink(ev: ClubEvent): string {
       <span v-if="event.clubId"
         >Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          ClubUtils.getClubById(event.clubId).name
+          $.name
         }}</a></span
       >
     </template>

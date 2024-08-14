@@ -1,4 +1,3 @@
-import { ClubsDB } from '@/db/index.db';
 import { Club, Contact } from '@/business-logic';
 
 /**
@@ -11,10 +10,20 @@ export function getContactUrl(contact: Contact): string {
 }
 
 /**
- * Gets the club by the id.
- * @param id - the club's id
- * @returns the club
+ * Checks if the `obj` is of type `Club`.
+ * @param obj - the object to test
+ * @returns the truth of the type
  */
-export function getClubById(id: string): Club {
-  return ClubsDB.find((club) => club.id === id) as Club;
+export function isClub(obj: any): obj is Club {
+  if (typeof obj !== 'object' || obj === null) return false;
+  if (
+    !Array.isArray(obj.coordinates) ||
+    obj.coordinates.length !== 2 ||
+    typeof obj.coordinates[0] !== 'number' ||
+    typeof obj.coordinates[1] !== 'number'
+  )
+    return false;
+  if (typeof obj.id !== 'string') return false;
+  if (typeof obj.name !== 'string') return false;
+  return true;
 }

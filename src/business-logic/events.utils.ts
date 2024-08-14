@@ -1,4 +1,3 @@
-import { Clubs } from '@/db/clubs.db';
 import {
   Club,
   Coordinates,
@@ -10,6 +9,7 @@ import {
 import { getDate, getMonth, getTime, getYear } from 'date-fns';
 import { EventAttributes } from 'ics';
 import { getContactUrl } from './clubs.utils';
+import { TursoService } from '@/services';
 
 /**
  * Creates a club event.
@@ -18,12 +18,12 @@ import { getContactUrl } from './clubs.utils';
  * @param ev - custom club event properties
  * @returns the new club event.
  */
-export function createClubEvent(
+export async function createClubEvent(
   dateString: string,
   clubId: string,
   ev?: Partial<ClubEvent>
-): ClubEvent {
-  const club = Clubs.find((item) => item.id === clubId);
+): Promise<ClubEvent> {
+  const club = await TursoService.getClubById(clubId);
   const newEvent = {
     clubId,
     coordinates: getMostRecentData<Coordinates>('coordinates', club, ev),
@@ -112,4 +112,29 @@ export function getIcon(name: EventType): string {
     case 'default':
       return '';
   }
+}
+
+/**
+ * Checks if the `obj` is of type `ClubEvent`.
+ * @param obj - the object to test
+ * @returns the truth of the type
+ */
+export function isClubEvent(obj: any): obj is ClubEvent {
+  if (typeof obj !== 'object' || obj === null) return false;
+  if (typeof obj.clubId !== 'string') return false;
+  if (
+    !Array.isArray(obj.coordinates) ||
+    obj.coordinates.length !== 2 ||
+    typeof obj.coordinates[0] !== 'number' ||
+    typeof obj.coordinates[1] !== 'number'
+  )
+    return false;
+  if (!(obj.date instanceof Date)) return false;
+  if (typeof obj.inSummer !== 'boolean') return false;
+  if (typeof obj.location !== 'string') return false;
+  if (typeof obj.name !== 'string') return false;
+  if (typeof obj.time !== 'string') return false;
+  if (!['ruck', 'pt', 'default'].includes(obj.type)) return false;
+  if (typeof obj.url !== 'string') return false;
+  return true;
 }

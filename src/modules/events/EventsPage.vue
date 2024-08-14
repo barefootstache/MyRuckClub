@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import EventsList from '@/components/EventsList.vue';
-import { isAfter, subDays } from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import {
   LMap,
@@ -10,22 +9,26 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { EventsDB } from '@/db/index.db';
-import { LocationService } from '@/services';
+import { LocationService, TursoService } from '@/services';
 import { OsmUtils } from '@/business-logic/index.utils';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent } from '@/business-logic';
+import { computedAsync } from '@vueuse/core';
 
 const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
-const upcomingClubEvents = EventsDB.filter((item) =>
-  isAfter(item.date, subDays(new Date(), 1))
-);
-const uniqueEventsLocations =
-  LocationService.getUniqueEventsLocations(upcomingClubEvents);
-
 const visible = ref(false);
 const markerDialog = ref();
+
+const futureEvents = computedAsync<ClubEvent[]>(
+  async () => await TursoService.getFutureEvents(),
+  []
+);
+
+const uniqueEventsLocations = computedAsync<ClubEvent[]>(
+  async () => LocationService.getUniqueEventsLocations(futureEvents.value),
+  []
+);
 
 /**
  * Shows the marker dialog.
@@ -36,6 +39,11 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
+
+const $ = computed(() => ({
+  uniqueEventsLocations: uniqueEventsLocations.value,
+  futureEvents: futureEvents.value,
+}));
 </script>
 
 <template>
@@ -58,7 +66,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 
         <l-marker
           @click="showDialog(true, ev)"
-          v-for="ev in uniqueEventsLocations"
+          v-for="ev in $.uniqueEventsLocations"
           :lat-lng="ev.coordinates"
         >
           <l-icon
@@ -79,7 +87,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
     </div>
 
     <EventsList
-      :events="upcomingClubEvents"
+      :events="$.futureEvents"
       :show-local-times="true"
       :use-logo="true"
     ></EventsList>

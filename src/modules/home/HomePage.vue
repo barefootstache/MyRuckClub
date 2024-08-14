@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { ClubsDB } from '@/db/index.db';
+import { computed, ref } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import {
   LMap,
@@ -10,13 +9,20 @@ import {
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
 import MarkerDialog from '@/components/MarkerDialog.vue';
-import { Club, ClubEvent } from '@/business-logic';
+import { Club, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
 import { OsmUtils } from '@/business-logic/index.utils';
+import { computedAsync } from '@vueuse/core';
+import { TursoService } from '@/services';
 
 const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
 const visible = ref(false);
 const markerDialog = ref();
+
+const clubs = computedAsync<Club[]>(async () => {
+  const response = await TursoService.getAllClubs();
+  return response;
+}, [PLACEHOLDER_CLUB]);
 
 /**
  * Shows the marker dialog.
@@ -27,6 +33,8 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
+
+const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>
@@ -53,7 +61,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
           :metric="true"
         ></l-control-scale>
 
-        <div v-for="club in ClubsDB">
+        <div v-for="club in $.clubs">
           <l-marker
             @click="showDialog(true, club)"
             v-if="!club?.hide"

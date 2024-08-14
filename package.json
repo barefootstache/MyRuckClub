@@ -11,7 +11,9 @@
     "format": "prettier --write . --config .prettierrc"
   },
   "dependencies": {
+    "@libsql/client": "^0.7.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "@vueuse/core": "^10.11.0",
     "cheerio": "^1.0.0-rc.12",
     "date-fns": "^2.30.0",
     "ics": "^3.7.6",

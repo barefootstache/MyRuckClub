@@ -14,6 +14,7 @@ import {
   addYears,
   addDays,
 } from 'date-fns';
+import { computed } from 'vue';
 
 type DateMapItem = {
   header: string;
@@ -118,6 +119,8 @@ function sortEvents(events: ClubEvent[]): DateMap {
     },
   };
 
+  if (!events) return dateMap;
+
   events.map((ev) => {
     const date = ev.date;
 
@@ -139,18 +142,21 @@ function sortEvents(events: ClubEvent[]): DateMap {
   return dateMap;
 }
 
-const dateMap = sortEvents(props.events);
-const sortedEventsByDate = [
-  dateMap.thisWeek,
-  dateMap.nextWeek,
-  ...dateMap.months.filter((month) => month.events.length),
-  dateMap.nextYear,
-];
+const dateMap = computed(() => sortEvents(props.events));
+const sortedEventsByDate = computed(() => {
+  return [
+    dateMap.value.thisWeek,
+    dateMap.value.nextWeek,
+    ...dateMap.value.months.filter((month) => month.events.length),
+    dateMap.value.nextYear,
+  ];
+});
 </script>
 
 <template>
   <div class="local-times-header" v-if="showLocalTimes">
-    <span>All times are local times.</span>
+    <p>All times are local times.</p>
+    <p>All data should be double-checked on the club's site.</p>
   </div>
   <DownloadCalendarButton
     :events="events"

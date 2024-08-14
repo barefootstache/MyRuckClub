@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { ClubsDB } from '@/db/index.db';
+import { computed, ref } from 'vue';
+import { computedAsync } from '@vueuse/core';
+import { Club, PLACEHOLDER_CLUB } from '@/business-logic';
+import { TursoService } from '@/services';
 
 const search = ref('');
+
+const clubs = computedAsync<Club[]>(async () => {
+  const response = await TursoService.getAllClubs();
+  return response;
+}, [PLACEHOLDER_CLUB]);
 
 const groupBy = [
   {
@@ -17,6 +24,8 @@ const headers = [
   { title: 'Name', key: 'name', align: 'start' },
   { title: 'Country', key: 'country', align: 'end', sortable: false },
 ] as const;
+
+const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>
@@ -35,7 +44,7 @@ const headers = [
     <v-data-table
       :sort-by="sortBy"
       :group-by="groupBy"
-      :items="ClubsDB"
+      :items="$.clubs"
       :headers="headers"
       items-per-page="25"
       :search="search"

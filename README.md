@@ -42,3 +42,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - https://vuetifyjs.com/en/components/all/#selection
 - https://vite-pwa-org.netlify.app/
 - https://zod.dev/
+- https://github.com/TanStack/query

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { isAfter, subDays } from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import {
   LMap,
@@ -10,47 +9,76 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { ClubsDB, EventsDB } from '@/db/index.db';
-import { OsmUtils, AssociationUtils } from '@/business-logic/index.utils';
-import { LocationService } from '@/services';
-import { Club, ClubEvent } from '@/business-logic';
+import { OsmUtils } from '@/business-logic/index.utils';
+import { LocationService, TursoService } from '@/services';
+import {
+  Club,
+  ClubEvent,
+  Coordinates,
+  PLACEHOLDER_ASSOCIATION,
+  PLACEHOLDER_CLUB,
+  PLACEHOLDER_BOUNDINGBOX,
+  PLACEHOLDER_CLUBEVENT,
+} from '@/business-logic';
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import EventsList from '@/components/EventsList.vue';
+import { computedAsync } from '@vueuse/core';
 
 /**
  * Reference for `this.$route`.
  */
 const route = useRoute();
+const clubId = ref(route.params.id as string);
 
 /**
  * Finds the referenced club by clubId.
  */
-const club = ClubsDB.find((item) => item.id === route.params.id) as Club;
+const data = computedAsync(
+  async () => {
+    const club = await TursoService.getClubById(clubId.value);
+    const associations = await Promise.all(
+      club.associations.map(
+        async (ass) => await TursoService.getAssociationByType(ass)
+      )
+    );
+
+    return { club, associations };
+  },
+  {
+    club: PLACEHOLDER_CLUB,
+    associations: [PLACEHOLDER_ASSOCIATION],
+  }
+);
 
 /**
  * Filters events that are happening today and later.
  */
-const upcomingClubEvents = EventsDB.filter(
-  (item) => item.clubId === club.id
-).filter((item) => isAfter(item.date, subDays(new Date(), 1)));
-
-const uniqueEventsLocations =
-  LocationService.getUniqueEventsLocations(upcomingClubEvents);
-
-const allCoordinates = uniqueEventsLocations
-  .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
-  .concat([club.coordinates]);
-
-const boundingBox = LocationService.getBoundingBox(allCoordinates);
-
-const associations = (club?.associations || []).map((ass) =>
-  AssociationUtils.getAssociationByType(ass)
+const upcomingClubEvents = computedAsync<ClubEvent[]>(
+  async () => await TursoService.getEventsByClubId(clubId.value),
+  [PLACEHOLDER_CLUBEVENT]
 );
+
+const uniqueEventsLocations = computedAsync<ClubEvent[]>(async () =>
+  LocationService.getUniqueEventsLocations(upcomingClubEvents.value)
+);
+
+const allCoordinates = computedAsync<Coordinates[]>(async () =>
+  uniqueEventsLocations.value
+    .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
+    .concat([data.value.club.coordinates])
+);
+
+const boundingBox = computedAsync(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  return LocationService.getBoundingBox(allCoordinates.value);
+}, PLACEHOLDER_BOUNDINGBOX);
 
 const visible = ref(false);
 const markerDialog = ref();
-const filename = ref(`${club.name.replace(' ', '_')}_events_calendar.ics`);
+const filename = ref(
+  `${data.value.club.name.replace(' ', '_')}_events_calendar.ics`
+);
 
 /**
  * Shows the marker dialog.
@@ -67,35 +95,43 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
  * @returns the URL.
  */
 function getProfileLogoLink(): string {
-  if (club.hasLogo) {
-    return `clubs/${club.id}-logo.jpg`;
+  if (data.value.club.hasLogo) {
+    return `clubs/${data.value.club.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
 }
+
+const $ = computed(() => ({
+  data: data.value,
+  boundingBox: boundingBox.value,
+  uniqueEventsLocations: uniqueEventsLocations.value,
+  upcomingClubEvents: upcomingClubEvents.value,
+}));
 </script>
 
 <template>
-  <v-card class="header" :title="club.name">
+  <v-card class="header" :title="$.data.club.name">
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="club?.default?.location && !club?.hide"
+    <v-card-text v-if="$.data.club.default?.location && !$.data.club.hide"
       >We typically meet at
-      <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{
-        club?.default?.location
-      }}</a
+      <a
+        :href="LocationService.getLocationClubUrl($.data.club)"
+        target="_blank"
+        >{{ $.data.club.default?.location }}</a
       >.</v-card-text
     >
   </v-card>
 
-  <div class="map-view" v-if="!club?.hide">
+  <div class="map-view" v-if="!$.data.club.hide">
     <l-map
       ref="map"
-      v-model:zoom="boundingBox.zoom"
+      v-model:zoom="$.boundingBox.zoom"
       :center="[0, 0]"
-      :bounds="boundingBox.box"
-      :max-bounds="boundingBox.box"
+      :bounds="$.boundingBox.box"
+      :max-bounds="$.boundingBox.box"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -110,9 +146,9 @@ function getProfileLogoLink(): string {
       ></l-control-scale>
 
       <l-marker
-        @click="showDialog(true, club)"
-        v-if="!club?.hide"
-        :lat-lng="club.coordinates"
+        @click="showDialog(true, $.data.club)"
+        v-if="!$.data.club.hide"
+        :lat-lng="$.data.club.coordinates"
       >
         <l-icon
           :icon-url="OsmUtils.getPin('default').options.iconUrl"
@@ -123,7 +159,7 @@ function getProfileLogoLink(): string {
 
       <l-marker
         @click="showDialog(true, ev)"
-        v-for="(ev, evId) in uniqueEventsLocations"
+        v-for="(ev, evId) in $.uniqueEventsLocations"
         :key="evId"
         :lat-lng="ev.coordinates"
       >
@@ -142,16 +178,16 @@ function getProfileLogoLink(): string {
 
   <div class="hline"></div>
 
-  <Contact :club="club"></Contact>
+  <Contact :club="$.data.club"></Contact>
 
   <div class="hline"></div>
 
-  <div v-if="associations.length > 0">
+  <div v-if="$.data.associations?.length > 0">
     <p>We associate with</p>
     <v-chip
       variant="outlined"
       :color="ass.color"
-      v-for="(ass, assId) in associations"
+      v-for="(ass, assId) in $.data.associations"
       :key="assId"
     >
       <span>{{ ass.name }}</span>
@@ -161,7 +197,7 @@ function getProfileLogoLink(): string {
   <div class="hline"></div>
 
   <EventsList
-    :events="upcomingClubEvents"
+    :events="$.upcomingClubEvents"
     lines="three"
     :show-upcoming-header="true"
     :filename="filename"

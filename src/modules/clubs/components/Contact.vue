@@ -6,14 +6,19 @@ import {
   getLink,
   convertContactToArray,
 } from '@/business-logic/contacts.utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
   club: Club;
 }>();
 
-let contacts = convertContactToArray(props.club.contact);
-const preferred = contacts[0];
-contacts = contacts.length > 1 ? contacts.slice(1) : [];
+const contact = computed(() => {
+  const contactArr = convertContactToArray(props.club.contact);
+  return {
+    preferred: contactArr[0],
+    items: contactArr.length > 1 ? contactArr.slice(1) : [],
+  };
+});
 </script>
 
 <template>
@@ -21,20 +26,20 @@ contacts = contacts.length > 1 ? contacts.slice(1) : [];
     <div class="primary-contact">
       <span>For more info contact us on our</span>
       <v-chip variant="elevated" color="primary">
-        <a :href="getLink(preferred)" target="_blank">
+        <a :href="getLink(contact.preferred)" target="_blank">
           <v-icon
             start
-            :icon="getIcon(preferred.name as keyof Contact)"
+            :icon="getIcon(contact.preferred.name as keyof Contact)"
             color="white"
           ></v-icon>
-          <span>{{ UtilsService.capitalize(preferred.name) }}</span>
+          <span>{{ UtilsService.capitalize(contact.preferred.name) }}</span>
         </a>
       </v-chip>
     </div>
 
-    <div class="more-contact" v-if="contacts.length > 0">
+    <div class="more-contact" v-if="contact.items.length > 0">
       <span>Or you can also find us on</span>
-      <v-chip variant="outlined" color="black" v-for="item in contacts">
+      <v-chip variant="outlined" color="black" v-for="item in contact.items">
         <a
           v-if="item.name"
           :href="getLink(item)"

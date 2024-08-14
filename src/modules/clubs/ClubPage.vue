@@ -34,14 +34,20 @@ const clubId = ref(route.params.id as string);
 /**
  * Finds the referenced club by clubId.
  */
-const data = computedAsync(async () => {
-  const club = await TursoService.getClubById(clubId.value);
-  const associations = await Promise.all(club.associations.map(async ass => await TursoService.getAssociationByType(ass)));
+const data = computedAsync(
+  async () => {
+    const club = await TursoService.getClubById(clubId.value);
+    const associations = await Promise.all(
+      club.associations.map(
+        async (ass) => await TursoService.getAssociationByType(ass)
+      )
+    );
 
-  return {club, associations};
-}, {
+    return { club, associations };
+  },
+  {
     club: PLACEHOLDER_CLUB,
-    associations: [PLACEHOLDER_ASSOCIATION]
+    associations: [PLACEHOLDER_ASSOCIATION],
   }
 );
 
@@ -96,7 +102,12 @@ function getProfileLogoLink(): string {
   }
 }
 
-const $ = computed(() => ({data: data.value, boundingBox: boundingBox.value, uniqueEventsLocations: uniqueEventsLocations.value, upcomingClubEvents: upcomingClubEvents.value }))
+const $ = computed(() => ({
+  data: data.value,
+  boundingBox: boundingBox.value,
+  uniqueEventsLocations: uniqueEventsLocations.value,
+  upcomingClubEvents: upcomingClubEvents.value,
+}));
 </script>
 
 <template>
@@ -106,9 +117,10 @@ const $ = computed(() => ({data: data.value, boundingBox: boundingBox.value, uni
     </template>
     <v-card-text v-if="$.data.club.default?.location && !$.data.club.hide"
       >We typically meet at
-      <a :href="LocationService.getLocationClubUrl($.data.club)" target="_blank">{{
-        $.data.club.default?.location
-      }}</a
+      <a
+        :href="LocationService.getLocationClubUrl($.data.club)"
+        target="_blank"
+        >{{ $.data.club.default?.location }}</a
       >.</v-card-text
     >
   </v-card>

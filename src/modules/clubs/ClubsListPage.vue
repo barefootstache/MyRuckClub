@@ -25,7 +25,7 @@ const headers = [
   { title: 'Country', key: 'country', align: 'end', sortable: false },
 ] as const;
 
-const $ = computed(() => ({clubs: clubs.value}));
+const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>

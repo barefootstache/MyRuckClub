@@ -16,10 +16,9 @@ const contact = computed(() => {
   const contactArr = convertContactToArray(props.club.contact);
   return {
     preferred: contactArr[0],
-    items: contactArr.length > 1 ? contactArr.slice(1) : []
-  }
-})
-
+    items: contactArr.length > 1 ? contactArr.slice(1) : [],
+  };
+});
 </script>
 
 <template>

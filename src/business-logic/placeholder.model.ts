@@ -17,9 +17,9 @@ export const PLACEHOLDER_ASSOCIATION: Association = {
   contact: {
     preferred: 'fediverse',
     fediverse: 'https://indieweb.social/@rucking',
-    homepage: 'https://www.myruck.club/'
-  }
-}
+    homepage: 'https://www.myruck.club/',
+  },
+};
 
 export const PLACEHOLDER_CLUB: Club = {
   coordinates: [48.3908, 13.1604],

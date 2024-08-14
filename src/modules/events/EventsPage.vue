@@ -40,7 +40,10 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   markerDialog.value = body;
 }
 
-const $ = computed(() => ({uniqueEventsLocations: uniqueEventsLocations.value, futureEvents: futureEvents.value}))
+const $ = computed(() => ({
+  uniqueEventsLocations: uniqueEventsLocations.value,
+  futureEvents: futureEvents.value,
+}));
 </script>
 
 <template>

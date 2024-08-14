@@ -30,6 +30,23 @@
       </ul>
     </li>
   </ul>
+  <h2>How to Join</h2>
+  <p>A ruck club should have</p>
+  <ul>
+    <li>1. Regular meetups, at least once a month</li>
+    <li>2. Place of contact, at least an email</li>
+    <li>3. Name, what should the club be called</li>
+  </ul>
+  <p>
+    Contact us at <br />Mastodon (<a
+      href="https://indieweb.social/@rucking"
+      target="_blank"
+      >https://indieweb.social/@rucking</a
+    >) or <br />
+    Instagram (<a href="https://www.instagram.com/myruckclub/" target="_blank"
+      >https://www.instagram.com/myruckclub</a
+    >)
+  </p>
   <h2>Development</h2>
   <p>
     My Ruck Club is being developed on

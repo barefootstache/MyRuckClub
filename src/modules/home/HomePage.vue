@@ -34,7 +34,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   markerDialog.value = body;
 }
 
-const $ = computed(() => ({clubs: clubs.value}))
+const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>

@@ -18,55 +18,56 @@ const props = withDefaults(
   }>(),
   {
     redirect: false,
-    buttonLabel: 'Ruck Up'
-  });
+    buttonLabel: 'Ruck Up',
+  }
+);
 
 const club = computedAsync<Club>(async () => {
-  const response = await TursoService.getClubById((props.details as ClubEvent)?.clubId);
+  const response = await TursoService.getClubById(
+    (props.details as ClubEvent)?.clubId
+  );
   return response;
 }, PLACEHOLDER_CLUB);
 
-const card = computed(
-  () => {
-    const body = {
-      title: props.details.name ?? '',
-      subtitle: '',
-      text: '',
-      activity: '',
-      id: '#',
-      contact: '',
-      contactPreferred: 'o',
-      registrationLink: '',
-      isEvent: false,
-      date: '',
-      time: '',
-      location: '',
-      locationLink: '#'
-    } as any;
+const card = computed(() => {
+  const body = {
+    title: props.details.name ?? '',
+    subtitle: '',
+    text: '',
+    activity: '',
+    id: '#',
+    contact: '',
+    contactPreferred: 'o',
+    registrationLink: '',
+    isEvent: false,
+    date: '',
+    time: '',
+    location: '',
+    locationLink: '#',
+  } as any;
 
-    if(ClubUtils.isClub(props.details)){
-      const tClub = props.details as Club;
-      body.id = tClub.id;
-      body.subtitle = tClub.country;
-      body.contact = tClub.contact;
-      body.contactPreferred = tClub.contact.preferred;
-      body.registrationLink = ClubUtils.getContactUrl(body.contact)
-    } else if(EventUtils.isClubEvent(props.details)) {
-      const clubEvent = props.details as ClubEvent;
-      body.id = clubEvent.clubId;
-      body.subtitle = club.value.name;
-      body.activity = clubEvent.type.toString().toUpperCase();
-      body.registrationLink = getRegistrationLink(clubEvent);
-      body.isEvent = true;
-      body.date = clubEvent.date;
-      body.time = clubEvent.time;
-      body.location = clubEvent.location;
-      body.locationLink = LocationService.getLocationUrl(clubEvent)
-    }
-
-    return body;
+  if (ClubUtils.isClub(props.details)) {
+    const tClub = props.details as Club;
+    body.id = tClub.id;
+    body.subtitle = tClub.country;
+    body.contact = tClub.contact;
+    body.contactPreferred = tClub.contact.preferred;
+    body.registrationLink = ClubUtils.getContactUrl(body.contact);
+  } else if (EventUtils.isClubEvent(props.details)) {
+    const clubEvent = props.details as ClubEvent;
+    body.id = clubEvent.clubId;
+    body.subtitle = club.value.name;
+    body.activity = clubEvent.type.toString().toUpperCase();
+    body.registrationLink = getRegistrationLink(clubEvent);
+    body.isEvent = true;
+    body.date = clubEvent.date;
+    body.time = clubEvent.time;
+    body.location = clubEvent.location;
+    body.locationLink = LocationService.getLocationUrl(clubEvent);
   }
-)
+
+  return body;
+});
 
 /**
  * Gets the registration, if it exists, otherwise empty string.

@@ -1,4 +1,4 @@
-import { Club, ClubEvent, Coordinates } from '@/business-logic';
+import { Association, Club, ClubEvent, Coordinates } from '@/business-logic';
 import { addDays } from 'date-fns';
 
 export const PLACEHOLDER_BOUNDINGBOX = {
@@ -9,6 +9,17 @@ export const PLACEHOLDER_BOUNDINGBOX = {
   zoom: 12,
   distanceInKm: 200,
 };
+
+export const PLACEHOLDER_ASSOCIATION: Association = {
+  color: 'cyan',
+  type: 'myruckclub',
+  name: 'My Ruck Club',
+  contact: {
+    preferred: 'fediverse',
+    fediverse: 'https://indieweb.social/@rucking',
+    homepage: 'https://www.myruck.club/'
+  }
+}
 
 export const PLACEHOLDER_CLUB: Club = {
   coordinates: [48.3908, 13.1604],

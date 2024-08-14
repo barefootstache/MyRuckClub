@@ -1,4 +1,5 @@
 import {
+    Association,
   AssociationType,
   Club,
   ClubEvent,
@@ -7,6 +8,7 @@ import {
   Country,
   Default,
   EventType,
+  PLACEHOLDER_ASSOCIATION,
   SocialMediaContent,
   Timezone,
 } from '@/business-logic';
@@ -32,6 +34,20 @@ export class TursoService {
     return result;
   }
 
+  static async getAssociationByType(type: AssociationType): Promise<Association> {
+    const result = (
+      await turso.execute({
+        sql: 'SELECT * FROM associations WHERE type = (:type)',
+        args: {type}
+      })
+    ).rows.map((row) => TursoService.parseAsAssociation(row))[0];
+
+    if(!result){
+      return PLACEHOLDER_ASSOCIATION;
+    }
+    return result;
+  }
+
   static async getEventsByClubId(clubId: string): Promise<ClubEvent[]> {
     const result = (
       await turso.execute({
@@ -50,6 +66,38 @@ export class TursoService {
       )
     ).rows.map((row) => TursoService.parseAsClubEvent(row));
     return result;
+  }
+
+  private static parseAsAssociation(row: Row): Association {
+    const contact: Contact = {
+      preferred: row['contact.preferred'] as keyof Contact
+    };
+
+    if(row['contact.homepage']){
+      contact.homepage = row['contact.homepage'] as string;
+    }
+    if(row['contact.instagram']){
+      contact.instagram = row['contact.instagram'] as string;
+    }
+    if(row['contact.fediverse']){
+      contact.fediverse = row['contact.fediverse'] as string;
+    }
+    if(row['contact.facebook']){
+      contact.facebook = row['contact.facebook'] as string;
+    }
+    if(row['contact.linktree']){
+      contact.linktree = row['contact.linktree'] as string;
+    }
+    if(row['contact.sandlot']){
+      contact.sandlot = row['contact.sandlot'] as string;
+    }
+
+    return {
+      type: row['type'] as AssociationType,
+      contact,
+      name: row['name'] as string,
+      color: row['color'] as string
+    }
   }
 
   private static parseAsClubEvent(row: Row): ClubEvent {

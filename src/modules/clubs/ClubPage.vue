@@ -9,13 +9,13 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { OsmUtils, AssociationUtils } from '@/business-logic/index.utils';
+import { OsmUtils } from '@/business-logic/index.utils';
 import { LocationService, TursoService } from '@/services';
 import {
-  Association,
   Club,
   ClubEvent,
   Coordinates,
+  PLACEHOLDER_ASSOCIATION,
   PLACEHOLDER_CLUB,
   PLACEHOLDER_BOUNDINGBOX,
   PLACEHOLDER_CLUBEVENT,
@@ -34,10 +34,16 @@ const clubId = ref(route.params.id as string);
 /**
  * Finds the referenced club by clubId.
  */
-const club = computedAsync<Club>(async () => {
-  const response = await TursoService.getClubById(clubId.value);
-  return response;
-}, PLACEHOLDER_CLUB);
+const data = computedAsync(async () => {
+  const club = await TursoService.getClubById(clubId.value);
+  const associations = await Promise.all(club.associations.map(async ass => await TursoService.getAssociationByType(ass)));
+
+  return {club, associations};
+}, {
+    club: PLACEHOLDER_CLUB,
+    associations: [PLACEHOLDER_ASSOCIATION]
+  }
+);
 
 /**
  * Filters events that are happening today and later.
@@ -54,7 +60,7 @@ const uniqueEventsLocations = computedAsync<ClubEvent[]>(async () =>
 const allCoordinates = computedAsync<Coordinates[]>(async () =>
   uniqueEventsLocations.value
     .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
-    .concat([club.value.coordinates])
+    .concat([data.value.club.coordinates])
 );
 
 const boundingBox = computedAsync(async () => {
@@ -62,16 +68,10 @@ const boundingBox = computedAsync(async () => {
   return LocationService.getBoundingBox(allCoordinates.value);
 }, PLACEHOLDER_BOUNDINGBOX);
 
-const associations = computedAsync<Association[]>(async () =>
-  (club.value.associations || []).map((ass) =>
-    AssociationUtils.getAssociationByType(ass)
-  )
-);
-
 const visible = ref(false);
 const markerDialog = ref();
 const filename = ref(
-  `${club.value.name.replace(' ', '_')}_events_calendar.ics`
+  `${data.value.club.name.replace(' ', '_')}_events_calendar.ics`
 );
 
 /**
@@ -89,8 +89,8 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
  * @returns the URL.
  */
 function getProfileLogoLink(): string {
-  if (club.value.hasLogo) {
-    return `clubs/${club.value.id}-logo.jpg`;
+  if (data.value.club.hasLogo) {
+    return `clubs/${data.value.club.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
@@ -98,20 +98,20 @@ function getProfileLogoLink(): string {
 </script>
 
 <template>
-  <v-card class="header" :title="club.name">
+  <v-card class="header" :title="data.club.name">
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="club.default?.location && !club.hide"
+    <v-card-text v-if="data.club.default?.location && !data.club.hide"
       >We typically meet at
-      <a :href="LocationService.getLocationClubUrl(club)" target="_blank">{{
-        club.default?.location
+      <a :href="LocationService.getLocationClubUrl(data.club)" target="_blank">{{
+        data.club.default?.location
       }}</a
       >.</v-card-text
     >
   </v-card>
 
-  <div class="map-view" v-if="!club.hide">
+  <div class="map-view" v-if="!data.club.hide">
     <l-map
       ref="map"
       v-model:zoom="boundingBox.zoom"
@@ -132,9 +132,9 @@ function getProfileLogoLink(): string {
       ></l-control-scale>
 
       <l-marker
-        @click="showDialog(true, club)"
-        v-if="!club.hide"
-        :lat-lng="club.coordinates"
+        @click="showDialog(true, data.club)"
+        v-if="!data.club.hide"
+        :lat-lng="data.club.coordinates"
       >
         <l-icon
           :icon-url="OsmUtils.getPin('default').options.iconUrl"
@@ -164,16 +164,16 @@ function getProfileLogoLink(): string {
 
   <div class="hline"></div>
 
-  <Contact :club="club"></Contact>
+  <Contact :club="data.club"></Contact>
 
   <div class="hline"></div>
 
-  <div v-if="associations?.length > 0">
+  <div v-if="data.associations?.length > 0">
     <p>We associate with</p>
     <v-chip
       variant="outlined"
       :color="ass.color"
-      v-for="(ass, assId) in associations"
+      v-for="(ass, assId) in data.associations"
       :key="assId"
     >
       <span>{{ ass.name }}</span>

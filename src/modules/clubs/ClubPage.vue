@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import 'leaflet/dist/leaflet.css';
 import {
@@ -95,29 +95,31 @@ function getProfileLogoLink(): string {
     return `clubs/myruckclub-logo.png`;
   }
 }
+
+const $ = computed(() => ({data: data.value, boundingBox: boundingBox.value, uniqueEventsLocations: uniqueEventsLocations.value, upcomingClubEvents: upcomingClubEvents.value }))
 </script>
 
 <template>
-  <v-card class="header" :title="data.club.name">
+  <v-card class="header" :title="$.data.club.name">
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="data.club.default?.location && !data.club.hide"
+    <v-card-text v-if="$.data.club.default?.location && !$.data.club.hide"
       >We typically meet at
-      <a :href="LocationService.getLocationClubUrl(data.club)" target="_blank">{{
-        data.club.default?.location
+      <a :href="LocationService.getLocationClubUrl($.data.club)" target="_blank">{{
+        $.data.club.default?.location
       }}</a
       >.</v-card-text
     >
   </v-card>
 
-  <div class="map-view" v-if="!data.club.hide">
+  <div class="map-view" v-if="!$.data.club.hide">
     <l-map
       ref="map"
-      v-model:zoom="boundingBox.zoom"
+      v-model:zoom="$.boundingBox.zoom"
       :center="[0, 0]"
-      :bounds="boundingBox.box"
-      :max-bounds="boundingBox.box"
+      :bounds="$.boundingBox.box"
+      :max-bounds="$.boundingBox.box"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -132,9 +134,9 @@ function getProfileLogoLink(): string {
       ></l-control-scale>
 
       <l-marker
-        @click="showDialog(true, data.club)"
-        v-if="!data.club.hide"
-        :lat-lng="data.club.coordinates"
+        @click="showDialog(true, $.data.club)"
+        v-if="!$.data.club.hide"
+        :lat-lng="$.data.club.coordinates"
       >
         <l-icon
           :icon-url="OsmUtils.getPin('default').options.iconUrl"
@@ -145,7 +147,7 @@ function getProfileLogoLink(): string {
 
       <l-marker
         @click="showDialog(true, ev)"
-        v-for="(ev, evId) in uniqueEventsLocations"
+        v-for="(ev, evId) in $.uniqueEventsLocations"
         :key="evId"
         :lat-lng="ev.coordinates"
       >
@@ -164,16 +166,16 @@ function getProfileLogoLink(): string {
 
   <div class="hline"></div>
 
-  <Contact :club="data.club"></Contact>
+  <Contact :club="$.data.club"></Contact>
 
   <div class="hline"></div>
 
-  <div v-if="data.associations?.length > 0">
+  <div v-if="$.data.associations?.length > 0">
     <p>We associate with</p>
     <v-chip
       variant="outlined"
       :color="ass.color"
-      v-for="(ass, assId) in data.associations"
+      v-for="(ass, assId) in $.data.associations"
       :key="assId"
     >
       <span>{{ ass.name }}</span>
@@ -183,7 +185,7 @@ function getProfileLogoLink(): string {
   <div class="hline"></div>
 
   <EventsList
-    :events="upcomingClubEvents"
+    :events="$.upcomingClubEvents"
     lines="three"
     :show-upcoming-header="true"
     :filename="filename"

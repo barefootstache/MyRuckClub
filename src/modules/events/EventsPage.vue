@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import EventsList from '@/components/EventsList.vue';
 import 'leaflet/dist/leaflet.css';
 import {
@@ -39,6 +39,8 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
+
+const $ = computed(() => ({uniqueEventsLocations: uniqueEventsLocations.value, futureEvents: futureEvents.value}))
 </script>
 
 <template>
@@ -61,7 +63,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 
         <l-marker
           @click="showDialog(true, ev)"
-          v-for="ev in uniqueEventsLocations"
+          v-for="ev in $.uniqueEventsLocations"
           :lat-lng="ev.coordinates"
         >
           <l-icon
@@ -82,7 +84,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
     </div>
 
     <EventsList
-      :events="futureEvents"
+      :events="$.futureEvents"
       :show-local-times="true"
       :use-logo="true"
     ></EventsList>

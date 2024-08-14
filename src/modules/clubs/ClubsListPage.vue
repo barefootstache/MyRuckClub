@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { Club, PLACEHOLDER_CLUB } from '@/business-logic';
 import { TursoService } from '@/services';
@@ -24,6 +24,8 @@ const headers = [
   { title: 'Name', key: 'name', align: 'start' },
   { title: 'Country', key: 'country', align: 'end', sortable: false },
 ] as const;
+
+const $ = computed(() => ({clubs: clubs.value}));
 </script>
 
 <template>
@@ -42,7 +44,7 @@ const headers = [
     <v-data-table
       :sort-by="sortBy"
       :group-by="groupBy"
-      :items="clubs"
+      :items="$.clubs"
       :headers="headers"
       items-per-page="25"
       :search="search"

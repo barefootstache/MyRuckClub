@@ -4,6 +4,7 @@ import { Contact, ClubEvent, Club, PLACEHOLDER_CLUB } from '@/business-logic';
 import { LocationService, TursoService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
 import { computedAsync } from '@vueuse/core';
+import { computed } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -45,6 +46,8 @@ function getProfileLogoLink(): string {
     return `clubs/myruckclub-logo.png`;
   }
 }
+
+const $ = computed(() => club.value);
 </script>
 
 <template>
@@ -73,7 +76,7 @@ function getProfileLogoLink(): string {
       <span v-if="event.clubId"
         >Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          club.name
+          $.name
         }}</a></span
       >
     </template>

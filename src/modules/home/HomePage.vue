@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import {
   LMap,
@@ -33,6 +33,8 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
+
+const $ = computed(() => ({clubs: clubs.value}))
 </script>
 
 <template>
@@ -59,7 +61,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
           :metric="true"
         ></l-control-scale>
 
-        <div v-for="club in clubs">
+        <div v-for="club in $.clubs">
           <l-marker
             @click="showDialog(true, club)"
             v-if="!club?.hide"

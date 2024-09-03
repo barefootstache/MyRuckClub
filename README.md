@@ -35,6 +35,37 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
+## Duplicate SQL row
+
+```
+INSERT INTO
+  "events" (
+    "clubid",
+    "coordinates",
+    "startsAt",
+    "duration",
+    "inSummer",
+    "location",
+    "name",
+    "type",
+    "url"
+  )
+SELECT
+  "clubid",
+  "coordinates",
+  '2024-09-24 19:00',
+  "duration",
+  "inSummer",
+  "location",
+  "name",
+  "type",
+  "url"
+FROM
+  "events"
+WHERE
+  "id" = 82;
+```
+
 ## Resources
 
 - https://github.com/logue/vite-vuetify-ts-starter/tree/master

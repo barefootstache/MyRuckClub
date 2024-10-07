@@ -1,7 +1,7 @@
 import { inject } from '@vercel/analytics';
 
 const VercelAnalyticsPlugin = {
-  install(Vue) {
+  install() {
     inject();
   }
 };

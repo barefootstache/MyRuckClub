@@ -8,7 +8,9 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --fix",
-    "format": "prettier --write . --config .prettierrc"
+    "format": "prettier --write . --config .prettierrc",
+    "deploy": "bun run build & vercel deploy",
+    "deploy:prod": "bun run build & vercel deploy --prod"
   },
   "dependencies": {
     "@libsql/client": "^0.7.0",

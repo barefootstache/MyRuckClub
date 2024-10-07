@@ -35,7 +35,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-## Duplicate SQL row
+## Duplicate SQL events row
 
 ```
 INSERT INTO
@@ -64,6 +64,27 @@ FROM
   "events"
 WHERE
   "id" = 82;
+```
+
+## Add club
+
+```
+INSERT INTO
+  "clubs" (
+    "id",
+    '["myruckclub","goruck","goruckeurope","crossfit","f3","sandlot"]',
+    '{"preferred":"instagram","instagram":"https://www.instagram.com/ybbsvalleyruckers/","facebook":"https://www.facebook.com/profile.php?id=61560575766740","email":"ji716@gmx.at"}',
+    '[0,0]',
+    "country",
+    NULL,
+    0,
+    0,
+    "name",
+    '{"source":"instagram","lastPost":"2024-06-09","updatedAt":"2024-07-10"}',
+    '{"utc":"UTC+1","standard":1,"summer":2}',
+    "2024-10-05 15:00",
+    "2024-10-05 15:00"
+  );
 ```
 
 ## Resources

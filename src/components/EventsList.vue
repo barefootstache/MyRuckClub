@@ -158,10 +158,10 @@ const sortedEventsByDate = computed(() => {
     <p>All times are local times.</p>
     <p>All data should be double-checked on the club's site.</p>
   </div>
-  <DownloadCalendarButton
-    :events="events"
-    :filename="filename"
-  ></DownloadCalendarButton>
+  <!-- <DownloadCalendarButton -->
+  <!--   :events="events" -->
+  <!--   :filename="filename" -->
+  <!-- ></DownloadCalendarButton> -->
 
   <h2 class="upcoming-header" v-if="showUpcomingHeader">
     <span v-if="events.length === 0">No </span>Upcoming Events

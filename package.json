@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint --fix",
     "format": "prettier --write . --config .prettierrc",
-    "deploy": "bun run build & vercel deploy",
+    "deploy": "vercel deploy",
     "deploy:prod": "bun run build & vercel deploy --prod"
   },
   "dependencies": {

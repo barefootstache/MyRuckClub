@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import EventItem from '@/components/EventItem.vue';
-import DownloadCalendarButton from '@/components/DownloadCalendarButton.vue';
+// import DownloadCalendarButton from '@/components/DownloadCalendarButton.vue';
 import { ClubEvent } from '@/business-logic';
 import {
   format,

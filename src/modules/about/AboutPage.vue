@@ -34,7 +34,7 @@
           </svg>
           <span>RSS</span>
         </a>
-        <code>https://indieweb.social/users/rucking.atom</code>
+        <code>https://indieweb.social/@rucking.rss</code>
       </li>
     </ul>
     <h2 id="how-to-join">How to Join</h2>

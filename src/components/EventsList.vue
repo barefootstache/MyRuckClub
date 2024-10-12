@@ -32,7 +32,7 @@ const props = withDefaults(
   defineProps<{
     events: ClubEvent[];
     filename?: string;
-    lines?: false | 'one' | 'two' | 'three';
+    lines?: false | 'one' | 'two' | 'three' | number;
     showLocalTimes?: boolean;
     showUpcomingHeader?: boolean;
     useLogo?: boolean;

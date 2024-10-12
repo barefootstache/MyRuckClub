@@ -197,7 +197,7 @@ const $ = computed(() => ({
 
   <EventsList
     :events="$.upcomingClubEvents"
-    lines="three"
+    lines="5"
     :show-upcoming-header="true"
     :filename="filename"
   ></EventsList>

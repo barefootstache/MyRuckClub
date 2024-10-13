@@ -14,11 +14,9 @@ import { LocationService, TursoService } from '@/services';
 import {
   Club,
   ClubEvent,
-  Coordinates,
   PLACEHOLDER_ASSOCIATION,
   PLACEHOLDER_CLUB,
   PLACEHOLDER_BOUNDINGBOX,
-  PLACEHOLDER_CLUBEVENT,
 } from '@/business-logic';
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
@@ -31,10 +29,9 @@ import { computedAsync } from '@vueuse/core';
 const route = useRoute();
 const clubId = ref(route.params.id as string);
 
-/**
- * Finds the referenced club by clubId.
- */
-const data = computedAsync(
+const data = computed(() => dataAsync.value);
+
+const dataAsync = computedAsync(
   async () => {
     const club = await TursoService.getClubById(clubId.value);
     const associations = await Promise.all(
@@ -42,37 +39,24 @@ const data = computedAsync(
         async (ass) => await TursoService.getAssociationByType(ass)
       )
     );
+    const upcomingClubEvents = await TursoService.getEventsByClubId(clubId.value);
+    const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
+    const allCoordinates = uniqueEventsLocations
+      .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
+      .concat([club.coordinates]);
+    const boundingBox = LocationService.getBoundingBox(allCoordinates);
 
-    return { club, associations };
+    return { club, associations, upcomingClubEvents, uniqueEventsLocations, allCoordinates, boundingBox };
   },
   {
     club: PLACEHOLDER_CLUB,
     associations: [PLACEHOLDER_ASSOCIATION],
+    upcomingClubEvents: [],
+    uniqueEventsLocations: [],
+    allCoordinates: [PLACEHOLDER_CLUB.coordinates],
+    boundingBox: PLACEHOLDER_BOUNDINGBOX
   }
 );
-
-/**
- * Filters events that are happening today and later.
- */
-const upcomingClubEvents = computedAsync<ClubEvent[]>(
-  async () => await TursoService.getEventsByClubId(clubId.value),
-  [PLACEHOLDER_CLUBEVENT]
-);
-
-const uniqueEventsLocations = computedAsync<ClubEvent[]>(async () =>
-  LocationService.getUniqueEventsLocations(upcomingClubEvents.value)
-);
-
-const allCoordinates = computedAsync<Coordinates[]>(async () =>
-  uniqueEventsLocations.value
-    .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
-    .concat([data.value.club.coordinates])
-);
-
-const boundingBox = computedAsync(async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  return LocationService.getBoundingBox(allCoordinates.value);
-}, PLACEHOLDER_BOUNDINGBOX);
 
 const visible = ref(false);
 const markerDialog = ref();
@@ -101,37 +85,29 @@ function getProfileLogoLink(): string {
     return `clubs/myruckclub-logo.png`;
   }
 }
-
-const $ = computed(() => ({
-  data: data.value,
-  boundingBox: boundingBox.value,
-  uniqueEventsLocations: uniqueEventsLocations.value,
-  upcomingClubEvents: upcomingClubEvents.value,
-}));
 </script>
 
 <template>
-  <v-card class="header" :title="$.data.club.name">
+  <v-card class="header text-center" :title="data.club.name">
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="$.data.club.default?.location && !$.data.club.hide"
+    <v-card-text v-if="data.club.default?.location && !data.club.hide"
       >We typically meet at
       <a
-        :href="LocationService.getLocationClubUrl($.data.club)"
+        :href="LocationService.getLocationClubUrl(data.club)"
         target="_blank"
-        >{{ $.data.club.default?.location }}</a
+        >{{ data.club.default?.location }}</a
       >.</v-card-text
     >
   </v-card>
 
-  <div class="map-view" v-if="!$.data.club.hide">
+  <div class="map-view" v-if="!data.club.hide">
     <l-map
       ref="map"
-      v-model:zoom="$.boundingBox.zoom"
-      :center="[0, 0]"
-      :bounds="$.boundingBox.box"
-      :max-bounds="$.boundingBox.box"
+      v-model:zoom="data.boundingBox.zoom"
+      :center="data.club.coordinates"
+      :bounds="data.boundingBox.box"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -146,9 +122,9 @@ const $ = computed(() => ({
       ></l-control-scale>
 
       <l-marker
-        @click="showDialog(true, $.data.club)"
-        v-if="!$.data.club.hide"
-        :lat-lng="$.data.club.coordinates"
+        @click="showDialog(true, data.club)"
+        v-if="!data.club.hide"
+        :lat-lng="data.club.coordinates"
       >
         <l-icon
           :icon-url="OsmUtils.getPin('default').options.iconUrl"
@@ -159,7 +135,7 @@ const $ = computed(() => ({
 
       <l-marker
         @click="showDialog(true, ev)"
-        v-for="(ev, evId) in $.uniqueEventsLocations"
+        v-for="(ev, evId) in data.uniqueEventsLocations"
         :key="evId"
         :lat-lng="ev.coordinates"
       >
@@ -178,16 +154,16 @@ const $ = computed(() => ({
 
   <div class="hline"></div>
 
-  <Contact :club="$.data.club"></Contact>
+  <Contact class="text-center" :club="data.club"></Contact>
 
   <div class="hline"></div>
 
-  <div v-if="$.data.associations?.length > 0">
+  <div class="text-center" v-if="data.associations?.length > 0">
     <p>We associate with</p>
     <v-chip
       variant="outlined"
       :color="ass.color"
-      v-for="(ass, assId) in $.data.associations"
+      v-for="(ass, assId) in data.associations"
       :key="assId"
     >
       <span>{{ ass.name }}</span>
@@ -197,8 +173,7 @@ const $ = computed(() => ({
   <div class="hline"></div>
 
   <EventsList
-    :events="$.upcomingClubEvents"
-    lines="three"
+    :events="data.upcomingClubEvents"
     :show-upcoming-header="true"
     :filename="filename"
   ></EventsList>

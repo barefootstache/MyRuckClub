@@ -39,7 +39,7 @@ const $ = computed(() => ({ clubs: clubs.value }));
 
 <template>
   <div class="mobile-container">
-    <div class="mobile-hide">
+    <div class="mobile-hide text-center">
       <h1>My Ruck Club</h1>
       <p>
         <em>My Ruck Club</em> is the first stop to get more info of your local

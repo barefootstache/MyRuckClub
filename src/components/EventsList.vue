@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import EventItem from '@/components/EventItem.vue';
-import DownloadCalendarButton from '@/components/DownloadCalendarButton.vue';
+import EventItemSkeleton from '@/components/EventItemSkeleton.vue';
 import { ClubEvent } from '@/business-logic';
 import {
   format,
@@ -154,29 +154,40 @@ const sortedEventsByDate = computed(() => {
 </script>
 
 <template>
-  <div class="local-times-header" v-if="showLocalTimes">
+  <div class="local-times-header text-center" v-if="showLocalTimes">
     <p>All times are local times.</p>
     <p>All data should be double-checked on the club's site.</p>
   </div>
-  <DownloadCalendarButton
-    :events="events"
-    :filename="filename"
-  ></DownloadCalendarButton>
 
-  <h2 class="upcoming-header" v-if="showUpcomingHeader">
-    <span v-if="events.length === 0">No </span>Upcoming Events
-  </h2>
-
-  <v-list :lines="lines">
-    <template v-for="dateInterval in sortedEventsByDate">
-      <template v-if="dateInterval.events.length">
-        <h2>{{ dateInterval.header }}</h2>
-        <template v-for="ev in dateInterval.events">
-          <EventItem :event="ev" :use-logo="useLogo"></EventItem>
-        </template>
-      </template>
+  <Suspense>
+    <template #default>
+      <div>
+        <h2 class="upcoming-header text-center" v-if="showUpcomingHeader">
+          <span v-if="events.length === 0">No </span>Upcoming Events
+        </h2>
+        <v-list :lines="lines">
+          <template v-for="dateInterval in sortedEventsByDate">
+            <template v-if="dateInterval.events.length">
+              <h2 class="text-center">{{ dateInterval.header }}</h2>
+              <template v-for="ev in dateInterval.events">
+                <EventItem :event="ev" :use-logo="useLogo"></EventItem>
+              </template>
+            </template>
+          </template>
+        </v-list>
+      </div>
     </template>
-  </v-list>
+    <template #fallback>
+      <div>
+        <h2 class="upcoming-header text-center" v-if="showUpcomingHeader">
+          Loading Upcoming Events
+        </h2>
+        <EventItemSkeleton></EventItemSkeleton>
+        <EventItemSkeleton></EventItemSkeleton>
+        <EventItemSkeleton></EventItemSkeleton>
+      </div>
+    </template>
+  </Suspense>
 </template>
 
 <style scoped>
@@ -210,6 +221,10 @@ h2 {
   span {
     font-size: 1.3rem;
   }
+}
+
+.v-list-item__content {
+  text-align: left;
 }
 
 @media screen and (max-width: 800px) {

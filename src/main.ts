@@ -7,7 +7,10 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 
 // Analytics
-import VercelAnalyticsPlugin from './plugins/analytics';
+// import VercelAnalyticsPlugin from './plugins/analytics';
+import { inject } from '@vercel/analytics';
+
+inject();
 
 const app = createApp(App);
 // eslint-disable-next-line
@@ -15,5 +18,5 @@ app.use(router as any);
 // eslint-disable-next-line
 app.use(vuetify as any);
 // eslint-disable-next-line
-app.use(VercelAnalyticsPlugin);
+// app.use(VercelAnalyticsPlugin);
 app.mount('#app');

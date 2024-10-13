@@ -48,7 +48,7 @@ const $ = computed(() => ({
 
 <template>
   <div>
-    <h2>Upcoming Events</h2>
+    <h2 class="text-center">Upcoming Events</h2>
 
     <div class="map-view">
       <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">

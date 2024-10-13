@@ -47,6 +47,7 @@ navigation {
   width: 800px;
   display: flex;
   z-index: 1001;
+  text-align: center;
 }
 navigation a {
   color: rgb(var(--v-theme-accent));

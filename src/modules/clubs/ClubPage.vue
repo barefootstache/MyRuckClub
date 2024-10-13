@@ -91,7 +91,7 @@ function getProfileLogoLink(): string {
 </script>
 
 <template>
-  <v-card class="header" :title="data.club.name">
+  <v-card class="header text-center" :title="data.club.name">
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
@@ -157,11 +157,11 @@ function getProfileLogoLink(): string {
 
   <div class="hline"></div>
 
-  <Contact :club="data.club"></Contact>
+  <Contact class="text-center" :club="data.club"></Contact>
 
   <div class="hline"></div>
 
-  <div v-if="data.associations?.length > 0">
+  <div class="text-center" v-if="data.associations?.length > 0">
     <p>We associate with</p>
     <v-chip
       variant="outlined"

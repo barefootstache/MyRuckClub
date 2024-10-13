@@ -47,6 +47,40 @@ function getProfileLogoLink(): string {
   }
 }
 
+function getClockOutline(time:string): string {
+  const hourStr = time.split(':')[0] || '4';
+  const hour12Str = +hourStr%12;
+  switch (hour12Str) {
+    case 0:
+      return 'mdi-clock-time-twelve-outline';
+    case 1:
+      return 'mdi-clock-time-one-outline';
+    case 2:
+      return 'mdi-clock-time-two-outline';
+    case 3:
+      return 'mdi-clock-time-three-outline';
+    case 4:
+      return 'mdi-clock-time-four-outline';
+    case 5:
+      return 'mdi-clock-time-five-outline';
+    case 6:
+      return 'mdi-clock-time-six-outline';
+    case 7:
+      return 'mdi-clock-time-seven-outline';
+    case 8:
+      return 'mdi-clock-time-eight-outline';
+    case 9:
+      return 'mdi-clock-time-nine-outline';
+    case 10:
+      return 'mdi-clock-time-ten-outline';
+    case 11:
+      return 'mdi-clock-time-eleven-outline';
+
+    default:
+      return 'mdi-clock-time-outline';
+  }
+}
+
 const $ = computed(() => club.value);
 </script>
 
@@ -61,24 +95,20 @@ const $ = computed(() => club.value);
       <v-avatar :image="EventUtils.getIcon(event.type)" size="80"> </v-avatar>
     </template>
     <template #title>
-      <span style="font-weight: bold">{{ event.name }}</span
-      ><br />
+      <v-icon icon="mdi-card-account-details-outline"></v-icon><span style="font-weight: bold">{{ event.name }}</span>
     </template>
     <template #subtitle>
-      <span>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</span
-      ><br />
-      <span
-        >{{ event.time }} -
+      <p><v-icon icon="mdi-calendar-month"></v-icon>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</p>
+      <p><v-icon :icon="getClockOutline(event.time)"></v-icon>{{ event.time }}</p>
+      <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a></span
-      ><br />
-      <span v-if="event.clubId"
-        >Registration at
+        }}</a></p>
+      <p v-if="event.clubId"
+        ><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           $.name
-        }}</a></span
-      >
+        }}</a></p>
     </template>
   </v-list-item>
 </template>
@@ -90,8 +120,16 @@ const $ = computed(() => club.value);
   padding: 0 4px;
 }
 
-.v-list-item-subtitle span {
+.v-list-item-subtitle p {
   line-height: 1.5;
   font-size: 1rem;
+}
+
+.v-list-item__content {
+  text-align: left;
+}
+
+.v-icon {
+  margin: 0 8px;
 }
 </style>

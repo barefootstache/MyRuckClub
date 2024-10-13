@@ -47,6 +47,11 @@ function getProfileLogoLink(): string {
   }
 }
 
+/**
+ * Gets the clock time outline icon for the specific time.
+ * @param time - the specific time
+ * @returns the icone
+ */
 function getClockOutline(time:string): string {
   const hourStr = time.split(':')[0] || '4';
   const hour12Str = +hourStr%12;

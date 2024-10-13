@@ -86,7 +86,6 @@ function getClockOutline(time:string): string {
   }
 }
 
-const $ = computed(() => club.value);
 </script>
 
 <template>
@@ -112,7 +111,7 @@ const $ = computed(() => club.value);
       <p v-if="event.clubId"
         ><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          $.name
+          club.name
         }}</a></p>
     </template>
   </v-list-item>
@@ -128,10 +127,6 @@ const $ = computed(() => club.value);
 .v-list-item-subtitle p {
   line-height: 1.5;
   font-size: 1rem;
-}
-
-.v-list-item__content {
-  text-align: left;
 }
 
 .v-icon {

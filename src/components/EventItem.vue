@@ -16,6 +16,8 @@ const props = withDefaults(
   }
 );
 
+const that = computed(() => club.value);
+
 const club = computedAsync<Club>(async () => {
   const response = await TursoService.getClubById(props.event.clubId);
   return response;
@@ -111,7 +113,7 @@ function getClockOutline(time:string): string {
       <p v-if="event.clubId"
         ><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          club.name
+          that.name
         }}</a></p>
     </template>
   </v-list-item>

@@ -14,11 +14,9 @@ import { LocationService, TursoService } from '@/services';
 import {
   Club,
   ClubEvent,
-  Coordinates,
   PLACEHOLDER_ASSOCIATION,
   PLACEHOLDER_CLUB,
   PLACEHOLDER_BOUNDINGBOX,
-  PLACEHOLDER_CLUBEVENT,
 } from '@/business-logic';
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
@@ -31,10 +29,9 @@ import { computedAsync } from '@vueuse/core';
 const route = useRoute();
 const clubId = ref(route.params.id as string);
 
-/**
- * Finds the referenced club by clubId.
- */
-const data = computedAsync(
+const data = computed(() => dataAsync.value);
+
+const dataAsync = computedAsync(
   async () => {
     const club = await TursoService.getClubById(clubId.value);
     const associations = await Promise.all(
@@ -177,7 +174,6 @@ function getProfileLogoLink(): string {
 
   <EventsList
     :events="data.upcomingClubEvents"
-    lines="5"
     :show-upcoming-header="true"
     :filename="filename"
   ></EventsList>

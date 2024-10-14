@@ -73,7 +73,7 @@ INSERT INTO
   "clubs" (
     "id",
     '["myruckclub","goruck","goruckeurope","crossfit","f3","sandlot"]',
-    '{"preferred":"instagram","instagram":"https://www.instagram.com/ybbsvalleyruckers/","facebook":"https://www.facebook.com/profile.php?id=61560575766740","email":"ji716@gmx.at"}',
+    '{"preferred":"instagram","instagram":"https://www.instagram.com/","facebook":"https://www.facebook.com/","email":"email"}',
     '[0,0]',
     "country",
     NULL,

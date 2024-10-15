@@ -70,21 +70,18 @@ WHERE
 
 ```
 INSERT INTO
-  "clubs" (
-    "id",
-    '["myruckclub","goruck","goruckeurope","crossfit","f3","sandlot"]',
-    '{"preferred":"instagram","instagram":"https://www.instagram.com/","facebook":"https://www.facebook.com/","email":"email"}',
-    '[0,0]',
-    "country",
-    NULL,
-    0,
-    0,
+  "clubs" (id, associations, contact, coordinates, country, name, socialMediaContent, createdAt, updatedAt) 
+  VALUES (
+    "club_id",
+    '["goruck"]',
+    '{"preferred":"instagram","instagram":"https://www.instagram.com/club_id/"}',
+    '[39.10848, -84.51744]',
+    "USA",
     "name",
-    '{"source":"instagram","lastPost":"2024-06-09","updatedAt":"2024-07-10"}',
-    '{"utc":"UTC+1","standard":1,"summer":2}',
-    "2024-10-05 15:00",
-    "2024-10-05 15:00"
-  );
+    '{"source":"instagram","lastPost":"2020-10-29","updatedAt":"2024-10-15"}',
+    "2024-10-15 02:00",
+    "2024-10-15 02:00"
+    );
 ```
 
 ## Resources

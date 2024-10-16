@@ -22,7 +22,6 @@
     "ics": "^3.7.6",
     "leaflet": "^1.9.4",
     "radash": "^11.0.0",
-    "vite-plugin-pwa": "0.20.0",
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",

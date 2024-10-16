@@ -18,16 +18,19 @@ export const PLACEHOLDER_ASSOCIATION: Association = {
     preferred: 'fediverse',
     fediverse: 'https://indieweb.social/@rucking',
     homepage: 'https://www.myruck.club/',
+    instagram: 'https://www.instagram.com/myruckclub/'
   },
 };
 
 export const PLACEHOLDER_CLUB: Club = {
   coordinates: [48.3908, 13.1604],
   id: 'placeholder-club',
-  name: 'placeholder-club',
+  name: 'My Ruck Club',
   contact: {
     preferred: 'fediverse',
     fediverse: 'https://indieweb.social/@rucking',
+    homepage: 'https://www.myruck.club/',
+    instagram: 'https://www.instagram.com/myruckclub/'
   },
   country: 'Germany',
   associations: ['myruckclub'],

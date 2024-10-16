@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
 import { Contact, ClubEvent, Club, PLACEHOLDER_CLUB } from '@/business-logic';
-import { LocationService, TursoService } from '@/services';
+import { LocationService, TursoService, UtilsService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
 import { computedAsync } from '@vueuse/core';
 import { computed } from 'vue';
@@ -48,46 +48,6 @@ function getProfileLogoLink(): string {
     return `clubs/myruckclub-logo.png`;
   }
 }
-
-/**
- * Gets the clock time outline icon for the specific time.
- * @param time - the specific time
- * @returns the icone
- */
-function getClockOutline(time:string): string {
-  const hourStr = time.split(':')[0] || '4';
-  const hour12Str = +hourStr%12;
-  switch (hour12Str) {
-    case 0:
-      return 'mdi-clock-time-twelve-outline';
-    case 1:
-      return 'mdi-clock-time-one-outline';
-    case 2:
-      return 'mdi-clock-time-two-outline';
-    case 3:
-      return 'mdi-clock-time-three-outline';
-    case 4:
-      return 'mdi-clock-time-four-outline';
-    case 5:
-      return 'mdi-clock-time-five-outline';
-    case 6:
-      return 'mdi-clock-time-six-outline';
-    case 7:
-      return 'mdi-clock-time-seven-outline';
-    case 8:
-      return 'mdi-clock-time-eight-outline';
-    case 9:
-      return 'mdi-clock-time-nine-outline';
-    case 10:
-      return 'mdi-clock-time-ten-outline';
-    case 11:
-      return 'mdi-clock-time-eleven-outline';
-
-    default:
-      return 'mdi-clock-time-outline';
-  }
-}
-
 </script>
 
 <template>
@@ -105,7 +65,7 @@ function getClockOutline(time:string): string {
     </template>
     <template #subtitle>
       <p><v-icon icon="mdi-calendar-month"></v-icon>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</p>
-      <p><v-icon :icon="getClockOutline(event.time)"></v-icon>{{ event.time }}</p>
+      <p><v-icon :icon="UtilsService.getClockTimeIcon(event.time)"></v-icon>{{ event.time }}</p>
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location

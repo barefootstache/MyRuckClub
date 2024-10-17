@@ -11,12 +11,20 @@ import {
   PLACEHOLDER_ASSOCIATION,
   SocialMediaContent,
   Timezone,
+  TursoRequest,
 } from '@/business-logic';
-import { turso } from '@/config/turso';
+import { turso, tursoV2 } from '@/config/turso';
 import { Row } from '@libsql/client';
 import { format } from 'date-fns';
 
 export class TursoService {
+  static async closeConnection(requests:TursoRequest[]):Promise<Response> {
+    const appendClose:TursoRequest[] = [...requests, {type: 'close'}];
+    return tursoV2(appendClose)
+      .then(res => res.json())
+      .catch(err => console.error(err));
+  }
+
   static async getClubById(clubId: string): Promise<Club> {
     const result = (
       await turso.execute({
@@ -32,6 +40,17 @@ export class TursoService {
       (row) => TursoService.parseAsClub(row)
     );
     return result;
+  }
+
+  static async getAllClubsV2(): Promise<Club[]> {
+    const request:TursoRequest = {type: 'execute', stmt: { sql: 'SELECT * FROM clubs'}};
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+
+    const clubs = result.rows.map((row:any) => {
+      return TursoService.parseAsClubV2(result.cols, row);
+    });
+    return clubs;
   }
 
   static async getAssociationByType(
@@ -147,6 +166,37 @@ export class TursoService {
       body.timezone = JSON.parse(row['timezone'] as string) as Timezone;
     }
 
+    return body;
+  }
+
+  private static parseAsClubV2(cols: {name:string, decltype:string}[], row: {type:string,value?:string}[]): Club {
+    const body: Club = {
+      coordinates: JSON.parse(row[cols.findIndex(col => col.name === 'coordinates')].value as string) as Coordinates,
+      id: row[cols.findIndex(col => col.name === 'id')].value as string,
+      name: row[cols.findIndex(col => col.name === 'name')].value as string,
+      hide: Boolean(+(row[cols.findIndex(col => col.name === 'hide')].value as string)),
+      contact: JSON.parse(row[cols.findIndex(col => col.name === 'contact')].value as string) as Contact,
+      country: row[cols.findIndex(col => col.name === 'country')].value as Country,
+      hasLogo: Boolean(+(row[cols.findIndex(col => col.name === 'hasLogo')].value as string)),
+      associations: JSON.parse(
+        row[cols.findIndex(col => col.name === 'associations')].value as string
+      ) as AssociationType[],
+    };
+
+    const rowDefault = row[cols.findIndex(col => col.name === 'default')];
+    if (rowDefault.value !== 'undefined' && rowDefault.type !== 'null') {
+      body.default = JSON.parse(rowDefault.value as string) as Default;
+    }
+
+    const rowSocialMediaContent = row[cols.findIndex(col => col.name === 'socialMediaContent')];
+    if (rowSocialMediaContent.value && rowSocialMediaContent.type !== 'null') {
+      body.socialMediaContent = JSON.parse(rowSocialMediaContent.value as string) as SocialMediaContent;
+    }
+
+    const rowTimezone = row[cols.findIndex(col => col.name === 'timezone')];
+    if (rowTimezone.value && rowTimezone.type !== 'null') {
+      body.timezone = JSON.parse(rowTimezone.value as string) as Timezone;
+    }
     return body;
   }
 }

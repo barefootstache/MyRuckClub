@@ -19,10 +19,12 @@ const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 const visible = ref(false);
 const markerDialog = ref();
 
+const data = computed(() => clubs.value);
+
 const clubs = computedAsync<Club[]>(async () => {
-  const response = await TursoService.getAllClubs();
+  const response = await TursoService.getAllClubsV2();
   return response;
-}, [PLACEHOLDER_CLUB]);
+});
 
 /**
  * Shows the marker dialog.
@@ -33,8 +35,6 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   visible.value = value;
   markerDialog.value = body;
 }
-
-const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>
@@ -61,7 +61,7 @@ const $ = computed(() => ({ clubs: clubs.value }));
           :metric="true"
         ></l-control-scale>
 
-        <div v-for="club in $.clubs">
+        <div v-for="club in data">
           <l-marker
             @click="showDialog(true, club)"
             v-if="!club?.hide"

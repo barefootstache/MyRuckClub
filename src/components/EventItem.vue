@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
 import { Contact, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
-import { LocationService, TursoService, UtilsService } from '@/services';
+import { LocationService, UtilsService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
 import { onMounted, ref } from 'vue';
+import { useClubsStore } from '@/stores/clubs.store';
 
 const props = withDefaults(
   defineProps<{
@@ -16,9 +17,11 @@ const props = withDefaults(
 );
 
 const data = ref(PLACEHOLDER_CLUB);
+const store = useClubsStore();
 
 onMounted(async () => {
-  const club = await TursoService.getClubByIdV2(props.event.clubId);
+  await store.registerClubsList();
+  const club = store.getClubById(props.event.clubId);
   data.value = club;
 });
 
@@ -68,12 +71,12 @@ function getProfileLogoLink(): string {
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-          }}</a>
+        }}</a>
       </p>
       <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           data.name
-          }}</a>
+        }}</a>
       </p>
     </template>
   </v-list-item>

@@ -72,6 +72,17 @@ export class TursoService {
     return clubs;
   }
 
+  static async getAllAssociationsV2(): Promise<Association[]> {
+    const request: TursoRequest = { type: 'execute', stmt: { sql: 'SELECT * FROM associations' } };
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+
+    const associations = result.rows.map((row: any) => {
+      return TursoService.parseAsAssociationV2(result.cols, row);
+    });
+    return associations;
+  }
+
   static async getAssociationByType(
     type: AssociationType
   ): Promise<Association> {

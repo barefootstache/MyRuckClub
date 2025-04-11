@@ -21,6 +21,7 @@
     "date-fns": "^2.30.0",
     "ics": "^3.8.1",
     "leaflet": "^1.9.4",
+    "pinia": "^3.0.2",
     "radash": "^11.0.0",
     "vite-plugin-vuetify": "^2.1.1",
     "vue": "^3.5.13",

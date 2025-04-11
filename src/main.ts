@@ -12,11 +12,16 @@ import { inject } from '@vercel/analytics';
 
 inject();
 
+// Pinia
+import { createPinia } from 'pinia';
+const pinia = createPinia();
+
 const app = createApp(App);
 // eslint-disable-next-line
 app.use(router as any);
 // eslint-disable-next-line
 app.use(vuetify as any);
 // eslint-disable-next-line
+app.use(pinia as any);
 // app.use(VercelAnalyticsPlugin);
 app.mount('#app');

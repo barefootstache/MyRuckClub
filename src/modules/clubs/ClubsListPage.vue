@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { PLACEHOLDER_CLUB } from '@/business-logic';
-import { TursoService } from '@/services';
+import { useClubsStore } from '@/stores/clubs.store';
 
 const search = ref('');
 const data = ref({
   clubs: [PLACEHOLDER_CLUB]
 });
+const store = useClubsStore();
 
 onMounted(async () => {
-  const clubs = await TursoService.getAllClubsV2();
-  data.value.clubs = clubs;
+  await store.registerClubsList();
+  data.value.clubs = store.list;
 });
 
 const groupBy = [

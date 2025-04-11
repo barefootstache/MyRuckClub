@@ -1,4 +1,4 @@
-import { Association, AssociationType, Club, PLACEHOLDER_ASSOCIATION, PLACEHOLDER_CLUB } from "@/business-logic";
+import { Association, AssociationType, PLACEHOLDER_ASSOCIATION } from "@/business-logic";
 import { TursoService } from "@/services";
 import { defineStore } from "pinia";
 import { ref } from "vue";

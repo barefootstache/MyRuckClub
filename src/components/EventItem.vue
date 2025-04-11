@@ -69,12 +69,13 @@ function getProfileLogoLink(): string {
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a></p>
-      <p v-if="event.clubId"
-        ><v-icon icon="mdi-draw"></v-icon>Registration at
+        }}</a>
+      </p>
+      <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           that.name
-        }}</a></p>
+        }}</a>
+      </p>
     </template>
   </v-list-item>
 </template>

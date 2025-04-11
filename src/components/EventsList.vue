@@ -218,6 +218,7 @@ h2 {
 
 .local-times-header {
   margin: 5px 0;
+
   span {
     font-size: 1.3rem;
   }

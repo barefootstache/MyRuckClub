@@ -6,13 +6,13 @@ export const turso = createClient({
   authToken: import.meta.env.VITE_TURSO_AUTH_TOKEN,
 });
 
-export function tursoV2(requests:TursoRequest[]):Promise<Response> {
-  return fetch(`${import.meta.env.VITE_TURSO_DATABASE_URL_V2}/v2/pipeline`, {
+export function tursoV2(requests: TursoRequest[]): Promise<Response> {
+  return fetch(`${import.meta.env.VITE_TURSO_DATABASE_URL}/v2/pipeline`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TURSO_AUTH_TOKEN}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({requests})
+    body: JSON.stringify({ requests })
   });
 }

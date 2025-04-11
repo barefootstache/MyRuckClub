@@ -271,7 +271,7 @@ export class TursoService {
       name: TursoService.getValueByColumn('name', cols, row),
       hide: TursoService.getValueByColumn<boolean>('hide', cols, row, 'boolean'),
       contact: TursoService.getValueByColumn<Contact>('contact', cols, row, 'json'),
-      country: TursoService.getValueByColumn<Country>('name', cols, row),
+      country: TursoService.getValueByColumn<Country>('country', cols, row),
       hasLogo: TursoService.getValueByColumn<boolean>('hasLogo', cols, row, 'boolean'),
       associations: TursoService.getValueByColumn<AssociationType[]>('associations', cols, row, 'json'),
     };

@@ -9,15 +9,19 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { LocationService, TursoService } from '@/services';
+import { LocationService } from '@/services';
 import { OsmUtils } from '@/business-logic/index.utils';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent } from '@/business-logic';
+import { useClubsStore, useClubEventsStore } from '@/stores';
 
 const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
 const visible = ref(false);
 const markerDialog = ref();
+
+const storeClubs = useClubsStore();
+const storeEvents = useClubEventsStore();
 
 const data = ref({
   uniqueEventsLocations: [] as ClubEvent[],
@@ -26,7 +30,9 @@ const data = ref({
 
 
 onMounted(async () => {
-  const events = await TursoService.getFutureEventsV2();
+  await storeClubs.registerClubsList();
+  await storeEvents.registerClubEventsList();
+  const events = storeEvents.list;
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(events);
   data.value.uniqueEventsLocations = uniqueEventsLocations;
   data.value.futureEvents = events;

@@ -10,7 +10,7 @@ import {
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
 import { OsmUtils } from '@/business-logic/index.utils';
-import { LocationService, TursoService } from '@/services';
+import { LocationService } from '@/services';
 import {
   Club,
   ClubEvent,
@@ -21,6 +21,7 @@ import {
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import EventsList from '@/components/EventsList.vue';
+import { useClubsStore, useClubEventsStore, useAssociationsStore } from '@/stores';
 
 /**
  * Reference for `this.$route`.
@@ -28,6 +29,9 @@ import EventsList from '@/components/EventsList.vue';
 const route = useRoute();
 const clubId = ref(route.params.id as string);
 
+const storeClubs = useClubsStore();
+const storeEvents = useClubEventsStore();
+const storeAssociations = useAssociationsStore();
 
 const data = ref({
   club: PLACEHOLDER_CLUB,
@@ -39,13 +43,14 @@ const data = ref({
 })
 
 onMounted(async () => {
-  const club = await TursoService.getClubByIdV2(clubId.value);
-  const associations = await Promise.all(
-    club.associations.map(
-      async (ass) => await TursoService.getAssociationByTypeV2(ass)
-    )
-  );
-  const upcomingClubEvents = await TursoService.getEventsByClubIdV2(clubId.value);
+  await storeClubs.registerClubsList();
+  await storeEvents.registerClubEventsList();
+  await storeAssociations.registerAssociationsList();
+
+  const club = storeClubs.getClubById(clubId.value);
+  const associations = club.associations.map((ass) => storeAssociations.getAssociationByType(ass));
+  const upcomingClubEvents = storeEvents.getEventsByClubId(clubId.value);
+
   const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
   const allCoordinates = uniqueEventsLocations
     .map((ev: ClubEvent) => LocationService.getCoordinates(ev))

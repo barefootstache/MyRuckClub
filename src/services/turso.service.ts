@@ -88,6 +88,24 @@ export class TursoService {
     return result;
   }
 
+  static async getAssociationByTypeV2(type: AssociationType): Promise<Association> {
+    const request: TursoRequest = {
+      type: 'execute',
+      stmt: {
+        sql: 'SELECT * FROM associations WHERE type = (:type)',
+        named_args: [{ name: 'type', value: { type: 'text', value: type } }]
+      }
+    };
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+    const associations = result.rows.map((row: any) => TursoService.parseAsAssociationV2(result.cols, row))[0];
+
+    if (!associations) {
+      return PLACEHOLDER_ASSOCIATION;
+    }
+    return associations;
+  }
+
   static async getEventsByClubId(clubId: string): Promise<ClubEvent[]> {
     const result = (
       await turso.execute({
@@ -97,6 +115,20 @@ export class TursoService {
     ).rows.map((row) => TursoService.parseAsClubEvent(row));
 
     return result;
+  }
+
+  static async getEventsByClubIdV2(clubId: string): Promise<ClubEvent[]> {
+    const request: TursoRequest = {
+      type: 'execute',
+      stmt: {
+        sql: 'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP AND clubId = (:clubId) ORDER BY startsAt',
+        named_args: [{ name: 'clubId', value: { type: 'text', value: clubId } }]
+      }
+    };
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+    const events = result.rows.map((row: any) => TursoService.parseAsClubEventV2(result.cols, row));
+    return events;
   }
 
   static async getFutureEvents(): Promise<ClubEvent[]> {
@@ -145,6 +177,25 @@ export class TursoService {
       contact,
       name: row['name'] as string,
       color: row['color'] as string,
+    };
+  }
+
+  private static parseAsAssociationV2(cols: TursoCols, row: TursoRows): Association {
+    const contact: Contact = {
+      preferred: TursoService.getValueByColumn<keyof Contact>('contact.preferred', cols, row),
+      homepage: TursoService.getValueByColumn('contact.homepage', cols, row),
+      instagram: TursoService.getValueByColumn('contact.instagram', cols, row),
+      fediverse: TursoService.getValueByColumn('contact.fediverse', cols, row),
+      facebook: TursoService.getValueByColumn('contact.facebook', cols, row),
+      linktree: TursoService.getValueByColumn('contact.linktree', cols, row),
+      sandlot: TursoService.getValueByColumn('contact.sandlot', cols, row),
+    };
+
+    return {
+      type: TursoService.getValueByColumn<AssociationType>('type', cols, row),
+      contact,
+      name: TursoService.getValueByColumn('name', cols, row),
+      color: TursoService.getValueByColumn('color', cols, row),
     };
   }
 

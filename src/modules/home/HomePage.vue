@@ -11,18 +11,19 @@ import {
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
 import { OsmUtils } from '@/business-logic/index.utils';
-import { TursoService } from '@/services';
+import { useClubsStore } from '@/stores/clubs.store';
 
 const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
 
 const visible = ref(false);
 const markerDialog = ref();
+const store = useClubsStore();
 
 const data = ref([PLACEHOLDER_CLUB])
 
 onMounted(async () => {
-  const clubs = await TursoService.getAllClubsV2();
-  data.value = clubs;
+  await store.registerClubsList();
+  data.value = store.list;
 });
 
 /**

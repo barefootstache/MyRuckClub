@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
-import { Contact, ClubEvent, Club, PLACEHOLDER_CLUB } from '@/business-logic';
+import { Contact, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
 import { LocationService, TursoService, UtilsService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
-import { computedAsync } from '@vueuse/core';
-import { computed } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -16,12 +15,12 @@ const props = withDefaults(
   }
 );
 
-const that = computed(() => club.value);
+const data = ref(PLACEHOLDER_CLUB);
 
-const club = computedAsync<Club>(async () => {
-  const response = await TursoService.getClubById(props.event.clubId);
-  return response;
-}, PLACEHOLDER_CLUB);
+onMounted(async () => {
+  const club = await TursoService.getClubByIdV2(props.event.clubId);
+  data.value = club;
+});
 
 /**
  * Gets the registration, if it exists, otherwise empty string.
@@ -30,8 +29,8 @@ const club = computedAsync<Club>(async () => {
  */
 function getRegistrationLink(ev: ClubEvent): string {
   return (
-    EventUtils.getMostRecentData<string>('url', club.value, ev) ||
-    ClubUtils.getContactUrl(club.value?.contact as Contact) ||
+    EventUtils.getMostRecentData<string>('url', data.value, ev) ||
+    ClubUtils.getContactUrl(data.value?.contact as Contact) ||
     ''
   );
 }
@@ -42,8 +41,8 @@ function getRegistrationLink(ev: ClubEvent): string {
  * @returns the URL.
  */
 function getProfileLogoLink(): string {
-  if (club.value.hasLogo) {
-    return `clubs/${club.value.id}-logo.jpg`;
+  if (data.value.hasLogo) {
+    return `clubs/${data.value.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
@@ -69,12 +68,12 @@ function getProfileLogoLink(): string {
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a>
+          }}</a>
       </p>
       <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          that.name
-        }}</a>
+          data.name
+          }}</a>
       </p>
     </template>
   </v-list-item>

@@ -66,6 +66,8 @@ WHERE
   "id" = 82;
 ```
 
+Or use the script found in `projects/db/generate-sql-transactions.js`
+
 ## Add club
 
 ```

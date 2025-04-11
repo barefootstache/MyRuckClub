@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
-import { Contact, ClubEvent, Club, PLACEHOLDER_CLUB } from '@/business-logic';
-import { LocationService, TursoService } from '@/services';
+import { Contact, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
+import { LocationService, TursoService, UtilsService } from '@/services';
 import { EventUtils, ClubUtils } from '@/business-logic/index.utils';
-import { computedAsync } from '@vueuse/core';
-import { computed } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = withDefaults(
   defineProps<{
@@ -16,12 +15,12 @@ const props = withDefaults(
   }
 );
 
-const that = computed(() => club.value);
+const data = ref(PLACEHOLDER_CLUB);
 
-const club = computedAsync<Club>(async () => {
-  const response = await TursoService.getClubById(props.event.clubId);
-  return response;
-}, PLACEHOLDER_CLUB);
+onMounted(async () => {
+  const club = await TursoService.getClubByIdV2(props.event.clubId);
+  data.value = club;
+});
 
 /**
  * Gets the registration, if it exists, otherwise empty string.
@@ -30,8 +29,8 @@ const club = computedAsync<Club>(async () => {
  */
 function getRegistrationLink(ev: ClubEvent): string {
   return (
-    EventUtils.getMostRecentData<string>('url', club.value, ev) ||
-    ClubUtils.getContactUrl(club.value?.contact as Contact) ||
+    EventUtils.getMostRecentData<string>('url', data.value, ev) ||
+    ClubUtils.getContactUrl(data.value?.contact as Contact) ||
     ''
   );
 }
@@ -42,52 +41,12 @@ function getRegistrationLink(ev: ClubEvent): string {
  * @returns the URL.
  */
 function getProfileLogoLink(): string {
-  if (club.value.hasLogo) {
-    return `clubs/${club.value.id}-logo.jpg`;
+  if (data.value.hasLogo) {
+    return `clubs/${data.value.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
 }
-
-/**
- * Gets the clock time outline icon for the specific time.
- * @param time - the specific time
- * @returns the icone
- */
-function getClockOutline(time:string): string {
-  const hourStr = time.split(':')[0] || '4';
-  const hour12Str = +hourStr%12;
-  switch (hour12Str) {
-    case 0:
-      return 'mdi-clock-time-twelve-outline';
-    case 1:
-      return 'mdi-clock-time-one-outline';
-    case 2:
-      return 'mdi-clock-time-two-outline';
-    case 3:
-      return 'mdi-clock-time-three-outline';
-    case 4:
-      return 'mdi-clock-time-four-outline';
-    case 5:
-      return 'mdi-clock-time-five-outline';
-    case 6:
-      return 'mdi-clock-time-six-outline';
-    case 7:
-      return 'mdi-clock-time-seven-outline';
-    case 8:
-      return 'mdi-clock-time-eight-outline';
-    case 9:
-      return 'mdi-clock-time-nine-outline';
-    case 10:
-      return 'mdi-clock-time-ten-outline';
-    case 11:
-      return 'mdi-clock-time-eleven-outline';
-
-    default:
-      return 'mdi-clock-time-outline';
-  }
-}
-
 </script>
 
 <template>
@@ -105,16 +64,17 @@ function getClockOutline(time:string): string {
     </template>
     <template #subtitle>
       <p><v-icon icon="mdi-calendar-month"></v-icon>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</p>
-      <p><v-icon :icon="getClockOutline(event.time)"></v-icon>{{ event.time }}</p>
+      <p><v-icon :icon="UtilsService.getClockTimeIcon(event.time)"></v-icon>{{ event.time }}</p>
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a></p>
-      <p v-if="event.clubId"
-        ><v-icon icon="mdi-draw"></v-icon>Registration at
+          }}</a>
+      </p>
+      <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
-          that.name
-        }}</a></p>
+          data.name
+          }}</a>
+      </p>
     </template>
   </v-list-item>
 </template>

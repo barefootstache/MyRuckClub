@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import 'leaflet/dist/leaflet.css';
 import {
@@ -21,7 +21,6 @@ import {
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import EventsList from '@/components/EventsList.vue';
-import { computedAsync } from '@vueuse/core';
 
 /**
  * Reference for `this.$route`.
@@ -29,34 +28,37 @@ import { computedAsync } from '@vueuse/core';
 const route = useRoute();
 const clubId = ref(route.params.id as string);
 
-const data = computed(() => dataAsync.value);
 
-const dataAsync = computedAsync(
-  async () => {
-    const club = await TursoService.getClubById(clubId.value);
-    const associations = await Promise.all(
-      club.associations.map(
-        async (ass) => await TursoService.getAssociationByType(ass)
-      )
-    );
-    const upcomingClubEvents = await TursoService.getEventsByClubId(clubId.value);
-    const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
-    const allCoordinates = uniqueEventsLocations
-      .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
-      .concat([club.coordinates]);
-    const boundingBox = LocationService.getBoundingBox(allCoordinates);
+const data = ref({
+  club: PLACEHOLDER_CLUB,
+  associations: [PLACEHOLDER_ASSOCIATION],
+  upcomingClubEvents: [] as ClubEvent[],
+  uniqueEventsLocations: [] as ClubEvent[],
+  allCoordinates: [PLACEHOLDER_CLUB.coordinates],
+  boundingBox: PLACEHOLDER_BOUNDINGBOX
+})
 
-    return { club, associations, upcomingClubEvents, uniqueEventsLocations, allCoordinates, boundingBox };
-  },
-  {
-    club: PLACEHOLDER_CLUB,
-    associations: [PLACEHOLDER_ASSOCIATION],
-    upcomingClubEvents: [],
-    uniqueEventsLocations: [],
-    allCoordinates: [PLACEHOLDER_CLUB.coordinates],
-    boundingBox: PLACEHOLDER_BOUNDINGBOX
-  }
-);
+onMounted(async () => {
+  const club = await TursoService.getClubByIdV2(clubId.value);
+  const associations = await Promise.all(
+    club.associations.map(
+      async (ass) => await TursoService.getAssociationByTypeV2(ass)
+    )
+  );
+  const upcomingClubEvents = await TursoService.getEventsByClubIdV2(clubId.value);
+  const uniqueEventsLocations = LocationService.getUniqueEventsLocations(upcomingClubEvents);
+  const allCoordinates = uniqueEventsLocations
+    .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
+    .concat([club.coordinates]);
+  const boundingBox = LocationService.getBoundingBox(allCoordinates);
+
+  data.value.club = club;
+  data.value.associations = associations;
+  data.value.upcomingClubEvents = upcomingClubEvents;
+  data.value.uniqueEventsLocations = uniqueEventsLocations;
+  data.value.allCoordinates = allCoordinates;
+  data.value.boundingBox = boundingBox;
+});
 
 const visible = ref(false);
 const markerDialog = ref();
@@ -92,58 +94,29 @@ function getProfileLogoLink(): string {
     <template #prepend>
       <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
     </template>
-    <v-card-text v-if="data.club.default?.location && !data.club.hide"
-      >We typically meet at
-      <a
-        :href="LocationService.getLocationClubUrl(data.club)"
-        target="_blank"
-        >{{ data.club.default?.location }}</a
-      >.</v-card-text
-    >
+    <v-card-text v-if="data.club.default?.location && !data.club.hide">We typically meet at
+      <a :href="LocationService.getLocationClubUrl(data.club)" target="_blank">{{ data.club.default?.location
+        }}</a>.</v-card-text>
   </v-card>
 
   <div class="map-view" v-if="!data.club.hide">
-    <l-map
-      ref="map"
-      v-model:zoom="data.boundingBox.zoom"
-      :center="data.club.coordinates"
-      :bounds="data.boundingBox.box"
-    >
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-        attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
-      ></l-tile-layer>
-      <l-control-scale
-        position="bottomleft"
-        :imperial="true"
-        :metric="true"
-      ></l-control-scale>
+    <l-map ref="map" v-model:zoom="data.boundingBox.zoom" :center="data.club.coordinates"
+      :bounds="data.boundingBox.box">
+      <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
+        attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>
+      <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
-      <l-marker
-        @click="showDialog(true, data.club)"
-        v-if="!data.club.hide"
-        :lat-lng="data.club.coordinates"
-      >
-        <l-icon
-          :icon-url="OsmUtils.getPin('default').options.iconUrl"
+      <l-marker @click="showDialog(true, data.club)" v-if="!data.club.hide" :lat-lng="data.club.coordinates">
+        <l-icon :icon-url="OsmUtils.getPin('default').options.iconUrl"
           :icon-size="OsmUtils.getPin('default').options.iconSize"
-          :icon-anchor="OsmUtils.getPin('default').options.iconAnchor"
-        ></l-icon>
+          :icon-anchor="OsmUtils.getPin('default').options.iconAnchor"></l-icon>
       </l-marker>
 
-      <l-marker
-        @click="showDialog(true, ev)"
-        v-for="(ev, evId) in data.uniqueEventsLocations"
-        :key="evId"
-        :lat-lng="ev.coordinates"
-      >
-        <l-icon
-          :icon-url="OsmUtils.getPin(ev.type).options.iconUrl"
+      <l-marker @click="showDialog(true, ev)" v-for="(ev, evId) in data.uniqueEventsLocations" :key="evId"
+        :lat-lng="ev.coordinates">
+        <l-icon :icon-url="OsmUtils.getPin(ev.type).options.iconUrl"
           :icon-size="OsmUtils.getPin(ev.type).options.iconSize"
-          :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"
-        ></l-icon>
+          :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"></l-icon>
       </l-marker>
 
       <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">
@@ -160,23 +133,14 @@ function getProfileLogoLink(): string {
 
   <div class="text-center" v-if="data.associations?.length > 0">
     <p>We associate with</p>
-    <v-chip
-      variant="outlined"
-      :color="ass.color"
-      v-for="(ass, assId) in data.associations"
-      :key="assId"
-    >
+    <v-chip variant="outlined" :color="ass.color" v-for="(ass, assId) in data.associations" :key="assId">
       <span>{{ ass.name }}</span>
     </v-chip>
   </div>
 
   <div class="hline"></div>
 
-  <EventsList
-    :events="data.upcomingClubEvents"
-    :show-upcoming-header="true"
-    :filename="filename"
-  ></EventsList>
+  <EventsList :events="data.upcomingClubEvents" :show-upcoming-header="true" :filename="filename"></EventsList>
 </template>
 
 <style scoped>

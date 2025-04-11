@@ -8,7 +8,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vuetify", "vite-plugin-pwa/client"],
+    "types": ["vuetify"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

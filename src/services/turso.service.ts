@@ -38,6 +38,22 @@ export class TursoService {
     return result as Club;
   }
 
+  static async getClubByIdV2(clubId: string): Promise<Club> {
+    const request: TursoRequest = {
+      type: 'execute', stmt: {
+        sql: 'SELECT * FROM clubs WHERE id = (:clubId)',
+        named_args: [{ name: 'clubId', value: { type: 'text', value: clubId } }]
+      }
+    };
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+
+    const club = result.rows.map((row: any) => {
+      return TursoService.parseAsClubV2(result.cols, row);
+    })[0];
+    return club;
+  }
+
   static async getAllClubs(): Promise<Club[]> {
     const result = (await turso.execute('SELECT * FROM clubs')).rows.map(
       (row) => TursoService.parseAsClub(row)
@@ -199,16 +215,14 @@ export class TursoService {
 
   private static parseAsClubV2(cols: TursoCols, row: TursoRows): Club {
     const body: Club = {
-      coordinates: JSON.parse(row[cols.findIndex(col => col.name === 'coordinates')].value as string) as Coordinates,
-      id: row[cols.findIndex(col => col.name === 'id')].value as string,
-      name: row[cols.findIndex(col => col.name === 'name')].value as string,
-      hide: Boolean(+(row[cols.findIndex(col => col.name === 'hide')].value as string)),
-      contact: JSON.parse(row[cols.findIndex(col => col.name === 'contact')].value as string) as Contact,
-      country: row[cols.findIndex(col => col.name === 'country')].value as Country,
-      hasLogo: Boolean(+(row[cols.findIndex(col => col.name === 'hasLogo')].value as string)),
-      associations: JSON.parse(
-        row[cols.findIndex(col => col.name === 'associations')].value as string
-      ) as AssociationType[],
+      coordinates: TursoService.getValueByColumn<Coordinates>('coordinates', cols, row, 'json'),
+      id: TursoService.getValueByColumn('id', cols, row),
+      name: TursoService.getValueByColumn('name', cols, row),
+      hide: TursoService.getValueByColumn<boolean>('hide', cols, row, 'boolean'),
+      contact: TursoService.getValueByColumn<Contact>('contact', cols, row, 'json'),
+      country: TursoService.getValueByColumn<Country>('name', cols, row),
+      hasLogo: TursoService.getValueByColumn<boolean>('hasLogo', cols, row, 'boolean'),
+      associations: TursoService.getValueByColumn<AssociationType[]>('associations', cols, row, 'json'),
     };
 
     const rowDefault = row[cols.findIndex(col => col.name === 'default')];

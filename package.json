@@ -16,7 +16,6 @@
     "@libsql/client": "^0.7.0",
     "@vercel/analytics": "^1.5.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
-    "@vueuse/core": "^10.11.1",
     "cheerio": "^1.0.0",
     "date-fns": "^2.30.0",
     "ics": "^3.8.1",

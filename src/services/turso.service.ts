@@ -17,9 +17,12 @@ import { turso, tursoV2 } from '@/config/turso';
 import { Row } from '@libsql/client';
 import { format } from 'date-fns';
 
+type TursoCols = Array<{ name: string, decltype: string }>;
+type TursoRows = Array<{ type: string, value?: string }>;
+
 export class TursoService {
-  static async closeConnection(requests:TursoRequest[]):Promise<Response> {
-    const appendClose:TursoRequest[] = [...requests, {type: 'close'}];
+  static async closeConnection(requests: TursoRequest[]): Promise<Response> {
+    const appendClose: TursoRequest[] = [...requests, { type: 'close' }];
     return tursoV2(appendClose)
       .then(res => res.json())
       .catch(err => console.error(err));
@@ -43,11 +46,11 @@ export class TursoService {
   }
 
   static async getAllClubsV2(): Promise<Club[]> {
-    const request:TursoRequest = {type: 'execute', stmt: { sql: 'SELECT * FROM clubs'}};
+    const request: TursoRequest = { type: 'execute', stmt: { sql: 'SELECT * FROM clubs' } };
     const res = (await TursoService.closeConnection([request])) as any;
     const result = res.results[0].response.result;
 
-    const clubs = result.rows.map((row:any) => {
+    const clubs = result.rows.map((row: any) => {
       return TursoService.parseAsClubV2(result.cols, row);
     });
     return clubs;
@@ -87,6 +90,14 @@ export class TursoService {
       )
     ).rows.map((row) => TursoService.parseAsClubEvent(row));
     return result;
+  }
+
+  static async getFutureEventsV2(): Promise<ClubEvent[]> {
+    const request: TursoRequest = { type: 'execute', stmt: { sql: 'SELECT * FROM events WHERE startsAt > CURRENT_TIMESTAMP ORDER BY startsAt' } };
+    const res = (await TursoService.closeConnection([request])) as any;
+    const result = res.results[0].response.result;
+    const events = result.rows.map((row: any) => TursoService.parseAsClubEventV2(result.cols, row));
+    return events;
   }
 
   private static parseAsAssociation(row: Row): Association {
@@ -138,6 +149,23 @@ export class TursoService {
     };
   }
 
+  private static parseAsClubEventV2(cols: TursoCols, row: TursoRows): ClubEvent {
+    const startsAt = new Date(TursoService.getValueByColumn('startsAt', cols, row));
+    return {
+      url: TursoService.getValueByColumn('url', cols, row),
+      name: TursoService.getValueByColumn('name', cols, row),
+      type: TursoService.getValueByColumn<EventType>('type', cols, row),
+      ics: TursoService.getValueByColumn('ics', cols, row, 'json'),
+      clubId: TursoService.getValueByColumn('clubId', cols, row),
+      inSummer: TursoService.getValueByColumn<boolean>('inSummer', cols, row, 'boolean'),
+      location: TursoService.getValueByColumn('location', cols, row),
+      duration: TursoService.getValueByColumn('duration', cols, row, 'json') ?? { hours: 3 },
+      coordinates: TursoService.getValueByColumn<Coordinates>('coordinates', cols, row, 'json'),
+      date: startsAt,
+      time: format(startsAt, 'HH:mm'),
+    };
+  }
+
   private static parseAsClub(row: Row): Club {
     const body: Club = {
       coordinates: JSON.parse(row['coordinates'] as string) as Coordinates,
@@ -169,7 +197,7 @@ export class TursoService {
     return body;
   }
 
-  private static parseAsClubV2(cols: {name:string, decltype:string}[], row: {type:string,value?:string}[]): Club {
+  private static parseAsClubV2(cols: TursoCols, row: TursoRows): Club {
     const body: Club = {
       coordinates: JSON.parse(row[cols.findIndex(col => col.name === 'coordinates')].value as string) as Coordinates,
       id: row[cols.findIndex(col => col.name === 'id')].value as string,
@@ -198,5 +226,19 @@ export class TursoService {
       body.timezone = JSON.parse(rowTimezone.value as string) as Timezone;
     }
     return body;
+  }
+
+  private static getValueByColumn<T = string>(columnName: string, cols: TursoCols, row: TursoRows): T;
+  private static getValueByColumn<K = any>(columnName: string, cols: TursoCols, row: TursoRows, parseType?: 'json' | 'boolean'): K;
+  private static getValueByColumn<T = string, K = any>(columnName: string, cols: TursoCols, row: TursoRows, parseType?: 'json' | 'boolean'): T | K {
+    const value = row[cols.findIndex(col => col.name === columnName)].value as T;
+    if (parseType && typeof value === 'string') {
+      if (parseType === 'json') {
+        return JSON.parse(value) as K;
+      } else if (parseType === 'boolean') {
+        return Boolean(+value) as K;
+      }
+    }
+    return value;
   }
 }

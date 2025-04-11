@@ -1,3 +1,4 @@
+// source: https://docs.turso.tech/sdk/http/reference#post-%2Fv2%2Fpipeline
 export type TursoRequest = {
   type: TursoFetchType,
   stmt?: TursoStatement
@@ -7,12 +8,18 @@ export type TursoFetchType = 'execute' | 'close';
 
 export type TursoStatement = {
   sql: string,
-  args?: TursoArgument[]
+  args?: TursoArgument[],
+  named_args?: TursoNamedArgument[]
 };
 
 export type TursoArgument = {
   type: TursoArgumentType,
   value?: string
+};
+
+export type TursoNamedArgument = {
+  name: string,
+  value: TursoArgument
 };
 
 export type TursoArgumentType = 'null' | 'integer' | 'float' | 'text' | 'blob';

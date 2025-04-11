@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { computedAsync } from '@vueuse/core';
-import { Club, PLACEHOLDER_CLUB } from '@/business-logic';
+import { onMounted, ref } from 'vue';
+import { PLACEHOLDER_CLUB } from '@/business-logic';
 import { TursoService } from '@/services';
 
 const search = ref('');
+const data = ref({
+  clubs: [PLACEHOLDER_CLUB]
+});
 
-const clubs = computedAsync<Club[]>(async () => {
-  const response = await TursoService.getAllClubs();
-  return response;
-}, [PLACEHOLDER_CLUB]);
+onMounted(async () => {
+  const clubs = await TursoService.getAllClubsV2();
+  data.value.clubs = clubs;
+});
 
 const groupBy = [
   {
@@ -24,43 +26,21 @@ const headers = [
   { title: 'Name', key: 'name', align: 'start' },
   { title: 'Country', key: 'country', align: 'end', sortable: false },
 ] as const;
-
-const $ = computed(() => ({ clubs: clubs.value }));
 </script>
 
 <template>
   <v-card title="Meet the Ruck Clubs" flat>
     <template #text>
-      <v-text-field
-        v-model="search"
-        label="Search"
-        prepend-inner-icon="mdi-magnify"
-        variant="outlined"
-        hide-details
-        single-line
-      ></v-text-field>
+      <v-text-field v-model="search" label="Search" prepend-inner-icon="mdi-magnify" variant="outlined" hide-details
+        single-line></v-text-field>
     </template>
 
-    <v-data-table
-      :sort-by="sortBy"
-      :group-by="groupBy"
-      :items="$.clubs"
-      :headers="headers"
-      items-per-page="25"
-      :search="search"
-    >
+    <v-data-table :sort-by="sortBy" :group-by="groupBy" :items="data.clubs" :headers="headers" items-per-page="25"
+      :search="search">
       <template #group-header="{ item, columns, toggleGroup, isGroupOpen }">
         <tr>
-          <td
-            :colspan="columns.length"
-            @click="toggleGroup(item)"
-            class="clickable"
-          >
-            <VBtn
-              :icon="isGroupOpen(item) ? '$expand' : '$next'"
-              size="small"
-              variant="text"
-            ></VBtn>
+          <td :colspan="columns.length" @click="toggleGroup(item)" class="clickable">
+            <VBtn :icon="isGroupOpen(item) ? '$expand' : '$next'" size="small" variant="text"></VBtn>
             {{ item.value }} ({{ item.items.length }})
           </td>
         </tr>
@@ -72,7 +52,7 @@ const $ = computed(() => ({ clubs: clubs.value }));
           <td>
             <router-link :to="{ name: 'Club', params: { id: item.id } }">{{
               item.name
-            }}</router-link>
+              }}</router-link>
           </td>
           <td align="right">{{ item.country }}</td>
         </tr>

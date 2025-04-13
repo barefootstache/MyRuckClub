@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { nextTick, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import 'leaflet/dist/leaflet.css';
 import {
@@ -23,20 +23,21 @@ import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import EventsList from '@/components/EventsList.vue';
 import { useClubsStore, useClubEventsStore, useAssociationsStore } from '@/stores';
-import { bbox, center, points } from '@turf/turf';
+import { AllGeoJSON, bbox, bboxPolygon, buffer, center, points, bbox as turfBbox } from '@turf/turf';
 
 /**
  * Reference for `this.$route`.
  */
 const route = useRoute();
 const clubId = ref(route.params.id as string);
-const map = ref(null);
+const mapDataReady = ref(false);
+const map = ref<typeof LMap>();
 
 const storeClubs = useClubsStore();
 const storeEvents = useClubEventsStore();
 const storeAssociations = useAssociationsStore();
 
-const data = ref({
+const data = reactive({
   club: PLACEHOLDER_CLUB,
   associations: [PLACEHOLDER_ASSOCIATION],
   upcomingClubEvents: [] as ClubEvent[],
@@ -60,21 +61,36 @@ onMounted(async () => {
     .concat([club.coordinates]);
 
   const boundingBox = bbox(points(allCoordinates));
+  const leafletBbox: [[number, number], [number, number]] = [[boundingBox[0], boundingBox[1]], [boundingBox[2], boundingBox[3]]];
+
   const centerBbox = center(points(allCoordinates));
 
-  data.value.club = club;
-  data.value.associations = associations;
-  data.value.upcomingClubEvents = upcomingClubEvents;
-  data.value.uniqueEventsLocations = uniqueEventsLocations;
-  data.value.allCoordinates = allCoordinates;
-  data.value.leaflet.bbox = [[boundingBox[0], boundingBox[1]], [boundingBox[2], boundingBox[3]]];
-  data.value.leaflet.center = centerBbox.geometry.coordinates as Coordinates;
+  await nextTick(); // wait for DOM so we can measure map container
+  const mapContainer = document.querySelector('.map-view') as HTMLElement;
+  const mapSize = {
+    width: mapContainer.offsetWidth,
+    height: mapContainer.offsetHeight,
+  };
+
+  const optimalZoom = getZoomFromBboxWithPadding(leafletBbox, mapSize);
+
+  data.club = club;
+  data.associations = associations;
+  data.upcomingClubEvents = upcomingClubEvents;
+  data.uniqueEventsLocations = uniqueEventsLocations;
+  data.allCoordinates = allCoordinates;
+
+  data.leaflet.bbox = leafletBbox;
+  data.leaflet.center = centerBbox.geometry.coordinates as Coordinates;
+  data.leaflet.zoom = optimalZoom;
+
+  mapDataReady.value = true;
 });
 
 const visible = ref(false);
 const markerDialog = ref();
 const filename = ref(
-  `${data.value.club.name.replace(' ', '_')}_events_calendar.ics`
+  `${data.club.name.replace(' ', '_')}_events_calendar.ics`
 );
 
 /**
@@ -92,12 +108,50 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
  * @returns the URL.
  */
 function getProfileLogoLink(): string {
-  if (data.value.club.hasLogo) {
-    return `clubs/${data.value.club.id}-logo.jpg`;
+  if (data.club.hasLogo) {
+    return `clubs/${data.club.id}-logo.jpg`;
   } else {
     return `clubs/myruckclub-logo.png`;
   }
 }
+
+function getZoomFromBboxWithPadding(
+  bbox: [[number, number], [number, number]],
+  mapSize: { width: number, height: number },
+  paddingMeters = 500,
+  tileSize = 256
+): number {
+  // Buffer the bbox by <paddingMeters> meters
+  const minX = Math.min(bbox[0][0], bbox[1][0]);
+  const maxX = Math.max(bbox[0][0], bbox[1][0]);
+  const minY = Math.min(bbox[0][1], bbox[1][1]);
+  const maxY = Math.max(bbox[0][1], bbox[1][1]);
+  const polygon = bboxPolygon([minX, minY, maxX, maxY]);
+  const padded = buffer(polygon, paddingMeters, { units: 'meters' });
+  const paddedBboxArr = turfBbox(padded as AllGeoJSON);
+
+  // Calculate zoom
+  const [[west, south], [east, north]]: [[number, number], [number, number]] = [
+    [paddedBboxArr[0], paddedBboxArr[1]],
+    [paddedBboxArr[2], paddedBboxArr[3]],
+  ];
+
+  const latRad = (lat: number) =>
+    Math.log(Math.tan((Math.PI / 4) + (Math.PI / 180) * lat / 2));
+
+  const WORLD_DIM = { width: tileSize, height: tileSize };
+  const ZOOM_MAX = 18;
+
+  const latFraction = (latRad(north) - latRad(south)) / Math.PI;
+  const lngDiff = east - west;
+  const lngFraction = ((lngDiff < 0 ? (lngDiff + 360) : lngDiff) / 360);
+
+  const latZoom = Math.floor(Math.log2(mapSize.height / WORLD_DIM.height / latFraction));
+  const lngZoom = Math.floor(Math.log2(mapSize.width / WORLD_DIM.width / lngFraction));
+
+  return Math.min(latZoom, lngZoom, ZOOM_MAX);
+}
+
 </script>
 
 <template>
@@ -112,7 +166,7 @@ function getProfileLogoLink(): string {
 
   <div class="map-view" v-if="!data.club.hide">
     <l-map ref="map" :bounds="data.leaflet.bbox" :options="{ zoomControl: false }" :center="data.leaflet.center"
-      :zoom="data.leaflet.zoom">
+      :zoom="data.leaflet.zoom" v-if="mapDataReady">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>
       <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>

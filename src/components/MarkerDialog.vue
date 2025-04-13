@@ -89,7 +89,7 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 <template>
   <v-card color="deep-orange-lighten-5" width="400" variant="flat">
     <template #title>
-      {{ card.title }}
+      <p class="word-break">{{ card.title }}</p>
     </template>
 
     <template #subtitle>
@@ -145,6 +145,11 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 <style scoped>
 .v-chip.v-chip--size-default {
   padding: 0 5px;
+}
+
+.word-break {
+  white-space: normal;
+  word-break: break-word;
 }
 
 @media screen and (max-width: 400px) {

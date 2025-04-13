@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: rgb(var(--v-theme-accent));
+  color: rgb(var(--v-theme-secondary));
   text-decoration: inherit;
 }
 a:hover {
-  color: rgb(var(--v-theme-accent-hover));
+  color: rgb(var(--v-theme-secondary-hover));
 }
 
 body {
@@ -67,6 +67,14 @@ button:focus-visible {
 
 .text-center {
   text-align: center;
+}
+
+.a-primary {
+  color: rgb(var(--v-theme-primary)) !important;
+}
+
+.a-primary:hover {
+  color: rgb(var(--v-theme-primary-hover)) !important;
 }
 
 @media screen and (max-width: 800px) {

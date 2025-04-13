@@ -71,12 +71,12 @@ function getProfileLogoLink(): string {
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a>
+          }}</a>
       </p>
       <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           data.name
-        }}</a>
+          }}</a>
       </p>
     </template>
   </v-list-item>
@@ -87,6 +87,10 @@ function getProfileLogoLink(): string {
   outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
   margin-bottom: 4px;
   padding: 0 4px;
+}
+
+.v-list-item:nth-child(even) {
+  background-color: rgb(var(--v-theme-primary-light));
 }
 
 .v-list-item-subtitle p {

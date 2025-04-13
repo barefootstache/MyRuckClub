@@ -30,7 +30,7 @@ function toggleTheme() {
     <router-link to="/clubs"><v-icon icon="mdi-account-group"></v-icon><span>Clubs</span></router-link>
     <router-link to="/events"><v-icon icon="mdi-calendar-multiselect"></v-icon><span>Events</span></router-link>
     <router-link to="/about"><v-icon icon="mdi-information"></v-icon><span>About</span></router-link>
-    <v-btn @click="toggleTheme" icon="mdi-theme-light-dark" color="primary"></v-btn>
+    <!-- <v-btn @click="toggleTheme" icon="mdi-theme-light-dark" color="primary"></v-btn> -->
     <!-- <router-link to="/login">Log In</router-link> -->
     <!-- <router-link to="/signup">Sign Up</router-link> -->
   </navigation>
@@ -50,23 +50,29 @@ navigation {
 }
 
 navigation a {
-  color: rgb(var(--v-theme-accent));
+  color: rgb(var(--v-theme-surface));
   font-weight: bold;
   font-size: 16pt;
-  border: 1px rgb(var(--v-theme-accent)) solid;
+  border: 1px rgb(var(--v-theme-surface)) solid;
   padding: 5px;
   width: 25%;
 }
 
 navigation a:hover {
-  color: rgb(var(--v-theme-accent-hover));
-  border: 1px rgb(var(--v-theme-accent-hover)) solid;
+  color: rgb(var(--v-theme-primary-hover));
+  border: 1px rgb(var(--v-theme-primary-hover)) solid;
 }
 
 .router-link-active {
   border: 2px rgb(var(--v-theme-accent-hover)) solid;
   background-color: rgb(var(--v-theme-primary));
   color: rgb(var(--v-color-white));
+}
+
+.router-link-active:hover {
+  cursor: default;
+  color: rgb(var(--v-color-white));
+  border: 0px rgb(var(--v-theme-surface)) solid;
 }
 
 navigation span {

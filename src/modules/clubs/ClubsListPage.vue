@@ -51,9 +51,9 @@ const headers = [
         <tr>
           <td></td>
           <td>
-            <router-link :to="{ name: 'Club', params: { id: item.id } }">{{
+            <router-link class="a-primary" :to="{ name: 'Club', params: { id: item.id } }">{{
               item.name
-              }}</router-link>
+            }}</router-link>
           </td>
           <td align="right">{{ item.country }}</td>
         </tr>
@@ -76,11 +76,11 @@ thead {
 }
 
 .v-data-table__th--sortable:hover {
-  color: rgb(var(--v-theme-accent-hover)) !important;
+  color: rgb(var(--v-theme-primary-hover)) !important;
 }
 
 .clickable:hover {
   cursor: pointer;
-  color: rgb(var(--v-theme-accent-hover)) !important;
+  color: rgb(var(--v-theme-primary-hover)) !important;
 }
 </style>

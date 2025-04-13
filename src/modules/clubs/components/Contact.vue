@@ -27,11 +27,7 @@ const contact = computed(() => {
       <span>For more info contact us on our</span>
       <v-chip variant="elevated" color="primary">
         <a :href="getLink(contact.preferred)" target="_blank">
-          <v-icon
-            start
-            :icon="getIcon(contact.preferred.name as keyof Contact)"
-            color="white"
-          ></v-icon>
+          <v-icon start :icon="getIcon(contact.preferred.name as keyof Contact)" color="white"></v-icon>
           <span>{{ UtilsService.capitalize(contact.preferred.name) }}</span>
         </a>
       </v-chip>
@@ -39,18 +35,9 @@ const contact = computed(() => {
 
     <div class="more-contact" v-if="contact.items.length > 0">
       <span>Or you can also find us on</span>
-      <v-chip variant="outlined" color="black" v-for="item in contact.items">
-        <a
-          v-if="item.name"
-          :href="getLink(item)"
-          target="_blank"
-          style="color: black"
-        >
-          <v-icon
-            start
-            :icon="getIcon(item.name as keyof Contact)"
-            color="red"
-          ></v-icon>
+      <v-chip variant="outlined" color="primary" v-for="item in contact.items">
+        <a v-if="item.name" :href="getLink(item)" target="_blank" style="color: black">
+          <v-icon start :icon="getIcon(item.name as keyof Contact)" color="red"></v-icon>
           <span>{{ UtilsService.capitalize(item.name) }}</span>
         </a>
       </v-chip>
@@ -62,25 +49,32 @@ const contact = computed(() => {
 .container {
   margin-top: 5px;
 }
+
 .v-chip {
   margin-left: 5px;
 }
+
 .v-chip.text-black {
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 .more-contact {
   margin-top: 5px;
 }
+
 .more-contact .v-chip a {
   color: black;
 }
+
 .primary-contact .v-chip a {
   color: white;
 }
+
 @media screen and (max-width: 800px) {
   .v-chip a span {
     display: none;
   }
+
   .v-chip .v-icon--start {
     margin-inline-end: -6px;
   }

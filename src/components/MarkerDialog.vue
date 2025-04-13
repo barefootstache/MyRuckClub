@@ -87,7 +87,7 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 </script>
 
 <template>
-  <v-card color="primary" width="400" variant="flat">
+  <v-card color="deep-orange-lighten-5" width="400" variant="flat">
     <template #title>
       {{ card.title }}
     </template>
@@ -127,15 +127,16 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 
     <template #actions class="justify-space-between">
       <div v-if="!card.isEvent">
-        <v-chip variant="outlined" v-for="(item, index) in resultArray" :key="index" style="margin-left: 5px">
+        <v-chip variant="outlined" color="primary" v-for="(item, index) in resultArray" :key="index"
+          style="margin-left: 5px">
           <a v-if="item.name" :href="item.url" target="_blank">
-            <v-icon :icon="ContactUtils.getIcon(item.name as keyof Contact)" color="white"></v-icon>
+            <v-icon :icon="ContactUtils.getIcon(item.name as keyof Contact)" color="primary"></v-icon>
           </a>
         </v-chip>
       </div>
       <v-spacer></v-spacer>
-      <v-btn class="bg-secondary" v-if="props.redirect" :to="'/club/' + card.id">{{ props.buttonLabel }}</v-btn>
-      <v-btn class="bg-secondary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">{{
+      <v-btn class="bg-primary" v-if="props.redirect" :to="'/club/' + card.id">{{ props.buttonLabel }}</v-btn>
+      <v-btn class="bg-primary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">{{
         props.buttonLabel }}</v-btn>
     </template>
   </v-card>

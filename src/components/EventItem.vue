@@ -63,11 +63,12 @@ function getProfileLogoLink(): string {
       <v-avatar :image="EventUtils.getIcon(event.type)" size="80"> </v-avatar>
     </template>
     <template #title>
-      <v-icon icon="mdi-card-account-details-outline"></v-icon><span style="font-weight: bold">{{ event.name }}</span>
+      <p style="font-weight: bold"><v-icon icon="mdi-card-account-details-outline"></v-icon> {{ event.name }}</p>
     </template>
     <template #subtitle>
       <p><v-icon icon="mdi-calendar-month"></v-icon>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</p>
       <p><v-icon :icon="UtilsService.getClockTimeIcon(event.time)"></v-icon>{{ event.time }}</p>
+      <p><v-icon icon="mdi-timer-sand"></v-icon>{{ UtilsService.durationToString(event.duration) }}</p>
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
@@ -91,6 +92,11 @@ function getProfileLogoLink(): string {
 
 .v-list-item:nth-child(even) {
   background-color: rgb(var(--v-theme-primary-light));
+}
+
+.v-list-item-title {
+  white-space: normal;
+  word-break: break-word;
 }
 
 .v-list-item-subtitle p {

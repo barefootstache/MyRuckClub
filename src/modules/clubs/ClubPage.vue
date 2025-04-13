@@ -17,17 +17,20 @@ import {
   PLACEHOLDER_ASSOCIATION,
   PLACEHOLDER_CLUB,
   PLACEHOLDER_BOUNDINGBOX,
+  Coordinates,
 } from '@/business-logic';
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import EventsList from '@/components/EventsList.vue';
 import { useClubsStore, useClubEventsStore, useAssociationsStore } from '@/stores';
+import { bbox, center, points } from '@turf/turf';
 
 /**
  * Reference for `this.$route`.
  */
 const route = useRoute();
 const clubId = ref(route.params.id as string);
+const map = ref(null);
 
 const storeClubs = useClubsStore();
 const storeEvents = useClubEventsStore();
@@ -39,7 +42,7 @@ const data = ref({
   upcomingClubEvents: [] as ClubEvent[],
   uniqueEventsLocations: [] as ClubEvent[],
   allCoordinates: [PLACEHOLDER_CLUB.coordinates],
-  boundingBox: PLACEHOLDER_BOUNDINGBOX
+  leaflet: { bbox: PLACEHOLDER_BOUNDINGBOX.box, center: PLACEHOLDER_CLUB.coordinates, zoom: PLACEHOLDER_BOUNDINGBOX.zoom }
 })
 
 onMounted(async () => {
@@ -55,14 +58,17 @@ onMounted(async () => {
   const allCoordinates = uniqueEventsLocations
     .map((ev: ClubEvent) => LocationService.getCoordinates(ev))
     .concat([club.coordinates]);
-  const boundingBox = LocationService.getBoundingBox(allCoordinates);
+
+  const boundingBox = bbox(points(allCoordinates));
+  const centerBbox = center(points(allCoordinates));
 
   data.value.club = club;
   data.value.associations = associations;
   data.value.upcomingClubEvents = upcomingClubEvents;
   data.value.uniqueEventsLocations = uniqueEventsLocations;
   data.value.allCoordinates = allCoordinates;
-  data.value.boundingBox = boundingBox;
+  data.value.leaflet.bbox = [[boundingBox[0], boundingBox[1]], [boundingBox[2], boundingBox[3]]];
+  data.value.leaflet.center = centerBbox.geometry.coordinates as Coordinates;
 });
 
 const visible = ref(false);
@@ -105,8 +111,8 @@ function getProfileLogoLink(): string {
   </v-card>
 
   <div class="map-view" v-if="!data.club.hide">
-    <l-map ref="map" v-model:zoom="data.boundingBox.zoom" :center="data.club.coordinates"
-      :bounds="data.boundingBox.box">
+    <l-map ref="map" :bounds="data.leaflet.bbox" :options="{ zoomControl: false }" :center="data.leaflet.center"
+      :zoom="data.leaflet.zoom">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>
       <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>

@@ -41,7 +41,7 @@ function toggleTheme() {
 <style scoped>
 navigation {
   position: fixed;
-  background-color: rgb(var(--v-theme-background));
+  background-color: rgb(var(--v-theme-surface));
   top: 0;
   width: 800px;
   display: flex;
@@ -50,10 +50,10 @@ navigation {
 }
 
 navigation a {
-  color: rgb(var(--v-theme-surface));
+  color: rgb(var(--v-theme-font));
   font-weight: bold;
   font-size: 16pt;
-  border: 1px rgb(var(--v-theme-surface)) solid;
+  border: 1px rgb(var(--v-theme-font)) solid;
   padding: 5px;
   width: 25%;
 }

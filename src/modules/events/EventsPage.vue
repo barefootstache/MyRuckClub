@@ -51,10 +51,10 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 </script>
 
 <template>
+  <v-card class="text-center v-card--variant-elevated" title="Upcoming Events">
+  </v-card>
   <div>
-    <h2 class="text-center">Upcoming Events</h2>
-
-    <div class="map-view">
+    <div class="map-view v-card--variant-elevated">
       <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>

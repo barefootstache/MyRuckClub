@@ -87,7 +87,7 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 </script>
 
 <template>
-  <v-card color="deep-orange-lighten-5" width="400" variant="flat">
+  <v-card width="400">
     <template #title>
       <p class="word-break">{{ card.title }}</p>
     </template>

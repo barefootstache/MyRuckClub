@@ -39,7 +39,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 
 <template>
   <div class="mobile-container">
-    <div class="mobile-hide text-center">
+    <div class="mobile-hide text-center v-card v-card--variant-elevated">
       <h1>My Ruck Club</h1>
       <p>
         <em>My Ruck Club</em> is the first stop to get more info of your local
@@ -47,7 +47,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
       </p>
     </div>
 
-    <div class="map-view">
+    <div class="map-view v-card--variant-elevated">
       <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>

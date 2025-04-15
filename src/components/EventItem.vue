@@ -85,13 +85,8 @@ function getProfileLogoLink(): string {
 
 <style scoped>
 .v-list-item {
-  outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
   margin-bottom: 4px;
   padding: 0 4px;
-}
-
-.v-list-item:nth-child(even) {
-  background-color: rgb(var(--v-theme-primary-light));
 }
 
 .v-list-item-title {

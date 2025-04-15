@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(var(--v-theme-surface), 0.87);
+  color: rgba(var(--v-theme-font), 0.87);
   background-color: rgb(var(--v-theme-background));
 
   font-synthesis: none;
@@ -75,6 +75,12 @@ button:focus-visible {
 
 .a-primary:hover {
   color: rgb(var(--v-theme-primary-hover)) !important;
+}
+
+.v-card {
+  background-color: rgb(var(--v-theme-surface));
+  border-radius: var(--v-var-radius);
+  margin-bottom: var(--v-space-micro);
 }
 
 @media screen and (max-width: 800px) {

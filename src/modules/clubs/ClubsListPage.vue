@@ -30,12 +30,14 @@ const headers = [
 </script>
 
 <template>
-  <v-card title="Meet the Ruck Clubs" flat>
+  <v-card title="Meet the Ruck Clubs">
     <template #text>
       <v-text-field v-model="search" label="Search" prepend-inner-icon="mdi-magnify" variant="outlined" hide-details
         single-line></v-text-field>
     </template>
+  </v-card>
 
+  <v-card>
     <v-data-table :sort-by="sortBy" :group-by="groupBy" :items="data.clubs" :headers="headers" items-per-page="25"
       :search="search">
       <template #group-header="{ item, columns, toggleGroup, isGroupOpen }">
@@ -48,12 +50,12 @@ const headers = [
       </template>
 
       <template #item="{ item }">
-        <tr>
+        <tr class="child-item">
           <td></td>
           <td>
             <router-link class="a-primary" :to="{ name: 'Club', params: { id: item.id } }">{{
               item.name
-            }}</router-link>
+              }}</router-link>
           </td>
           <td align="right">{{ item.country }}</td>
         </tr>
@@ -68,19 +70,31 @@ tr {
   text-align: start;
 }
 
-.v-card,
-.v-table,
-thead {
-  color: var(--v-theme-surface);
-  background-color: var(--v-theme-background);
+.v-table thead,
+.v-data-table-footer {
+  color: rgb(var(--v-color-white));
+  background-color: rgb(var(--v-theme-primary));
+}
+
+.v-data-table-footer .v-input__control {
+  color: rgb(var(--v-theme-font));
 }
 
 .v-data-table__th--sortable:hover {
   color: rgb(var(--v-theme-primary-hover)) !important;
 }
 
+.clickable {
+  background-color: rgb(var(--v-theme-primary-light));
+}
+
 .clickable:hover {
   cursor: pointer;
   color: rgb(var(--v-theme-primary-hover)) !important;
+}
+
+.v-input__control,
+.child-item {
+  background-color: rgb(var(--v-theme-surface));
 }
 </style>

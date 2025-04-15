@@ -150,8 +150,9 @@ const DirtLightTheme: ThemeDefinition = {
 const EnergyLightTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    background: '#f5f5f5',
-    surface: '#333333',
+    background: '#e9e6e2',
+    surface: '#f7f6f3',
+    font: '#333333',
     primary: '#ff4500',
     'primary-hover': '#cc3700',
     'primary-light': '#FBE9E7',
@@ -160,7 +161,12 @@ const EnergyLightTheme: ThemeDefinition = {
     accent: '#32cd32'
   },
   variables: {
-    'color-white': palette.grayscale[100],
+    'color-white': '#f7f6f3',
+    'var-radius': '4px',
+    'space-micro': '4px',
+    'space-mini': '8px',
+    'space-small': '16px',
+    'space-mid': '32px'
   },
 }
 

@@ -164,7 +164,7 @@ function getZoomFromBboxWithPadding(
         }}</a>.</v-card-text>
   </v-card>
 
-  <div class="map-view" v-if="!data.club.hide">
+  <div class="map-view v-card--variant-elevated" v-if="!data.club.hide">
     <l-map ref="map" :bounds="data.leaflet.bbox" :options="{ zoomControl: false }" :center="data.leaflet.center"
       :zoom="data.leaflet.zoom" v-if="mapDataReady">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
@@ -190,20 +190,18 @@ function getZoomFromBboxWithPadding(
     </l-map>
   </div>
 
-  <div class="hline"></div>
+  <v-card style="padding: var(--v-space-mini); margin-top: var(--v-space-micro);">
+    <Contact class="text-center" :club="data.club"></Contact>
+  </v-card>
 
-  <Contact class="text-center" :club="data.club"></Contact>
-
-  <div class="hline"></div>
-
-  <div class="text-center" v-if="data.associations?.length > 0">
-    <p>We associate with</p>
-    <v-chip variant="outlined" :color="ass.color" v-for="(ass, assId) in data.associations" :key="assId">
-      <span>{{ ass.name }}</span>
-    </v-chip>
-  </div>
-
-  <div class="hline"></div>
+  <v-card style="padding: var(--v-space-mini);">
+    <div class="text-center" v-if="data.associations?.length > 0">
+      <p>We associate with</p>
+      <v-chip variant="outlined" :color="ass.color" v-for="(ass, assId) in data.associations" :key="assId">
+        <span>{{ ass.name }}</span>
+      </v-chip>
+    </div>
+  </v-card>
 
   <EventsList :events="data.upcomingClubEvents" :show-upcoming-header="true" :filename="filename"></EventsList>
 </template>
@@ -280,10 +278,6 @@ function getZoomFromBboxWithPadding(
 }
 
 .header {
-  &.v-card {
-    background: rgba(var(--v-theme-background));
-    color: rgba(var(--v-theme-surface));
-  }
 
   & :deep() .v-card-title {
     font-size: 2.25rem;

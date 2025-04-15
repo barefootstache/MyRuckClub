@@ -197,6 +197,7 @@ let vuetifyConfig: VuetifyOptions = {
     themes: {
       EnergyLightTheme,
       DirtLightTheme,
+      DirtDarkTheme
     },
   },
 };

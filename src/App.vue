@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify';
+// import { useTheme } from 'vuetify';
 import { useAssociationsStore, useClubEventsStore, useClubsStore } from './stores';
 import { onMounted } from 'vue';
 // import ReloadPrompt from './ReloadPrompt.vue';
 
-const theme = useTheme();
+// const theme = useTheme();
 //toggleTheme()
 
 const storeClubs = useClubsStore();
@@ -17,11 +17,11 @@ onMounted(async () => {
   await storeAssociations.registerAssociationsList();
 });
 
-function toggleTheme() {
-  theme.global.name.value = theme.global.current.value.dark
-    ? 'DirtLightTheme'
-    : 'DirtDarkTheme';
-}
+// function toggleTheme() {
+//   theme.global.name.value = theme.global.current.value.dark
+//     ? 'DirtLightTheme'
+//     : 'DirtDarkTheme';
+// }
 </script>
 
 <template>

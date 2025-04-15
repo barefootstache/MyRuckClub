@@ -63,20 +63,21 @@ function getProfileLogoLink(): string {
       <v-avatar :image="EventUtils.getIcon(event.type)" size="80"> </v-avatar>
     </template>
     <template #title>
-      <v-icon icon="mdi-card-account-details-outline"></v-icon><span style="font-weight: bold">{{ event.name }}</span>
+      <p style="font-weight: bold"><v-icon icon="mdi-card-account-details-outline"></v-icon> {{ event.name }}</p>
     </template>
     <template #subtitle>
       <p><v-icon icon="mdi-calendar-month"></v-icon>{{ format(event.date, 'EEEE dd.MM.yyyy') }}</p>
       <p><v-icon :icon="UtilsService.getClockTimeIcon(event.time)"></v-icon>{{ event.time }}</p>
+      <p><v-icon icon="mdi-timer-sand"></v-icon>{{ UtilsService.durationToString(event.duration) }}</p>
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-        }}</a>
+          }}</a>
       </p>
       <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           data.name
-        }}</a>
+          }}</a>
       </p>
     </template>
   </v-list-item>
@@ -84,9 +85,13 @@ function getProfileLogoLink(): string {
 
 <style scoped>
 .v-list-item {
-  outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
   margin-bottom: 4px;
   padding: 0 4px;
+}
+
+.v-list-item-title {
+  white-space: normal;
+  word-break: break-word;
 }
 
 .v-list-item-subtitle p {

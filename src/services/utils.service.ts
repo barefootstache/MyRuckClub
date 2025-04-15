@@ -1,3 +1,5 @@
+import { DurationObject } from "ics";
+
 export class UtilsService {
   /**
    * Capitalizes first letter of the word.
@@ -62,5 +64,33 @@ export class UtilsService {
         break;
     }
     return `mdi-clock-time-${text}${outline}`;
+  }
+
+  /**
+  * Prints the duration as a string.
+  * @param duration - the duration
+  * @returns the string.
+  */
+  static durationToString(duration?: DurationObject): string {
+    if (!duration) {
+      return '3 hours';
+    }
+    let durationString = '';
+    if (!!duration.weeks) {
+      durationString += `${duration.weeks} weeks `
+    }
+    if (!!duration.days) {
+      durationString += `${duration.days} days `
+    }
+    if (!!duration.hours) {
+      durationString += `${duration.hours} hours `
+    }
+    if (!!duration.minutes) {
+      durationString += `${duration.minutes} minutes `
+    }
+    if (!!duration.seconds) {
+      durationString += `${duration.seconds} seconds `
+    }
+    return durationString;
   }
 }

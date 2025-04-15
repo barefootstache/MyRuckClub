@@ -147,6 +147,29 @@ const DirtLightTheme: ThemeDefinition = {
   },
 };
 
+const EnergyLightTheme: ThemeDefinition = {
+  dark: false,
+  colors: {
+    background: '#e9e6e2',
+    surface: '#f7f6f3',
+    font: '#333333',
+    primary: '#ff4500',
+    'primary-hover': '#cc3700',
+    'primary-light': '#FBE9E7',
+    secondary: '#1e90ff',
+    'secondary-hover': '#1564b2',
+    accent: '#32cd32'
+  },
+  variables: {
+    'color-white': '#f7f6f3',
+    'var-radius': '4px',
+    'space-micro': '4px',
+    'space-mini': '8px',
+    'space-small': '16px',
+    'space-mid': '32px'
+  },
+}
+
 /**
  * Vuetify Components
  *
@@ -170,10 +193,11 @@ let vuetifyConfig: VuetifyOptions = {
   // Theme
   // https://vuetifyjs.com/en/features/theme/
   theme: {
-    defaultTheme: 'DirtDarkTheme',
+    defaultTheme: 'EnergyLightTheme',
     themes: {
-      DirtDarkTheme,
+      EnergyLightTheme,
       DirtLightTheme,
+      DirtDarkTheme
     },
   },
 };

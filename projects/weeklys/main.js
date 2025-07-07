@@ -46,19 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const textNode = svg.append('text')
           .attr('class', 'text')
           .attr('x', x)
-          .attr('y', (row + 1) * boxSizeHeight - 10)
-          .attr("style", "font-family: 'Cantarell, Bold', sans-serif; font-weight: bold; font-size: 32px; text-align: center; fill: #666666")
+          .attr('y', (row + 1) * boxSizeHeight - boxFrequency.textDy)
+          .attr("style", `font-family: 'Cantarell, Bold', sans-serif; font-weight: bold; font-size: ${boxFrequency.fontSize}px; text-align: center; fill: #666666`)
 
         const dateTextParts = formatDate(d.startsAt)
 
         const tspan1 = textNode.append('tspan')
           .attr('x', x)
-          .attr('dy', '-10px')
+          .attr('dy', `-${boxFrequency.textDy}px`)
           .text(dateTextParts[1])
 
         const tspan2 = textNode.append('tspan')
           .attr('x', x)
-          .attr('dy', '-32px')
+          .attr('dy', `-${boxFrequency.fontSize}px`)
           .text(dateTextParts[0])
 
         const bboxText1 = tspan1.node().getBBox()
@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const imageSrc = exists ? imagePath : fallbackImagePath
           svg.append('image')
             .attr('xlink:href', imageSrc)
-            .attr('x', x + 25)
-            .attr('y', y + 25)
+            .attr('x', x + boxFrequency.dx)
+            .attr('y', y + boxFrequency.dy)
             .attr('width', boxFrequency.avatarWidth)
             .attr('height', boxFrequency.avatarHeight)
             .attr('class', 'image')
@@ -96,6 +96,10 @@ function calcBoxFrequency(clubEventsSize) {
       countPerCol: 3,
       avatarWidth: 200,
       avatarHeight: 200,
+      dx: 25,
+      dy: 25,
+      fontSize: 32,
+      textDy: 10,
     }
   } else if (clubEventsSize <= 16) {
     return {
@@ -103,6 +107,10 @@ function calcBoxFrequency(clubEventsSize) {
       countPerCol: 4,
       avatarWidth: 180,
       avatarHeight: 180,
+      dx: 35,
+      dy: 10,
+      fontSize: 24,
+      textDy: 3,
     }
   } else if (clubEventsSize <= 20) {
     return {
@@ -110,6 +118,10 @@ function calcBoxFrequency(clubEventsSize) {
       countPerCol: 4,
       avatarWidth: 180,
       avatarHeight: 180,
+      dx: 25,
+      dy: 25,
+      fontSize: 32,
+      textDy: 10,
     }
   } else {
     return {
@@ -117,6 +129,10 @@ function calcBoxFrequency(clubEventsSize) {
       countPerCol: 5,
       avatarWidth: 180,
       avatarHeight: 180,
+      dx: 25,
+      dy: 25,
+      fontSize: 32,
+      textDy: 10,
     }
   }
 }

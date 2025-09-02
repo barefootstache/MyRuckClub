@@ -1,3 +1,2 @@
-config.json
-data.json
+*.json
 event_patches

@@ -308,13 +308,17 @@ export class TursoService {
   private static getValueByColumn<K = any>(columnName: string, cols: TursoCols, row: TursoRows, parseType?: 'json' | 'boolean'): K;
   private static getValueByColumn<T = string, K = any>(columnName: string, cols: TursoCols, row: TursoRows, parseType?: 'json' | 'boolean'): T | K {
     const value = row[cols.findIndex(col => col.name === columnName)].value as T;
-    if (parseType && typeof value === 'string') {
-      if (parseType === 'json') {
-        return JSON.parse(value) as K;
-      } else if (parseType === 'boolean') {
-        return Boolean(+value) as K;
+    try {
+      if (parseType && typeof value === 'string') {
+        if (parseType === 'json') {
+          return JSON.parse(value) as K;
+        } else if (parseType === 'boolean') {
+          return Boolean(+value) as K;
+        }
       }
+      return value;
+    } catch (err) {
+      console.error(`Column: '${columnName}', Value: '${value}' possibly does not align with the type '${parseType}':: ${err}`);
     }
-    return value;
   }
 }

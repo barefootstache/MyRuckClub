@@ -13,7 +13,7 @@ import { Club, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
 import { OsmUtils } from '@/business-logic/index.utils';
 import { useClubsStore } from '@/stores/clubs.store';
 
-const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
+const zoom = document.documentElement.clientWidth < 800 ? 3 : 4;
 
 const visible = ref(false);
 const markerDialog = ref();
@@ -48,7 +48,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
     </div>
 
     <div class="map-view v-card--variant-elevated">
-      <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
+      <l-map ref="map" v-model:zoom="zoom" :center="[52.250, 9.547]">
         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>

@@ -15,7 +15,7 @@ import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent } from '@/business-logic';
 import { useClubsStore, useClubEventsStore } from '@/stores';
 
-const zoom = document.documentElement.clientWidth < 800 ? 5 : 6;
+const zoom = document.documentElement.clientWidth < 800 ? 4 : 5;
 
 const visible = ref(false);
 const markerDialog = ref();
@@ -55,7 +55,7 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   </v-card>
   <div>
     <div class="map-view v-card--variant-elevated">
-      <l-map ref="map" v-model:zoom="zoom" :center="[50.785, 9.547]">
+      <l-map ref="map" v-model:zoom="zoom" :center="[54.33, 9.547]">
         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="OpenStreetMap"
           attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"></l-tile-layer>
         <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>

@@ -27,3 +27,18 @@ export function isClub(obj: any): obj is Club {
   if (typeof obj.name !== 'string') return false;
   return true;
 }
+
+/**
+ * Gets the club's logo or the default which is MyRuck.Club logo.
+ * @param club - the club
+ * @returns path to the logo
+ */
+export function getLogo(club: Club | string): string {
+  if (typeof club === 'string') {
+    return `clubs/${club}-logo.jpg`;
+  } else if (club.hasLogo) {
+    return `clubs/${club.id}-logo.jpg`;
+  } else {
+    return `clubs/myruckclub-logo.png`;
+  }
+}

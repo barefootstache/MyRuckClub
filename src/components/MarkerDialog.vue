@@ -55,7 +55,7 @@ const card = computed(() => {
     body.contact = tClub.contact;
     body.contactPreferred = tClub.contact.preferred;
     body.registrationLink = ClubUtils.getContactUrl(body.contact);
-    body.avatar = tClub.hasLogo ? `clubs/${tClub.id}-logo.jpg` : `clubs/myruckclub-logo.png`
+    body.avatar = ClubUtils.getLogo(tClub);
   } else if (EventUtils.isClubEvent(props.details)) {
     const clubEvent = props.details as ClubEvent;
     body.id = clubEvent.clubId;
@@ -67,7 +67,7 @@ const card = computed(() => {
     body.time = clubEvent.time;
     body.location = clubEvent.location;
     body.locationLink = LocationService.getLocationUrl(clubEvent);
-    body.avatar = `clubs/${clubEvent.clubId}-logo.jpg`
+    body.avatar = ClubUtils.getLogo(clubEvent.clubId);
   }
 
   return body;

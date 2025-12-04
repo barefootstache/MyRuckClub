@@ -9,7 +9,7 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { OsmUtils } from '@/business-logic/index.utils';
+import { ClubUtils, OsmUtils } from '@/business-logic/index.utils';
 import { LocationService } from '@/services';
 import {
   Club,
@@ -103,18 +103,6 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
   markerDialog.value = body;
 }
 
-/**
- * Gets the profile logo link of the club, if it has one, otherwise uses the default.
- * @returns the URL.
- */
-function getProfileLogoLink(): string {
-  if (data.club.hasLogo) {
-    return `clubs/${data.club.id}-logo.jpg`;
-  } else {
-    return `clubs/myruckclub-logo.png`;
-  }
-}
-
 function getZoomFromBboxWithPadding(
   bbox: [[number, number], [number, number]],
   mapSize: { width: number, height: number },
@@ -157,7 +145,7 @@ function getZoomFromBboxWithPadding(
 <template>
   <v-card class="header text-center" :title="data.club.name">
     <template #prepend>
-      <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
+      <v-avatar :image="ClubUtils.getLogo(data.club)" size="80"> </v-avatar>
     </template>
     <v-card-text v-if="data.club.default?.location && !data.club.hide">We typically meet at
       <a :href="LocationService.getLocationClubUrl(data.club)" target="_blank">{{ data.club.default?.location

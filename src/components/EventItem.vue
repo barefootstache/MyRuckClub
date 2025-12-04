@@ -37,26 +37,13 @@ function getRegistrationLink(ev: ClubEvent): string {
     ''
   );
 }
-
-/**
- * Gets the profile logo link of the club, if it has one, otherwise uses the default.
- * @param ev - the club event
- * @returns the URL.
- */
-function getProfileLogoLink(): string {
-  if (data.value.hasLogo) {
-    return `clubs/${data.value.id}-logo.jpg`;
-  } else {
-    return `clubs/myruckclub-logo.png`;
-  }
-}
 </script>
 
 <template>
   <v-list-item>
     <template #prepend v-if="useLogo">
       <router-link :to="{ name: 'Club', params: { id: event.clubId } }">
-        <v-avatar :image="getProfileLogoLink()" size="90"> </v-avatar>
+        <v-avatar :image="ClubUtils.getLogo(data)" size="90"> </v-avatar>
       </router-link>
     </template>
     <template #prepend v-else-if="event.type !== 'default'">
@@ -72,12 +59,12 @@ function getProfileLogoLink(): string {
       <p><v-icon icon="mdi-map-marker"></v-icon>
         <a :href="LocationService.getLocationUrl(event)" target="_blank">{{
           event.location
-          }}<v-icon icon="mdi-open-in-new" size="x-small"></v-icon></a>
+        }}<v-icon icon="mdi-open-in-new" size="x-small"></v-icon></a>
       </p>
       <p v-if="event.clubId"><v-icon icon="mdi-draw"></v-icon>Registration at
         <a :href="getRegistrationLink(event)" target="_blank">{{
           data.name
-          }}<v-icon icon="mdi-open-in-new" size="x-small"></v-icon></a>
+        }}<v-icon icon="mdi-open-in-new" size="x-small"></v-icon></a>
       </p>
     </template>
   </v-list-item>

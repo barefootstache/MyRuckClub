@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { PLACEHOLDER_CLUB } from '@/business-logic';
 import { useClubsStore } from '@/stores/clubs.store';
+import { ClubUtils } from '@/business-logic/index.utils';
 
 const search = ref('');
 const data = ref({
@@ -51,7 +52,9 @@ const headers = [
 
       <template #item="{ item }">
         <tr class="child-item">
-          <td></td>
+          <td>
+            <v-avatar :image="ClubUtils.getLogo(item)" size="32"> </v-avatar>
+          </td>
           <td>
             <router-link class="a-primary" :to="{ name: 'Club', params: { id: item.id } }">{{
               item.name

@@ -110,6 +110,8 @@ export function getIcon(name: EventType): string {
     case 'pt':
       return '/pt_icon.png';
     case 'default':
+    case 'hq':
+    case 'hq-inactive':
       return '';
   }
 }

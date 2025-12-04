@@ -1,7 +1,7 @@
 import { DurationObject, EventAttributes } from 'ics';
 import { Coordinates } from '@/business-logic';
 
-export type EventType = 'pt' | 'ruck' | 'default';
+export type EventType = 'pt' | 'ruck' | 'default' | 'hq' | 'hq-inactive';
 
 export type ClubEvent = {
   clubId: string;

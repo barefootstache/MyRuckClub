@@ -1,4 +1,5 @@
-import { Club, Contact } from '@/business-logic';
+import { Club, ClubEvent, Contact } from '@/business-logic';
+import { differenceInQuarters, parse } from 'date-fns/esm';
 
 /**
  * Gets the preferred contact URL.
@@ -41,4 +42,27 @@ export function getLogo(club: Club | string): string {
   } else {
     return `clubs/myruckclub-logo.png`;
   }
+}
+
+/**
+ * Calculates if the `club` is active on social media or has active events.
+ * @param club - the club to check
+ * @param eventsList - the events to check
+ * @returns the active club or null
+ */
+export function isActiveClub(club: Club, eventsList: ClubEvent[]): Club | null {
+  if (club.socialMediaContent && club.socialMediaContent.updatedAt) {
+    const datesBetween = differenceInQuarters(parse(club.socialMediaContent.updatedAt, 'yyyy-MM-dd', new Date()), parse(club.socialMediaContent.lastPost, 'yyyy-MM-dd', new Date()))
+    const maxQuartersDistance = 2
+    if (datesBetween <= maxQuartersDistance) {
+      // the club had a social media entry in the past 2 quarters
+      return club
+    }
+    const events = eventsList.filter((ev) => ev.clubId === club.id)
+    if (events.length) {
+      // the club has events, but no social media entries
+      return club
+    }
+  }
+  return null
 }

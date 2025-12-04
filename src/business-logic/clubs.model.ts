@@ -1,25 +1,31 @@
-import { AssociationType } from "./associations.model";
-import { Contact } from "./contact.model";
-import { EventType } from "./events.model";
+import {
+  AssociationType,
+  Contact,
+  EventType,
+  Timezone,
+} from '@/business-logic';
 
 export type Coordinates = [number, number];
 
-export type Country = 
+export type Country =
+  | 'Austria'
   | 'Brunei'
   | 'Canada'
+  | 'China'
   | 'Costa Rica'
-  | 'England' 
-  | 'Finland' 
-  | 'Germany' 
-  | 'Japan' 
-  | 'Hong Kong'
-  | 'Ireland' 
-  | 'México' 
-  | 'Norway' 
+  | 'Czechia'
+  | 'England'
+  | 'Finland'
+  | 'France'
+  | 'Germany'
+  | 'Japan'
+  | 'Ireland'
+  | 'México'
+  | 'Norway'
   | 'Scotland'
-  | 'Singapore' 
-  | 'Sweden' 
-  | 'Switzerland' 
+  | 'Singapore'
+  | 'Sweden'
+  | 'Switzerland'
   | 'United Arab Emirates'
   | 'USA'
   | 'Vietnam';
@@ -35,7 +41,9 @@ export type Club = {
   id: string;
   lastInstagramPostDate?: number;
   name: string;
-}
+  socialMediaContent?: SocialMediaContent;
+  timezone?: Timezone;
+};
 
 export type Default = {
   coordinates: Coordinates;
@@ -45,5 +53,10 @@ export type Default = {
   time: string;
   type: EventType;
   url?: string;
-}
+};
 
+export type SocialMediaContent = {
+  updatedAt: string;
+  source: keyof Contact;
+  lastPost: string;
+};

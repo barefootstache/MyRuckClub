@@ -1,90 +1,227 @@
 <script setup lang="ts">
-  import {format, isAfter, subDays} from 'date-fns';
-  import { EventsDB } from '@/db/index.db'
-  import { ClubEvent } from '@/business-logic/events.model';
-  import { Contact } from '@/business-logic/contact.model';
-  import { getContactUrl, getClubById } from '@/business-logic/clubs.utils';
-  import { getMostRecentData } from '@/business-logic/events.utils';
-  import { LocationService } from '@/services/location.service';
+import EventItem from '@/components/EventItem.vue';
+import { ClubEvent } from '@/business-logic';
+import {
+  format,
+  isThisYear,
+  isThisWeek,
+  isAfter,
+  endOfYear,
+  isBefore,
+  nextSunday,
+  getMonth,
+  addYears,
+  addDays,
+} from 'date-fns';
+import { computed } from 'vue';
 
-  /**
-   * Filters events that are happening today and later.
-   */
-  const upcomingClubEvents = EventsDB.filter((ev) => isAfter(ev.date, subDays(new Date(), 1)));
+type DateMapItem = {
+  header: string;
+  events: ClubEvent[];
+};
 
-  /**
-   * Gets the registration, if it exists, otherwise empty string.
-   * @param ev - the club event
-   * @returns the URL.
-   */
-  function getRegistrationLink(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
-    return getMostRecentData<string>('url', foundClub, ev) || getContactUrl(foundClub?.contact as Contact) || '';
+type DateMap = {
+  thisWeek: DateMapItem;
+  nextWeek: DateMapItem;
+  months: Array<DateMapItem>;
+  nextYear: DateMapItem;
+};
+
+const props = withDefaults(
+  defineProps<{
+    events: ClubEvent[];
+    filename?: string;
+    lines?: false | 'one' | 'two' | 'three';
+    showLocalTimes?: boolean;
+    showUpcomingHeader?: boolean;
+    useLogo?: boolean;
+  }>(),
+  {
+    filename: '',
+    lines: false,
+    showLocalTimes: false,
+    showUpcomingHeader: false,
+    useLogo: false,
   }
+);
 
-  /**
-   * Gets the club name where one should register.
-   * @param ev - the club event
-   * @returns the club's name.
-   */
-  function getRegistrationName(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
-    return foundClub ? foundClub.name : '';
-  }
+/**
+ * Sorts the events into a DateMap for easier future processing.
+ * @param events - the club events
+ * @returns the processed data
+ */
+function sortEvents(events: ClubEvent[]): DateMap {
+  const today = new Date();
 
-  /**
-   * Gets the profile logo link of the club, if it has one, otherwise uses the default.
-   * @param ev - the club event
-   * @returns the URL.
-   */
-  function getProfileLogoLink(ev: ClubEvent): string {
-    const foundClub = getClubById(ev.clubId);
-    if(foundClub.hasLogo) {
-      return `clubs/${ev.clubId}-logo.jpg`;
-    } else {
-      return `clubs/myruckclub-logo.png`;
+  const dateMap: DateMap = {
+    thisWeek: {
+      header: `This week including ${format(nextSunday(today), 'cccc, yyyy-MM-dd')}`,
+      events: [],
+    },
+    nextWeek: {
+      header: `Next week ${format(addDays(nextSunday(today), 1), 'cccc, yyyy-MM-dd')} till ${format(nextSunday(nextSunday(today)), 'cccc, yyyy-MM-dd')}`,
+      events: [],
+    },
+    months: [
+      {
+        header: `January ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `February ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `March ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `April ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `May ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `June ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `July ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `August ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `September ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `October ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `November ${format(today, 'yyyy')}`,
+        events: [],
+      },
+      {
+        header: `December ${format(today, 'yyyy')}`,
+        events: [],
+      },
+    ],
+    nextYear: {
+      header: `${format(addYears(today, 1), 'yyyy')}`,
+      events: [],
+    },
+  };
+
+  if (!events) return dateMap;
+
+  events.map((ev) => {
+    const date = ev.date;
+
+    if (isThisWeek(date, { weekStartsOn: 1 })) {
+      dateMap['thisWeek'].events.push(ev);
+    } else if (
+      isBefore(date, nextSunday(nextSunday(today))) &&
+      !isThisWeek(date, { weekStartsOn: 1 })
+    ) {
+      dateMap['nextWeek'].events.push(ev);
+    } else if (isThisYear(date)) {
+      const monthNumber = getMonth(date);
+      dateMap['months'][monthNumber].events.push(ev);
+    } else if (isAfter(date, endOfYear(today))) {
+      dateMap['nextYear'].events.push(ev);
     }
-  }
+  });
+
+  return dateMap;
+}
+
+const dateMap = computed(() => sortEvents(props.events));
+const sortedEventsByDate = computed(() => {
+  return [
+    dateMap.value.thisWeek,
+    dateMap.value.nextWeek,
+    ...dateMap.value.months.filter((month) => month.events.length),
+    dateMap.value.nextYear,
+  ];
+});
 </script>
 
 <template>
-  <div style="margin: 5px 0;">
-    <span style="font-size: 1.3rem;">All times are local times.</span>
-  </div>
+  <v-card>
+    <div class="local-times-header text-center" v-if="showLocalTimes">
+      <p>All times are local times.</p>
+      <p>All data should be double-checked on the club's site.</p>
+    </div>
+  </v-card>
 
-  <v-list :lines="false">
-    <v-list-item v-for="ev in upcomingClubEvents">
-      <template v-slot:prepend>
-        <v-avatar :image="getProfileLogoLink(ev)" size="90">
-        </v-avatar>
+  <div>
+    <h2 class="upcoming-header text-center" v-if="showUpcomingHeader">
+      <span v-if="events.length === 0">No </span>Upcoming Events
+    </h2>
+    <v-list :lines="lines">
+      <template v-for="dateInterval in sortedEventsByDate">
+        <template v-if="dateInterval.events.length">
+          <v-card style="background-color: rgba(var(--v-theme-primary-light)); margin-bottom: 8px;">
+            <h2 class="text-center">{{ dateInterval.header }}</h2>
+            <template v-for="ev in dateInterval.events">
+              <v-card style="margin:8px">
+                <EventItem :event="ev" :use-logo="useLogo"></EventItem>
+              </v-card>
+            </template>
+          </v-card>
+        </template>
       </template>
-      <template v-slot:title>
-        <span style="font-weight: bold">{{ev.name}}</span><br>
-      </template>
-      <template v-slot:subtitle>
-        <span>{{format(ev.date, 'EEEE dd.MM.yyyy')}}</span><br>
-        <span>{{ev.time}} - <a :href="LocationService.getLocationUrl(ev)" target="_blank">{{ev.location}}</a></span><br>
-        <span v-if="ev.clubId">Registration at <a :href="getRegistrationLink(ev)" target="_blank">{{getRegistrationName(ev)}}</a></span>
-      </template>
-    </v-list-item>
-  </v-list>
+    </v-list>
+  </div>
 </template>
 
 <style scoped>
-  .v-list-item {
-    outline: 1px rgba(var(--v-theme-surface), 0.87) solid;
-    margin-bottom: 4px;
-    padding: 0 4px;
-  }
+.v-list {
+  background: rgba(var(--v-theme-background));
+  color: rgba(var(--v-theme-surface));
+  overflow: unset;
+}
 
-  .v-list-item-subtitle span {
-    line-height: 1.5;
-    font-size: 1rem;
-  }
+h2 {
+  margin: 32px 0;
+  border: 1px rgba(var(--v-theme-surface), 0.1) solid;
+  font-weight: 500;
+}
 
-  .v-list {
-    background: rgba(var(--v-theme-background));
-    color: rgba(var(--v-theme-surface));
-    overflow: unset;
+.mrc-download-calendar-button {
+  border: 1px rgba(var(--v-theme-surface), 0.1) solid;
+  font-weight: 500;
+  padding: 4px;
+}
+
+.upcoming-header {
+  margin-bottom: 0;
+  font-size: 2.25rem;
+  font-weight: 500;
+  border: none;
+}
+
+.local-times-header {
+  margin: 5px 0;
+
+  span {
+    font-size: 1.3rem;
   }
+}
+
+.v-list-item__content {
+  text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+  h2 {
+    padding: 0 32px;
+  }
+}
 </style>

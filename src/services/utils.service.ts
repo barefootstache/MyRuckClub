@@ -1,10 +1,12 @@
+import { DurationObject } from "ics";
+
 export class UtilsService {
   /**
    * Capitalizes first letter of the word.
    * @param word - the text to capitalize
    * @returns capitalized text.
    */
-  static capitalize(word:string):string {
+  static capitalize(word: string): string {
     return `${word[0].toUpperCase()}${word.slice(1)}`;
   }
 
@@ -14,13 +16,13 @@ export class UtilsService {
    * @param useOutline - to use an outline
    * @returns the mdi version of the clock time icon or the default clock
    */
-  static getClockTimeIcon(time:string, useOutline = true):string {
+  static getClockTimeIcon(time: string, useOutline = true): string {
     const outline = useOutline ? '-outline' : '';
-    let text = ''
+    let text = '';
 
     const times = time.split(':');
-    if(times.length !== 2) {
-      return `mdi-clock${outline}`
+    if (times.length !== 2) {
+      return `mdi-clock${outline}`;
     }
     const hour = Number(times[0]) % 12;
     switch (hour) {
@@ -62,5 +64,33 @@ export class UtilsService {
         break;
     }
     return `mdi-clock-time-${text}${outline}`;
+  }
+
+  /**
+  * Prints the duration as a string.
+  * @param duration - the duration
+  * @returns the string.
+  */
+  static durationToString(duration?: DurationObject): string {
+    if (!duration) {
+      return '3 hours';
+    }
+    let durationString = '';
+    if (!!duration.weeks) {
+      durationString += `${duration.weeks} weeks `
+    }
+    if (!!duration.days) {
+      durationString += `${duration.days} days `
+    }
+    if (!!duration.hours) {
+      durationString += `${duration.hours} hours `
+    }
+    if (!!duration.minutes) {
+      durationString += `${duration.minutes} minutes `
+    }
+    if (!!duration.seconds) {
+      durationString += `${duration.seconds} seconds `
+    }
+    return durationString;
   }
 }

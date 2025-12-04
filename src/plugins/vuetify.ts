@@ -1,7 +1,11 @@
 /**
  * Vuetify3 Plugin
  */
-import { createVuetify, type VuetifyOptions, type ThemeDefinition } from 'vuetify';
+import {
+  createVuetify,
+  type VuetifyOptions,
+  type ThemeDefinition,
+} from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 // Translations provided by Vuetify
@@ -98,8 +102,8 @@ const palette = {
     800: '#2b211d',
     900: '#282320',
     901: '#282320de',
-  }
-}
+  },
+};
 
 const DirtDarkTheme: ThemeDefinition = {
   dark: true,
@@ -118,9 +122,9 @@ const DirtDarkTheme: ThemeDefinition = {
     warning: palette.warning[400],
   },
   variables: {
-    'color-white': palette.grayscale[100]
-  }
-}
+    'color-white': palette.grayscale[100],
+  },
+};
 
 const DirtLightTheme: ThemeDefinition = {
   dark: false,
@@ -139,8 +143,31 @@ const DirtLightTheme: ThemeDefinition = {
     warning: palette.warning[700],
   },
   variables: {
-    'color-white': palette.grayscale[100]
-  }
+    'color-white': palette.grayscale[100],
+  },
+};
+
+const EnergyLightTheme: ThemeDefinition = {
+  dark: false,
+  colors: {
+    background: '#e9e6e2',
+    surface: '#f7f6f3',
+    font: '#333333',
+    primary: '#ff4500',
+    'primary-hover': '#cc3700',
+    'primary-light': '#FBE9E7',
+    secondary: '#1e90ff',
+    'secondary-hover': '#1564b2',
+    accent: '#32cd32'
+  },
+  variables: {
+    'color-white': '#f7f6f3',
+    'var-radius': '4px',
+    'space-micro': '4px',
+    'space-mini': '8px',
+    'space-small': '16px',
+    'space-mid': '32px'
+  },
 }
 
 /**
@@ -154,7 +181,7 @@ let vuetifyConfig: VuetifyOptions = {
     aliases,
     sets: {
       mdi,
-    }
+    },
   },
   // Internationalization (i18n)
   // https://vuetifyjs.com/en/features/internationalization/#internationalization-i18n
@@ -166,11 +193,12 @@ let vuetifyConfig: VuetifyOptions = {
   // Theme
   // https://vuetifyjs.com/en/features/theme/
   theme: {
-    defaultTheme: 'DirtDarkTheme',
+    defaultTheme: 'EnergyLightTheme',
     themes: {
-      DirtDarkTheme,
-      DirtLightTheme
-    }
+      EnergyLightTheme,
+      DirtLightTheme,
+      DirtDarkTheme
+    },
   },
 };
 
@@ -186,4 +214,3 @@ export default createVuetify(vuetifyConfig);
 
 // Export for test.
 export { components, directives };
-

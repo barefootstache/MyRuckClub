@@ -7,7 +7,7 @@ export type Contact = {
   linktree?: string;
   preferred: keyof Contact;
   sandlot?: string;
-}
+};
 
 export const ContactIcon: Contact = {
   email: 'mdi-email',
@@ -17,5 +17,5 @@ export const ContactIcon: Contact = {
   instagram: 'mdi-instagram',
   linktree: 'mdi-palm-tree',
   sandlot: 'mdi-beach',
-  preferred: 'email'
-}
+  preferred: 'email',
+};

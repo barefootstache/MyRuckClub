@@ -1,41 +1,265 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <h1>My Ruck Club</h1>
-  <p><em>My Ruck Club</em> is the first stop to get more info of your local ruck clubs.</p>
-  <p>We are putting focus first in the European region.</p>
-  <p>To get the development latest news we suggest:</p>
-  <ul>
-    <li>to follow <a href="https://indieweb.social/@rucking" target="_blank">https://indieweb.social/@rucking</a>,</li>
-    <li>or join the <a href="https://feddit.de/c/rucking" target="_blank">Rucking Community</a> on Lemmy.</li>
-    <li>or subscribe to their RSS feeds:
+  <div class="about-section">
+    <v-card>
+      <h1>My Ruck Club</h1>
+      <p>
+        <em>My Ruck Club</em> is the first stop to get more info of your local ruck
+        clubs.
+      </p>
+      <p>We are putting focus first in the European region.</p>
+    </v-card>
+    <v-card>
+      <h2>Development News</h2>
+      <p>To get the latest development news, checkout Mastodon</p>
       <ul>
-        <li><code>https://indieweb.social/users/rucking.atom</code></li>
-        <li><code>https://feddit.de/users/rucking.atom</code></li>
+        <li>
+          <a class="donate-btn-right mastodon-btn" href="https://indieweb.social/@rucking" target="_blank">
+            <svg viewBox="0 0 1000 1000" height="16" width="16">
+              <path id="path5" style="fill:#ffffff;fill-rule:nonzero"
+                d="M 498.54688 -0.03515625 C 370.69387 1.0098438 247.70911 14.851625 176.03711 47.765625 C 176.03711 47.765625 33.896484 111.35025 33.896484 328.28125 C 33.896484 377.95625 32.925047 437.35089 34.498047 500.33789 C 39.660047 712.48489 73.396688 921.56447 269.55469 973.48047 C 359.99869 997.41847 437.65045 1002.4272 500.18945 998.99023 C 613.60245 992.70223 677.26953 958.51758 677.26953 958.51758 L 673.5293 876.23633 C 673.5293 876.23633 592.48194 901.79173 501.46094 898.67773 C 411.28094 895.58573 316.08014 888.95123 301.49414 778.24023 C 300.14714 768.51523 299.47461 758.11727 299.47461 747.19727 C 299.47461 747.19727 387.99845 768.83366 500.18945 773.97266 C 568.79045 777.11966 633.12384 769.9542 698.46484 762.1582 C 823.76984 747.1972 932.87294 669.99608 946.58594 599.45508 C 968.19194 488.33408 966.4082 328.28125 966.4082 328.28125 C 966.4082 111.35025 824.27148 47.765625 824.27148 47.765625 C 752.60548 14.851625 629.5405 1.0098437 501.6875 -0.03515625 L 498.54688 -0.03515625 z M 353.84961 169.46484 C 407.10561 169.46484 447.43556 189.933 474.10156 230.875 L 500.02344 274.32617 L 525.94922 230.875 C 552.60922 189.933 592.94017 169.46484 646.20117 169.46484 C 692.22617 169.46484 729.30795 185.64408 757.62695 217.20508 C 785.07995 248.76608 798.74805 291.42638 798.74805 345.10938 L 798.74805 607.77734 L 694.67773 607.77734 L 694.67773 352.83008 C 694.67773 299.08708 672.06308 271.81055 626.83008 271.81055 C 576.81808 271.81055 551.75391 304.16834 551.75391 368.15234 L 551.75391 507.69922 L 448.29688 507.69922 L 448.29688 368.15234 C 448.29688 304.16834 423.22684 271.81055 373.21484 271.81055 C 327.98184 271.81055 305.36719 299.08708 305.36719 352.83008 L 305.36719 607.77734 L 201.29883 607.77734 L 201.29883 345.10938 C 201.29883 291.42638 214.96778 248.76608 242.42578 217.20508 C 270.73978 185.64408 307.81961 169.46484 353.84961 169.46484 z ">
+              </path>
+            </svg>
+            <span>@rucking@indieweb.social</span>
+          </a>
+        </li>
+        <li>
+          <a class="donate-btn rss-btn" href="https://indieweb.social/users/rucking.atom" target="_blank">
+            <svg viewBox="0 0 24 24" height="16" width="16">
+              <circle style="fill:#ffffff" cx="3.429" cy="20.571" r="3.429"></circle>
+              <path style="fill:#ffffff"
+                d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+              <path style="fill:#ffffff" d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z">
+              </path>
+            </svg>
+            <span>RSS</span>
+          </a>
+          <code>https://indieweb.social/@rucking.rss</code>
+        </li>
       </ul>
-    </li>
-  </ul>
-  <h2>Development</h2>
-  <p>My Ruck Club is being developed on <a href="https://codeberg.org/barefootstache/MyRuckClub" target="_blank">Codeberg</a> under a <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GPLv3+</a> license.</p>
-  <h2>Donations</h2>
-  <p>We currently do not need monetary donations and consider to donate to the services we use:</p>
-  <ul>
-    <li><a href="https://docs.codeberg.org/improving-codeberg/#donate-to-codeberg" target="_blank">Codeberg</a></li>
-    <li><a href="https://www.patreon.com/indiewebsocial" target="_blank">Mastodon</a></li>
-  </ul>
+    </v-card>
+    <v-card>
+      <h2 id="how-to-join">How to Join</h2>
+      <p>A ruck club should have</p>
+      <ul>
+        <li>1. Regular meetups, at least once a month</li>
+        <li>2. Place of contact, at least an email</li>
+        <li>3. Name, what should the club be called</li>
+      </ul>
+    </v-card>
+    <v-card>
+      <h2>Follow us</h2>
+      <ul class="donate-btn-row">
+        <li>
+          <a class="donate-btn-right mastodon-btn" href="https://indieweb.social/@rucking" target="_blank">
+            <svg viewBox="0 0 1000 1000" height="16" width="16">
+              <path id="path5" style="fill:#ffffff;fill-rule:nonzero"
+                d="M 498.54688 -0.03515625 C 370.69387 1.0098438 247.70911 14.851625 176.03711 47.765625 C 176.03711 47.765625 33.896484 111.35025 33.896484 328.28125 C 33.896484 377.95625 32.925047 437.35089 34.498047 500.33789 C 39.660047 712.48489 73.396688 921.56447 269.55469 973.48047 C 359.99869 997.41847 437.65045 1002.4272 500.18945 998.99023 C 613.60245 992.70223 677.26953 958.51758 677.26953 958.51758 L 673.5293 876.23633 C 673.5293 876.23633 592.48194 901.79173 501.46094 898.67773 C 411.28094 895.58573 316.08014 888.95123 301.49414 778.24023 C 300.14714 768.51523 299.47461 758.11727 299.47461 747.19727 C 299.47461 747.19727 387.99845 768.83366 500.18945 773.97266 C 568.79045 777.11966 633.12384 769.9542 698.46484 762.1582 C 823.76984 747.1972 932.87294 669.99608 946.58594 599.45508 C 968.19194 488.33408 966.4082 328.28125 966.4082 328.28125 C 966.4082 111.35025 824.27148 47.765625 824.27148 47.765625 C 752.60548 14.851625 629.5405 1.0098437 501.6875 -0.03515625 L 498.54688 -0.03515625 z M 353.84961 169.46484 C 407.10561 169.46484 447.43556 189.933 474.10156 230.875 L 500.02344 274.32617 L 525.94922 230.875 C 552.60922 189.933 592.94017 169.46484 646.20117 169.46484 C 692.22617 169.46484 729.30795 185.64408 757.62695 217.20508 C 785.07995 248.76608 798.74805 291.42638 798.74805 345.10938 L 798.74805 607.77734 L 694.67773 607.77734 L 694.67773 352.83008 C 694.67773 299.08708 672.06308 271.81055 626.83008 271.81055 C 576.81808 271.81055 551.75391 304.16834 551.75391 368.15234 L 551.75391 507.69922 L 448.29688 507.69922 L 448.29688 368.15234 C 448.29688 304.16834 423.22684 271.81055 373.21484 271.81055 C 327.98184 271.81055 305.36719 299.08708 305.36719 352.83008 L 305.36719 607.77734 L 201.29883 607.77734 L 201.29883 345.10938 C 201.29883 291.42638 214.96778 248.76608 242.42578 217.20508 C 270.73978 185.64408 307.81961 169.46484 353.84961 169.46484 z ">
+              </path>
+            </svg>
+            <span>@rucking@indieweb.social</span>
+          </a>
+        </li>
+        <li>
+          <a class="donate-btn-right instagram-btn" href="https://www.instagram.com/myruckclub/" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 20 20">
+              <path id="path1" style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1"
+                d="M 10.515137 0 C 9.2220436 -0.00016501448 7.6909919 0.038145396 5.8691406 0.12207031 C 4.2412623 0.19607024 2.8312034 0.59401676 1.6918945 1.7285156 C 0.54859567 2.8690145 0.15420633 4.2850977 0.080566406 5.8959961 C 0.034766452 6.9014951 -0.23169563 14.49716 0.54443359 16.489258 C 1.0678231 17.833156 2.0983612 18.86699 3.4545898 19.39209 C 4.0874392 19.63819 4.8094317 19.804916 5.8691406 19.853516 C 14.729952 20.254515 18.014325 20.035654 19.399414 16.489258 C 19.645194 15.857958 19.81407 15.136689 19.86084 14.07959 C 20.265819 5.1960987 19.796222 3.2710141 18.251953 1.7285156 C 17.256731 0.73572287 16.11854 0.00071506276 10.515137 0 z M 8.7158203 1.7724609 C 10.08283 1.7669125 11.805805 1.8104048 13.994141 1.9091797 C 15.136449 1.9611796 16.178884 2.1911649 16.984863 2.9931641 C 17.979902 3.9856631 18.473279 5.2792322 18.071289 13.999023 C 18.027489 14.966822 17.865812 15.491886 17.729492 15.842285 C 16.828983 18.149983 14.75823 18.470306 5.9521484 18.066406 C 4.9819894 18.022406 4.4552536 17.863051 4.1040039 17.727051 C 3.2204148 17.383651 2.5556451 16.720684 2.2143555 15.842285 C 1.6232961 14.328587 1.8198286 7.1398613 1.8725586 5.9765625 C 1.9242585 4.8370636 2.1549952 3.7970633 2.9589844 2.9931641 C 3.7052636 2.2487148 4.6147902 1.7891062 8.7158203 1.7724609 z " />
+              <path id="path4" style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1"
+                d="M 9.9731445 4.8925781 C 7.1512274 4.8925781 4.8632813 7.1728958 4.8632812 9.987793 C 4.8632812 12.80279 7.1512274 15.085449 9.9731445 15.085449 C 12.795072 15.085449 15.080566 12.80279 15.080566 9.987793 C 15.080566 7.1728958 12.795072 4.8925781 9.9731445 4.8925781 z M 9.9731445 6.6796875 C 11.805013 6.6796875 13.288574 8.1614948 13.288574 9.987793 C 13.288574 11.815091 11.805013 13.29834 9.9731445 13.29834 C 8.1412864 13.29834 6.6552734 11.815091 6.6552734 9.987793 C 6.6552734 8.1614948 8.1412864 6.6796875 9.9731445 6.6796875 z " />
+              <path style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1"
+                d="m 14.08967,4.6896 c 0,0.6571 0.53434,1.191 1.19405,1.191 0.65971,0 1.19504,-0.5339 1.19504,-1.191 0,-0.6571 -0.53533,-1.1911 -1.19504,-1.1911 -0.65971,0 -1.19405,0.534 -1.19405,1.1911"
+                id="path3" />
+            </svg>
+            <span>@MyRuckClub</span>
+          </a>
+        </li>
+      </ul>
+    </v-card>
+    <v-card>
+      <h2>Development</h2>
+      <p>
+        My Ruck Club is being developed on
+        <a href="https://codeberg.org/barefootstache/MyRuckClub" target="_blank">Codeberg</a>
+        under a
+        <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GPLv3+</a>
+        license.
+      </p>
+    </v-card>
+    <v-card>
+      <h2>Support</h2>
+      <p>
+        Help support the project via Liberapay
+      </p>
+      <a class="donate-btn liberapay-btn" href="https://liberapay.com/barefootstache/donate" target="_blank">
+        <svg viewBox="0 0 80 80" height="16" width="16">
+          <g transform="translate(-78.37-208.06)" fill="#1a171b">
+            <path
+              d="m104.28 271.1c-3.571 0-6.373-.466-8.41-1.396-2.037-.93-3.495-2.199-4.375-3.809-.88-1.609-1.308-3.457-1.282-5.544.025-2.086.313-4.311.868-6.675l9.579-40.05 11.69-1.81-10.484 43.44c-.202.905-.314 1.735-.339 2.489-.026.754.113 1.421.415 1.999.302.579.817 1.044 1.546 1.395.729.353 1.747.579 3.055.679l-2.263 9.278" />
+            <path
+              d="m146.52 246.14c0 3.671-.604 7.03-1.811 10.07-1.207 3.043-2.879 5.669-5.01 7.881-2.138 2.213-4.702 3.935-7.693 5.167-2.992 1.231-6.248 1.848-9.767 1.848-1.71 0-3.42-.151-5.129-.453l-3.394 13.651h-11.162l12.52-52.19c2.01-.603 4.311-1.143 6.901-1.622 2.589-.477 5.393-.716 8.41-.716 2.815 0 5.242.428 7.278 1.282 2.037.855 3.708 2.024 5.02 3.507 1.307 1.484 2.274 3.219 2.904 5.205.627 1.987.942 4.11.942 6.373m-27.378 15.461c.854.202 1.91.302 3.167.302 1.961 0 3.746-.364 5.355-1.094 1.609-.728 2.979-1.747 4.111-3.055 1.131-1.307 2.01-2.877 2.64-4.714.628-1.835.943-3.858.943-6.071 0-2.161-.479-3.998-1.433-5.506-.956-1.508-2.615-2.263-4.978-2.263-1.61 0-3.118.151-4.525.453l-5.28 21.948" />
+          </g>
+        </svg>
+        <span>Donate</span>
+      </a>
+      <p>
+        Or consider to donate to the services we use:
+      </p>
+    </v-card>
+    <v-card>
+      <h3>Support other Services</h3>
+      <ul class="donate-btn-row">
+        <li>
+          <a class="donate-btn codeberg-btn" href="https://docs.codeberg.org/improving-codeberg/#donate-to-codeberg"
+            target="_blank">
+            <svg viewBox="0 0 4.233 4.233" height="16" width="16">
+              <g xmlns="http://www.w3.org/2000/svg" id="g370484" inkscape:label="logo"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                transform="matrix(0.06551432,0,0,0.06551432,-2.232417,-1.431776)">
+                <path id="path6733-5"
+                  style="font-variation-settings:normal;opacity:1;fill:url(#linearGradient6918-3);fill-opacity:1;stroke:none;stroke-width:3.67846;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000;stop-opacity:1"
+                  d="m 42519.285,-7078.7891 a 0.76086879,0.56791688 0 0 0 -0.738,0.6739 l 33.586,125.8886 a 87.182358,87.182358 0 0 0 39.381,-33.7636 l -71.565,-92.5196 a 0.76086879,0.56791688 0 0 0 -0.664,-0.2793 z"
+                  transform="matrix(0.37058478,0,0,0.37058478,-15690.065,2662.0533)" inkscape:label="berg" />
+                <path id="path360787"
+                  style="opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:17.0055;paint-order:markers fill stroke;stop-color:#000000"
+                  d="m 11249.461,-1883.6961 c -12.74,0 -23.067,10.3275 -23.067,23.0671 0,4.3335 1.22,8.5795 3.522,12.2514 l 19.232,-24.8636 c 0.138,-0.1796 0.486,-0.1796 0.624,0 l 19.233,24.8646 c 2.302,-3.6721 3.523,-7.9185 3.523,-12.2524 0,-12.7396 -10.327,-23.0671 -23.067,-23.0671 z"
+                  sodipodi:nodetypes="sccccccs" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                  inkscape:label="sky" transform="matrix(1.4006354,0,0,1.4006354,-15690.065,2662.0533)" />
+              </g>
+            </svg>
+            <span>Codeberg</span>
+          </a>
+        </li>
+        <li>
+          <a class="donate-btn mastodon-btn" href="https://www.patreon.com/indiewebsocial" target="_blank">
+            <svg viewBox="0 0 1000 1000" height="16" width="16">
+              <path id="path5" style="fill:#ffffff;fill-rule:nonzero"
+                d="M 498.54688 -0.03515625 C 370.69387 1.0098438 247.70911 14.851625 176.03711 47.765625 C 176.03711 47.765625 33.896484 111.35025 33.896484 328.28125 C 33.896484 377.95625 32.925047 437.35089 34.498047 500.33789 C 39.660047 712.48489 73.396688 921.56447 269.55469 973.48047 C 359.99869 997.41847 437.65045 1002.4272 500.18945 998.99023 C 613.60245 992.70223 677.26953 958.51758 677.26953 958.51758 L 673.5293 876.23633 C 673.5293 876.23633 592.48194 901.79173 501.46094 898.67773 C 411.28094 895.58573 316.08014 888.95123 301.49414 778.24023 C 300.14714 768.51523 299.47461 758.11727 299.47461 747.19727 C 299.47461 747.19727 387.99845 768.83366 500.18945 773.97266 C 568.79045 777.11966 633.12384 769.9542 698.46484 762.1582 C 823.76984 747.1972 932.87294 669.99608 946.58594 599.45508 C 968.19194 488.33408 966.4082 328.28125 966.4082 328.28125 C 966.4082 111.35025 824.27148 47.765625 824.27148 47.765625 C 752.60548 14.851625 629.5405 1.0098437 501.6875 -0.03515625 L 498.54688 -0.03515625 z M 353.84961 169.46484 C 407.10561 169.46484 447.43556 189.933 474.10156 230.875 L 500.02344 274.32617 L 525.94922 230.875 C 552.60922 189.933 592.94017 169.46484 646.20117 169.46484 C 692.22617 169.46484 729.30795 185.64408 757.62695 217.20508 C 785.07995 248.76608 798.74805 291.42638 798.74805 345.10938 L 798.74805 607.77734 L 694.67773 607.77734 L 694.67773 352.83008 C 694.67773 299.08708 672.06308 271.81055 626.83008 271.81055 C 576.81808 271.81055 551.75391 304.16834 551.75391 368.15234 L 551.75391 507.69922 L 448.29688 507.69922 L 448.29688 368.15234 C 448.29688 304.16834 423.22684 271.81055 373.21484 271.81055 C 327.98184 271.81055 305.36719 299.08708 305.36719 352.83008 L 305.36719 607.77734 L 201.29883 607.77734 L 201.29883 345.10938 C 201.29883 291.42638 214.96778 248.76608 242.42578 217.20508 C 270.73978 185.64408 307.81961 169.46484 353.84961 169.46484 z ">
+              </path>
+            </svg>
+            <span>Mastodon</span>
+          </a>
+        </li>
+      </ul>
+    </v-card>
+    <v-card>
+      <h2>Feedback</h2>
+      <p>Do you have feedback, or have found a bug, or have a feature request? Then create a ticket at Codeberg:</p>
+      <p>
+        <a class="donate-btn codeberg-btn" href="https://codeberg.org/barefootstache/MyRuckClub/issues" target="_blank">
+          <svg viewBox="0 0 4.233 4.233" height="16" width="16">
+            <g xmlns="http://www.w3.org/2000/svg" id="g370484" inkscape:label="logo"
+              xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+              transform="matrix(0.06551432,0,0,0.06551432,-2.232417,-1.431776)">
+              <path id="path6733-5"
+                style="font-variation-settings:normal;opacity:1;fill:url(#linearGradient6918-3);fill-opacity:1;stroke:none;stroke-width:3.67846;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000;stop-opacity:1"
+                d="m 42519.285,-7078.7891 a 0.76086879,0.56791688 0 0 0 -0.738,0.6739 l 33.586,125.8886 a 87.182358,87.182358 0 0 0 39.381,-33.7636 l -71.565,-92.5196 a 0.76086879,0.56791688 0 0 0 -0.664,-0.2793 z"
+                transform="matrix(0.37058478,0,0,0.37058478,-15690.065,2662.0533)" inkscape:label="berg" />
+              <path id="path360787"
+                style="opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:17.0055;paint-order:markers fill stroke;stop-color:#000000"
+                d="m 11249.461,-1883.6961 c -12.74,0 -23.067,10.3275 -23.067,23.0671 0,4.3335 1.22,8.5795 3.522,12.2514 l 19.232,-24.8636 c 0.138,-0.1796 0.486,-0.1796 0.624,0 l 19.233,24.8646 c 2.302,-3.6721 3.523,-7.9185 3.523,-12.2524 0,-12.7396 -10.327,-23.0671 -23.067,-23.0671 z"
+                sodipodi:nodetypes="sccccccs" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                inkscape:label="sky" transform="matrix(1.4006354,0,0,1.4006354,-15690.065,2662.0533)" />
+            </g>
+          </svg>
+          <span>Codeberg</span>
+        </a>
+      </p>
+    </v-card>
+  </div>
 </template>
 
 <style scoped>
 h1 {
   margin-bottom: 20px;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
   margin: auto;
 }
-h2, ul {
+
+h2,
+h3,
+ul {
   margin-top: 10px;
+}
+
+.v-card {
+  padding: var(--v-space-micro);
+}
+
+.about-section {
+  text-align: left;
+}
+
+.donate-btn,
+.donate-btn-right {
+  border-radius: 4px;
+  display: inline-block;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  padding: 5px 7px 3px;
+  position: relative;
+  text-decoration: none;
+  margin: 10px 0;
+  margin-right: 10px;
+}
+
+.donate-btn>svg {
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
+.donate-btn>span {
+  margin-left: 19px;
+}
+
+.donate-btn-right>svg {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+
+.donate-btn-right>span {
+  margin-right: 19px;
+}
+
+.liberapay-btn {
+  background-color: #f6c915;
+  color: #1a171b;
+}
+
+.liberapay-btn:hover {
+  background-color: #fbce1a;
+}
+
+.codeberg-btn {
+  background-color: #171e26;
+  color: #fff;
+}
+
+.mastodon-btn {
+  background-color: #6364ff;
+  color: #fff;
+}
+
+.instagram-btn {
+  background-color: #e1306c;
+  color: #fff;
+}
+
+.rss-btn {
+  background-color: #f26522;
+  color: #fff;
+}
+
+.donate-btn-row {
+  display: flex;
 }
 </style>

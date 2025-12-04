@@ -9,7 +9,8 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
-import { OsmUtils } from '@/business-logic/index.utils';
+import { IconOptions } from 'leaflet';
+import { ClubUtils, OsmUtils } from '@/business-logic/index.utils';
 import { LocationService } from '@/services';
 import {
   Club,
@@ -18,6 +19,7 @@ import {
   PLACEHOLDER_CLUB,
   PLACEHOLDER_BOUNDINGBOX,
   Coordinates,
+  EventType,
 } from '@/business-logic';
 import Contact from './components/Contact.vue';
 import MarkerDialog from '@/components/MarkerDialog.vue';
@@ -32,6 +34,7 @@ const route = useRoute();
 const clubId = ref(route.params.id as string);
 const mapDataReady = ref(false);
 const map = ref<typeof LMap>();
+const isActive = ref(false)
 
 const storeClubs = useClubsStore();
 const storeEvents = useClubEventsStore();
@@ -52,6 +55,8 @@ onMounted(async () => {
   await storeAssociations.registerAssociationsList();
 
   const club = storeClubs.getClubById(clubId.value);
+  isActive.value = !!ClubUtils.isActiveClub(club, storeEvents.list)
+
   const associations = club.associations.map((ass) => storeAssociations.getAssociationByType(ass));
   const upcomingClubEvents = storeEvents.getEventsByClubId(clubId.value);
 
@@ -104,17 +109,13 @@ function showDialog(value: boolean, body: Club | ClubEvent): void {
 }
 
 /**
- * Gets the profile logo link of the club, if it has one, otherwise uses the default.
- * @returns the URL.
- */
-function getProfileLogoLink(): string {
-  if (data.club.hasLogo) {
-    return `clubs/${data.club.id}-logo.jpg`;
-  } else {
-    return `clubs/myruckclub-logo.png`;
-  }
-}
-
+ * Gets the zoom based off of the parameters provided.
+ * @param bbox - the bounding box
+ * @param mapSize - the map size
+ * @param paddingMeters - the amount of meters to be padded by
+ * @param tileSize - the size of the tiles
+ * @returns the zoom level
+ * */
 function getZoomFromBboxWithPadding(
   bbox: [[number, number], [number, number]],
   mapSize: { width: number, height: number },
@@ -152,12 +153,42 @@ function getZoomFromBboxWithPadding(
   return Math.min(latZoom, lngZoom, ZOOM_MAX);
 }
 
+
+/**
+ * Gets the icon configuration respective if the `club` is active.
+ * @returns the icon configuration
+ */
+function getIconConfigClub(): Partial<IconOptions> {
+  if (!isActive.value) {
+    return OsmUtils.getPin('hq-inactive').options
+  }
+  return OsmUtils.getPin('hq').options
+}
+
+/**
+ * Gets the icon configuration respective the `eventType`.
+ * @param eventType - the event type
+ * @returns the icon configuration
+ */
+function getIconConfigEvent(eventType: EventType): Partial<IconOptions> {
+  return OsmUtils.getPin(eventType).options
+}
+
+/**
+* Creates the title.
+* @param club - the club to use
+* @returns the title of the page
+*/
+function getClubName(club: Club): string {
+  const isActiveText = !isActive.value ? 'inactive' : 'active'
+  return `${club.name} (${isActiveText})`
+}
 </script>
 
 <template>
-  <v-card class="header text-center" :title="data.club.name">
+  <v-card class="header text-center" :title="getClubName(data.club)">
     <template #prepend>
-      <v-avatar :image="getProfileLogoLink()" size="80"> </v-avatar>
+      <v-avatar :image="ClubUtils.getLogo(data.club)" size="80"> </v-avatar>
     </template>
     <v-card-text v-if="data.club.default?.location && !data.club.hide">We typically meet at
       <a :href="LocationService.getLocationClubUrl(data.club)" target="_blank">{{ data.club.default?.location
@@ -172,16 +203,14 @@ function getZoomFromBboxWithPadding(
       <l-control-scale position="bottomleft" :imperial="true" :metric="true"></l-control-scale>
 
       <l-marker @click="showDialog(true, data.club)" v-if="!data.club.hide" :lat-lng="data.club.coordinates">
-        <l-icon :icon-url="OsmUtils.getPin('default').options.iconUrl"
-          :icon-size="OsmUtils.getPin('default').options.iconSize"
-          :icon-anchor="OsmUtils.getPin('default').options.iconAnchor"></l-icon>
+        <l-icon :icon-url="getIconConfigClub().iconUrl" :icon-size="getIconConfigClub().iconSize"
+          :icon-anchor="getIconConfigClub().iconAnchor"></l-icon>
       </l-marker>
 
       <l-marker @click="showDialog(true, ev)" v-for="(ev, evId) in data.uniqueEventsLocations" :key="evId"
         :lat-lng="ev.coordinates">
-        <l-icon :icon-url="OsmUtils.getPin(ev.type).options.iconUrl"
-          :icon-size="OsmUtils.getPin(ev.type).options.iconSize"
-          :icon-anchor="OsmUtils.getPin(ev.type).options.iconAnchor"></l-icon>
+        <l-icon :icon-url="getIconConfigEvent(ev.type).iconUrl" :icon-size="getIconConfigEvent(ev.type).iconSize"
+          :icon-anchor="getIconConfigEvent(ev.type).iconAnchor"></l-icon>
       </l-marker>
 
       <v-dialog v-model="visible" :scrim="false" content-class="marker-dialog">

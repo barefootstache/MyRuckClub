@@ -26,10 +26,18 @@ export function getPin(
         })
       );
     case 'default':
+    case 'hq':
       return Object.freeze(
         new L.Icon({
           ...iconOptions,
           iconUrl: '/hq_pin.png',
+        })
+      );
+    case 'hq-inactive':
+      return Object.freeze(
+        new L.Icon({
+          ...iconOptions,
+          iconUrl: '/hq_inactive_pin.png',
         })
       );
     case 'pt':

@@ -8,7 +8,7 @@ import {
   ContactUtils,
   ClubUtils,
 } from '@/business-logic/index.utils';
-import { useClubsStore } from '@/stores';
+import { useClubEventsStore, useClubsStore } from '@/stores';
 
 const props = withDefaults(
   defineProps<{
@@ -32,28 +32,33 @@ onMounted(async () => {
 
 const card = computed(() => {
   const body = {
-    title: props.details.name ?? '',
-    subtitle: '',
-    text: '',
     activity: '',
-    id: '#',
+    avatar: '',
     contact: '',
     contactPreferred: 'o',
-    registrationLink: '',
-    isEvent: false,
     date: '',
-    time: '',
+    id: '#',
+    isEvent: false,
     location: '',
     locationLink: '#',
+    registrationLink: '',
+    subtitle: '',
+    text: '',
+    time: '',
+    title: props.details.name ?? '',
   } as any;
 
   if (ClubUtils.isClub(props.details)) {
     const tClub = props.details as Club;
+    const isActive = ClubUtils.isActiveClub(tClub, useClubEventsStore().list)
+    const isActiveText = !isActive ? "(inactive)" : "(active)"
     body.id = tClub.id;
+    body.title += ` ${isActiveText}`
     body.subtitle = tClub.country;
     body.contact = tClub.contact;
     body.contactPreferred = tClub.contact.preferred;
     body.registrationLink = ClubUtils.getContactUrl(body.contact);
+    body.avatar = ClubUtils.getLogo(tClub);
   } else if (EventUtils.isClubEvent(props.details)) {
     const clubEvent = props.details as ClubEvent;
     body.id = clubEvent.clubId;
@@ -65,6 +70,7 @@ const card = computed(() => {
     body.time = clubEvent.time;
     body.location = clubEvent.location;
     body.locationLink = LocationService.getLocationUrl(clubEvent);
+    body.avatar = ClubUtils.getLogo(clubEvent.clubId);
   }
 
   return body;
@@ -88,6 +94,12 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
 
 <template>
   <v-card width="400">
+    <template v-slot:prepend>
+      <v-avatar size="32">
+        <v-img alt="logo" :src="card.avatar"></v-img>
+      </v-avatar>
+    </template>
+
     <template #title>
       <p class="word-break">{{ card.title }}</p>
     </template>
@@ -116,7 +128,7 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
         <v-row>
           <v-col class="v-col-1"><v-icon icon="mdi-map-marker"></v-icon></v-col>
           <v-col><a :href="card.locationLink" class="text-secondary" target="_blank" style="font-weight: 600">{{
-            card.location }}</a></v-col>
+            card.location }} <v-icon icon="mdi-open-in-new" size="x-small"></v-icon></a></v-col>
         </v-row>
         <v-row>
           <v-col class="v-col-1"><v-icon icon="mdi-bag-checked"></v-icon></v-col>
@@ -137,7 +149,7 @@ const resultArray = ContactUtils.convertContactToArray(card.value.contact);
       <v-spacer></v-spacer>
       <v-btn class="bg-primary" v-if="props.redirect" :to="'/club/' + card.id">{{ props.buttonLabel }}</v-btn>
       <v-btn class="bg-primary" v-if="!props.redirect" :href="card.registrationLink" target="_blank">{{
-        props.buttonLabel }}</v-btn>
+        props.buttonLabel }} <v-icon icon="mdi-open-in-new" size="x-small"></v-icon></v-btn>
     </template>
   </v-card>
 </template>

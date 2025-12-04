@@ -39,7 +39,6 @@ export type Club = {
   hasLogo?: boolean;
   hide?: boolean;
   id: string;
-  lastInstagramPostDate?: number;
   name: string;
   socialMediaContent?: SocialMediaContent;
   timezone?: Timezone;

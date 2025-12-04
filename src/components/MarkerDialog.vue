@@ -8,7 +8,7 @@ import {
   ContactUtils,
   ClubUtils,
 } from '@/business-logic/index.utils';
-import { useClubsStore } from '@/stores';
+import { useClubEventsStore, useClubsStore } from '@/stores';
 
 const props = withDefaults(
   defineProps<{
@@ -50,7 +50,10 @@ const card = computed(() => {
 
   if (ClubUtils.isClub(props.details)) {
     const tClub = props.details as Club;
+    const isActive = ClubUtils.isActiveClub(tClub, useClubEventsStore().list)
+    const isActiveText = !isActive ? "(inactive)" : "(active)"
     body.id = tClub.id;
+    body.title += ` ${isActiveText}`
     body.subtitle = tClub.country;
     body.contact = tClub.contact;
     body.contactPreferred = tClub.contact.preferred;

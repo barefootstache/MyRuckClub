@@ -8,11 +8,11 @@ import {
   LControlScale,
   LIcon,
 } from '@vue-leaflet/vue-leaflet';
+import { IconOptions } from 'leaflet';
 import MarkerDialog from '@/components/MarkerDialog.vue';
 import { Club, ClubEvent, PLACEHOLDER_CLUB } from '@/business-logic';
-import { OsmUtils } from '@/business-logic/index.utils';
+import { ClubUtils, OsmUtils } from '@/business-logic/index.utils';
 import { useClubsStore } from '@/stores/clubs.store';
-import { differenceInQuarters, parse } from 'date-fns/esm';
 import { useClubEventsStore } from '@/stores';
 
 const zoom = document.documentElement.clientWidth < 800 ? 3 : 4;
@@ -47,24 +47,28 @@ function updateIsClubActive(): void {
   if (isClubActive.value) {
     isClubActiveText.value = "Active Clubs are either active on social media or have upcoming events."
     data.value = store.list.filter((club) => {
-      if (club.socialMediaContent && club.socialMediaContent.updatedAt) {
-        const datesBetween = differenceInQuarters(parse(club.socialMediaContent.updatedAt, 'yyyy-MM-dd', new Date()), parse(club.socialMediaContent.lastPost, 'yyyy-MM-dd', new Date()))
-        const maxQuartersDistance = 2
-        if (datesBetween <= maxQuartersDistance) {
-          // the club had a social media entry in the past 2 quarters
-          return club
-        }
-        const events = useClubEventsStore().list.filter((ev) => ev.clubId === club.id)
-        if (events.length) {
-          // the club has events, but no social media entries
-          return club
-        }
+      const isActive = ClubUtils.isActiveClub(club, useClubEventsStore().list)
+      if (isActive) {
+        return isActive
       }
     })
   } else {
     isClubActiveText.value = "All Clubs are currently or in the past active."
     data.value = store.list;
   }
+}
+
+/**
+ * Gets the icon configuration respective if the `club` is active.
+ * @param club - the club to check
+ * @returns the icon configuration
+ */
+function getIconConfig(club: Club): Partial<IconOptions> {
+  const isActive = ClubUtils.isActiveClub(club, useClubEventsStore().list)
+  if (!isActive) {
+    return OsmUtils.getPin('hq-inactive', 2).options
+  }
+  return OsmUtils.getPin('hq', 2).options
 }
 </script>
 
@@ -86,9 +90,8 @@ function updateIsClubActive(): void {
 
         <div v-for="club in data">
           <l-marker @click="showDialog(true, club)" v-if="!club?.hide" :lat-lng="club.coordinates">
-            <l-icon :icon-url="OsmUtils.getPin('default', 2).options.iconUrl"
-              :icon-size="OsmUtils.getPin('default', 2).options.iconSize"
-              :icon-anchor="OsmUtils.getPin('default', 2).options.iconAnchor"></l-icon>
+            <l-icon :icon-url="getIconConfig(club).iconUrl" :icon-size="getIconConfig(club).iconSize"
+              :icon-anchor="getIconConfig(club).iconAnchor"></l-icon>
           </l-marker>
         </div>
 

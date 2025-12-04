@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { PLACEHOLDER_CLUB } from '@/business-logic';
 import { useClubsStore } from '@/stores/clubs.store';
 import { ClubUtils } from '@/business-logic/index.utils';
+import { useClubEventsStore } from '@/stores';
 
 const search = ref('');
 const data = ref({
@@ -26,6 +27,7 @@ const sortBy = [{ key: 'name', order: 'asc' }] as const;
 
 const headers = [
   { title: 'Name', key: 'name', align: 'start' },
+  { title: 'Is Active?', key: 'active', align: 'start', sortable: false },
   { title: 'Country', key: 'country', align: 'end', sortable: false },
 ] as const;
 </script>
@@ -60,6 +62,7 @@ const headers = [
               item.name
               }}</router-link>
           </td>
+          <td>(<span v-if="!ClubUtils.isActiveClub(item, useClubEventsStore().list)">Not </span>Active)</td>
           <td align="right">{{ item.country }}</td>
         </tr>
       </template>
